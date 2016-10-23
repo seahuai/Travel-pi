@@ -1,0 +1,6 @@
+framework module Pods____ {
+  umbrella header "Pods-旅行派-umbrella.h"
+
+  export *
+  module * { export * }
+}
