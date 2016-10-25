@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
 
 class NetWorkTool: NSObject {
 
@@ -92,8 +93,10 @@ extension NetWorkTool{
 //MARK:获取周边的旅游景点
 extension NetWorkTool{
     //以后参数改为CLLocation类型
-    func getNearbyDestination(lat: Double,lng: Double, finished: @escaping (_ error: Error?, _ result: [[String: AnyObject]]?) -> ()){
+    func getNearbyDestination(location: CLLocation, finished: @escaping (_ error: Error?, _ result: [[String: AnyObject]]?) -> ()){
 //        let parameters = ["lat": lat, "lng": lng]
+        let lat = location.coordinate.latitude
+        let lng = location.coordinate.longitude
         let url = "http://q.chanyouji.com/api/v2/destinations/nearby.json?lat=\(lat)&lng=\(lng)"
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             switch response.result{
