@@ -31,7 +31,7 @@ extension NetWorkTool{
     }
 }
 
-
+//MARK:获取游记
 extension NetWorkTool{
     
     func getTravelNotes(finished: @escaping (_ error: Error?, _ result: [[String: AnyObject]]?) -> ()){
@@ -46,16 +46,26 @@ extension NetWorkTool{
             }
         }
     }
+    
+    func getTravelNotes(district_id:Int, finished: @escaping (_ error: Error?, _ result: [[String: AnyObject]]?) -> ()){
+        Alamofire.request("http://q.chanyouji.com/api/v1/user_activities.json?district_id=\(district_id)&filter=&page=1&sort= ", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+            switch response.result{
+            case .success:
+                let result = response.result.value as? [String: AnyObject]
+                finished(nil, result?["data"] as? [[String: AnyObject]])
+            case .failure:
+                finished(response.result.error, nil)
+            }
+        }
+    }
+    
+    
+    
 }
 
 //MARK:获取热门旅游城市
 extension NetWorkTool{
-    enum Area {
-        case China
-        case Asia
-        case Europe
-    }
-    
+
     func getHotDestination(area: Area,finished: @escaping (_ error: Error?, _ result: [[String: AnyObject]]?) -> ()){
         let url: String
         switch area {
@@ -82,7 +92,7 @@ extension NetWorkTool{
 //MARK:获取周边的旅游景点
 extension NetWorkTool{
     //以后参数改为CLLocation类型
-    func getNearbyDestination(lat: String,lng: String, finished: @escaping (_ error: Error?, _ result: [[String: AnyObject]]?) -> ()){
+    func getNearbyDestination(lat: Double,lng: Double, finished: @escaping (_ error: Error?, _ result: [[String: AnyObject]]?) -> ()){
 //        let parameters = ["lat": lat, "lng": lng]
         let url = "http://q.chanyouji.com/api/v2/destinations/nearby.json?lat=\(lat)&lng=\(lng)"
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in

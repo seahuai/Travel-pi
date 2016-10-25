@@ -10,7 +10,7 @@ import UIKit
 
 class TravelAlbum: NSObject {
 
-    var travelNotes: [TravelNote?] = [TravelNote?]()
+    var travelNotes: [TravelNote] = [TravelNote]()
     var summary: String?
 
     init(dict: [String: AnyObject]) {

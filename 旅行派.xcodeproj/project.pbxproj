@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3554A75D1DBE597500239A20 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3554A75C1DBE597500239A20 /* Destination.swift */; };
+		3554A75F1DBE5E8000239A20 /* SHTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3554A75E1DBE5E8000239A20 /* SHTool.swift */; };
 		3597DEEB1DBCEC6C00A65747 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DEEA1DBCEC6C00A65747 /* AppDelegate.swift */; };
 		3597DEED1DBCEC6C00A65747 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DEEC1DBCEC6C00A65747 /* ViewController.swift */; };
 		3597DEF01DBCEC6C00A65747 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3597DEEE1DBCEC6C00A65747 /* Main.storyboard */; };
@@ -14,6 +16,16 @@
 		3597DEF51DBCEC6C00A65747 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3597DEF31DBCEC6C00A65747 /* LaunchScreen.storyboard */; };
 		3597DF001DBCEC6C00A65747 /* ___Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DEFF1DBCEC6C00A65747 /* ___Tests.swift */; };
 		3597DF0B1DBCEC6C00A65747 /* ___UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DF0A1DBCEC6C00A65747 /* ___UITests.swift */; };
+		35B7412A1DBCEED000EB8A8A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741261DBCEED000EB8A8A /* Alamofire.framework */; };
+		35B7412B1DBCEED000EB8A8A /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741271DBCEED000EB8A8A /* SDWebImage.framework */; };
+		35B7412C1DBCEED000EB8A8A /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741281DBCEED000EB8A8A /* SnapKit.framework */; };
+		35B7412D1DBCEED000EB8A8A /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741291DBCEED000EB8A8A /* SVProgressHUD.framework */; };
+		35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B7412F1DBCF25D00EB8A8A /* TravelNote.swift */; };
+		35B741321DBCF27F00EB8A8A /* TravelAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B741311DBCF27F00EB8A8A /* TravelAlbum.swift */; };
+		35B741341DBCF28B00EB8A8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B741331DBCF28B00EB8A8A /* User.swift */; };
+		35B741361DBCF52F00EB8A8A /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B741351DBCF52F00EB8A8A /* Content.swift */; };
+		35DA4FFD1DBF638F00806A73 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DA4FFC1DBF638F00806A73 /* Common.swift */; };
+		35FC624F1DBE259F005D1F20 /* NetWorkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC624E1DBE259F005D1F20 /* NetWorkTool.swift */; };
 		41B2D1F43FC51C1D7C05EF7E /* Pods____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E858CAD4CD2E483839855118 /* Pods____.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3554A75C1DBE597500239A20 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		3554A75E1DBE5E8000239A20 /* SHTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHTool.swift; sourceTree = "<group>"; };
 		3597DEE71DBCEC6C00A65747 /* 旅行派.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "旅行派.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3597DEEA1DBCEC6C00A65747 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3597DEEC1DBCEC6C00A65747 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +62,16 @@
 		3597DF061DBCEC6C00A65747 /* 旅行派UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "旅行派UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3597DF0A1DBCEC6C00A65747 /* ___UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "___UITests.swift"; sourceTree = "<group>"; };
 		3597DF0C1DBCEC6C00A65747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35B741261DBCEED000EB8A8A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		35B741271DBCEED000EB8A8A /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
+		35B741281DBCEED000EB8A8A /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
+		35B741291DBCEED000EB8A8A /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/SVProgressHUD/SVProgressHUD.framework"; sourceTree = "<group>"; };
+		35B7412F1DBCF25D00EB8A8A /* TravelNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelNote.swift; sourceTree = "<group>"; };
+		35B741311DBCF27F00EB8A8A /* TravelAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelAlbum.swift; sourceTree = "<group>"; };
+		35B741331DBCF28B00EB8A8A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		35B741351DBCF52F00EB8A8A /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		35DA4FFC1DBF638F00806A73 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		35FC624E1DBE259F005D1F20 /* NetWorkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkTool.swift; sourceTree = "<group>"; };
 		5C0FC64C71D7B6F4E545FFA2 /* Pods-旅行派.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-旅行派.debug.xcconfig"; path = "Pods/Target Support Files/Pods-旅行派/Pods-旅行派.debug.xcconfig"; sourceTree = "<group>"; };
 		E858CAD4CD2E483839855118 /* Pods____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECB230F3C9F7B374098D1188 /* Pods-旅行派.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-旅行派.release.xcconfig"; path = "Pods/Target Support Files/Pods-旅行派/Pods-旅行派.release.xcconfig"; sourceTree = "<group>"; };
@@ -58,6 +82,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B7412A1DBCEED000EB8A8A /* Alamofire.framework in Frameworks */,
+				35B7412B1DBCEED000EB8A8A /* SDWebImage.framework in Frameworks */,
+				35B7412C1DBCEED000EB8A8A /* SnapKit.framework in Frameworks */,
+				35B7412D1DBCEED000EB8A8A /* SVProgressHUD.framework in Frameworks */,
 				41B2D1F43FC51C1D7C05EF7E /* Pods____.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,11 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				3597DEE91DBCEC6C00A65747 /* 旅行派 */,
-				3597DEFE1DBCEC6C00A65747 /* 旅行派Tests */,
-				3597DF091DBCEC6C00A65747 /* 旅行派UITests */,
-				3597DEE81DBCEC6C00A65747 /* Products */,
-				853D969C733C685A2BA2712E /* Pods */,
-				966AF01E4411B32A25D390BF /* Frameworks */,
+				35B741241DBCEEB000EB8A8A /* others */,
+				35B741251DBCEED000EB8A8A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,11 +124,14 @@
 				3597DF061DBCEC6C00A65747 /* 旅行派UITests.xctest */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		3597DEE91DBCEC6C00A65747 /* 旅行派 */ = {
 			isa = PBXGroup;
 			children = (
+				35FC624D1DBE2410005D1F20 /* Tools */,
+				35B7412E1DBCF21200EB8A8A /* Models */,
 				3597DEEA1DBCEC6C00A65747 /* AppDelegate.swift */,
 				3597DEEC1DBCEC6C00A65747 /* ViewController.swift */,
 				3597DEEE1DBCEC6C00A65747 /* Main.storyboard */,
@@ -121,7 +149,7 @@
 				3597DF011DBCEC6C00A65747 /* Info.plist */,
 			);
 			path = "旅行派Tests";
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		3597DF091DBCEC6C00A65747 /* 旅行派UITests */ = {
 			isa = PBXGroup;
@@ -130,6 +158,52 @@
 				3597DF0C1DBCEC6C00A65747 /* Info.plist */,
 			);
 			path = "旅行派UITests";
+			sourceTree = SOURCE_ROOT;
+		};
+		35B741241DBCEEB000EB8A8A /* others */ = {
+			isa = PBXGroup;
+			children = (
+				3597DF091DBCEC6C00A65747 /* 旅行派UITests */,
+				3597DEE81DBCEC6C00A65747 /* Products */,
+				853D969C733C685A2BA2712E /* Pods */,
+				966AF01E4411B32A25D390BF /* Frameworks */,
+				3597DEFE1DBCEC6C00A65747 /* 旅行派Tests */,
+			);
+			name = others;
+			path = "旅行派";
+			sourceTree = "<group>";
+		};
+		35B741251DBCEED000EB8A8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35B741261DBCEED000EB8A8A /* Alamofire.framework */,
+				35B741271DBCEED000EB8A8A /* SDWebImage.framework */,
+				35B741281DBCEED000EB8A8A /* SnapKit.framework */,
+				35B741291DBCEED000EB8A8A /* SVProgressHUD.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		35B7412E1DBCF21200EB8A8A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				35B7412F1DBCF25D00EB8A8A /* TravelNote.swift */,
+				35B741311DBCF27F00EB8A8A /* TravelAlbum.swift */,
+				35B741331DBCF28B00EB8A8A /* User.swift */,
+				35B741351DBCF52F00EB8A8A /* Content.swift */,
+				3554A75C1DBE597500239A20 /* Destination.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		35FC624D1DBE2410005D1F20 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				35FC624E1DBE259F005D1F20 /* NetWorkTool.swift */,
+				3554A75E1DBE5E8000239A20 /* SHTool.swift */,
+				35DA4FFC1DBF638F00806A73 /* Common.swift */,
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 		853D969C733C685A2BA2712E /* Pods */ = {
@@ -139,6 +213,7 @@
 				ECB230F3C9F7B374098D1188 /* Pods-旅行派.release.xcconfig */,
 			);
 			name = Pods;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		966AF01E4411B32A25D390BF /* Frameworks */ = {
@@ -147,6 +222,7 @@
 				E858CAD4CD2E483839855118 /* Pods____.framework */,
 			);
 			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,7 +414,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3597DEED1DBCEC6C00A65747 /* ViewController.swift in Sources */,
+				35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */,
 				3597DEEB1DBCEC6C00A65747 /* AppDelegate.swift in Sources */,
+				35B741341DBCF28B00EB8A8A /* User.swift in Sources */,
+				35FC624F1DBE259F005D1F20 /* NetWorkTool.swift in Sources */,
+				35B741321DBCF27F00EB8A8A /* TravelAlbum.swift in Sources */,
+				3554A75F1DBE5E8000239A20 /* SHTool.swift in Sources */,
+				3554A75D1DBE597500239A20 /* Destination.swift in Sources */,
+				35DA4FFD1DBF638F00806A73 /* Common.swift in Sources */,
+				35B741361DBCF52F00EB8A8A /* Content.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +574,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = A5T7QTQLHV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SDWebImage",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
+				);
 				INFOPLIST_FILE = "旅行派/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zsh.---";
@@ -504,6 +593,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = A5T7QTQLHV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SDWebImage",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
+				);
 				INFOPLIST_FILE = "旅行派/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zsh.---";

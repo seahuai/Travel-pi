@@ -14,9 +14,15 @@ class TravelNote: NSObject {
     
     var id: Int = 0
     //2016-10-20T01:47:42.000Z
-    var made_at: String?
-    var made_date: NSDate?
-    var made_time: NSDate?
+    var made_at: String?{
+        didSet{
+            let strings = made_at?.components(separatedBy: "T")
+            made_date = strings?[0]
+            made_time = (strings?.last?.components(separatedBy: "Z"))?.first
+        }
+    }
+    var made_date: String?
+    var made_time: String?
     
     var topic: String?
     var _description: String?//*
