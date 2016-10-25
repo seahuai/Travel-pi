@@ -9,21 +9,18 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class MainViewController: UITabBarController {
 
- 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        setUpTabBar()
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        print(test)
-        
-    }
-    
 
+}
+
+extension MainViewController{
+    fileprivate func setUpTabBar(){
+        
+    }
 }
 
