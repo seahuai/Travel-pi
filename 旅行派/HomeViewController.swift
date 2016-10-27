@@ -15,10 +15,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var displayScrollView: UIScrollView!
     
     //dispalyView的原始高度
+    
     fileprivate var displayViewHeight: CGFloat = 0
     fileprivate var tableViewOrginalY: CGFloat = 0
     @IBOutlet weak var displayViewHeightCon: NSLayoutConstraint!
-    
+    @IBOutlet weak var tableViewHeightCon: NSLayoutConstraint!
     //MARK:定位工具
     fileprivate var once = true
     var location = CLLocation(){
@@ -59,7 +60,7 @@ extension HomeViewController{
     fileprivate func setUp(){
         locationTool.isUpdate = true
         displayViewHeight = displayViewHeightCon.constant
-        tableViewOrginalY = destinationTableView.frame.origin.y
+        tableViewOrginalY = destinationTableView.contentInset.top
         automaticallyAdjustsScrollViewInsets = false
     }
     
@@ -73,6 +74,7 @@ extension HomeViewController{
         destinationTableView.delegate = self
         destinationTableView.dataSource = self
         destinationTableView.separatorStyle = .none
+        destinationTableView.contentInset = UIEdgeInsets(top: displayViewHeightCon.constant, left: 0, bottom: 0, right: 0)
 
     }
     
@@ -113,25 +115,20 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == destinationTableView{
-//            print(scrollView.contentOffset.y)
-            let offset: CGFloat = destinationTableView.contentOffset.y - tableViewOrginalY
-//            displayViewHeight(offset: offset)
-            print("offset:\(offset)")
+            let offset: CGFloat = destinationTableView.contentOffset.y + tableViewOrginalY
+            displayViewHeight(offset: offset)
         }
     }
     
     //展示页面的变化
     private func displayViewHeight(offset: CGFloat){
-        var height = -offset
+        var height = displayViewHeight - offset
         print(height)
         if height <= 64{
             height = 64
         }
-        else if (height >= displayViewHeight){
-            height = displayViewHeight
-        }
-        print("after: \(height)")
-        self.displayViewHeightCon.constant = height
+        displayViewHeightCon.constant = height
+        self.displayScrollView.layoutIfNeeded()
     }
 }
 
