@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3554A75D1DBE597500239A20 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3554A75C1DBE597500239A20 /* Destination.swift */; };
 		3554A75F1DBE5E8000239A20 /* SHTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3554A75E1DBE5E8000239A20 /* SHTool.swift */; };
+		3556045A1DC227CD007C5D3C /* picCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355604581DC227CD007C5D3C /* picCollectionCell.swift */; };
+		3556045B1DC227CD007C5D3C /* picCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 355604591DC227CD007C5D3C /* picCollectionCell.xib */; };
+		3556045D1DC236AB007C5D3C /* HomeNotificationCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3556045C1DC236AB007C5D3C /* HomeNotificationCommon.swift */; };
 		357B63F31DBF809200859186 /* DestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357B63F21DBF809200859186 /* DestinationCell.swift */; };
 		357B63F61DBF80E600859186 /* SHImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357B63F51DBF80E600859186 /* SHImageView.swift */; };
 		357B63F91DBF86DD00859186 /* LocationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357B63F81DBF86DD00859186 /* LocationTool.swift */; };
@@ -57,6 +60,9 @@
 /* Begin PBXFileReference section */
 		3554A75C1DBE597500239A20 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		3554A75E1DBE5E8000239A20 /* SHTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHTool.swift; sourceTree = "<group>"; };
+		355604581DC227CD007C5D3C /* picCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = picCollectionCell.swift; sourceTree = "<group>"; };
+		355604591DC227CD007C5D3C /* picCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = picCollectionCell.xib; sourceTree = "<group>"; };
+		3556045C1DC236AB007C5D3C /* HomeNotificationCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNotificationCommon.swift; sourceTree = "<group>"; };
 		357B63F21DBF809200859186 /* DestinationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationCell.swift; sourceTree = "<group>"; };
 		357B63F51DBF80E600859186 /* SHImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHImageView.swift; sourceTree = "<group>"; };
 		357B63F81DBF86DD00859186 /* LocationTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTool.swift; sourceTree = "<group>"; };
@@ -128,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				357B63F21DBF809200859186 /* DestinationCell.swift */,
+				355604581DC227CD007C5D3C /* picCollectionCell.swift */,
+				355604591DC227CD007C5D3C /* picCollectionCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -260,6 +268,7 @@
 		35EA4C301DBF786E004A63A4 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				3556045C1DC236AB007C5D3C /* HomeNotificationCommon.swift */,
 				357B63F11DBF806000859186 /* cell */,
 				35EA4C251DBF7726004A63A4 /* HomeViewController.swift */,
 				35EA4C2D1DBF7860004A63A4 /* HomeViewController.storyboard */,
@@ -427,6 +436,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3556045B1DC227CD007C5D3C /* picCollectionCell.xib in Resources */,
 				35EA4C2F1DBF7860004A63A4 /* HomeViewController.storyboard in Resources */,
 				3597DEF51DBCEC6C00A65747 /* LaunchScreen.storyboard in Resources */,
 				3597DEF21DBCEC6C00A65747 /* Assets.xcassets in Resources */,
@@ -514,9 +524,11 @@
 				35B741321DBCF27F00EB8A8A /* TravelAlbum.swift in Sources */,
 				35EA4C281DBF7775004A63A4 /* ShareViewController.swift in Sources */,
 				3554A75F1DBE5E8000239A20 /* SHTool.swift in Sources */,
+				3556045A1DC227CD007C5D3C /* picCollectionCell.swift in Sources */,
 				35EA4C261DBF7726004A63A4 /* HomeViewController.swift in Sources */,
 				357B63F31DBF809200859186 /* DestinationCell.swift in Sources */,
 				3554A75D1DBE597500239A20 /* Destination.swift in Sources */,
+				3556045D1DC236AB007C5D3C /* HomeNotificationCommon.swift in Sources */,
 				35DA4FFD1DBF638F00806A73 /* Common.swift in Sources */,
 				35B741361DBCF52F00EB8A8A /* Content.swift in Sources */,
 			);

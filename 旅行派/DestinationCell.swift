@@ -12,43 +12,72 @@ import SnapKit
 
 class DestinationCell: UITableViewCell {
     
-    fileprivate lazy var label = UILabel()
+    var destinations: [Destination] = [Destination]()
     
-    var destination: Destination?{
-        didSet{
-            descriptionLabel.text = destination?._description
-            let imageURL = URL(string: destination!.photo_url!)
-            desImageView.sd_setImage(with: imageURL, placeholderImage: nil)
-            setLabel(text: destination?.name)
-        }
-    }
-    
-
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var desImageView: UIImageView!
+    @IBOutlet weak var findMoreButton: UIButton!
+    @IBOutlet weak var picCollectionView: UICollectionView!
+    @IBOutlet weak var cellTitleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setUpCollcetionView()
+        setUpLayout()
+    }
+    @IBAction func findMoreButtonClick() {
+        print("findMore----\(cellTitleLabel.text)")
+    }
+}
+
+
+extension DestinationCell{
+    fileprivate func setUpCollcetionView(){
+        picCollectionView.dataSource = self
+        picCollectionView.delegate = self
         
+        
+        picCollectionView.register(UINib(nibName: "picCollectionCell", bundle: nil), forCellWithReuseIdentifier: "picCollectionCell")
         
     }
     
-    fileprivate func setLabel(text: String?){
+    fileprivate func setUpLayout(){
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let space: CGFloat = 10
+        let items: CGFloat = 3
+        let itemW = (UIScreen.main.bounds.width - 4 * space) / items
+        let itemH = itemW
         
-        desImageView.addSubview(label)
-        label.backgroundColor = UIColor.clear
-        label.text = text
-        label.textColor = UIColor.white
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
+        layout.minimumLineSpacing = space
+        layout.itemSize = CGSize(width: itemW, height: itemH)
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         
-        label.snp.makeConstraints { (make) in
-            make.width.equalTo(desImageView.snp.width)
-            make.centerX.equalTo(desImageView.snp.centerX)
-            make.centerY.equalTo(desImageView.snp.centerY)
-            make.width.equalTo(44)
-        }
-        
+        picCollectionView.showsHorizontalScrollIndicator = false
+        picCollectionView.collectionViewLayout = layout
     }
+}
 
+extension DestinationCell: UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return destinations.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = picCollectionView.dequeueReusableCell(withReuseIdentifier: "picCollectionCell", for: indexPath) as! picCollectionCell
+        cell.destination = destinations[indexPath.item]
+        return cell
+    }
+    
+    
+    
+}
+
+extension DestinationCell: UICollectionViewDelegate{
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset.x)
+    }
+    
+    
+    
 }
