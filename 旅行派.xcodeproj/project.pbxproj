@@ -16,6 +16,8 @@
 		357B63F61DBF80E600859186 /* SHImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357B63F51DBF80E600859186 /* SHImageView.swift */; };
 		357B63F91DBF86DD00859186 /* LocationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357B63F81DBF86DD00859186 /* LocationTool.swift */; };
 		357B63FB1DBF872A00859186 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 357B63FA1DBF872A00859186 /* CoreLocation.framework */; };
+		357FDA921DC378A5002966FE /* FindMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357FDA901DC378A5002966FE /* FindMoreCell.swift */; };
+		357FDA931DC378A5002966FE /* FindMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357FDA911DC378A5002966FE /* FindMoreCell.xib */; };
 		3597DEEB1DBCEC6C00A65747 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DEEA1DBCEC6C00A65747 /* AppDelegate.swift */; };
 		3597DEED1DBCEC6C00A65747 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DEEC1DBCEC6C00A65747 /* MainViewController.swift */; };
 		3597DEF01DBCEC6C00A65747 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3597DEEE1DBCEC6C00A65747 /* Main.storyboard */; };
@@ -70,6 +72,8 @@
 		357B63F51DBF80E600859186 /* SHImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHImageView.swift; sourceTree = "<group>"; };
 		357B63F81DBF86DD00859186 /* LocationTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTool.swift; sourceTree = "<group>"; };
 		357B63FA1DBF872A00859186 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		357FDA901DC378A5002966FE /* FindMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindMoreCell.swift; sourceTree = "<group>"; };
+		357FDA911DC378A5002966FE /* FindMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindMoreCell.xib; sourceTree = "<group>"; };
 		3597DEE71DBCEC6C00A65747 /* 旅行派.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "旅行派.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3597DEEA1DBCEC6C00A65747 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3597DEEC1DBCEC6C00A65747 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 				35AD214D1DC2F22C006B0564 /* FindMoreViewController.swift */,
 				35AD214E1DC2F22C006B0564 /* FindMoreViewController.xib */,
 				35AD21511DC2FB89006B0564 /* FindMoreVCAnimator.swift */,
+				357FDA901DC378A5002966FE /* FindMoreCell.swift */,
+				357FDA911DC378A5002966FE /* FindMoreCell.xib */,
 			);
 			name = FindMoreVC;
 			sourceTree = "<group>";
@@ -458,6 +464,7 @@
 				35EA4C2F1DBF7860004A63A4 /* HomeViewController.storyboard in Resources */,
 				3597DEF51DBCEC6C00A65747 /* LaunchScreen.storyboard in Resources */,
 				3597DEF21DBCEC6C00A65747 /* Assets.xcassets in Resources */,
+				357FDA931DC378A5002966FE /* FindMoreCell.xib in Resources */,
 				3597DEF01DBCEC6C00A65747 /* Main.storyboard in Resources */,
 				35EA4C331DBF7894004A63A4 /* ShareViewController.storyboard in Resources */,
 			);
@@ -545,6 +552,7 @@
 				35EA4C281DBF7775004A63A4 /* ShareViewController.swift in Sources */,
 				3554A75F1DBE5E8000239A20 /* SHTool.swift in Sources */,
 				3556045A1DC227CD007C5D3C /* picCollectionCell.swift in Sources */,
+				357FDA921DC378A5002966FE /* FindMoreCell.swift in Sources */,
 				35EA4C261DBF7726004A63A4 /* HomeViewController.swift in Sources */,
 				357B63F31DBF809200859186 /* DestinationCell.swift in Sources */,
 				3554A75D1DBE597500239A20 /* Destination.swift in Sources */,

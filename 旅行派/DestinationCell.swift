@@ -23,16 +23,17 @@ class DestinationCell: UITableViewCell {
         super.awakeFromNib()
         setUpCollcetionView()
         setUpLayout()
+//        findMoreButton.layer.masksToBounds
     }
    
 }
 
 
 extension DestinationCell{
+
     fileprivate func setUpCollcetionView(){
         picCollectionView.dataSource = self
         picCollectionView.delegate = self
-        
         
         picCollectionView.register(UINib(nibName: "picCollectionCell", bundle: nil), forCellWithReuseIdentifier: "picCollectionCell")
         
@@ -40,7 +41,7 @@ extension DestinationCell{
     
     fileprivate func setUpLayout(){
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let space: CGFloat = 10
+        let space: CGFloat = 7
         let items: CGFloat = 3
         let itemW = (UIScreen.main.bounds.width - 4 * space) / items
         let itemH = itemW
@@ -48,7 +49,7 @@ extension DestinationCell{
         layout.minimumLineSpacing = space
         layout.itemSize = CGSize(width: itemW, height: itemH)
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: space, bottom: 0, right: space)
         
         picCollectionView.showsHorizontalScrollIndicator = false
         picCollectionView.collectionViewLayout = layout
@@ -85,10 +86,10 @@ extension DestinationCell: UICollectionViewDelegate{
             //通知HomeVC
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        
+//    }
     
     
     

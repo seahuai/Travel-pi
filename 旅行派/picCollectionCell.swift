@@ -11,7 +11,10 @@ import SDWebImage
 
 class picCollectionCell: UICollectionViewCell {
     
+    //遮罩
+    @IBOutlet weak var toolBar: UIToolbar!
     
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -21,7 +24,8 @@ class picCollectionCell: UICollectionViewCell {
                 let url = URL(string: photo_url)
                 imageView.sd_setImage(with: url, placeholderImage: nil)
             }
-            titleLabel.text = destination?.name
+            titleLabel.text = destination?.name_en
+            nameLabel.text = destination?.name
         }
     }
 
@@ -30,6 +34,9 @@ class picCollectionCell: UICollectionViewCell {
         imageView.layoutIfNeeded()
         imageView.layer.cornerRadius = 0.2 * imageView.bounds.width
         imageView.layer.masksToBounds = true
+        
+        toolBar.layer.cornerRadius = 0.2 * imageView.bounds.width
+        toolBar.layer.masksToBounds = true
     }
     
     

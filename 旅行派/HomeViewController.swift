@@ -35,6 +35,7 @@ class HomeViewController: UIViewController {
     //MARK:模型属性
     fileprivate var NBdestinations: [Destination] = [Destination]()
     fileprivate var Hotdestinations: [Destination] = [Destination]()
+    fileprivate var Otherdestinations: [Destination] = [Destination]()
     fileprivate var CellModels:[String: [Destination]] = [String: [Destination]]()
     
     //MARK:Cell标题
@@ -54,7 +55,8 @@ class HomeViewController: UIViewController {
         setUpNotification()
         setUp()
         
-        getHotDestinations(area: .Asia)
+        getAsiaDestinations()
+        getEuropeDestinations()
     }
     
     deinit {
@@ -128,13 +130,17 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         
         if indexPath.row == 0{cellId = "NearBy"}
         if indexPath.row == 1{cellId = "Hot"}
-        if indexPath.row == 2{}
+        if indexPath.row == 2{cellId = "Others"}
         
-        let destinations = CellModels[cellId]
-        if destinations!.count > 6{
-            for i in 0..<6{ cell.destinations.append(destinations![i]) }
+        
+        guard let destinations = CellModels[cellId] else {
+            return cell
+        }
+        
+        if destinations.count > 6{
+            for i in 0..<6{ cell.destinations.append(destinations[i]) }
         }else{
-            cell.destinations = destinations!
+            cell.destinations = destinations
         }
         
         cell.cellTitleLabel.text = cellTitle[indexPath.row]
@@ -192,8 +198,8 @@ extension HomeViewController{
         }
     }
     //MARK:-热门
-    fileprivate func getHotDestinations(area: Area){
-        NetWorkTool.sharedInstance.getHotDestination(area: area) { (error, result) in
+    fileprivate func getAsiaDestinations(){
+        NetWorkTool.sharedInstance.getHotDestination(area: .Asia) { (error, result) in
             if error != nil{print(error); return}
             if let result = result{
                 for dict in result{
@@ -202,6 +208,20 @@ extension HomeViewController{
                 }
             }
             self.CellModels["Hot"] = self.Hotdestinations
+            self.destinationTableView.reloadData()
+        }
+    }
+    
+    fileprivate func getEuropeDestinations(){
+        NetWorkTool.sharedInstance.getHotDestination(area: .Europe) { (error, result) in
+            if error != nil{print(error); return}
+            if let result = result{
+                for dict in result{
+                    let des = Destination(dict: dict)
+                    self.Otherdestinations.append(des)
+                }
+            }
+            self.CellModels["Others"] = self.Otherdestinations
             self.destinationTableView.reloadData()
         }
     }
