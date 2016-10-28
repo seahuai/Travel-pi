@@ -23,6 +23,9 @@
 		3597DEF51DBCEC6C00A65747 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3597DEF31DBCEC6C00A65747 /* LaunchScreen.storyboard */; };
 		3597DF001DBCEC6C00A65747 /* ___Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DEFF1DBCEC6C00A65747 /* ___Tests.swift */; };
 		3597DF0B1DBCEC6C00A65747 /* ___UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DF0A1DBCEC6C00A65747 /* ___UITests.swift */; };
+		35AD214F1DC2F22C006B0564 /* FindMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD214D1DC2F22C006B0564 /* FindMoreViewController.swift */; };
+		35AD21501DC2F22C006B0564 /* FindMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35AD214E1DC2F22C006B0564 /* FindMoreViewController.xib */; };
+		35AD21521DC2FB89006B0564 /* FindMoreVCAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD21511DC2FB89006B0564 /* FindMoreVCAnimator.swift */; };
 		35B7412A1DBCEED000EB8A8A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741261DBCEED000EB8A8A /* Alamofire.framework */; };
 		35B7412B1DBCEED000EB8A8A /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741271DBCEED000EB8A8A /* SDWebImage.framework */; };
 		35B7412C1DBCEED000EB8A8A /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741281DBCEED000EB8A8A /* SnapKit.framework */; };
@@ -80,6 +83,9 @@
 		3597DF061DBCEC6C00A65747 /* 旅行派UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "旅行派UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3597DF0A1DBCEC6C00A65747 /* ___UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "___UITests.swift"; sourceTree = "<group>"; };
 		3597DF0C1DBCEC6C00A65747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35AD214D1DC2F22C006B0564 /* FindMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindMoreViewController.swift; sourceTree = "<group>"; };
+		35AD214E1DC2F22C006B0564 /* FindMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindMoreViewController.xib; sourceTree = "<group>"; };
+		35AD21511DC2FB89006B0564 /* FindMoreVCAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindMoreVCAnimator.swift; sourceTree = "<group>"; };
 		35B741261DBCEED000EB8A8A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		35B741271DBCEED000EB8A8A /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		35B741281DBCEED000EB8A8A /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
@@ -208,6 +214,16 @@
 			path = "旅行派UITests";
 			sourceTree = SOURCE_ROOT;
 		};
+		35AD214C1DC2F1F9006B0564 /* FindMoreVC */ = {
+			isa = PBXGroup;
+			children = (
+				35AD214D1DC2F22C006B0564 /* FindMoreViewController.swift */,
+				35AD214E1DC2F22C006B0564 /* FindMoreViewController.xib */,
+				35AD21511DC2FB89006B0564 /* FindMoreVCAnimator.swift */,
+			);
+			name = FindMoreVC;
+			sourceTree = "<group>";
+		};
 		35B741241DBCEEB000EB8A8A /* others */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				3556045C1DC236AB007C5D3C /* HomeNotificationCommon.swift */,
+				35AD214C1DC2F1F9006B0564 /* FindMoreVC */,
 				357B63F11DBF806000859186 /* cell */,
 				35EA4C251DBF7726004A63A4 /* HomeViewController.swift */,
 				35EA4C2D1DBF7860004A63A4 /* HomeViewController.storyboard */,
@@ -436,6 +453,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35AD21501DC2F22C006B0564 /* FindMoreViewController.xib in Resources */,
 				3556045B1DC227CD007C5D3C /* picCollectionCell.xib in Resources */,
 				35EA4C2F1DBF7860004A63A4 /* HomeViewController.storyboard in Resources */,
 				3597DEF51DBCEC6C00A65747 /* LaunchScreen.storyboard in Resources */,
@@ -514,6 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35AD21521DC2FB89006B0564 /* FindMoreVCAnimator.swift in Sources */,
 				357B63F91DBF86DD00859186 /* LocationTool.swift in Sources */,
 				3597DEED1DBCEC6C00A65747 /* MainViewController.swift in Sources */,
 				35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */,
@@ -522,6 +541,7 @@
 				35B741341DBCF28B00EB8A8A /* User.swift in Sources */,
 				35FC624F1DBE259F005D1F20 /* NetWorkTool.swift in Sources */,
 				35B741321DBCF27F00EB8A8A /* TravelAlbum.swift in Sources */,
+				35AD214F1DC2F22C006B0564 /* FindMoreViewController.swift in Sources */,
 				35EA4C281DBF7775004A63A4 /* ShareViewController.swift in Sources */,
 				3554A75F1DBE5E8000239A20 /* SHTool.swift in Sources */,
 				3556045A1DC227CD007C5D3C /* picCollectionCell.swift in Sources */,

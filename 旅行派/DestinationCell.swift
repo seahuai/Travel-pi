@@ -13,6 +13,7 @@ import SnapKit
 class DestinationCell: UITableViewCell {
     
     var destinations: [Destination] = [Destination]()
+    var cellId: String = ""
     
     @IBOutlet weak var findMoreButton: UIButton!
     @IBOutlet weak var picCollectionView: UICollectionView!
@@ -23,9 +24,7 @@ class DestinationCell: UITableViewCell {
         setUpCollcetionView()
         setUpLayout()
     }
-    @IBAction func findMoreButtonClick() {
-        print("findMore----\(cellTitleLabel.text)")
-    }
+   
 }
 
 
@@ -74,8 +73,21 @@ extension DestinationCell: UICollectionViewDataSource{
 
 extension DestinationCell: UICollectionViewDelegate{
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.x)
+    @IBAction func findMoreButtonClick() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: PicCollectionViewScrollNote), object: nil, userInfo: ["cellId": cellId])
+    }
+    
+   
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let contensizeX = picCollectionView.contentSize.width
+        if picCollectionView.contentOffset.x > (contensizeX + 50) / 2{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: PicCollectionViewScrollNote), object: nil, userInfo: ["cellId": cellId])
+            //通知HomeVC
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
     
     

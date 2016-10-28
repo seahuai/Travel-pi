@@ -15,7 +15,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var displayScrollView: UIScrollView!
     
     //dispalyView的原始高度
-    
     fileprivate var displayViewHeight: CGFloat = 0
     fileprivate var tableViewOrginalY: CGFloat = 0
     @IBOutlet weak var displayViewHeightCon: NSLayoutConstraint!
@@ -41,6 +40,8 @@ class HomeViewController: UIViewController {
     //MARK:Cell标题
     fileprivate var cellTitle: [String] = ["附近的城市","亚洲热门城市","其它热门城市"]
     
+    //MARK:控制器
+    fileprivate lazy var findMoreViewController: FindMoreViewController = FindMoreViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,9 +49,14 @@ class HomeViewController: UIViewController {
         setUpNavigationBar()
         setUpTableView()
         setUpScrollView()
+        setUpNotification()
         setUp()
         
         getHotDestinations(area: .Asia)
+    }
+    
+    deinit {
+     NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -80,8 +86,29 @@ extension HomeViewController{
     
     fileprivate func setUpScrollView(){
         displayScrollView.delegate = self
-
     }
+    
+}
+
+//MARK:处理通知事件
+extension HomeViewController{
+    
+    fileprivate func setUpNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.pushFindMoreVC(note:)), name: NSNotification.Name(rawValue: PicCollectionViewScrollNote), object: nil)
+    }
+    
+    @objc fileprivate func pushFindMoreVC(note: Notification){
+        let cellId = note.userInfo?["cellId"] as? String
+        if let cellId = cellId{
+            findMoreViewController.destinations = CellModels[cellId]!
+//            navigationController?.pushViewController(findMoreViewController, animated: true)
+            let navigationVC = UINavigationController(rootViewController: findMoreViewController)
+            present(navigationVC, animated: true, completion: { })
+        }
+    }
+    
+    
+    
 }
 
 //MARK:tableView-DataSource-Delegate
@@ -106,7 +133,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         }else{
             cell.destinations = destinations!
         }
+        
         cell.cellTitleLabel.text = cellTitle[indexPath.row]
+        cell.cellId = cellId
+        
         cell.selectionStyle = .none
         return cell
         
@@ -123,7 +153,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     //展示页面的变化
     private func displayViewHeight(offset: CGFloat){
         var height = displayViewHeight - offset
-        print(height)
+//        print(height)
         if height <= 64{
             height = 64
         }
@@ -136,6 +166,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
 extension HomeViewController: UIScrollViewDelegate{
     
 }
+
+
+
+
 
 //MARK:获取景点
 extension HomeViewController{
