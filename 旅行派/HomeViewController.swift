@@ -43,6 +43,8 @@ class HomeViewController: UIViewController {
     //MARK:控制器
     fileprivate lazy var findMoreViewController: FindMoreViewController = FindMoreViewController()
     
+    //MARK:动画
+    fileprivate lazy var animator: FindMoreVCAnimator = FindMoreVCAnimator()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
@@ -103,6 +105,7 @@ extension HomeViewController{
             findMoreViewController.destinations = CellModels[cellId]!
 //            navigationController?.pushViewController(findMoreViewController, animated: true)
             let navigationVC = UINavigationController(rootViewController: findMoreViewController)
+            navigationVC.transitioningDelegate = animator
             present(navigationVC, animated: true, completion: { })
         }
     }

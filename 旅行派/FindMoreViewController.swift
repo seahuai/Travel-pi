@@ -37,7 +37,6 @@ extension FindMoreViewController{
     
     fileprivate func setUp(){
         self.modalPresentationStyle = .custom
-        transitioningDelegate = animator
     }
     
     fileprivate func setUpNavigationBar(){

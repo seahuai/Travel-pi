@@ -37,11 +37,71 @@ extension FindMoreVCAnimator: UIViewControllerAnimatedTransitioning{
 
 //MARK:具体动画实现
 extension FindMoreVCAnimator{
+    //一个垃圾效果
+//    fileprivate func presentAnimation(transitionContext: UIViewControllerContextTransitioning){
+//        let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)
+//        let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)
+//        let containerView = transitionContext.containerView
+//        
+//        let tempView = fromView?.snapshotView(afterScreenUpdates: false)
+//        tempView?.bounds = fromView!.bounds
+//        tempView?.layer.position = fromView!.frame.origin
+//        tempView?.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
+//        tempView?.frame.origin = CGPoint(x: 0, y: 0)
+//        
+//        let fromShadow = UIView()
+//        fromShadow.frame = tempView!.bounds
+//        fromShadow.backgroundColor = UIColor.black
+//        fromShadow.alpha = 0
+//        
+//        let toShadow = UIView()
+//        toShadow.frame = toView!.bounds
+//        toShadow.backgroundColor = UIColor.black
+//        toShadow.alpha = 1
+//        toView?.addSubview(toShadow)
+//        
+//        tempView?.addSubview(fromShadow)
+//        containerView.addSubview(toView!)
+//        
+//        containerView.addSubview(tempView!)
+//        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: { 
+//            tempView?.layer.transform = CATransform3DMakeRotation(CGFloat(-M_PI_2), 0, 1, 0)
+//            fromShadow.alpha = 0.5
+//            toShadow.alpha = 0
+//            }) { (_) in
+//                tempView?.removeFromSuperview()
+//                toShadow.removeFromSuperview()
+//                transitionContext.completeTransition(true)
+//        }
+//    }
+    
     fileprivate func presentAnimation(transitionContext: UIViewControllerContextTransitioning){
-        
+        let toView = transitionContext.view(forKey: .to)
+        let containerView = transitionContext.containerView
+        containerView.addSubview(toView!)
+
+        toView?.frame.origin = CGPoint(x: UIScreen.main.bounds.width, y: 0)
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+            toView?.frame.origin = CGPoint(x: 0, y: 0)
+            }) { (_) in
+                transitionContext.completeTransition(true)
+        }
     }
     
     fileprivate func dismissAnimation(transitionContext: UIViewControllerContextTransitioning){
+        let fromView = transitionContext.view(forKey: .from)
+        let toView = transitionContext.view(forKey: .to)
+        let containerView = transitionContext.containerView
+        containerView.addSubview(toView!)
+        containerView.addSubview(fromView!)
         
+        toView?.alpha = 0
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: { 
+            fromView?.frame.origin = CGPoint(x: UIScreen.main.bounds.width, y: 0)
+            toView?.alpha = 1
+            }) { (_) in
+                fromView?.removeFromSuperview()
+                transitionContext.completeTransition(true)
+        }
     }
 }
