@@ -110,10 +110,15 @@ extension HomeViewController{
         let cellId = note.userInfo?["cellId"] as? String
         if let cellId = cellId{
             findMoreViewController.destinations = CellModels[cellId]!
+            
 //            navigationController?.pushViewController(findMoreViewController, animated: true)
-            let navigationVC = UINavigationController(rootViewController: findMoreViewController)
-            navigationVC.transitioningDelegate = animator
-            present(navigationVC, animated: true, completion: { })
+//            let navigationVC = UINavigationController(rootViewController: findMoreViewController)
+//            navigationVC.transitioningDelegate = animator
+//            present(navigationVC, animated: true, completion: { })
+            
+            findMoreViewController.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(findMoreViewController, animated: true)
+            
         }
     }
     

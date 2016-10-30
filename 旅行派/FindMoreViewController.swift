@@ -61,7 +61,8 @@ extension FindMoreViewController{
     }
     
     @objc private func back(){
-        dismiss(animated: true) {}
+//        dismiss(animated: true) {}
+        _ = navigationController?.popViewController(animated: true)
     }
 }
 
