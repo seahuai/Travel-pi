@@ -10,6 +10,11 @@ import UIKit
 
 class TravelNote: NSObject {
 
+    //shareCell相关
+    var cellHeight: CGFloat = 500
+    var labelHeight: CGFloat = 80
+    var isFold: Bool = false
+    
     var _user: User?
     
     var id: Int = 0

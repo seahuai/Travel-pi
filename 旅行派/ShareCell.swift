@@ -10,6 +10,7 @@ import UIKit
 
 class ShareCell: UITableViewCell {
     
+    var indexPathRow: Int = 0
     
     @IBOutlet weak var unfoldeAllButton: UIButton!
     @IBOutlet weak var readAllButton: UIButton!
@@ -25,6 +26,7 @@ class ShareCell: UITableViewCell {
     
     @IBOutlet weak var picCollectionViewHeightCon: NSLayoutConstraint!
     
+    @IBOutlet weak var descripationLabelHeightCon: NSLayoutConstraint!
     var contents: [Content] = [Content]()
     var note: TravelNote?{
         didSet{
@@ -37,6 +39,11 @@ class ShareCell: UITableViewCell {
             titleLabel.text = note?.topic
             descripationLabel.text = note?._description
             
+            descripationLabelHeightCon.constant = note?.labelHeight ?? 80
+            
+            if let isFold = note?.isFold{
+                unfoldeAllButton.isHidden = isFold
+            }
             
             guard  let contents = note?._contents else {
                 picCollectionView.bounds.size.height = 0
@@ -47,9 +54,7 @@ class ShareCell: UITableViewCell {
                 let url = URL(string: urlStr)
                 mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_picture"))
             }
-            
             self.contents = contents
-            
         }
     }
 
@@ -57,6 +62,7 @@ class ShareCell: UITableViewCell {
         super.awakeFromNib()
         setUp()
         setUpPicCollectionView()
+        setUpButton()
 //        setUpCellSize()
     }
 
@@ -89,7 +95,7 @@ extension ShareCell{
         picCollectionView.layoutIfNeeded()
         
         let layout = UICollectionViewFlowLayout()
-        let space: CGFloat = 8
+        let space: CGFloat = 3
         layout.minimumLineSpacing = space
         layout.sectionInset = UIEdgeInsets(top: 0, left: space, bottom: 0, right: space)
         layout.scrollDirection = .horizontal
@@ -105,9 +111,46 @@ extension ShareCell{
         picCollectionView.register(UINib(nibName: "PicCell", bundle: nil), forCellWithReuseIdentifier: "PicCell")
     }
     
+}
+
+
+
+extension ShareCell{
+    fileprivate func setUpButton(){
+        unfoldeAllButton.addTarget(self, action: #selector(self.unfoldButtonClick), for: .touchUpInside)
+    }
     
-    
-    
+    @objc private func unfoldButtonClick(){
+        unfoldeAllButton.isHidden = true
+        guard let text = descripationLabel.text else {
+            return
+        }
+//        let str = text as NSString
+//        let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14)]
+//        let withinSize = CGSize(width: UIScreen.main.bounds.width - 30, height: CGFloat(MAXFLOAT))
+//        let size = str.boundingRect(with: withinSize, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: attributes, context: nil)
+        
+        let labelHeight = getLabelSize(FontSize: 14, text: text)
+        let cellHeight = 500 + labelHeight - 75
+        descripationLabelHeightCon.constant = labelHeight + 10
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "unfoldNote"), object: nil, userInfo: ["row": indexPathRow, "cellHeight": cellHeight, "LabelHeight": labelHeight])
+        UIView.animate(withDuration: 0.5) { 
+            self.descripationLabel.layoutIfNeeded()
+        }
+    }
+}
+
+extension ShareCell{
+    fileprivate func getLabelSize(FontSize: CGFloat, text: String?) -> CGFloat{
+        guard text != nil else {
+            return 80
+        }
+        let str = text! as NSString
+        let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: FontSize)]
+        let size = str.boundingRect(with: CGSize(width: UIScreen.main.bounds.width - 30, height: CGFloat(MAXFLOAT)),  options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: attributes, context: nil)
+        return size.height
+    }
 }
 
 
