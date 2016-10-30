@@ -12,7 +12,9 @@ import SnapKit
 
 class DestinationCell: UITableViewCell {
     
-    var destinations: [Destination] = [Destination]()
+    var destinations: [Destination] = [Destination](){
+        didSet{picCollectionView.reloadData()} 
+    }
     var cellId: String = ""
     
     @IBOutlet weak var findMoreButton: UIButton!

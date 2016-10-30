@@ -36,7 +36,11 @@ class HomeViewController: UIViewController {
     fileprivate var NBdestinations: [Destination] = [Destination]()
     fileprivate var Hotdestinations: [Destination] = [Destination]()
     fileprivate var Otherdestinations: [Destination] = [Destination]()
-    fileprivate var CellModels:[String: [Destination]] = [String: [Destination]]()
+    fileprivate var CellModels:[String: [Destination]] = [String: [Destination]](){
+        didSet{
+            destinationTableView.reloadData()
+        }
+    }
     
     //MARK:Cell标题
     fileprivate var cellTitle: [String] = ["附近的城市","亚洲热门城市","其它热门城市"]
@@ -57,6 +61,7 @@ class HomeViewController: UIViewController {
         
         getAsiaDestinations()
         getEuropeDestinations()
+        
     }
     
     deinit {
@@ -194,7 +199,7 @@ extension HomeViewController{
             }
             self.locationTool.isUpdate = false
             self.CellModels["NearBy"] = self.NBdestinations
-            self.destinationTableView.reloadData()
+//            self.destinationTableView.reloadData()
         }
     }
     //MARK:-热门
@@ -208,7 +213,7 @@ extension HomeViewController{
                 }
             }
             self.CellModels["Hot"] = self.Hotdestinations
-            self.destinationTableView.reloadData()
+//            self.destinationTableView.reloadData() 
         }
     }
     
@@ -222,7 +227,7 @@ extension HomeViewController{
                 }
             }
             self.CellModels["Others"] = self.Otherdestinations
-            self.destinationTableView.reloadData()
+//            self.destinationTableView.reloadData()
         }
     }
     

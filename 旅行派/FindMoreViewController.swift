@@ -49,7 +49,7 @@ extension FindMoreViewController{
     }
     
     fileprivate func setUpNavigationBar(){
-        let leftBarButton = UIBarButtonItem(title: "<-返回", style: .plain, target: self, action: #selector(self.back))
+        let leftBarButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(self.back))
         navigationItem.leftBarButtonItem = leftBarButton
     }
     

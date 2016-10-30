@@ -36,11 +36,15 @@
 		35B741321DBCF27F00EB8A8A /* TravelAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B741311DBCF27F00EB8A8A /* TravelAlbum.swift */; };
 		35B741341DBCF28B00EB8A8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B741331DBCF28B00EB8A8A /* User.swift */; };
 		35B741361DBCF52F00EB8A8A /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B741351DBCF52F00EB8A8A /* Content.swift */; };
+		35BCD90A1DC591C2005F9D4B /* ShareToolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BCD9091DC591C2005F9D4B /* ShareToolModel.swift */; };
+		35BE8F741DC4A05800F952EB /* PicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BE8F721DC4A05800F952EB /* PicCell.swift */; };
+		35BE8F751DC4A05800F952EB /* PicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35BE8F731DC4A05800F952EB /* PicCell.xib */; };
 		35DA4FFD1DBF638F00806A73 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DA4FFC1DBF638F00806A73 /* Common.swift */; };
 		35EA4C261DBF7726004A63A4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4C251DBF7726004A63A4 /* HomeViewController.swift */; };
 		35EA4C281DBF7775004A63A4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4C271DBF7775004A63A4 /* ShareViewController.swift */; };
 		35EA4C2F1DBF7860004A63A4 /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35EA4C2D1DBF7860004A63A4 /* HomeViewController.storyboard */; };
 		35EA4C331DBF7894004A63A4 /* ShareViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35EA4C321DBF7894004A63A4 /* ShareViewController.storyboard */; };
+		35EE69061DC49945009147CB /* ShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE69051DC49945009147CB /* ShareCell.swift */; };
 		35FC624F1DBE259F005D1F20 /* NetWorkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC624E1DBE259F005D1F20 /* NetWorkTool.swift */; };
 		41B2D1F43FC51C1D7C05EF7E /* Pods____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E858CAD4CD2E483839855118 /* Pods____.framework */; };
 /* End PBXBuildFile section */
@@ -98,11 +102,15 @@
 		35B741311DBCF27F00EB8A8A /* TravelAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelAlbum.swift; sourceTree = "<group>"; };
 		35B741331DBCF28B00EB8A8A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		35B741351DBCF52F00EB8A8A /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		35BCD9091DC591C2005F9D4B /* ShareToolModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareToolModel.swift; sourceTree = "<group>"; };
+		35BE8F721DC4A05800F952EB /* PicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicCell.swift; sourceTree = "<group>"; };
+		35BE8F731DC4A05800F952EB /* PicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PicCell.xib; sourceTree = "<group>"; };
 		35DA4FFC1DBF638F00806A73 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		35EA4C251DBF7726004A63A4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		35EA4C271DBF7775004A63A4 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		35EA4C2E1DBF7860004A63A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/HomeViewController.storyboard; sourceTree = "<group>"; };
 		35EA4C321DBF7894004A63A4 /* ShareViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShareViewController.storyboard; sourceTree = "<group>"; };
+		35EE69051DC49945009147CB /* ShareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareCell.swift; sourceTree = "<group>"; };
 		35FC624E1DBE259F005D1F20 /* NetWorkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkTool.swift; sourceTree = "<group>"; };
 		5C0FC64C71D7B6F4E545FFA2 /* Pods-旅行派.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-旅行派.debug.xcconfig"; path = "Pods/Target Support Files/Pods-旅行派/Pods-旅行派.debug.xcconfig"; sourceTree = "<group>"; };
 		E858CAD4CD2E483839855118 /* Pods____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,14 +148,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		357B63F11DBF806000859186 /* cell */ = {
+		357B63F11DBF806000859186 /* HomeCell */ = {
 			isa = PBXGroup;
 			children = (
 				357B63F21DBF809200859186 /* DestinationCell.swift */,
 				355604581DC227CD007C5D3C /* picCollectionCell.swift */,
 				355604591DC227CD007C5D3C /* picCollectionCell.xib */,
 			);
-			name = cell;
+			name = HomeCell;
 			sourceTree = "<group>";
 		};
 		357B63F41DBF80AB00859186 /* DIY */ = {
@@ -267,6 +275,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		35BCD9081DC59194005F9D4B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				35BCD9091DC591C2005F9D4B /* ShareToolModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		35EA4C231DBF75F0004A63A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,9 +306,10 @@
 		35EA4C301DBF786E004A63A4 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				35EE69041DC48B3A009147CB /* DetailVC */,
 				3556045C1DC236AB007C5D3C /* HomeNotificationCommon.swift */,
 				35AD214C1DC2F1F9006B0564 /* FindMoreVC */,
-				357B63F11DBF806000859186 /* cell */,
+				357B63F11DBF806000859186 /* HomeCell */,
 				35EA4C251DBF7726004A63A4 /* HomeViewController.swift */,
 				35EA4C2D1DBF7860004A63A4 /* HomeViewController.storyboard */,
 			);
@@ -311,10 +328,21 @@
 		35EA4C341DBF789A004A63A4 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				35BCD9081DC59194005F9D4B /* Models */,
 				35EA4C271DBF7775004A63A4 /* ShareViewController.swift */,
 				35EA4C321DBF7894004A63A4 /* ShareViewController.storyboard */,
+				35EE69051DC49945009147CB /* ShareCell.swift */,
+				35BE8F721DC4A05800F952EB /* PicCell.swift */,
+				35BE8F731DC4A05800F952EB /* PicCell.xib */,
 			);
 			name = Share;
+			sourceTree = "<group>";
+		};
+		35EE69041DC48B3A009147CB /* DetailVC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DetailVC;
 			sourceTree = "<group>";
 		};
 		35FC624D1DBE2410005D1F20 /* Tools */ = {
@@ -465,6 +493,7 @@
 				3597DEF51DBCEC6C00A65747 /* LaunchScreen.storyboard in Resources */,
 				3597DEF21DBCEC6C00A65747 /* Assets.xcassets in Resources */,
 				357FDA931DC378A5002966FE /* FindMoreCell.xib in Resources */,
+				35BE8F751DC4A05800F952EB /* PicCell.xib in Resources */,
 				3597DEF01DBCEC6C00A65747 /* Main.storyboard in Resources */,
 				35EA4C331DBF7894004A63A4 /* ShareViewController.storyboard in Resources */,
 			);
@@ -545,6 +574,7 @@
 				35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */,
 				3597DEEB1DBCEC6C00A65747 /* AppDelegate.swift in Sources */,
 				357B63F61DBF80E600859186 /* SHImageView.swift in Sources */,
+				35BE8F741DC4A05800F952EB /* PicCell.swift in Sources */,
 				35B741341DBCF28B00EB8A8A /* User.swift in Sources */,
 				35FC624F1DBE259F005D1F20 /* NetWorkTool.swift in Sources */,
 				35B741321DBCF27F00EB8A8A /* TravelAlbum.swift in Sources */,
@@ -556,8 +586,10 @@
 				35EA4C261DBF7726004A63A4 /* HomeViewController.swift in Sources */,
 				357B63F31DBF809200859186 /* DestinationCell.swift in Sources */,
 				3554A75D1DBE597500239A20 /* Destination.swift in Sources */,
+				35EE69061DC49945009147CB /* ShareCell.swift in Sources */,
 				3556045D1DC236AB007C5D3C /* HomeNotificationCommon.swift in Sources */,
 				35DA4FFD1DBF638F00806A73 /* Common.swift in Sources */,
+				35BCD90A1DC591C2005F9D4B /* ShareToolModel.swift in Sources */,
 				35B741361DBCF52F00EB8A8A /* Content.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
