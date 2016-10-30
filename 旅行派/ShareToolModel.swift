@@ -9,22 +9,21 @@
 import UIKit
 
 class ShareToolModel: NSObject {
-    
-    static let sharedInstance: ShareToolModel = ShareToolModel()
-    
-    var models: [ShareToolModel] = [ShareToolModel]()
-    
+        
     var name: String?
     var district_id: Int = 0
     
-    init(name: String, district_id: Int) {
+    init(name: String?, district_id: Int) {
         super.init()
         self.name = name
         self.district_id = district_id
-        models.append(self)
     }
     
     override init() {
         super.init()
+    }
+    
+    override var description: String{
+        return dictionaryWithValues(forKeys: ["name", "district_id"]).description
     }
 }

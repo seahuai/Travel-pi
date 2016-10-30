@@ -199,6 +199,7 @@ extension HomeViewController{
             }
             self.locationTool.isUpdate = false
             self.CellModels["NearBy"] = self.NBdestinations
+            
 //            self.destinationTableView.reloadData()
         }
     }

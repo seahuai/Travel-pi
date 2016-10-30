@@ -10,9 +10,17 @@ import UIKit
 
 class PicCell: UICollectionViewCell {
 
+    var photo_url: String?{
+        didSet{
+            let url = URL(string: photo_url!)
+            imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_picture"))
+        }
+    }
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
 }
