@@ -10,6 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="旅行派" customModuleProvider="target">
             <connections>
+                <outlet property="headImageView" destination="CLn-qQ-u0A" id="X0q-38-acE"/>
+                <outlet property="nameLabel" destination="0pT-JI-Xh4" id="Q3W-RP-hcX"/>
+                <outlet property="tableView" destination="ss7-Hp-83G" id="ExP-Hk-VQ2"/>
                 <outlet property="view" destination="iN0-l3-epB" id="aXC-Aw-hHF"/>
             </connections>
         </placeholder>
