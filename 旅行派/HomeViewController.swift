@@ -14,6 +14,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var destinationTableView: UITableView!
     @IBOutlet weak var displayScrollView: UIScrollView!
     
+    @IBOutlet weak var rightBarButton: UIBarButtonItem!
+    @IBOutlet weak var leftBarButton: UIBarButtonItem!
     //dispalyView的原始高度
     fileprivate var displayViewHeight: CGFloat = 0
     fileprivate var tableViewOrginalY: CGFloat = 0
@@ -47,9 +49,14 @@ class HomeViewController: UIViewController {
     
     //MARK:控制器
     fileprivate lazy var findMoreViewController: FindMoreViewController = FindMoreViewController()
-    
+    fileprivate lazy var profileViewController: ProfileViewController = ProfileViewController()
     //MARK:动画
     fileprivate lazy var animator: FindMoreVCAnimator = FindMoreVCAnimator()
+    
+    //MARK:右滑界面参数
+    fileprivate let menuWidth: CGFloat = UIScreen.main.bounds.width * 0.4
+    fileprivate var isOpening: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
@@ -57,15 +64,18 @@ class HomeViewController: UIViewController {
         setUpTableView()
         setUpScrollView()
         setUpNotification()
+        setUpSlideMenu()
         setUp()
+        
         
         getAsiaDestinations()
         getEuropeDestinations()
         
     }
     
+    
     deinit {
-     NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -90,13 +100,20 @@ extension HomeViewController{
         destinationTableView.dataSource = self
         destinationTableView.separatorStyle = .none
         destinationTableView.contentInset = UIEdgeInsets(top: displayViewHeightCon.constant, left: 0, bottom: 0, right: 0)
-
+        
     }
     
     fileprivate func setUpScrollView(){
         displayScrollView.delegate = self
     }
     
+}
+
+//MARK:处理导航栏按钮的点击
+extension HomeViewController{
+    @IBAction func leftButtonClick(_ sender: AnyObject) {
+        print("slideMenu")
+    }
 }
 
 //MARK:处理通知事件
@@ -111,10 +128,10 @@ extension HomeViewController{
         if let cellId = cellId{
             findMoreViewController.destinations = CellModels[cellId]!
             
-//            navigationController?.pushViewController(findMoreViewController, animated: true)
-//            let navigationVC = UINavigationController(rootViewController: findMoreViewController)
-//            navigationVC.transitioningDelegate = animator
-//            present(navigationVC, animated: true, completion: { })
+            //            navigationController?.pushViewController(findMoreViewController, animated: true)
+            //            let navigationVC = UINavigationController(rootViewController: findMoreViewController)
+            //            navigationVC.transitioningDelegate = animator
+            //            present(navigationVC, animated: true, completion: { })
             
             findMoreViewController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(findMoreViewController, animated: true)
@@ -172,7 +189,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     //展示页面的变化
     private func displayViewHeight(offset: CGFloat){
         var height = displayViewHeight - offset
-//        print(height)
+        //        print(height)
         if height <= 64{
             height = 64
         }
@@ -186,6 +203,81 @@ extension HomeViewController: UIScrollViewDelegate{
     
 }
 
+
+//MARK:处理抽屉效果
+extension HomeViewController{
+    fileprivate func setUpSlideMenu(){
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
+        view.addGestureRecognizer(pan)
+        
+        profileViewController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: UIScreen.main.bounds.height)
+        profileViewController.view.layer.position = profileViewController.view.center
+        navigationController?.view.addSubview(profileViewController.view)
+    }
+    
+    
+    @objc private func handleGesture(gesture: UIPanGestureRecognizer){
+        let translation = gesture.translation(in: view)
+        var progress: CGFloat = translation.x / menuWidth * (isOpening ? 1.0:-1.0)
+        progress = min(max(progress, 0), 1)
+        
+        
+        switch gesture.state {
+        case .began:
+            let isOpen = navigationController!.view.frame.origin.x / menuWidth
+            isOpening = isOpen == 1.0 ? false:true
+            
+            profileViewController.view.layer.shouldRasterize = true
+            profileViewController.view.layer.rasterizationScale = UIScreen.main.scale
+            
+        case .changed:
+            setToPercent(percent: isOpening ? progress : (1.0 - progress))
+            
+        case .ended:
+            
+            var targetProgress: CGFloat
+            if (isOpening) {
+                targetProgress = progress < 0.5 ? 0.0 : 1.0
+            }else {
+                targetProgress = progress < 0.5 ? 1.0 : 0.0
+            }
+            
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                self.setToPercent(percent: targetProgress)
+                }, completion: { (_) -> Void in
+                    // 记得关闭layer的缓存渲染
+                    self.profileViewController.view.layer.shouldRasterize = false
+            })
+            
+        default:
+            break
+        }
+    }
+    
+    fileprivate func setToPercent(percent: CGFloat){
+        navigationController?.view.frame.origin.x = menuWidth * percent
+        
+        profileViewController.view.alpha = max(0.2, percent)
+        profileViewController.view.layer.transform = menuTransformPercent(percent: percent)
+    }
+    
+    fileprivate func menuTransformPercent(percent: CGFloat) -> CATransform3D{
+        var identity = CATransform3DIdentity
+        identity.m34 = -1/1000
+        
+        let remainingPercent = 1.0 - percent
+        let angle = CGFloat(-M_PI_2) * remainingPercent
+        
+        let rotation = CATransform3DRotate(identity, angle, 0, 1, 0)
+        let translation = CATransform3DMakeTranslation(0, 0, 0)
+        
+        let transform = CATransform3DConcat(rotation, translation)
+        
+        return transform
+        
+    }
+
+}
 
 
 
@@ -205,7 +297,7 @@ extension HomeViewController{
             self.locationTool.isUpdate = false
             self.CellModels["NearBy"] = self.NBdestinations
             
-//            self.destinationTableView.reloadData()
+            //            self.destinationTableView.reloadData()
         }
     }
     //MARK:-热门
@@ -219,7 +311,7 @@ extension HomeViewController{
                 }
             }
             self.CellModels["Hot"] = self.Hotdestinations
-//            self.destinationTableView.reloadData() 
+            //            self.destinationTableView.reloadData()
         }
     }
     
@@ -233,7 +325,7 @@ extension HomeViewController{
                 }
             }
             self.CellModels["Others"] = self.Otherdestinations
-//            self.destinationTableView.reloadData()
+            //            self.destinationTableView.reloadData()
         }
     }
     
