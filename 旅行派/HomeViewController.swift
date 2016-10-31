@@ -111,8 +111,17 @@ extension HomeViewController{
 
 //MARK:处理导航栏按钮的点击
 extension HomeViewController{
-    @IBAction func leftButtonClick(_ sender: AnyObject) {
-        print("slideMenu")
+    @IBAction func leftButtonClick(_ sender: UIBarButtonItem) {
+        let duration: TimeInterval = 0.5
+        if navigationController!.view.frame.origin.x / menuWidth == 0{
+            UIView.animate(withDuration: duration, animations: {
+               self.setToPercent(percent: 1.0)
+            })
+        }else{
+            UIView.animate(withDuration: duration, animations: {
+                self.setToPercent(percent: 0.0)
+            })
+        }
     }
 }
 
