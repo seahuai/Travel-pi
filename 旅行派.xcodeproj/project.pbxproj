@@ -32,7 +32,6 @@
 		35AD21521DC2FB89006B0564 /* FindMoreVCAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD21511DC2FB89006B0564 /* FindMoreVCAnimator.swift */; };
 		35B7412A1DBCEED000EB8A8A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741261DBCEED000EB8A8A /* Alamofire.framework */; };
 		35B7412B1DBCEED000EB8A8A /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741271DBCEED000EB8A8A /* SDWebImage.framework */; };
-		35B7412C1DBCEED000EB8A8A /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741281DBCEED000EB8A8A /* SnapKit.framework */; };
 		35B7412D1DBCEED000EB8A8A /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741291DBCEED000EB8A8A /* SVProgressHUD.framework */; };
 		35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B7412F1DBCF25D00EB8A8A /* TravelNote.swift */; };
 		35B741321DBCF27F00EB8A8A /* TravelAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B741311DBCF27F00EB8A8A /* TravelAlbum.swift */; };
@@ -47,6 +46,7 @@
 		35EA4C2F1DBF7860004A63A4 /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35EA4C2D1DBF7860004A63A4 /* HomeViewController.storyboard */; };
 		35EA4C331DBF7894004A63A4 /* ShareViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35EA4C321DBF7894004A63A4 /* ShareViewController.storyboard */; };
 		35EE69061DC49945009147CB /* ShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE69051DC49945009147CB /* ShareCell.swift */; };
+		35F0047F1DC8B74300B516FC /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F0047E1DC8B74300B516FC /* SnapKit.framework */; };
 		35FC624F1DBE259F005D1F20 /* NetWorkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC624E1DBE259F005D1F20 /* NetWorkTool.swift */; };
 		41B2D1F43FC51C1D7C05EF7E /* Pods____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E858CAD4CD2E483839855118 /* Pods____.framework */; };
 /* End PBXBuildFile section */
@@ -115,6 +115,7 @@
 		35EA4C2E1DBF7860004A63A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/HomeViewController.storyboard; sourceTree = "<group>"; };
 		35EA4C321DBF7894004A63A4 /* ShareViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShareViewController.storyboard; sourceTree = "<group>"; };
 		35EE69051DC49945009147CB /* ShareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareCell.swift; sourceTree = "<group>"; };
+		35F0047E1DC8B74300B516FC /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphoneos/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
 		35FC624E1DBE259F005D1F20 /* NetWorkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkTool.swift; sourceTree = "<group>"; };
 		5C0FC64C71D7B6F4E545FFA2 /* Pods-旅行派.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-旅行派.debug.xcconfig"; path = "Pods/Target Support Files/Pods-旅行派/Pods-旅行派.debug.xcconfig"; sourceTree = "<group>"; };
 		E858CAD4CD2E483839855118 /* Pods____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,10 +127,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F0047F1DC8B74300B516FC /* SnapKit.framework in Frameworks */,
 				357B63FB1DBF872A00859186 /* CoreLocation.framework in Frameworks */,
 				35B7412A1DBCEED000EB8A8A /* Alamofire.framework in Frameworks */,
 				35B7412B1DBCEED000EB8A8A /* SDWebImage.framework in Frameworks */,
-				35B7412C1DBCEED000EB8A8A /* SnapKit.framework in Frameworks */,
 				35B7412D1DBCEED000EB8A8A /* SVProgressHUD.framework in Frameworks */,
 				41B2D1F43FC51C1D7C05EF7E /* Pods____.framework in Frameworks */,
 			);
@@ -267,6 +268,7 @@
 		35B741251DBCEED000EB8A8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35F0047E1DC8B74300B516FC /* SnapKit.framework */,
 				357B63FA1DBF872A00859186 /* CoreLocation.framework */,
 				35B741261DBCEED000EB8A8A /* Alamofire.framework */,
 				35B741271DBCEED000EB8A8A /* SDWebImage.framework */,
