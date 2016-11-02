@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3547305C1DCA28A900CC53EF /* PhotoBrowserAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3547305B1DCA28A900CC53EF /* PhotoBrowserAnimator.swift */; };
 		354EE2B41DC9D77800CE934F /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE2B31DC9D77800CE934F /* PhotoCell.swift */; };
 		354EE2B61DC9D7F000CE934F /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE2B51DC9D7F000CE934F /* ProgressView.swift */; };
 		3554A75D1DBE597500239A20 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3554A75C1DBE597500239A20 /* Destination.swift */; };
@@ -22,6 +23,7 @@
 		357B63FB1DBF872A00859186 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 357B63FA1DBF872A00859186 /* CoreLocation.framework */; };
 		357FDA921DC378A5002966FE /* FindMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357FDA901DC378A5002966FE /* FindMoreCell.swift */; };
 		357FDA931DC378A5002966FE /* FindMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357FDA911DC378A5002966FE /* FindMoreCell.xib */; };
+		359286E71DCA15E9000B6923 /* DescripationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359286E61DCA15E9000B6923 /* DescripationView.swift */; };
 		3597DEEB1DBCEC6C00A65747 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DEEA1DBCEC6C00A65747 /* AppDelegate.swift */; };
 		3597DEED1DBCEC6C00A65747 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DEEC1DBCEC6C00A65747 /* MainViewController.swift */; };
 		3597DEF01DBCEC6C00A65747 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3597DEEE1DBCEC6C00A65747 /* Main.storyboard */; };
@@ -72,6 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3547305B1DCA28A900CC53EF /* PhotoBrowserAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserAnimator.swift; sourceTree = "<group>"; };
 		354EE2B31DC9D77800CE934F /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		354EE2B51DC9D7F000CE934F /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		3554A75C1DBE597500239A20 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
@@ -87,6 +90,7 @@
 		357B63FA1DBF872A00859186 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		357FDA901DC378A5002966FE /* FindMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindMoreCell.swift; sourceTree = "<group>"; };
 		357FDA911DC378A5002966FE /* FindMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindMoreCell.xib; sourceTree = "<group>"; };
+		359286E61DCA15E9000B6923 /* DescripationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescripationView.swift; sourceTree = "<group>"; };
 		3597DEE71DBCEC6C00A65747 /* 旅行派.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "旅行派.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3597DEEA1DBCEC6C00A65747 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3597DEEC1DBCEC6C00A65747 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +164,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3547305A1DCA288900CC53EF /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				3547305B1DCA28A900CC53EF /* PhotoBrowserAnimator.swift */,
+			);
+			name = Animator;
+			sourceTree = "<group>";
+		};
 		357250591DC775B900F3213B /* SlideVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,9 +330,11 @@
 		35E363C31DC991B600BBB33E /* PhotoBrowserVC */ = {
 			isa = PBXGroup;
 			children = (
+				3547305A1DCA288900CC53EF /* Animator */,
 				35E363C41DC991D600BBB33E /* PhotoBrowserViewController.swift */,
 				354EE2B31DC9D77800CE934F /* PhotoCell.swift */,
 				354EE2B51DC9D7F000CE934F /* ProgressView.swift */,
+				359286E61DCA15E9000B6923 /* DescripationView.swift */,
 			);
 			name = PhotoBrowserVC;
 			sourceTree = "<group>";
@@ -633,6 +647,8 @@
 				357FDA921DC378A5002966FE /* FindMoreCell.swift in Sources */,
 				35EA4C261DBF7726004A63A4 /* HomeViewController.swift in Sources */,
 				357B63F31DBF809200859186 /* DestinationCell.swift in Sources */,
+				359286E71DCA15E9000B6923 /* DescripationView.swift in Sources */,
+				3547305C1DCA28A900CC53EF /* PhotoBrowserAnimator.swift in Sources */,
 				3554A75D1DBE597500239A20 /* Destination.swift in Sources */,
 				35EE69061DC49945009147CB /* ShareCell.swift in Sources */,
 				3556045D1DC236AB007C5D3C /* HomeNotificationCommon.swift in Sources */,

@@ -33,6 +33,11 @@ class ShareViewController: UIViewController {
 
 
 extension ShareViewController{
+    
+    fileprivate func setUp(){
+//        PhotoBrowserVC.transitioningDelegate = 
+    }
+    
     fileprivate func setUpTableView(){
         shareTableView.delegate = self
         shareTableView.dataSource = self

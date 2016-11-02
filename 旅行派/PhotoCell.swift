@@ -13,9 +13,10 @@ protocol PhotoCellImageDelegate {
 }
 
 class PhotoCell: UICollectionViewCell {
+    
+    lazy var imageView: UIImageView = UIImageView()
     fileprivate lazy var scrollView: UIScrollView = UIScrollView()
-    fileprivate lazy var imageView: UIImageView = UIImageView()
-    fileprivate lazy var tipLabel: UILabel = UILabel()
+    fileprivate lazy var descripationView: DescripationView = DescripationView()
     
     var delegate: PhotoCellImageDelegate?
     
@@ -29,6 +30,15 @@ class PhotoCell: UICollectionViewCell {
                     self.setUpImageViewSize(size: image?.size)
                 })
             }
+            
+            let caption = content?.caption
+            if caption == nil || caption == ""{descripationView.isHidden = true}
+            else{
+//                print(caption!)
+                descripationView.isHidden = false
+                descripationView.set(text: caption)
+            }
+            
         }
     }
     
@@ -48,7 +58,7 @@ extension PhotoCell{
     fileprivate func setUp(){
         scrollView.frame = contentView.bounds
         contentView.addSubview(scrollView)
-//        contentView.addSubview(tipLabel)
+        contentView.addSubview(descripationView)
         scrollView.addSubview(imageView)
         
         imageView.isUserInteractionEnabled = true
@@ -65,12 +75,16 @@ extension PhotoCell{
         let screenBounds = UIScreen.main.bounds.size
         let imageViewH = (screenBounds.width / size!.width) * size!.height
         let imageViewY = (screenBounds.height - imageViewH) * 0.5
+        let y = UIScreen.main.bounds.height * 0.7
+        let h = screenBounds.height - y
         if imageViewY < 0{
             imageView.frame = CGRect(x: 0, y: 0, width: screenBounds.width, height: imageViewH)
             scrollView.contentSize = CGSize(width: 0, height: imageViewH)
         }else{
             imageView.frame = CGRect(x: 0, y: imageViewY, width: screenBounds.width, height: imageViewH)
+            descripationView.frame = CGRect(x: 0, y: y, width: screenBounds.width, height: h)
         }
+        
     }
 
 }

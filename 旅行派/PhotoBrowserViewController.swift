@@ -56,35 +56,39 @@ extension PhotoBrowserViewController{
     fileprivate func setUpButton(){
         
         saveButton.titleLabel?.textAlignment = .center
-        saveButton.titleLabel?.textColor = UIColor.white
+        saveButton.titleLabel?.textColor = UIColor.darkGray
+        saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         saveButton.backgroundColor = UIColor.clear
         saveButton.layer.borderWidth = 1
-        saveButton.layer.borderColor = UIColor.white.cgColor
+        saveButton.layer.borderColor = UIColor.darkGray.cgColor
         
-        closeButton.titleLabel?.textAlignment = .center
-        closeButton.titleLabel?.textColor = UIColor.white
-        closeButton.backgroundColor = UIColor.clear
-        closeButton.layer.borderWidth = 1
-        closeButton.layer.borderColor = UIColor.white.cgColor
+//        closeButton.titleLabel?.textAlignment = .center
+//        closeButton.titleLabel?.textColor = UIColor.darkGray
+//        closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+//        closeButton.backgroundColor = UIColor.clear
+//        closeButton.layer.borderWidth = 1
+//        closeButton.layer.borderColor = UIColor.darkGray.cgColor
         
+        
+//        closeButton.setTitle("关闭", for: .normal)
+        closeButton.setImage(UIImage(named: "close_white"), for: .normal)
+        closeButton.snp.makeConstraints { (make) in
+            make.top.equalTo(view.snp.top).offset(25)
+            make.left.equalTo(view.snp.left).offset(20)
+            make.height.equalTo(25)
+            make.width.equalTo(25)
+        }
         
         saveButton.setTitle("保存", for: .normal)
         saveButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(view.snp.bottom).offset(-15)
-            make.left.equalTo(view.snp.left).offset(20)
-            make.height.equalTo(30)
-            make.width.equalTo(50)
-        }
-        
-        closeButton.setTitle("关闭", for: .normal)
-        closeButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(view.snp.bottom).offset(-15)
+            make.top.equalTo(view.snp.top).offset(25)
             make.right.equalTo(view.snp.right).offset(-20)
-            make.height.equalTo(30)
-            make.width.equalTo(50)
+            make.height.equalTo(25)
+            make.width.equalTo(40)
         }
     }
 }
+
 
 extension PhotoBrowserViewController: PhotoCellImageDelegate{
     fileprivate func setUpButtonTarget(){
@@ -95,10 +99,18 @@ extension PhotoBrowserViewController: PhotoCellImageDelegate{
     
     @objc private func saveButtonClick(){
         print("saveButtonClick")
+        let cell = collectionView.visibleCells.first as! PhotoCell
+        if let image = cell.imageView.image{
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(image:didFinishSavingWithError:contextInfo:)), nil)
+        }
+    }
+    
+//    - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
+    @objc private func image(image: UIImage, didFinishSavingWithError: NSError, contextInfo: AnyObject){
+        
     }
     
     @objc private func closeButtonClick(){
-//        print("closeButtonClick")
         dismiss(animated: true) {}
     }
     //MARK:PhotoCell的代理方法
