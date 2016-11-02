@@ -11,6 +11,15 @@ import SnapKit
 
 class PhotoBrowserViewController: UIViewController {
     
+    var selectedIndex: IndexPath = IndexPath(item: 0, section: 0)
+    
+    //MARK:模型
+    var contents: [Content] = [Content](){
+        didSet{
+            collectionView.reloadData()
+        }
+    }
+    
     fileprivate lazy var saveButton = UIButton()
     fileprivate lazy var closeButton = UIButton()
     fileprivate lazy var collectionView: UICollectionView = UICollectionView(frame: CGRect(), collectionViewLayout: layout())
@@ -20,6 +29,12 @@ class PhotoBrowserViewController: UIViewController {
         setUp()
         setUpButton()
         setUpButtonTarget()
+        setUpCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.scrollToItem(at: selectedIndex , at: .left, animated: false)
     }
 
 }
@@ -28,10 +43,13 @@ extension PhotoBrowserViewController{
     
     fileprivate func setUp(){
 //        self.view.layoutIfNeeded()
-        collectionView.frame = view.bounds
         view.addSubview(collectionView)
         view.addSubview(saveButton)
         view.addSubview(closeButton)
+        view.frame.size.width += 20
+        
+        collectionView.frame = view.bounds
+        collectionView.isPagingEnabled = true
     }
     
     
@@ -65,11 +83,10 @@ extension PhotoBrowserViewController{
             make.height.equalTo(30)
             make.width.equalTo(50)
         }
-
     }
 }
 
-extension PhotoBrowserViewController{
+extension PhotoBrowserViewController: PhotoCellImageDelegate{
     fileprivate func setUpButtonTarget(){
         saveButton.addTarget(self, action: #selector(self.saveButtonClick), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(self.closeButtonClick), for: .touchUpInside)
@@ -81,8 +98,31 @@ extension PhotoBrowserViewController{
     }
     
     @objc private func closeButtonClick(){
-        print("closeButtonClick")
+//        print("closeButtonClick")
         dismiss(animated: true) {}
+    }
+    //MARK:PhotoCell的代理方法
+    func photoCellImageClick() {
+        dismiss(animated: true) {}
+    }
+}
+
+extension PhotoBrowserViewController: UICollectionViewDataSource{
+    
+    fileprivate func setUpCollectionView(){
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: "PhotoCell")
+        collectionView.dataSource = self
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return contents.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        cell.content = contents[indexPath.item]
+        cell.delegate = self
+        return cell
     }
 }
 

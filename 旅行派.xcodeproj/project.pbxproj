@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		354EE2B41DC9D77800CE934F /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE2B31DC9D77800CE934F /* PhotoCell.swift */; };
+		354EE2B61DC9D7F000CE934F /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE2B51DC9D7F000CE934F /* ProgressView.swift */; };
 		3554A75D1DBE597500239A20 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3554A75C1DBE597500239A20 /* Destination.swift */; };
 		3554A75F1DBE5E8000239A20 /* SHTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3554A75E1DBE5E8000239A20 /* SHTool.swift */; };
 		3556045A1DC227CD007C5D3C /* picCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355604581DC227CD007C5D3C /* picCollectionCell.swift */; };
@@ -70,6 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		354EE2B31DC9D77800CE934F /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		354EE2B51DC9D7F000CE934F /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		3554A75C1DBE597500239A20 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		3554A75E1DBE5E8000239A20 /* SHTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHTool.swift; sourceTree = "<group>"; };
 		355604581DC227CD007C5D3C /* picCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = picCollectionCell.swift; sourceTree = "<group>"; };
@@ -315,6 +319,8 @@
 			isa = PBXGroup;
 			children = (
 				35E363C41DC991D600BBB33E /* PhotoBrowserViewController.swift */,
+				354EE2B31DC9D77800CE934F /* PhotoCell.swift */,
+				354EE2B51DC9D7F000CE934F /* ProgressView.swift */,
 			);
 			name = PhotoBrowserVC;
 			sourceTree = "<group>";
@@ -612,6 +618,7 @@
 				35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */,
 				3597DEEB1DBCEC6C00A65747 /* AppDelegate.swift in Sources */,
 				357B63F61DBF80E600859186 /* SHImageView.swift in Sources */,
+				354EE2B41DC9D77800CE934F /* PhotoCell.swift in Sources */,
 				3572505B1DC775D200F3213B /* ProfileViewController.swift in Sources */,
 				35BE8F741DC4A05800F952EB /* PicCell.swift in Sources */,
 				35B741341DBCF28B00EB8A8A /* User.swift in Sources */,
@@ -622,6 +629,7 @@
 				3554A75F1DBE5E8000239A20 /* SHTool.swift in Sources */,
 				35E363C51DC991D600BBB33E /* PhotoBrowserViewController.swift in Sources */,
 				3556045A1DC227CD007C5D3C /* picCollectionCell.swift in Sources */,
+				354EE2B61DC9D7F000CE934F /* ProgressView.swift in Sources */,
 				357FDA921DC378A5002966FE /* FindMoreCell.swift in Sources */,
 				35EA4C261DBF7726004A63A4 /* HomeViewController.swift in Sources */,
 				357B63F31DBF809200859186 /* DestinationCell.swift in Sources */,

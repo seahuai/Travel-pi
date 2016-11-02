@@ -82,11 +82,15 @@ extension ShareViewController: UITableViewDataSource, UITableViewDelegate{
 extension ShareViewController: ShareCellImageDelegate{
     func mainImageClick(row: Int) {
         print("选中了第\(row)的照片")
+        PhotoBrowserVC.contents = notes[row]._contents
+        PhotoBrowserVC.selectedIndex = IndexPath(item: 0, section: 0)
         present(PhotoBrowserVC, animated: true) {}
     }
     
     func picImageClick(row: Int, item: Int) {
         print("选中了\(row)的第\(item)张照片")
+        PhotoBrowserVC.contents = notes[row]._contents
+        PhotoBrowserVC.selectedIndex = IndexPath(item: item + 1, section: 0)
         present(PhotoBrowserVC, animated: true) {}
     }
 }
