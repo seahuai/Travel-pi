@@ -11,6 +11,9 @@ import UIKit
 class ShareViewController: UIViewController {
     @IBOutlet weak var shareTableView: UITableView!
     @IBOutlet weak var toolScrollView: UIScrollView!
+    
+    fileprivate lazy var PhotoBrowserVC: PhotoBrowserViewController = PhotoBrowserViewController()
+    
     var toolBarModels: [ShareToolModel] = [ShareToolModel]()
     var notes: [TravelNote] = [TravelNote]()
     
@@ -62,6 +65,7 @@ extension ShareViewController: UITableViewDataSource, UITableViewDelegate{
         cell.note = notes[indexPath.row]
         cell.selectionStyle = .none
         cell.indexPathRow = indexPath.row
+        cell.delegate = self
         return cell
     }
     
@@ -71,11 +75,21 @@ extension ShareViewController: UITableViewDataSource, UITableViewDelegate{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("didSelectRowAt -- \(indexPath.row)")
+//        print("didSelectRowAt -- \(indexPath.row)")
     }
-    
 }
 
+extension ShareViewController: ShareCellImageDelegate{
+    func mainImageClick(row: Int) {
+        print("选中了第\(row)的照片")
+        present(PhotoBrowserVC, animated: true) {}
+    }
+    
+    func picImageClick(row: Int, item: Int) {
+        print("选中了\(row)的第\(item)张照片")
+        present(PhotoBrowserVC, animated: true) {}
+    }
+}
 extension ShareViewController{
     
     fileprivate func getTravelNotes(){

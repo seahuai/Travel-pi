@@ -8,9 +8,16 @@
 
 import UIKit
 
+protocol ShareCellImageDelegate {
+    func mainImageClick(row: Int)
+    func picImageClick(row: Int, item: Int)
+}
+
 class ShareCell: UITableViewCell {
     
     var indexPathRow: Int = 0
+    var delegate: ShareCellImageDelegate?
+    
     
     @IBOutlet weak var unfoldeAllButton: UIButton!
     @IBOutlet weak var readAllButton: UIButton!
@@ -28,6 +35,7 @@ class ShareCell: UITableViewCell {
     
     @IBOutlet weak var descripationLabelHeightCon: NSLayoutConstraint!
     var contents: [Content] = [Content]()
+    
     var note: TravelNote?{
         didSet{
             if let urlStr = note?._user?.photo_url{
@@ -63,11 +71,13 @@ class ShareCell: UITableViewCell {
         setUp()
         setUpPicCollectionView()
         setUpButton()
+        
+        setUpMainImage()
 //        setUpCellSize()
     }
 
 }
-
+//MARK:初始化设置
 extension ShareCell{
     
     fileprivate func setUpCellSize(){
@@ -115,6 +125,8 @@ extension ShareCell{
 
 
 
+
+
 extension ShareCell{
     fileprivate func setUpButton(){
         unfoldeAllButton.addTarget(self, action: #selector(self.unfoldButtonClick), for: .touchUpInside)
@@ -152,8 +164,26 @@ extension ShareCell{
         return size.height
     }
 }
+//MARK:图片点击的监听
+
+extension ShareCell{
+    
+    fileprivate func setUpMainImage(){
+        mainImageView.isUserInteractionEnabled = true
+        let tapGes = UITapGestureRecognizer(target: self, action: #selector(self.mainImageTap))
+        mainImageView.addGestureRecognizer(tapGes)
+    }
+    
+    @objc private func mainImageTap(){
+        delegate?.mainImageClick(row: indexPathRow)
+    }
+    
+    
+}
 
 
+
+//MARK:picCollectionView-DataSource, Delegate
 extension ShareCell: UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -167,6 +197,12 @@ extension ShareCell: UICollectionViewDataSource, UICollectionViewDelegate{
         cell.photo_url = contents[indexPath.row + 1].photo_url
         
         return cell
+    }
+    
+    //MARK:图片点击的监听
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print("选中了\(indexPathRow)的第\(indexPath.row)张照片")
+        delegate?.picImageClick(row: indexPathRow, item: indexPath.item)
     }
     
     
