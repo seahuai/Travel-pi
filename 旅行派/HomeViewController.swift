@@ -72,8 +72,7 @@ class HomeViewController: UIViewController {
         getEuropeDestinations()
         
     }
-    
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -220,12 +219,12 @@ extension HomeViewController{
         view.addGestureRecognizer(pan)
         
         profileViewController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: UIScreen.main.bounds.height)
-        profileViewController.view.layer.position = profileViewController.view.center
         navigationController?.view.addSubview(profileViewController.view)
     }
     
     
     @objc private func handleGesture(gesture: UIPanGestureRecognizer){
+        
         let translation = gesture.translation(in: view)
         var progress: CGFloat = translation.x / menuWidth * (isOpening ? 1.0:-1.0)
         progress = min(max(progress, 0), 1)
@@ -233,6 +232,7 @@ extension HomeViewController{
         
         switch gesture.state {
         case .began:
+            profileViewController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: UIScreen.main.bounds.height)
             let isOpen = navigationController!.view.frame.origin.x / menuWidth
             isOpening = isOpen == 1.0 ? false:true
             
