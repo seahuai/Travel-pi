@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol ShareCellImageDelegate {
     func mainImageClick(row: Int)
@@ -34,10 +35,15 @@ class ShareCell: UITableViewCell {
     @IBOutlet weak var picCollectionViewHeightCon: NSLayoutConstraint!
     
     @IBOutlet weak var descripationLabelHeightCon: NSLayoutConstraint!
-    var contents: [Content] = [Content]()
+    var contents: [Content] = [Content](){
+        didSet{
+            picCollectionView.reloadData()
+        }
+    }
     
     var note: TravelNote?{
         didSet{
+            
             if let urlStr = note?._user?.photo_url{
                 let url = URL(string: urlStr)
                 headImageView.sd_setImage(with: url, placeholderImage: nil)
@@ -60,8 +66,12 @@ class ShareCell: UITableViewCell {
             
             if let urlStr = contents[0].photo_url{
                 let url = URL(string: urlStr)
-                mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_picture"))
+                mainImageView.isUserInteractionEnabled = false
+                mainImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_picture"), options: [], completed: { (_, _, _, _) in
+                    self.mainImageView.isUserInteractionEnabled = true
+                })
             }
+            
             self.contents = contents
         }
     }
@@ -94,7 +104,6 @@ extension ShareCell{
         readAllButton.layer.borderColor = UIColor.lightGray.cgColor
         
         headImageView.layer.cornerRadius = headImageView.frame.height * 0.5
-        print(headImageView.frame.height)
         headImageView.layer.masksToBounds = true
         readAllButton.layer.borderWidth = 1
         readAllButton.layer.borderColor = UIColor.white.cgColor
@@ -176,9 +185,53 @@ extension ShareCell{
     
     @objc private func mainImageTap(){
         delegate?.mainImageClick(row: indexPathRow)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "selectedImageNote"), object: nil, userInfo: ["cell": self])
     }
     
     
+}
+
+//MARK:转场动画的代理
+extension ShareCell: PhotoBrowserPresentedDelegate{
+    func getImageView(item: Int, isMain: Bool) -> UIImageView {
+        let imageView = UIImageView()
+        if isMain {imageView.image = mainImageView.image}
+        else{
+            let url = URL(string: contents[item + 1].photo_url!)
+            imageView.sd_setImage(with: url)
+        }
+        return imageView
+    }
+    
+    func getStartRect(item: Int, isMain: Bool) -> CGRect {
+        if isMain {
+            let rect = self.convert(mainImageView.frame, to: UIApplication.shared.keyWindow!)
+            return rect
+        }
+        let cell = picCollectionView.cellForItem(at: IndexPath(item: item, section: 0))
+        var rect = picCollectionView.convert(cell!.frame, to: UIApplication.shared.keyWindow!)
+        rect.origin.y += 44
+        return rect
+    }
+    
+    func getEndRecrt(item: Int, isMain: Bool) -> CGRect {
+        let imageView = UIImageView()
+        var rect = CGRect()
+        let url = isMain ? URL(string: contents[0].photo_url!) : URL(string: contents[item + 1].photo_url!)
+        imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_picture"), options: .progressiveDownload, completed: { (image, error, _, _) in
+            if error != nil || image == nil {print("无法获取图片尺寸");return; }
+            let size = image!.size
+            let h = (UIScreen.main.bounds.width / size.width) * size.height
+            let y = (UIScreen.main.bounds.height - h) * 0.5
+            if y < 0{
+                rect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: h)
+            }else{
+                rect = CGRect(x: 0, y: y, width: UIScreen.main.bounds.width, height: h)
+            }
+        })
+        
+        return rect
+    }
 }
 
 
@@ -203,6 +256,7 @@ extension ShareCell: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        print("选中了\(indexPathRow)的第\(indexPath.row)张照片")
         delegate?.picImageClick(row: indexPathRow, item: indexPath.item)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "selectedImageNote"), object: nil, userInfo: ["cell": self])
     }
     
     

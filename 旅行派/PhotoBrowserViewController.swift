@@ -22,7 +22,7 @@ class PhotoBrowserViewController: UIViewController {
     
     fileprivate lazy var saveButton = UIButton()
     fileprivate lazy var closeButton = UIButton()
-    fileprivate lazy var collectionView: UICollectionView = UICollectionView(frame: CGRect(), collectionViewLayout: layout())
+    lazy var collectionView: UICollectionView = UICollectionView(frame: CGRect(), collectionViewLayout: layout())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,11 +111,12 @@ extension PhotoBrowserViewController: PhotoCellImageDelegate{
     }
     
     @objc private func closeButtonClick(){
-        dismiss(animated: true) {}
+        photoCellImageClick()
     }
     //MARK:PhotoCell的代理方法
     func photoCellImageClick() {
         dismiss(animated: true) {}
+        
     }
 }
 
@@ -135,6 +136,22 @@ extension PhotoBrowserViewController: UICollectionViewDataSource{
         cell.content = contents[indexPath.item]
         cell.delegate = self
         return cell
+    }
+}
+
+extension PhotoBrowserViewController: PhotoBrowserDismissDelegate{
+    
+    func getCellIndexPath() -> IndexPath{
+        let cell = collectionView.visibleCells.first
+        let indexPath = collectionView.indexPath(for: cell!)
+        return indexPath!
+    }
+    
+    func getImageView() -> UIImageView {
+        let cell = collectionView.visibleCells.first as! PhotoCell
+        let imageView  = UIImageView()
+        imageView.image = cell.imageView.image
+        return imageView
     }
 }
 

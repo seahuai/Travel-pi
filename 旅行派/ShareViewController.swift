@@ -13,7 +13,7 @@ class ShareViewController: UIViewController {
     @IBOutlet weak var toolScrollView: UIScrollView!
     
     fileprivate lazy var PhotoBrowserVC: PhotoBrowserViewController = PhotoBrowserViewController()
-    
+    fileprivate lazy var photoBrowserAnimator: PhotoBrowserAnimator = PhotoBrowserAnimator()
     var toolBarModels: [ShareToolModel] = [ShareToolModel]()
     var notes: [TravelNote] = [TravelNote]()
     
@@ -24,6 +24,7 @@ class ShareViewController: UIViewController {
         setUpTableView()
         getTravelNotes()
         setUpNotification()
+        setUpAnimator()
     }
 
     deinit {
@@ -34,8 +35,9 @@ class ShareViewController: UIViewController {
 
 extension ShareViewController{
     
-    fileprivate func setUp(){
-//        PhotoBrowserVC.transitioningDelegate = 
+    fileprivate func setUpAnimator(){
+        PhotoBrowserVC.transitioningDelegate = photoBrowserAnimator
+        modalPresentationStyle = .custom
     }
     
     fileprivate func setUpTableView(){
@@ -47,6 +49,8 @@ extension ShareViewController{
     
     fileprivate func setUpNotification(){
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadCellHeight(note:)), name: NSNotification.Name(rawValue: "unfoldNote"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setAnimatorDelegate(note:)), name: NSNotification.Name(rawValue: "selectedImageNote"), object: nil)
     }
     
     @objc private func reloadCellHeight(note: Notification){
@@ -55,6 +59,12 @@ extension ShareViewController{
         notes[row].labelHeight = note.userInfo!["LabelHeight"] as! CGFloat
         notes[row].isFold = true
         shareTableView.reloadData()
+    }
+    
+    @objc private func setAnimatorDelegate(note: Notification){
+        let cell = note.userInfo!["cell"] as! ShareCell
+        photoBrowserAnimator.presentedDelegate = cell
+        photoBrowserAnimator.dismissDelegate = PhotoBrowserVC
     }
 }
 
@@ -71,6 +81,7 @@ extension ShareViewController: UITableViewDataSource, UITableViewDelegate{
         cell.selectionStyle = .none
         cell.indexPathRow = indexPath.row
         cell.delegate = self
+        
         return cell
     }
     
@@ -78,17 +89,15 @@ extension ShareViewController: UITableViewDataSource, UITableViewDelegate{
         return notes[indexPath.row].cellHeight
     }
     
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("didSelectRowAt -- \(indexPath.row)")
-    }
 }
 
+//MARK:监听照片的点击
 extension ShareViewController: ShareCellImageDelegate{
     func mainImageClick(row: Int) {
         print("选中了第\(row)的照片")
         PhotoBrowserVC.contents = notes[row]._contents
         PhotoBrowserVC.selectedIndex = IndexPath(item: 0, section: 0)
+        photoBrowserAnimator.isMain = true
         present(PhotoBrowserVC, animated: true) {}
     }
     
@@ -96,6 +105,8 @@ extension ShareViewController: ShareCellImageDelegate{
         print("选中了\(row)的第\(item)张照片")
         PhotoBrowserVC.contents = notes[row]._contents
         PhotoBrowserVC.selectedIndex = IndexPath(item: item + 1, section: 0)
+        photoBrowserAnimator.item = item
+        photoBrowserAnimator.isMain = false
         present(PhotoBrowserVC, animated: true) {}
     }
 }

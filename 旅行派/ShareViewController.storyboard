@@ -35,17 +35,17 @@
                         <viewControllerLayoutGuide type="bottom" id="0em-74-2LN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bt0-Rh-2Z4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="509" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rVa-vS-N21">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShareCell" rowHeight="500" id="mKK-s6-zUs" customClass="ShareCell" customModule="旅行派" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="414" height="500"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="500"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mKK-s6-zUs" id="plf-yh-F68">
-                                            <frame key="frameInset" width="414" height="499.5"/>
+                                            <frame key="frameInset" width="375" height="499.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nBT-8i-aW9">
@@ -70,7 +70,7 @@
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbH-5w-xsH">
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sc3-FQ-4gR"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_picture" translatesAutoresizingMaskIntoConstraints="NO" id="sc3-FQ-4gR"/>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CGc-Rb-dvp">
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xBj-Ef-ybT">
@@ -231,6 +231,7 @@
     </scenes>
     <resources>
         <image name="down16" width="44" height="24"/>
+        <image name="empty_picture" width="100" height="100"/>
         <image name="tabbar_discover" width="30" height="30"/>
     </resources>
 </document>

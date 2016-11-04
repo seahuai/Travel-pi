@@ -14,6 +14,7 @@ protocol PhotoCellImageDelegate {
 
 class PhotoCell: UICollectionViewCell {
     
+    var photoFrame: CGRect = CGRect()
     lazy var imageView: UIImageView = UIImageView()
     fileprivate lazy var scrollView: UIScrollView = UIScrollView()
     fileprivate lazy var descripationView: DescripationView = DescripationView()
@@ -84,7 +85,7 @@ extension PhotoCell{
             imageView.frame = CGRect(x: 0, y: imageViewY, width: screenBounds.width, height: imageViewH)
             descripationView.frame = CGRect(x: 0, y: y, width: screenBounds.width, height: h)
         }
-        
+        photoFrame = imageView.frame
     }
 
 }
