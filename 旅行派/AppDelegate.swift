@@ -12,13 +12,23 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    private lazy var mapManager: BMKMapManager = {
+        let manager = BMKMapManager()
+        return manager
+        
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let globalColor = UIColor(colorLiteralRed: 27/255, green: 166/255, blue: 197/255, alpha: 1)
         UITabBar.appearance().tintColor = globalColor
         
+        let ret = mapManager.start("Fc4Ej7HrDAzFzGH9x2STZrQPBmfVitgy", generalDelegate: nil)
+        if ret {
+            print("授权成功")
+        }else{
+            print("授权失败")
+        }
         
         return true
     }
