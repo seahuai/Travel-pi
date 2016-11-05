@@ -23,6 +23,7 @@ class DestinationCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        cellTitleLabel.text = "加载中..."
         setUpCollcetionView()
         setUpLayout()
 //        findMoreButton.layer.masksToBounds

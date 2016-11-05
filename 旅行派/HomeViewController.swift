@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import SnapKit
 
 class HomeViewController: UIViewController {
     
@@ -43,6 +44,15 @@ class HomeViewController: UIViewController {
             destinationTableView.reloadData()
         }
     }
+    fileprivate var WeekAlbum: TravelAlbum?{
+        didSet{
+            self.view.layoutIfNeeded()
+            setUpScrollView(count: WeekAlbum!.travelNotes.count)
+            startTimer()
+        }
+    }
+    //MARK:定时器
+    fileprivate var timer: Timer?
     
     //MARK:Cell标题
     fileprivate var cellTitle: [String] = ["附近的城市","亚洲热门城市","其它热门城市"]
@@ -57,12 +67,14 @@ class HomeViewController: UIViewController {
     fileprivate let menuWidth: CGFloat = UIScreen.main.bounds.width * 0.4
     fileprivate var isOpening: Bool = false
     
+    //MARK:导航栏控件
+    fileprivate var toolBar: UIToolbar?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         setUpNavigationBar()
         setUpTableView()
-        setUpScrollView()
         setUpNotification()
         setUpSlideMenu()
         setUp()
@@ -70,7 +82,7 @@ class HomeViewController: UIViewController {
         
         getAsiaDestinations()
         getEuropeDestinations()
-        
+        getWeekAlbum()
     }
 
     deinit {
@@ -91,7 +103,11 @@ extension HomeViewController{
     fileprivate func setUpNavigationBar(){
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        
+        toolBar = UIToolbar(frame: CGRect(x: 0, y: -20, width: UIScreen.main.bounds.width, height: 64))
+        toolBar!.barStyle = .default
+        toolBar!.alpha = 0
+        navigationController?.navigationBar.insertSubview(toolBar!, at: 0)
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(white: 0.9, alpha: 0.9)]
     }
     
     fileprivate func setUpTableView(){
@@ -100,10 +116,6 @@ extension HomeViewController{
         destinationTableView.separatorStyle = .none
         destinationTableView.contentInset = UIEdgeInsets(top: displayViewHeightCon.constant, left: 0, bottom: 0, right: 0)
         
-    }
-    
-    fileprivate func setUpScrollView(){
-        displayScrollView.delegate = self
     }
     
 }
@@ -155,7 +167,7 @@ extension HomeViewController{
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("tableView----\(NBdestinations.count)")
+//        print("tableView----\(NBdestinations.count)")
         return CellModels.count
     }
     
@@ -200,15 +212,100 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         //        print(height)
         if height <= 64{
             height = 64
+            navigationItem.title = "热门城市"
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(colorLiteralRed: 27/255, green: 166/255, blue: 197/255, alpha: 1)]
+
+        }else{
+            navigationItem.title = "每周精选"
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(white: 0.9, alpha: 0.9)]
         }
+        
+        var alpha = 64 / height - 0.4
+        if alpha <= 0{
+            alpha = 0
+        }
+        toolBar?.alpha = alpha
+        
         displayViewHeightCon.constant = height
         self.displayScrollView.layoutIfNeeded()
     }
 }
 
-//MARK:scrollView-Delegate
+
+
+//MARK:轮播图视图
 extension HomeViewController: UIScrollViewDelegate{
     
+    fileprivate func startTimer(){
+        timer = Timer(timeInterval: 2, target: self, selector: #selector(self.autoDisplay), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer!, forMode: .defaultRunLoopMode)
+    }
+    
+    fileprivate func stopTimer(){
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    @objc private func autoDisplay(){
+        var offset = displayScrollView.contentOffset.x
+        let screenW = UIScreen.main.bounds.width
+        offset += screenW
+        if (offset > displayScrollView.contentSize.width){
+            offset = 0
+        }
+        
+        UIView.animate(withDuration: 0.5) { 
+            self.displayScrollView.contentOffset = CGPoint(x: offset, y: 0)
+        }
+    }
+    
+    fileprivate func setUpScrollView(count: Int){
+        let screenW = UIScreen.main.bounds.width
+        displayScrollView.delegate = self
+        displayScrollView.contentSize = CGSize(width: screenW * CGFloat(count - 1), height: 0)
+        displayScrollView.isPagingEnabled = true
+        
+        for i in 0..<count{
+            let imageView = UIImageView()
+            imageView.tag = i
+            displayScrollView.addSubview(imageView)
+            imageView.frame = displayScrollView.bounds
+            
+            print("\(i):\(imageView.frame)")
+            imageView.frame.origin = CGPoint(x: screenW * CGFloat(i), y: 0)
+            imageView.backgroundColor = UIColor.clear
+            let tapGes = UITapGestureRecognizer(target: self, action: #selector(self.imageViewTap(sender:)))
+            imageView.addGestureRecognizer(tapGes)
+            imageView.isUserInteractionEnabled = true
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+                        
+            if let urlStr = WeekAlbum?.travelNotes[i]._contents[0].photo_url{
+                let url = URL(string: urlStr)
+                imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_picture"))
+            }
+            print(displayScrollView.contentSize)
+        }
+        
+    }
+    
+    @objc private func imageViewTap(sender: UIGestureRecognizer){
+
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        print("stop")
+        if scrollView == displayScrollView{
+            stopTimer()
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == displayScrollView{
+            startTimer()
+        }
+    }
+
 }
 
 
@@ -338,6 +435,19 @@ extension HomeViewController{
         }
     }
     
+}
+
+//MARK:获取每周精选
+extension HomeViewController{
+    fileprivate func getWeekAlbum(){
+        NetWorkTool.sharedInstance.getWeekChoice { (error, result) in
+            if error != nil{print(error); return}
+            if let result = result{
+                let album = TravelAlbum(dict: result)
+               self.WeekAlbum = album
+            }
+        }
+    }
 }
 
 

@@ -113,9 +113,8 @@
                                 </connections>
                             </tableView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="teA-FE-ElD">
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="167" id="QkV-gP-bMv"/>
+                                    <constraint firstAttribute="height" constant="200" id="QkV-gP-bMv"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="shz-Uj-BY2" id="S8M-vK-ybR"/>

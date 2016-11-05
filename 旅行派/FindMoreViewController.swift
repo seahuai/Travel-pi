@@ -12,8 +12,9 @@ class FindMoreViewController: UIViewController {
     
     @IBOutlet weak var FindMoreTableView: UITableView!
     var destinations: [Destination] = [Destination]()
-    fileprivate lazy var animator: FindMoreVCAnimator = FindMoreVCAnimator()
     
+//    fileprivate lazy var detailVC: DetailViewController = DetailViewController()
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -73,7 +74,6 @@ extension FindMoreViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(destinations.count)
         return destinations.count
     }
     
@@ -83,6 +83,10 @@ extension FindMoreViewController: UITableViewDataSource, UITableViewDelegate{
         cell.selectionStyle = .none
         cell.layoutIfNeeded()
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     
