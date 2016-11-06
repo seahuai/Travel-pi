@@ -36,6 +36,12 @@
 		357B63FB1DBF872A00859186 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 357B63FA1DBF872A00859186 /* CoreLocation.framework */; };
 		357FDA921DC378A5002966FE /* FindMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357FDA901DC378A5002966FE /* FindMoreCell.swift */; };
 		357FDA931DC378A5002966FE /* FindMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357FDA911DC378A5002966FE /* FindMoreCell.xib */; };
+		358874351DCEC87E00FAB8E7 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358874341DCEC87E00FAB8E7 /* DiscoverViewController.swift */; };
+		358874381DCEC89B00FAB8E7 /* DiscoverViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358874361DCEC89B00FAB8E7 /* DiscoverViewController.storyboard */; };
+		3588743D1DCEDA2B00FAB8E7 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588743B1DCEDA2B00FAB8E7 /* NearbyViewController.swift */; };
+		3588743E1DCEDA2B00FAB8E7 /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3588743C1DCEDA2B00FAB8E7 /* NearbyViewController.xib */; };
+		358874411DCEDA4100FAB8E7 /* StrategyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588743F1DCEDA4100FAB8E7 /* StrategyViewController.swift */; };
+		358874421DCEDA4100FAB8E7 /* StrategyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358874401DCEDA4100FAB8E7 /* StrategyViewController.xib */; };
 		358E694F1DCB61E100647386 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358E694D1DCB61E100647386 /* SDWebImage.framework */; };
 		358E69501DCB61E100647386 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358E694E1DCB61E100647386 /* SVProgressHUD.framework */; };
 		359286E71DCA15E9000B6923 /* DescripationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359286E61DCA15E9000B6923 /* DescripationView.swift */; };
@@ -117,6 +123,12 @@
 		357B63FA1DBF872A00859186 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		357FDA901DC378A5002966FE /* FindMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindMoreCell.swift; sourceTree = "<group>"; };
 		357FDA911DC378A5002966FE /* FindMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindMoreCell.xib; sourceTree = "<group>"; };
+		358874341DCEC87E00FAB8E7 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		358874371DCEC89B00FAB8E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DiscoverViewController.storyboard; sourceTree = "<group>"; };
+		3588743B1DCEDA2B00FAB8E7 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
+		3588743C1DCEDA2B00FAB8E7 /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyViewController.xib; sourceTree = "<group>"; };
+		3588743F1DCEDA4100FAB8E7 /* StrategyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrategyViewController.swift; sourceTree = "<group>"; };
+		358874401DCEDA4100FAB8E7 /* StrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrategyViewController.xib; sourceTree = "<group>"; };
 		358E694D1DCB61E100647386 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		358E694E1DCB61E100647386 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/SVProgressHUD/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		359286E61DCA15E9000B6923 /* DescripationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescripationView.swift; sourceTree = "<group>"; };
@@ -259,6 +271,35 @@
 				357B63F81DBF86DD00859186 /* LocationTool.swift */,
 			);
 			name = Location;
+			sourceTree = "<group>";
+		};
+		358874331DCEC7EE00FAB8E7 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				3588743A1DCECA1C00FAB8E7 /* Strategy */,
+				358874391DCECA1300FAB8E7 /* Nearby */,
+				358874361DCEC89B00FAB8E7 /* DiscoverViewController.storyboard */,
+				358874341DCEC87E00FAB8E7 /* DiscoverViewController.swift */,
+			);
+			name = Discover;
+			sourceTree = "<group>";
+		};
+		358874391DCECA1300FAB8E7 /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				3588743B1DCEDA2B00FAB8E7 /* NearbyViewController.swift */,
+				3588743C1DCEDA2B00FAB8E7 /* NearbyViewController.xib */,
+			);
+			name = Nearby;
+			sourceTree = "<group>";
+		};
+		3588743A1DCECA1C00FAB8E7 /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				3588743F1DCEDA4100FAB8E7 /* StrategyViewController.swift */,
+				358874401DCEDA4100FAB8E7 /* StrategyViewController.xib */,
+			);
+			name = Strategy;
 			sourceTree = "<group>";
 		};
 		3597DEDE1DBCEC6C00A65747 = {
@@ -409,6 +450,7 @@
 			children = (
 				35EA4C311DBF7880004A63A4 /* Main */,
 				35EA4C301DBF786E004A63A4 /* Home */,
+				358874331DCEC7EE00FAB8E7 /* Discover */,
 				35EA4C341DBF789A004A63A4 /* Share */,
 			);
 			name = Controllers;
@@ -616,9 +658,12 @@
 				35EA4C2F1DBF7860004A63A4 /* HomeViewController.storyboard in Resources */,
 				3597DEF51DBCEC6C00A65747 /* LaunchScreen.storyboard in Resources */,
 				3597DEF21DBCEC6C00A65747 /* Assets.xcassets in Resources */,
+				358874381DCEC89B00FAB8E7 /* DiscoverViewController.storyboard in Resources */,
 				357FDA931DC378A5002966FE /* FindMoreCell.xib in Resources */,
 				35BE8F751DC4A05800F952EB /* PicCell.xib in Resources */,
 				3597DEF01DBCEC6C00A65747 /* Main.storyboard in Resources */,
+				3588743E1DCEDA2B00FAB8E7 /* NearbyViewController.xib in Resources */,
+				358874421DCEDA4100FAB8E7 /* StrategyViewController.xib in Resources */,
 				3572505D1DC7768100F3213B /* ProfileViewController.xib in Resources */,
 				35EA4C331DBF7894004A63A4 /* ShareViewController.storyboard in Resources */,
 			);
@@ -702,6 +747,8 @@
 				354EE2B41DC9D77800CE934F /* PhotoCell.swift in Sources */,
 				3572505B1DC775D200F3213B /* ProfileViewController.swift in Sources */,
 				35BE8F741DC4A05800F952EB /* PicCell.swift in Sources */,
+				358874411DCEDA4100FAB8E7 /* StrategyViewController.swift in Sources */,
+				358874351DCEC87E00FAB8E7 /* DiscoverViewController.swift in Sources */,
 				35B741341DBCF28B00EB8A8A /* User.swift in Sources */,
 				35FC624F1DBE259F005D1F20 /* NetWorkTool.swift in Sources */,
 				35B741321DBCF27F00EB8A8A /* TravelAlbum.swift in Sources */,
@@ -710,6 +757,7 @@
 				3554A75F1DBE5E8000239A20 /* SHTool.swift in Sources */,
 				35E363C51DC991D600BBB33E /* PhotoBrowserViewController.swift in Sources */,
 				3556045A1DC227CD007C5D3C /* picCollectionCell.swift in Sources */,
+				3588743D1DCEDA2B00FAB8E7 /* NearbyViewController.swift in Sources */,
 				354EE2B61DC9D7F000CE934F /* ProgressView.swift in Sources */,
 				357FDA921DC378A5002966FE /* FindMoreCell.swift in Sources */,
 				35EA4C261DBF7726004A63A4 /* HomeViewController.swift in Sources */,
@@ -757,6 +805,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		358874361DCEC89B00FAB8E7 /* DiscoverViewController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				358874371DCEC89B00FAB8E7 /* Base */,
+			);
+			name = DiscoverViewController.storyboard;
+			sourceTree = "<group>";
+		};
 		3597DEEE1DBCEC6C00A65747 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

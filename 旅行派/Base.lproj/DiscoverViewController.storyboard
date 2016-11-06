@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yLh-Uc-7RP">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--发现-->
+        <scene sceneID="ZC5-Fk-kqJ">
+            <objects>
+                <navigationController id="yLh-Uc-7RP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="发现" image="tabbar_discover" id="lqB-0x-uhA"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3e3-q8-Wai">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="meI-vP-n9s" kind="relationship" relationship="rootViewController" id="peT-fX-Ngw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FTt-iI-98h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-385" y="152"/>
+        </scene>
+        <!--发现-->
+        <scene sceneID="b74-We-nat">
+            <objects>
+                <viewController id="meI-vP-n9s" customClass="DiscoverViewController" customModule="旅行派" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zkq-zM-FYW"/>
+                        <viewControllerLayoutGuide type="bottom" id="ktj-tJ-Kgh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EWv-CN-ADV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="aSh-DK-T1U">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="vfg-ia-Lk5"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JRT-if-w44">
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeE-9V-rgW">
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="周边" image="map_middle">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="toolViewButtonClick:" destination="meI-vP-n9s" eventType="touchUpInside" id="fRE-9z-MQJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDh-TZ-HQj">
+                                        <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="攻略" image="eat">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="toolViewButtonClick:" destination="meI-vP-n9s" eventType="touchUpInside" id="g7n-hZ-Rxa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="wDh-TZ-HQj" secondAttribute="trailing" id="D4s-DF-0se"/>
+                                    <constraint firstAttribute="height" constant="40" id="JMD-Ws-KoP"/>
+                                    <constraint firstItem="jeE-9V-rgW" firstAttribute="leading" secondItem="JRT-if-w44" secondAttribute="leading" id="N2t-N6-yhW"/>
+                                    <constraint firstItem="jeE-9V-rgW" firstAttribute="height" secondItem="JRT-if-w44" secondAttribute="height" id="YQR-1c-rxB"/>
+                                    <constraint firstItem="jeE-9V-rgW" firstAttribute="top" secondItem="JRT-if-w44" secondAttribute="top" id="fkT-OX-Gmz"/>
+                                    <constraint firstItem="wDh-TZ-HQj" firstAttribute="height" secondItem="JRT-if-w44" secondAttribute="height" id="gcU-8D-m2B"/>
+                                    <constraint firstItem="jeE-9V-rgW" firstAttribute="width" secondItem="JRT-if-w44" secondAttribute="width" multiplier="0.5" id="hJU-Yl-NZM"/>
+                                    <constraint firstItem="wDh-TZ-HQj" firstAttribute="top" secondItem="JRT-if-w44" secondAttribute="top" id="mbk-4u-UPh"/>
+                                    <constraint firstItem="wDh-TZ-HQj" firstAttribute="width" secondItem="JRT-if-w44" secondAttribute="width" multiplier="0.5" id="uD6-pi-XmS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JRT-if-w44" firstAttribute="top" secondItem="aSh-DK-T1U" secondAttribute="bottom" id="La1-07-r7T"/>
+                            <constraint firstItem="aSh-DK-T1U" firstAttribute="leading" secondItem="EWv-CN-ADV" secondAttribute="leading" id="NV6-By-A3Y"/>
+                            <constraint firstItem="aSh-DK-T1U" firstAttribute="top" secondItem="Zkq-zM-FYW" secondAttribute="bottom" constant="-40" id="Tqm-Yh-EuR"/>
+                            <constraint firstItem="JRT-if-w44" firstAttribute="leading" secondItem="EWv-CN-ADV" secondAttribute="leading" id="rA1-DU-A3d"/>
+                            <constraint firstAttribute="trailing" secondItem="JRT-if-w44" secondAttribute="trailing" id="wdx-k4-A6S"/>
+                            <constraint firstAttribute="trailing" secondItem="aSh-DK-T1U" secondAttribute="trailing" id="y7l-gl-nDG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="发现" id="t2V-f0-CZr">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="PYl-19-ph7">
+                            <connections>
+                                <action selector="searchButtonClick:" destination="meI-vP-n9s" id="eIF-QH-Tc0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nearByButton" destination="jeE-9V-rgW" id="bS8-M4-BaO"/>
+                        <outlet property="searchBar" destination="aSh-DK-T1U" id="Bnb-M4-LQe"/>
+                        <outlet property="searchBarTopCon" destination="Tqm-Yh-EuR" id="NYe-h5-0uf"/>
+                        <outlet property="strategyButton" destination="wDh-TZ-HQj" id="yYs-Rg-tzs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dZP-O5-Z5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="340" y="151.57421289355324"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="eat" width="28" height="32"/>
+        <image name="map_middle" width="30" height="32"/>
+        <image name="tabbar_discover" width="30" height="30"/>
+    </resources>
+</document>

@@ -78,12 +78,19 @@ class HomeViewController: UIViewController {
         setUpNotification()
         setUpSlideMenu()
         setUp()
-        
+        setUpToolBar()
         
         getAsiaDestinations()
         getEuropeDestinations()
         getWeekAlbum()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    
 
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -103,11 +110,15 @@ extension HomeViewController{
     fileprivate func setUpNavigationBar(){
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        toolBar = UIToolbar(frame: CGRect(x: 0, y: -20, width: UIScreen.main.bounds.width, height: 64))
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(white: 0.9, alpha: 0.9)]
+    }
+    
+    fileprivate func setUpToolBar(){
+        toolBar = UIToolbar(frame: CGRect(x: 0, y: -20, width: UIScreen.main.bounds.width, height: 84))
         toolBar!.barStyle = .default
         toolBar!.alpha = 0
-        navigationController?.navigationBar.insertSubview(toolBar!, at: 0)
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(white: 0.9, alpha: 0.9)]
+        navigationController?.view.insertSubview(toolBar!, at: 1)
+
     }
     
     fileprivate func setUpTableView(){

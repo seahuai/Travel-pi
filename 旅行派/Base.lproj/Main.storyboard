@@ -18,6 +18,7 @@
                     <connections>
                         <segue destination="HYR-zr-vRL" kind="relationship" relationship="viewControllers" id="5Sc-5R-F5g"/>
                         <segue destination="3sg-aG-7ft" kind="relationship" relationship="viewControllers" id="58y-YE-ANt"/>
+                        <segue destination="nDv-Ug-BkG" kind="relationship" relationship="viewControllers" id="3Dc-3K-ErJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M8W-Yh-mMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -43,6 +44,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LUG-ll-ONP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-310" y="-393"/>
+        </scene>
+        <!--DiscoverViewController-->
+        <scene sceneID="gWc-OG-c4K">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DiscoverViewController" id="nDv-Ug-BkG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="SlY-xz-jbz"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5kj-70-x8D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-385" y="152"/>
         </scene>
     </scenes>
 </document>
