@@ -10,6 +10,8 @@ import UIKit
 
 class DiscoverViewController: UIViewController {
 
+    fileprivate var destination: Destination?
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var searchBarTopCon: NSLayoutConstraint!
@@ -21,8 +23,8 @@ class DiscoverViewController: UIViewController {
     //MARK:控制器
     fileprivate lazy var nearByVC: NearbyViewController = NearbyViewController()
     fileprivate lazy var strategyVC: StrategyViewController = StrategyViewController()
+    fileprivate lazy var searchDetailVC: SearchDetailViewController = SearchDetailViewController()
     fileprivate var currentVC: UIViewController?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSearchBar()
@@ -52,12 +54,7 @@ extension DiscoverViewController{
     fileprivate func setUpScrollView(){
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 0)
         scrollView.isPagingEnabled = true
-//        scrollView.isUserInteractionEnabled = false
         scrollView.showsHorizontalScrollIndicator = false
-    }
-    
-    fileprivate func setUpSearchBar(){
-        
     }
     
     fileprivate func setUpButton(){
@@ -69,21 +66,23 @@ extension DiscoverViewController{
 extension DiscoverViewController{
     @IBAction func searchButtonClick(_ sender: UIBarButtonItem) {
         if searchBarTopCon.constant < 0{
+            searchBar.becomeFirstResponder()
             UIView.animate(withDuration: 0.3, animations: {
                 self.searchBarTopCon.constant = 0
                 self.view.layoutIfNeeded()
-            })
-        }else if searchBarTopCon.constant == 0 {
+                self.scrollView.contentOffset.x = self.currentVC == self.strategyVC ? UIScreen.main.bounds.width : 0
+                })
+
+        }else
+        if searchBarTopCon.constant == 0 {
+            searchBar.resignFirstResponder()
             UIView.animate(withDuration: 0.3, animations: {
-//                self.currentVC?.view.frame.origin.y -= 40
                 self.searchBarTopCon.constant = -40
                 self.view.layoutIfNeeded()
-            })
+                self.scrollView.contentOffset.x = self.currentVC == self.strategyVC ? UIScreen.main.bounds.width : 0
+                })
         }
     }
-    
-    
-    
     
     @IBAction func toolViewButtonClick(_ sender: UIButton) {
         
@@ -117,6 +116,34 @@ extension DiscoverViewController{
         nearByButton.backgroundColor = !nearByButton.isSelected ? UIColor.groupTableViewBackground : UIColor.clear
     }
     
+}
+
+
+
+extension DiscoverViewController: UISearchBarDelegate{
+    fileprivate func setUpSearchBar(){
+        searchBar.placeholder = "输入你的目的地"
+        searchBar.showsCancelButton = true
+        searchBar.delegate = self
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+//        let text = searchBar.text
+        searchDetailVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(searchDetailVC, animated: true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        UIView.animate(withDuration: 0.3, animations: {
+            self.searchBarTopCon.constant = -40
+            self.view.layoutIfNeeded()
+            self.scrollView.contentOffset.x = self.currentVC == self.strategyVC ? UIScreen.main.bounds.width : 0
+        })
+    }
     
     
 }
+
+

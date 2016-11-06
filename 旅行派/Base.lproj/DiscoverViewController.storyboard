@@ -41,7 +41,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="vfg-ia-Lk5"/>
                                 </constraints>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JRT-if-w44">
                                 <subviews>
@@ -106,10 +106,19 @@
                         <outlet property="scrollView" destination="wpC-ad-eOf" id="A1X-Xu-OOn"/>
                         <outlet property="searchBar" destination="aSh-DK-T1U" id="Bnb-M4-LQe"/>
                         <outlet property="searchBarTopCon" destination="Tqm-Yh-EuR" id="NYe-h5-0uf"/>
+                        <outlet property="searchDisplayController" destination="Efp-k7-Jrx" id="olH-X2-DhV"/>
                         <outlet property="strategyButton" destination="wDh-TZ-HQj" id="yYs-Rg-tzs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZP-O5-Z5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Efp-k7-Jrx">
+                    <connections>
+                        <outlet property="delegate" destination="meI-vP-n9s" id="Ruf-fo-2ni"/>
+                        <outlet property="searchContentsController" destination="meI-vP-n9s" id="BJi-FP-wL9"/>
+                        <outlet property="searchResultsDataSource" destination="meI-vP-n9s" id="YzE-kD-7lt"/>
+                        <outlet property="searchResultsDelegate" destination="meI-vP-n9s" id="vsc-qA-jGW"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="340" y="151.57421289355324"/>
         </scene>

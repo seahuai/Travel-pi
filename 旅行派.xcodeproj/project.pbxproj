@@ -42,6 +42,14 @@
 		3588743E1DCEDA2B00FAB8E7 /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3588743C1DCEDA2B00FAB8E7 /* NearbyViewController.xib */; };
 		358874411DCEDA4100FAB8E7 /* StrategyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588743F1DCEDA4100FAB8E7 /* StrategyViewController.swift */; };
 		358874421DCEDA4100FAB8E7 /* StrategyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358874401DCEDA4100FAB8E7 /* StrategyViewController.xib */; };
+		358AFCA41DCF5A8100C4DC28 /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AFCA21DCF5A8100C4DC28 /* SearchDetailViewController.swift */; };
+		358AFCA51DCF5A8100C4DC28 /* SearchDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358AFCA31DCF5A8100C4DC28 /* SearchDetailViewController.xib */; };
+		358AFCA81DCF5E3B00C4DC28 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AFCA61DCF5E3B00C4DC28 /* AlbumDetailViewController.swift */; };
+		358AFCA91DCF5E3B00C4DC28 /* AlbumDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358AFCA71DCF5E3B00C4DC28 /* AlbumDetailViewController.xib */; };
+		358AFCAC1DCF603D00C4DC28 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AFCAA1DCF603D00C4DC28 /* AlbumCell.swift */; };
+		358AFCAD1DCF603D00C4DC28 /* AlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358AFCAB1DCF603D00C4DC28 /* AlbumCell.xib */; };
+		358AFCB21DCF763A00C4DC28 /* AlbumPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AFCB01DCF763A00C4DC28 /* AlbumPicCell.swift */; };
+		358AFCB31DCF763A00C4DC28 /* AlbumPicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358AFCB11DCF763A00C4DC28 /* AlbumPicCell.xib */; };
 		358E694F1DCB61E100647386 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358E694D1DCB61E100647386 /* SDWebImage.framework */; };
 		358E69501DCB61E100647386 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358E694E1DCB61E100647386 /* SVProgressHUD.framework */; };
 		359286E71DCA15E9000B6923 /* DescripationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359286E61DCA15E9000B6923 /* DescripationView.swift */; };
@@ -129,6 +137,14 @@
 		3588743C1DCEDA2B00FAB8E7 /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyViewController.xib; sourceTree = "<group>"; };
 		3588743F1DCEDA4100FAB8E7 /* StrategyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrategyViewController.swift; sourceTree = "<group>"; };
 		358874401DCEDA4100FAB8E7 /* StrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrategyViewController.xib; sourceTree = "<group>"; };
+		358AFCA21DCF5A8100C4DC28 /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
+		358AFCA31DCF5A8100C4DC28 /* SearchDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchDetailViewController.xib; sourceTree = "<group>"; };
+		358AFCA61DCF5E3B00C4DC28 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
+		358AFCA71DCF5E3B00C4DC28 /* AlbumDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumDetailViewController.xib; sourceTree = "<group>"; };
+		358AFCAA1DCF603D00C4DC28 /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		358AFCAB1DCF603D00C4DC28 /* AlbumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumCell.xib; sourceTree = "<group>"; };
+		358AFCB01DCF763A00C4DC28 /* AlbumPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumPicCell.swift; sourceTree = "<group>"; };
+		358AFCB11DCF763A00C4DC28 /* AlbumPicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumPicCell.xib; sourceTree = "<group>"; };
 		358E694D1DCB61E100647386 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		358E694E1DCB61E100647386 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/SVProgressHUD/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		359286E61DCA15E9000B6923 /* DescripationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescripationView.swift; sourceTree = "<group>"; };
@@ -276,6 +292,7 @@
 		358874331DCEC7EE00FAB8E7 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				358AFCA01DCF59CE00C4DC28 /* SearchDetail */,
 				3588743A1DCECA1C00FAB8E7 /* Strategy */,
 				358874391DCECA1300FAB8E7 /* Nearby */,
 				358874361DCEC89B00FAB8E7 /* DiscoverViewController.storyboard */,
@@ -300,6 +317,36 @@
 				358874401DCEDA4100FAB8E7 /* StrategyViewController.xib */,
 			);
 			name = Strategy;
+			sourceTree = "<group>";
+		};
+		358AFCA01DCF59CE00C4DC28 /* SearchDetail */ = {
+			isa = PBXGroup;
+			children = (
+				358AFCA21DCF5A8100C4DC28 /* SearchDetailViewController.swift */,
+				358AFCA31DCF5A8100C4DC28 /* SearchDetailViewController.xib */,
+			);
+			name = SearchDetail;
+			sourceTree = "<group>";
+		};
+		358AFCAE1DCF641100C4DC28 /* AlbumVC */ = {
+			isa = PBXGroup;
+			children = (
+				358AFCAF1DCF761E00C4DC28 /* Cell */,
+				358AFCA61DCF5E3B00C4DC28 /* AlbumDetailViewController.swift */,
+				358AFCA71DCF5E3B00C4DC28 /* AlbumDetailViewController.xib */,
+			);
+			name = AlbumVC;
+			sourceTree = "<group>";
+		};
+		358AFCAF1DCF761E00C4DC28 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				358AFCAA1DCF603D00C4DC28 /* AlbumCell.swift */,
+				358AFCAB1DCF603D00C4DC28 /* AlbumCell.xib */,
+				358AFCB01DCF763A00C4DC28 /* AlbumPicCell.swift */,
+				358AFCB11DCF763A00C4DC28 /* AlbumPicCell.xib */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		3597DEDE1DBCEC6C00A65747 = {
@@ -505,6 +552,7 @@
 		35EE69041DC48B3A009147CB /* DetailVC */ = {
 			isa = PBXGroup;
 			children = (
+				358AFCAE1DCF641100C4DC28 /* AlbumVC */,
 			);
 			name = DetailVC;
 			sourceTree = "<group>";
@@ -653,9 +701,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				35AD21501DC2F22C006B0564 /* FindMoreViewController.xib in Resources */,
+				358AFCA91DCF5E3B00C4DC28 /* AlbumDetailViewController.xib in Resources */,
 				351494841DCCACE200528E2D /* mapapi.bundle in Resources */,
 				3556045B1DC227CD007C5D3C /* picCollectionCell.xib in Resources */,
 				35EA4C2F1DBF7860004A63A4 /* HomeViewController.storyboard in Resources */,
+				358AFCA51DCF5A8100C4DC28 /* SearchDetailViewController.xib in Resources */,
+				358AFCAD1DCF603D00C4DC28 /* AlbumCell.xib in Resources */,
 				3597DEF51DBCEC6C00A65747 /* LaunchScreen.storyboard in Resources */,
 				3597DEF21DBCEC6C00A65747 /* Assets.xcassets in Resources */,
 				358874381DCEC89B00FAB8E7 /* DiscoverViewController.storyboard in Resources */,
@@ -665,6 +716,7 @@
 				3588743E1DCEDA2B00FAB8E7 /* NearbyViewController.xib in Resources */,
 				358874421DCEDA4100FAB8E7 /* StrategyViewController.xib in Resources */,
 				3572505D1DC7768100F3213B /* ProfileViewController.xib in Resources */,
+				358AFCB31DCF763A00C4DC28 /* AlbumPicCell.xib in Resources */,
 				35EA4C331DBF7894004A63A4 /* ShareViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -739,6 +791,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35AD21521DC2FB89006B0564 /* FindMoreVCAnimator.swift in Sources */,
+				358AFCA81DCF5E3B00C4DC28 /* AlbumDetailViewController.swift in Sources */,
 				357B63F91DBF86DD00859186 /* LocationTool.swift in Sources */,
 				3597DEED1DBCEC6C00A65747 /* MainViewController.swift in Sources */,
 				35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */,
@@ -754,15 +807,18 @@
 				35B741321DBCF27F00EB8A8A /* TravelAlbum.swift in Sources */,
 				35AD214F1DC2F22C006B0564 /* FindMoreViewController.swift in Sources */,
 				35EA4C281DBF7775004A63A4 /* ShareViewController.swift in Sources */,
+				358AFCAC1DCF603D00C4DC28 /* AlbumCell.swift in Sources */,
 				3554A75F1DBE5E8000239A20 /* SHTool.swift in Sources */,
 				35E363C51DC991D600BBB33E /* PhotoBrowserViewController.swift in Sources */,
 				3556045A1DC227CD007C5D3C /* picCollectionCell.swift in Sources */,
 				3588743D1DCEDA2B00FAB8E7 /* NearbyViewController.swift in Sources */,
+				358AFCB21DCF763A00C4DC28 /* AlbumPicCell.swift in Sources */,
 				354EE2B61DC9D7F000CE934F /* ProgressView.swift in Sources */,
 				357FDA921DC378A5002966FE /* FindMoreCell.swift in Sources */,
 				35EA4C261DBF7726004A63A4 /* HomeViewController.swift in Sources */,
 				357B63F31DBF809200859186 /* DestinationCell.swift in Sources */,
 				359286E71DCA15E9000B6923 /* DescripationView.swift in Sources */,
+				358AFCA41DCF5A8100C4DC28 /* SearchDetailViewController.swift in Sources */,
 				3547305C1DCA28A900CC53EF /* PhotoBrowserAnimator.swift in Sources */,
 				3554A75D1DBE597500239A20 /* Destination.swift in Sources */,
 				35EE69061DC49945009147CB /* ShareCell.swift in Sources */,

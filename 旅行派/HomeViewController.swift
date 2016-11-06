@@ -60,6 +60,7 @@ class HomeViewController: UIViewController {
     //MARK:控制器
     fileprivate lazy var findMoreViewController: FindMoreViewController = FindMoreViewController()
     fileprivate lazy var profileViewController: ProfileViewController = ProfileViewController()
+    fileprivate lazy var albumViewController: AlbumDetailViewController = AlbumDetailViewController()
     //MARK:动画
     fileprivate lazy var animator: FindMoreVCAnimator = FindMoreVCAnimator()
     
@@ -286,7 +287,7 @@ extension HomeViewController: UIScrollViewDelegate{
             displayScrollView.addSubview(imageView)
             imageView.frame = displayScrollView.bounds
             
-            print("\(i):\(imageView.frame)")
+//            print("\(i):\(imageView.frame)")
             imageView.frame.origin = CGPoint(x: screenW * CGFloat(i), y: 0)
             imageView.backgroundColor = UIColor.clear
             let tapGes = UITapGestureRecognizer(target: self, action: #selector(self.imageViewTap(sender:)))
@@ -299,13 +300,18 @@ extension HomeViewController: UIScrollViewDelegate{
                 let url = URL(string: urlStr)
                 imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_picture"))
             }
-            print(displayScrollView.contentSize)
+//            print(displayScrollView.contentSize)
         }
         
     }
     
     @objc private func imageViewTap(sender: UIGestureRecognizer){
-
+        let index = sender.view!.tag
+        //注意！！这里需要向传album模型再传索引
+        albumViewController.album = WeekAlbum
+        albumViewController.index = index
+        let albumNavigationVC = UINavigationController(rootViewController: albumViewController)
+        present(albumNavigationVC , animated: true) {}
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
