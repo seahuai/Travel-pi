@@ -196,7 +196,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         }
         
         if destinations.count > 6{
-            for i in 0..<6{ cell.destinations.append(destinations[i]) }
+            for i in 0..<6{
+                if cell.destinations.count < 6{
+                    cell.destinations.append(destinations[i])
+                }
+            }
         }else{
             cell.destinations = destinations
         }
@@ -412,8 +416,9 @@ extension HomeViewController{
                 self.NBdestinations.append(des)
             }
             self.locationTool.isUpdate = false
-            self.CellModels["NearBy"] = self.NBdestinations
-            
+            if  self.CellModels["NearBy"] == nil{
+                self.CellModels["NearBy"] = self.NBdestinations
+            }
             //            self.destinationTableView.reloadData()
         }
     }
@@ -427,8 +432,9 @@ extension HomeViewController{
                     self.Hotdestinations.append(des)
                 }
             }
-            self.CellModels["Hot"] = self.Hotdestinations
-            //            self.destinationTableView.reloadData()
+            if  self.CellModels["Hot"] == nil{
+                self.CellModels["Hot"] = self.Hotdestinations
+            }
         }
     }
     
@@ -441,8 +447,10 @@ extension HomeViewController{
                     self.Otherdestinations.append(des)
                 }
             }
-            self.CellModels["Others"] = self.Otherdestinations
-            //            self.destinationTableView.reloadData()
+            
+            if self.CellModels["Others"] == nil{
+                self.CellModels["Others"] = self.Otherdestinations
+            }
         }
     }
     
