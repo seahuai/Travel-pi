@@ -21,6 +21,8 @@ class AlbumPicCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
     }
 
 }

@@ -28,7 +28,12 @@ class AlbumDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-//        collectionView.scrollToItem(at: indexPath!, at: .left, animated: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .black
+        collectionView.scrollToItem(at: indexPath!, at: .left, animated: true)
     }
 }
 
@@ -37,10 +42,10 @@ extension AlbumDetailViewController{
     fileprivate func setUp(){
         self.view.layoutIfNeeded()
         navigationItem.title = "每周精选"
-        navigationController?.navigationBar.barStyle = .black
         automaticallyAdjustsScrollViewInsets = false
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.collectionViewLayout = collectioviewLayout()
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
@@ -70,7 +75,7 @@ extension AlbumDetailViewController{
 
 }
 
-extension AlbumDetailViewController: UICollectionViewDataSource{
+extension AlbumDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(notes.count)
         return notes.count
@@ -81,6 +86,12 @@ extension AlbumDetailViewController: UICollectionViewDataSource{
         cell.note = notes[indexPath.row]
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        navigationItem.title = "每周精选（\(indexPath.row + 1)\\\(notes.count)）"
+    }
+    
+    
 }
 
 

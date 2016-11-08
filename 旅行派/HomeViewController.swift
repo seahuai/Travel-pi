@@ -266,7 +266,7 @@ extension HomeViewController: UIScrollViewDelegate{
         var offset = displayScrollView.contentOffset.x
         let screenW = UIScreen.main.bounds.width
         offset += screenW
-        if (offset > displayScrollView.contentSize.width){
+        if (offset >= displayScrollView.contentSize.width){
             offset = 0
         }
         
@@ -278,7 +278,7 @@ extension HomeViewController: UIScrollViewDelegate{
     fileprivate func setUpScrollView(count: Int){
         let screenW = UIScreen.main.bounds.width
         displayScrollView.delegate = self
-        displayScrollView.contentSize = CGSize(width: screenW * CGFloat(count - 1), height: 0)
+        displayScrollView.contentSize = CGSize(width: screenW * CGFloat(count), height: 0)
         displayScrollView.isPagingEnabled = true
         
         for i in 0..<count{
@@ -307,6 +307,7 @@ extension HomeViewController: UIScrollViewDelegate{
     
     @objc private func imageViewTap(sender: UIGestureRecognizer){
         let index = sender.view!.tag
+        print(index)
         //注意！！这里需要向传album模型再传索引
         albumViewController.album = WeekAlbum
         albumViewController.index = index
@@ -321,7 +322,8 @@ extension HomeViewController: UIScrollViewDelegate{
         }
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        print("start")
         if scrollView == displayScrollView{
             startTimer()
         }

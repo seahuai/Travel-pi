@@ -33,37 +33,39 @@
                         <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正文" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMr-vp-PAn">
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hI-qu-xdc"/>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="TtH-FA-kce"/>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="IXH-b2-bnS" secondAttribute="bottom" id="00n-RX-hdC"/>
+                <constraint firstItem="1hI-qu-xdc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="1YJ-39-u8K"/>
                 <constraint firstItem="IXH-b2-bnS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2b9-eZ-wCc"/>
                 <constraint firstAttribute="bottom" secondItem="HCh-fR-cXc" secondAttribute="bottom" id="A3Z-71-6Od"/>
-                <constraint firstItem="lMr-vp-PAn" firstAttribute="top" secondItem="1px-If-fwu" secondAttribute="bottom" constant="10" id="B1x-Bm-k3Q"/>
+                <constraint firstAttribute="bottom" secondItem="1hI-qu-xdc" secondAttribute="bottom" constant="10" id="AAt-IS-F4J"/>
                 <constraint firstAttribute="trailing" secondItem="FDd-1J-mSG" secondAttribute="trailing" id="EFO-8S-ark"/>
+                <constraint firstItem="1px-If-fwu" firstAttribute="top" secondItem="TtH-FA-kce" secondAttribute="bottom" constant="10" id="FO3-jx-Eyr"/>
                 <constraint firstItem="HCh-fR-cXc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="GB5-gZ-gbz"/>
                 <constraint firstItem="IXH-b2-bnS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="IR4-K2-AiP"/>
-                <constraint firstItem="lMr-vp-PAn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="LLd-kc-9bR"/>
+                <constraint firstItem="TtH-FA-kce" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="IUj-pf-zTl"/>
                 <constraint firstItem="1px-If-fwu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="NEM-mu-fdV"/>
                 <constraint firstItem="1px-If-fwu" firstAttribute="top" secondItem="FDd-1J-mSG" secondAttribute="bottom" constant="10" id="Nwm-Lz-Rqo"/>
                 <constraint firstAttribute="trailing" secondItem="1px-If-fwu" secondAttribute="trailing" constant="10" id="PF3-g9-Xrh"/>
-                <constraint firstAttribute="trailing" secondItem="lMr-vp-PAn" secondAttribute="trailing" constant="10" id="QF6-21-6Bl"/>
                 <constraint firstAttribute="trailing" secondItem="HCh-fR-cXc" secondAttribute="trailing" id="Qwg-ei-AVh"/>
+                <constraint firstItem="1hI-qu-xdc" firstAttribute="top" secondItem="1px-If-fwu" secondAttribute="bottom" constant="10" id="TPp-q8-g9s"/>
                 <constraint firstAttribute="trailing" secondItem="IXH-b2-bnS" secondAttribute="trailing" id="VbZ-72-yXe"/>
                 <constraint firstItem="HCh-fR-cXc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fP2-Qs-lhh"/>
                 <constraint firstItem="FDd-1J-mSG" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.4" id="kmQ-aH-KeO"/>
+                <constraint firstAttribute="trailing" secondItem="TtH-FA-kce" secondAttribute="trailing" id="piJ-oa-j2i"/>
                 <constraint firstItem="FDd-1J-mSG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="sjB-i5-l9I"/>
                 <constraint firstItem="FDd-1J-mSG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="wWK-R5-Z8Y"/>
+                <constraint firstAttribute="trailing" secondItem="1hI-qu-xdc" secondAttribute="trailing" constant="10" id="x8E-4k-orN"/>
             </constraints>
             <size key="customSize" width="317" height="495"/>
             <connections>
                 <outlet property="backGroundImageView" destination="IXH-b2-bnS" id="EFR-ja-W41"/>
-                <outlet property="descripationLabel" destination="lMr-vp-PAn" id="H2c-9U-Rvp"/>
+                <outlet property="labelScrollView" destination="1hI-qu-xdc" id="jcz-I6-gUT"/>
+                <outlet property="pageControl" destination="TtH-FA-kce" id="ze7-do-xPp"/>
                 <outlet property="picCollectionView" destination="FDd-1J-mSG" id="aKq-cw-4hc"/>
                 <outlet property="titleLabel" destination="1px-If-fwu" id="wKE-Nm-dA1"/>
             </connections>

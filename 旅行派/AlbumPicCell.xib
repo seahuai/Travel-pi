@@ -9,10 +9,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AlbumPicCell" customModule="旅行派" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="247" height="153"/>
+            <rect key="frame" x="0.0" y="0.0" width="247" height="163"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="247" height="153"/>
+                <rect key="frame" x="0.0" y="0.0" width="247" height="163"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wJY-Z2-TvN"/>
@@ -20,15 +20,15 @@
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="wJY-Z2-TvN" secondAttribute="bottom" id="28l-9d-6EA"/>
-                <constraint firstAttribute="trailing" secondItem="wJY-Z2-TvN" secondAttribute="trailing" id="4aI-tp-Xks"/>
-                <constraint firstItem="wJY-Z2-TvN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bSi-JQ-LwK"/>
+                <constraint firstAttribute="trailing" secondItem="wJY-Z2-TvN" secondAttribute="trailing" constant="10" id="4aI-tp-Xks"/>
+                <constraint firstItem="wJY-Z2-TvN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="bSi-JQ-LwK"/>
                 <constraint firstItem="wJY-Z2-TvN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="qb6-8C-bcd"/>
             </constraints>
-            <size key="customSize" width="247" height="153"/>
+            <size key="customSize" width="247" height="163"/>
             <connections>
                 <outlet property="imageView" destination="wJY-Z2-TvN" id="DwG-5y-hHb"/>
             </connections>
-            <point key="canvasLocation" x="64.5" y="148.5"/>
+            <point key="canvasLocation" x="64.5" y="153.5"/>
         </collectionViewCell>
     </objects>
 </document>
