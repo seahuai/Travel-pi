@@ -12,6 +12,8 @@ class DiscoverViewController: UIViewController {
 
     fileprivate var destination: Destination?
     
+    fileprivate var isBarHidden: Bool = false
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var searchBarTopCon: NSLayoutConstraint!
@@ -45,10 +47,12 @@ extension DiscoverViewController{
         scrollView.addSubview(strategyVC.view)
         
         currentVC = nearByVC
+        
         nearByVC.view.frame = scrollView.bounds
         nearByVC.view.frame.origin = CGPoint(x: 0, y: 0)
         scrollView.addSubview(nearByVC.view)
         
+        nearByVC.delegate = self
     }
     
     fileprivate func setUpScrollView(){
@@ -119,12 +123,15 @@ extension DiscoverViewController{
 }
 
 
-
+//MARK:搜索栏代理
 extension DiscoverViewController: UISearchBarDelegate{
     fileprivate func setUpSearchBar(){
         searchBar.placeholder = "输入你的目的地"
         searchBar.showsCancelButton = true
         searchBar.delegate = self
+        searchBar.searchBarStyle = .minimal
+        
+
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -137,13 +144,35 @@ extension DiscoverViewController: UISearchBarDelegate{
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         UIView.animate(withDuration: 0.3, animations: {
-            self.searchBarTopCon.constant = -40
+            self.searchBarTopCon.constant = self.isBarHidden ? 0 : -40
             self.view.layoutIfNeeded()
             self.scrollView.contentOffset.x = self.currentVC == self.strategyVC ? UIScreen.main.bounds.width : 0
         })
     }
-    
-    
+}
+
+//MARK:子控制器的代理
+extension DiscoverViewController: NearByTableViewDelegate{
+    func nearByTableView(offset: CGFloat) {
+        searchBarTopCon.constant = -40
+        var h = offset < 0 ? 44 : 44 - offset
+        if h < 0 {
+            h = 0
+            isBarHidden = true
+            searchBarTopCon.constant = 0
+            navigationController?.navigationBar.alpha = 0
+            navigationController?.navigationBar.barStyle = .black
+            
+        }else{
+            isBarHidden = false
+            navigationController?.navigationBar.barStyle = .default
+            UIView.animate(withDuration: 0.2, animations: {
+                self.navigationController?.navigationBar.alpha = 1
+            })
+        }
+        navigationController?.navigationBar.bounds.size.height = h
+        
+    }
 }
 
 

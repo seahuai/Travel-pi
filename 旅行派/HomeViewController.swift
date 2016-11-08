@@ -84,14 +84,8 @@ class HomeViewController: UIViewController {
         getAsiaDestinations()
         getEuropeDestinations()
         getWeekAlbum()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
     }
-    
-    
 
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -112,6 +106,7 @@ extension HomeViewController{
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(white: 0.9, alpha: 0.9)]
+        navigationController?.navigationBar.barStyle = .black
     }
     
     fileprivate func setUpToolBar(){
@@ -129,7 +124,6 @@ extension HomeViewController{
         destinationTableView.contentInset = UIEdgeInsets(top: displayViewHeightCon.constant, left: 0, bottom: 0, right: 0)
         
     }
-    
 }
 
 //MARK:处理导航栏按钮的点击

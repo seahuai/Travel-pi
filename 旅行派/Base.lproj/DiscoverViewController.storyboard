@@ -88,6 +88,7 @@
                             <constraint firstItem="JRT-if-w44" firstAttribute="top" secondItem="aSh-DK-T1U" secondAttribute="bottom" id="La1-07-r7T"/>
                             <constraint firstItem="aSh-DK-T1U" firstAttribute="leading" secondItem="EWv-CN-ADV" secondAttribute="leading" id="NV6-By-A3Y"/>
                             <constraint firstItem="wpC-ad-eOf" firstAttribute="leading" secondItem="EWv-CN-ADV" secondAttribute="leading" id="SnQ-Qj-fUi"/>
+                            <constraint firstItem="aSh-DK-T1U" firstAttribute="top" secondItem="EWv-CN-ADV" secondAttribute="top" priority="600" id="TJ2-eM-rSC"/>
                             <constraint firstItem="aSh-DK-T1U" firstAttribute="top" secondItem="Zkq-zM-FYW" secondAttribute="bottom" constant="-40" id="Tqm-Yh-EuR"/>
                             <constraint firstItem="JRT-if-w44" firstAttribute="leading" secondItem="EWv-CN-ADV" secondAttribute="leading" id="rA1-DU-A3d"/>
                             <constraint firstAttribute="trailing" secondItem="JRT-if-w44" secondAttribute="trailing" id="wdx-k4-A6S"/>
