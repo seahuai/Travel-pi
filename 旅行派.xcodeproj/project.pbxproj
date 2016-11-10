@@ -60,6 +60,8 @@
 		3597DEF51DBCEC6C00A65747 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3597DEF31DBCEC6C00A65747 /* LaunchScreen.storyboard */; };
 		3597DF001DBCEC6C00A65747 /* ___Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DEFF1DBCEC6C00A65747 /* ___Tests.swift */; };
 		3597DF0B1DBCEC6C00A65747 /* ___UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DF0A1DBCEC6C00A65747 /* ___UITests.swift */; };
+		35A23BA51DD41C1600E5CEF0 /* SectionOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A23BA31DD41C1600E5CEF0 /* SectionOneCell.swift */; };
+		35A23BA61DD41C1600E5CEF0 /* SectionOneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A23BA41DD41C1600E5CEF0 /* SectionOneCell.xib */; };
 		35AD214F1DC2F22C006B0564 /* FindMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD214D1DC2F22C006B0564 /* FindMoreViewController.swift */; };
 		35AD21501DC2F22C006B0564 /* FindMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35AD214E1DC2F22C006B0564 /* FindMoreViewController.xib */; };
 		35AD21521DC2FB89006B0564 /* FindMoreVCAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD21511DC2FB89006B0564 /* FindMoreVCAnimator.swift */; };
@@ -161,6 +163,8 @@
 		3597DF061DBCEC6C00A65747 /* 旅行派UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "旅行派UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3597DF0A1DBCEC6C00A65747 /* ___UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "___UITests.swift"; sourceTree = "<group>"; };
 		3597DF0C1DBCEC6C00A65747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35A23BA31DD41C1600E5CEF0 /* SectionOneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionOneCell.swift; sourceTree = "<group>"; };
+		35A23BA41DD41C1600E5CEF0 /* SectionOneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionOneCell.xib; sourceTree = "<group>"; };
 		35AD214D1DC2F22C006B0564 /* FindMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindMoreViewController.swift; sourceTree = "<group>"; };
 		35AD214E1DC2F22C006B0564 /* FindMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindMoreViewController.xib; sourceTree = "<group>"; };
 		35AD21511DC2FB89006B0564 /* FindMoreVCAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindMoreVCAnimator.swift; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 		358874391DCECA1300FAB8E7 /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
+				35A23BA21DD41B9A00E5CEF0 /* cell */,
 				3588743B1DCEDA2B00FAB8E7 /* NearbyViewController.swift */,
 				3588743C1DCEDA2B00FAB8E7 /* NearbyViewController.xib */,
 			);
@@ -401,6 +406,15 @@
 			);
 			path = "旅行派UITests";
 			sourceTree = SOURCE_ROOT;
+		};
+		35A23BA21DD41B9A00E5CEF0 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				35A23BA31DD41C1600E5CEF0 /* SectionOneCell.swift */,
+				35A23BA41DD41C1600E5CEF0 /* SectionOneCell.xib */,
+			);
+			name = cell;
+			sourceTree = "<group>";
 		};
 		35AD214C1DC2F1F9006B0564 /* FindMoreVC */ = {
 			isa = PBXGroup;
@@ -710,6 +724,7 @@
 				3597DEF51DBCEC6C00A65747 /* LaunchScreen.storyboard in Resources */,
 				3597DEF21DBCEC6C00A65747 /* Assets.xcassets in Resources */,
 				358874381DCEC89B00FAB8E7 /* DiscoverViewController.storyboard in Resources */,
+				35A23BA61DD41C1600E5CEF0 /* SectionOneCell.xib in Resources */,
 				357FDA931DC378A5002966FE /* FindMoreCell.xib in Resources */,
 				35BE8F751DC4A05800F952EB /* PicCell.xib in Resources */,
 				3597DEF01DBCEC6C00A65747 /* Main.storyboard in Resources */,
@@ -810,6 +825,7 @@
 				358AFCAC1DCF603D00C4DC28 /* AlbumCell.swift in Sources */,
 				3554A75F1DBE5E8000239A20 /* SHTool.swift in Sources */,
 				35E363C51DC991D600BBB33E /* PhotoBrowserViewController.swift in Sources */,
+				35A23BA51DD41C1600E5CEF0 /* SectionOneCell.swift in Sources */,
 				3556045A1DC227CD007C5D3C /* picCollectionCell.swift in Sources */,
 				3588743D1DCEDA2B00FAB8E7 /* NearbyViewController.swift in Sources */,
 				358AFCB21DCF763A00C4DC28 /* AlbumPicCell.swift in Sources */,

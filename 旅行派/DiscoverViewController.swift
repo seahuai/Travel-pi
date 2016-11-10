@@ -44,15 +44,15 @@ extension DiscoverViewController{
         addChildViewController(strategyVC)
         strategyVC.view.frame = scrollView.bounds
         strategyVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.width, y: 0)
-        scrollView.addSubview(strategyVC.view)
         
         currentVC = nearByVC
-        
         nearByVC.view.frame = scrollView.bounds
         nearByVC.view.frame.origin = CGPoint(x: 0, y: 0)
         scrollView.addSubview(nearByVC.view)
+        scrollView.addSubview(strategyVC.view)
         
         nearByVC.delegate = self
+        strategyVC.delegate = self
     }
     
     fileprivate func setUpScrollView(){
@@ -98,10 +98,10 @@ extension DiscoverViewController{
             sender.isSelected = true
             strategyButton.isSelected = false
             transition(from: currentVC!, to: nearByVC, duration: 0.5, options: .curveEaseInOut, animations: {
-                    self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
-                
+//                    self.scrollView.contentOffset.x = 0
                 }, completion: { (_) in
                 self.currentVC = self.nearByVC
+                    self.scrollView.contentOffset.x = 0
             })
         }
         
@@ -109,13 +109,12 @@ extension DiscoverViewController{
             sender.isSelected = true
             nearByButton.isSelected = false
             transition(from: currentVC!, to: strategyVC, duration: 0.5, options: .curveEaseInOut, animations: {
-                    self.scrollView.contentOffset = CGPoint(x: UIScreen.main.bounds.width, y: 0)
-                
+//                    self.scrollView.contentOffset.x = UIScreen.main.bounds.width
                 }, completion: { (_) in
                 self.currentVC = self.strategyVC
+                    self.scrollView.contentOffset.x = UIScreen.main.bounds.width
             })
         }
-        
         strategyButton.backgroundColor = !strategyButton.isSelected ? UIColor.groupTableViewBackground : UIColor.clear
         nearByButton.backgroundColor = !nearByButton.isSelected ? UIColor.groupTableViewBackground : UIColor.clear
     }
@@ -136,7 +135,6 @@ extension DiscoverViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-//        let text = searchBar.text
         searchDetailVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(searchDetailVC, animated: true)
     }
@@ -152,8 +150,18 @@ extension DiscoverViewController: UISearchBarDelegate{
 }
 
 //MARK:子控制器的代理
-extension DiscoverViewController: NearByTableViewDelegate{
+extension DiscoverViewController: NearByTableViewDelegate, StrategyTableViewDelegate{
     func nearByTableView(offset: CGFloat) {
+        handleNavigationBar(offset: offset)
+    }
+    
+    func strategyTableView(offset: CGFloat) {
+        handleNavigationBar(offset: offset)
+    }
+    
+    private func handleNavigationBar(offset: CGFloat){
+        scrollView.contentOffset.x = self.currentVC == self.strategyVC ? UIScreen.main.bounds.width : 0
+        searchBar.resignFirstResponder()
         searchBarTopCon.constant = -40
         var h = offset < 0 ? 44 : 44 - offset
         if h < 0 {
@@ -161,17 +169,11 @@ extension DiscoverViewController: NearByTableViewDelegate{
             isBarHidden = true
             searchBarTopCon.constant = 0
             navigationController?.navigationBar.alpha = 0
-            navigationController?.navigationBar.barStyle = .black
-            
         }else{
             isBarHidden = false
-            navigationController?.navigationBar.barStyle = .default
-            UIView.animate(withDuration: 0.2, animations: {
-                self.navigationController?.navigationBar.alpha = 1
-            })
+            navigationController?.navigationBar.alpha = 1
         }
         navigationController?.navigationBar.bounds.size.height = h
-        
     }
 }
 
