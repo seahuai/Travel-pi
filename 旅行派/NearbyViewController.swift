@@ -29,12 +29,17 @@ class NearbyViewController: UIViewController {
         let searcher = BMKPoiSearch()
         return searcher
     }()
-    fileprivate var loaction: CLLocation?{
+    fileprivate var nearLoaction: CLLocation?
+
+    
+    fileprivate var annotations: [BMKAnnotation] = [BMKAnnotation]()
+    fileprivate var poiInfos: [BMKPoiInfo] = [BMKPoiInfo]()
+    
+    fileprivate var isSearching: Bool = false{
         didSet{
-            sendSearchRequest()
+            tableView.reloadSections([1], with: .none)
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
@@ -65,6 +70,7 @@ extension NearbyViewController{
         tableView.dataSource = self
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsets(top: baiduMapView.frame.maxY - 44, left: 0, bottom: 0, right: 0)
+        tableView.register(SectionOneCell.self, forCellReuseIdentifier: "SectionOneCell")
     }
     
     fileprivate func setUpMapView(){
@@ -75,11 +81,12 @@ extension NearbyViewController{
 
 extension NearbyViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 200 : 40
+        return indexPath.section == 0 ? 200: 40
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "寻找" : nil
+        let head: String? = isSearching ? "为你找到" : nil
+        return section == 0 ? "寻找" : head
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -91,9 +98,14 @@ extension NearbyViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "\(indexPath.section)-\(indexPath.row))"
-        return cell
+        if indexPath.section == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SectionOneCell", for: indexPath) as! SectionOneCell
+            cell.delegate = self
+            return cell
+        }else{
+            let cell = UITableViewCell()
+            return cell
+        }
     }
     
     
@@ -103,7 +115,17 @@ extension NearbyViewController: UITableViewDataSource, UITableViewDelegate{
         delegate?.nearByTableView(offset: offset - distance)
     }
 }
-
+//MARK:代理
+extension NearbyViewController: TipCollectionViewDelegate{
+    func didSelect(tip: String) {
+        if nearLoaction == nil{print("获取位置中")}
+        else{
+            isSearching = true
+            sendSearchRequest(coordinate: nearLoaction!.coordinate, keyword: tip)
+        }
+    }
+}
+//MARK:地图相关方法
 extension NearbyViewController: BMKMapViewDelegate, BMKLocationServiceDelegate, BMKPoiSearchDelegate{
     func mapview(_ mapView: BMKMapView!, onDoubleClick coordinate: CLLocationCoordinate2D) {
 //        print(coordinate)
@@ -127,7 +149,8 @@ extension NearbyViewController: BMKMapViewDelegate, BMKLocationServiceDelegate, 
     func onGetPoiResult(_ searcher: BMKPoiSearch!, result poiResult: BMKPoiResult!, errorCode: BMKSearchErrorCode) {
         baiduMapView.removeAnnotations(baiduMapView.annotations)
         if errorCode == BMK_SEARCH_NO_ERROR{
-            var annotations = [BMKPointAnnotation]()
+             annotations.removeAll()
+            poiInfos = poiResult.poiInfoList as! [BMKPoiInfo]
             for i in 0..<poiResult.poiInfoList.count{
                 let info = poiResult.poiInfoList[i] as! BMKPoiInfo
                 let item = BMKPointAnnotation()
@@ -152,16 +175,24 @@ extension NearbyViewController: BMKMapViewDelegate, BMKLocationServiceDelegate, 
         return view
     }
     
-    fileprivate func sendSearchRequest(){
+    fileprivate func sendCitySearchRequeset(city: String, keyword: String){
+        let option = BMKCitySearchOption()
+        option.city = city
+        option.keyword = keyword
+        option.pageCapacity = 10
+        poiSearcher.poiSearch(inCity: option)
+    }
+    
+    fileprivate func sendSearchRequest(coordinate: CLLocationCoordinate2D, keyword: String){
         let option = BMKNearbySearchOption()
-        option.location = self.loaction!.coordinate
-        option.keyword = "小吃"
+        option.location = coordinate
+        option.keyword = keyword
         option.pageCapacity = 10
         poiSearcher.poiSearchNear(by: option)
     }
     
     fileprivate func updateLocationService(userLocation: BMKUserLocation){
-        self.loaction = userLocation.location
+        self.nearLoaction = userLocation.location
         baiduMapView.centerCoordinate = userLocation.location.coordinate
         baiduMapView.showsUserLocation = false
         baiduMapView.userTrackingMode = BMKUserTrackingModeFollow
