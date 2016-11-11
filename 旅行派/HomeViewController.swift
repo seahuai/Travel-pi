@@ -420,6 +420,7 @@ extension HomeViewController{
             self.locationTool.isUpdate = false
             if  self.CellModels["NearBy"] == nil{
                 self.CellModels["NearBy"] = self.NBdestinations
+                CityList.sharedInstance.addObject(near: self.NBdestinations)
             }
             //            self.destinationTableView.reloadData()
         }
@@ -436,6 +437,7 @@ extension HomeViewController{
             }
             if  self.CellModels["Hot"] == nil{
                 self.CellModels["Hot"] = self.Hotdestinations
+                CityList.sharedInstance.addObject(hot: self.Hotdestinations)
             }
         }
     }
@@ -452,6 +454,7 @@ extension HomeViewController{
             
             if self.CellModels["Others"] == nil{
                 self.CellModels["Others"] = self.Otherdestinations
+                CityList.sharedInstance.addObject(other: self.Otherdestinations)
             }
         }
     }

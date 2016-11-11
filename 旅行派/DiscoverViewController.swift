@@ -11,21 +11,21 @@ import UIKit
 class DiscoverViewController: UIViewController {
 
     fileprivate var destination: Destination?
-    
     fileprivate var isBarHidden: Bool = false
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var searchBarTopCon: NSLayoutConstraint!
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var nearByButton: UIButton!
     @IBOutlet weak var strategyButton: UIButton!
+    
+    fileprivate lazy var popAnimator: PopAnimator = PopAnimator()
     
     //MARK:控制器
     fileprivate lazy var nearByVC: NearbyViewController = NearbyViewController()
     fileprivate lazy var strategyVC: StrategyViewController = StrategyViewController()
     fileprivate lazy var searchDetailVC: SearchDetailViewController = SearchDetailViewController()
+    fileprivate lazy var cityListVC: CityListViewController = CityListViewController()
     fileprivate var currentVC: UIViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +33,8 @@ class DiscoverViewController: UIViewController {
         setUpChildViewController()
         setUpScrollView()
         setUpButton()
+        setUpCityListVC()
     }
-    
 }
 
 extension DiscoverViewController{
@@ -63,6 +63,11 @@ extension DiscoverViewController{
     
     fileprivate func setUpButton(){
         nearByButton.isSelected = true
+    }
+    
+    fileprivate func setUpCityListVC(){
+        cityListVC.modalPresentationStyle = .custom
+        cityListVC.transitioningDelegate = popAnimator
     }
 }
 
@@ -117,6 +122,11 @@ extension DiscoverViewController{
         }
         strategyButton.backgroundColor = !strategyButton.isSelected ? UIColor.groupTableViewBackground : UIColor.clear
         nearByButton.backgroundColor = !nearByButton.isSelected ? UIColor.groupTableViewBackground : UIColor.clear
+    }
+    
+    @IBAction func switchCityButtonClick(_ sender: UIBarButtonItem) {
+        print("切换城市")
+        present(cityListVC, animated: true, completion: nil)
     }
     
 }

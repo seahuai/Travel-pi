@@ -96,6 +96,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="发现" id="t2V-f0-CZr">
+                        <barButtonItem key="leftBarButtonItem" title="切换城市" id="FC4-dL-MG5">
+                            <connections>
+                                <action selector="switchCityButtonClick:" destination="meI-vP-n9s" id="OIn-WY-qte"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="PYl-19-ph7">
                             <connections>
                                 <action selector="searchButtonClick:" destination="meI-vP-n9s" id="eIF-QH-Tc0"/>
