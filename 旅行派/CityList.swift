@@ -10,9 +10,9 @@ import UIKit
 
 class CityList: NSObject {
     static let sharedInstance = CityList()
-    fileprivate var nearDestination: [Destination] = [Destination]()
-    fileprivate var hotDestination: [Destination] = [Destination]()
-    fileprivate var otherDestination: [Destination] = [Destination]()
+    var nearDestination: [Destination] = [Destination]()
+    var hotDestination: [Destination] = [Destination]()
+    var otherDestination: [Destination] = [Destination]()
     
     func addObject(hot: [Destination]){
         hotDestination = hot

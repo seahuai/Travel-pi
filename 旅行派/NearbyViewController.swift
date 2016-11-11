@@ -39,13 +39,18 @@ class NearbyViewController: UIViewController {
     
     fileprivate var annotations: [BMKAnnotation] = [BMKAnnotation]()
     fileprivate var poiInfos: [BMKPoiInfo] = [BMKPoiInfo]()
-    
     fileprivate var isFound: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
         setUpTableView()
         setUpMapView()
+        setUpNotification()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +83,26 @@ extension NearbyViewController{
     fileprivate func setUpMapView(){
         baiduMapView.region.span = BMKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.6)
     }
+}
+//MARK:通知相关
+extension NearbyViewController{
+    fileprivate func setUpNotification(){
+        //监听来自CityCell的通知
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getNotification(note:)), name: NSNotification.Name(rawValue: "ChangeCityNote"), object: nil)
+    }
     
+    @objc private func getNotification(note: Notification){
+        
+        let cityName = note.userInfo!["cityName"] as! String
+        let alertController = UIAlertController(title: "您确定切换城市为", message: "\(cityName)吗？", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "确定", style: .default) { (_) in}
+        let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (_) in}
+        alertController.addAction(okAction)
+        alertController.addAction(cancleAction)
+        dismiss(animated: true) { 
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
 }
 
 extension NearbyViewController: UITableViewDataSource, UITableViewDelegate{
@@ -96,7 +120,6 @@ extension NearbyViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(poiInfos.count)
         return section == 0 ? 1 : poiInfos.count
     }
     

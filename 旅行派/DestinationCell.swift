@@ -23,6 +23,7 @@ class DestinationCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.layoutIfNeeded()
         cellTitleLabel.text = "加载中..."
         setUpCollcetionView()
         setUpLayout()
@@ -44,9 +45,9 @@ extension DestinationCell{
     
     fileprivate func setUpLayout(){
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let space: CGFloat = 7
-        let items: CGFloat = 3
-        let itemW = (UIScreen.main.bounds.width - 4 * space) / items
+        let space: CGFloat = 10
+//        let items: CGFloat = 3
+        let itemW = picCollectionView.bounds.height - 2 * space
         let itemH = itemW
         
         layout.minimumLineSpacing = space

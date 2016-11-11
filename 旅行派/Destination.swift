@@ -12,8 +12,8 @@ class Destination: NSObject {
 
     var id: Int = 0
     var district_id: Int = -1
-    var lat: Double = -1
-    var lng: Double = -1
+    var lat: CLLocationDegrees = -1
+    var lng: CLLocationDegrees = -1
     var name: String?
     var name_en: String?
     var photo_url: String?

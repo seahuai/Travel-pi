@@ -125,7 +125,6 @@ extension DiscoverViewController{
     }
     
     @IBAction func switchCityButtonClick(_ sender: UIBarButtonItem) {
-        print("切换城市")
         present(cityListVC, animated: true, completion: nil)
     }
     

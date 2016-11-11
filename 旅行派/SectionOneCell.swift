@@ -68,7 +68,7 @@ extension SectionOneCell: UICollectionViewDelegate, UICollectionViewDataSource{
 
 }
 
-class FlowLayout: UICollectionViewFlowLayout {
+private class FlowLayout: UICollectionViewFlowLayout {
     override func prepare() {
         let space: CGFloat = 10
         let w = (UIScreen.main.bounds.width - 5 * space) / 4

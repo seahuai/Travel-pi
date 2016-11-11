@@ -15,11 +15,10 @@ class PresentationController: UIPresentationController {
         super.containerViewWillLayoutSubviews()
         
         let screenBounds = UIScreen.main.bounds
-        let width = screenBounds.width * 0.8
+        let width = screenBounds.width
         let height = screenBounds.height * 0.6
         presentedView?.frame = CGRect(x: 0, y: 64, width: width, height: height)
         presentedView?.layer.cornerRadius = 20
-//        presentedView?.layer.masksToBounds = true
         coverView.frame = containerView!.bounds
         coverView.backgroundColor = UIColor(white: 0.8, alpha: 0.3)
         containerView?.insertSubview(coverView, at: 0)

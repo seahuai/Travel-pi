@@ -73,6 +73,8 @@
 		35AE42B81DD5690E004E5ED1 /* IconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35AE42B61DD5690E004E5ED1 /* IconCell.xib */; };
 		35AE42BB1DD5A3A7004E5ED1 /* SectionTwoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AE42B91DD5A3A7004E5ED1 /* SectionTwoCell.swift */; };
 		35AE42BC1DD5A3A7004E5ED1 /* SectionTwoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35AE42BA1DD5A3A7004E5ED1 /* SectionTwoCell.xib */; };
+		35B222881DD5EF590014D85F /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B222861DD5EF590014D85F /* CityCell.swift */; };
+		35B222891DD5EF590014D85F /* CityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B222871DD5EF590014D85F /* CityCell.xib */; };
 		35B7412A1DBCEED000EB8A8A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741261DBCEED000EB8A8A /* Alamofire.framework */; };
 		35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B7412F1DBCF25D00EB8A8A /* TravelNote.swift */; };
 		35B741321DBCF27F00EB8A8A /* TravelAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B741311DBCF27F00EB8A8A /* TravelAlbum.swift */; };
@@ -184,6 +186,8 @@
 		35AE42B61DD5690E004E5ED1 /* IconCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconCell.xib; sourceTree = "<group>"; };
 		35AE42B91DD5A3A7004E5ED1 /* SectionTwoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionTwoCell.swift; sourceTree = "<group>"; };
 		35AE42BA1DD5A3A7004E5ED1 /* SectionTwoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionTwoCell.xib; sourceTree = "<group>"; };
+		35B222861DD5EF590014D85F /* CityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
+		35B222871DD5EF590014D85F /* CityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityCell.xib; sourceTree = "<group>"; };
 		35B741261DBCEED000EB8A8A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		35B741271DBCEED000EB8A8A /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		35B741281DBCEED000EB8A8A /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
@@ -277,8 +281,7 @@
 		356C93F51DD5B16A00B34D5F /* CityListVC */ = {
 			isa = PBXGroup;
 			children = (
-				356C93FE1DD5B8DD00B34D5F /* Animator */,
-				356C93F61DD5B2F300B34D5F /* CityList.swift */,
+				356C93FE1DD5B8DD00B34D5F /* Animator/Tool/Cell */,
 				356C93F81DD5B6A100B34D5F /* CityListViewController.swift */,
 				356C93F91DD5B6A100B34D5F /* CityListViewController.xib */,
 				356C93FC1DD5B6EC00B34D5F /* PresentationController.swift */,
@@ -286,12 +289,15 @@
 			name = CityListVC;
 			sourceTree = "<group>";
 		};
-		356C93FE1DD5B8DD00B34D5F /* Animator */ = {
+		356C93FE1DD5B8DD00B34D5F /* Animator/Tool/Cell */ = {
 			isa = PBXGroup;
 			children = (
+				356C93F61DD5B2F300B34D5F /* CityList.swift */,
 				356C93FF1DD5B8FB00B34D5F /* PopAnimator.swift */,
+				35B222861DD5EF590014D85F /* CityCell.swift */,
+				35B222871DD5EF590014D85F /* CityCell.xib */,
 			);
-			name = Animator;
+			name = Animator/Tool/Cell;
 			sourceTree = "<group>";
 		};
 		357250591DC775B900F3213B /* SlideVC */ = {
@@ -768,6 +774,7 @@
 				356C93FB1DD5B6A100B34D5F /* CityListViewController.xib in Resources */,
 				35BE8F751DC4A05800F952EB /* PicCell.xib in Resources */,
 				35AE42B81DD5690E004E5ED1 /* IconCell.xib in Resources */,
+				35B222891DD5EF590014D85F /* CityCell.xib in Resources */,
 				3597DEF01DBCEC6C00A65747 /* Main.storyboard in Resources */,
 				3588743E1DCEDA2B00FAB8E7 /* NearbyViewController.xib in Resources */,
 				358874421DCEDA4100FAB8E7 /* StrategyViewController.xib in Resources */,
@@ -861,6 +868,7 @@
 				358874351DCEC87E00FAB8E7 /* DiscoverViewController.swift in Sources */,
 				35B741341DBCF28B00EB8A8A /* User.swift in Sources */,
 				356C94001DD5B8FB00B34D5F /* PopAnimator.swift in Sources */,
+				35B222881DD5EF590014D85F /* CityCell.swift in Sources */,
 				35FC624F1DBE259F005D1F20 /* NetWorkTool.swift in Sources */,
 				356C93F71DD5B2F300B34D5F /* CityList.swift in Sources */,
 				35B741321DBCF27F00EB8A8A /* TravelAlbum.swift in Sources */,
