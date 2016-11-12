@@ -29,13 +29,31 @@ class NearbyViewController: UIViewController {
         let searcher = BMKPoiSearch()
         return searcher
     }()
-    fileprivate var nearLoaction: CLLocation?
+    fileprivate var nearLoaction: CLLocation?{
+        didSet{
+            coordinate = nearLoaction?.coordinate
+        }
+    }
     fileprivate var city: String?{
         didSet{
-            poiInfos.removeAll()
-            tableView.reloadSections([1], with: .none)
+//            poiInfos.removeAll()
+//            tableView.reloadSections([1], with: .none)
         }
     }//城市为空的时候才开启定位
+    
+    var coordinate: CLLocationCoordinate2D?{
+        didSet{
+            if coordinate != nil{
+                poiInfos.removeAll()
+                baiduMapView.centerCoordinate = coordinate!
+                tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                isFound = false
+                tableView.reloadSections([1], with: .none)
+            }
+            
+        }
+    }
+    
     
     fileprivate var annotations: [BMKAnnotation] = [BMKAnnotation]()
     fileprivate var poiInfos: [BMKPoiInfo] = [BMKPoiInfo]()
@@ -46,13 +64,8 @@ class NearbyViewController: UIViewController {
         self.view.layoutIfNeeded()
         setUpTableView()
         setUpMapView()
-        setUpNotification()
+
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         baiduMapView.delegate = self
@@ -81,28 +94,11 @@ extension NearbyViewController{
     }
     
     fileprivate func setUpMapView(){
-        baiduMapView.region.span = BMKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.6)
+//        baiduMapView.region.span = BMKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.6)
     }
 }
 //MARK:通知相关
 extension NearbyViewController{
-    fileprivate func setUpNotification(){
-        //监听来自CityCell的通知
-        NotificationCenter.default.addObserver(self, selector: #selector(self.getNotification(note:)), name: NSNotification.Name(rawValue: "ChangeCityNote"), object: nil)
-    }
-    
-    @objc private func getNotification(note: Notification){
-        
-        let cityName = note.userInfo!["cityName"] as! String
-        let alertController = UIAlertController(title: "您确定切换城市为", message: "\(cityName)吗？", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "确定", style: .default) { (_) in}
-        let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (_) in}
-        alertController.addAction(okAction)
-        alertController.addAction(cancleAction)
-        dismiss(animated: true) { 
-            self.present(alertController, animated: true, completion: nil)
-        }
-    }
 }
 
 extension NearbyViewController: UITableViewDataSource, UITableViewDelegate{
@@ -147,7 +143,9 @@ extension NearbyViewController: TipCollectionViewDelegate{
     func didSelect(tip: String) {
         if nearLoaction == nil{print("获取当前位置中")}
         else{
-            sendSearchRequest(coordinate: nearLoaction!.coordinate, keyword: tip)
+            if coordinate != nil{
+                sendSearchRequest(coordinate: coordinate!, keyword: tip)
+            }
         }
     }
 }

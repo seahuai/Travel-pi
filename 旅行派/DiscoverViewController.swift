@@ -34,8 +34,36 @@ class DiscoverViewController: UIViewController {
         setUpScrollView()
         setUpButton()
         setUpCityListVC()
+        setUpNotification()
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
+
+extension DiscoverViewController{
+    fileprivate func setUpNotification(){
+        //监听来自CityCell的通知
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getNotification(note:)), name: NSNotification.Name(rawValue: "ChangeCityNote"), object: nil)
+    }
+    
+    @objc private func getNotification(note: Notification){
+        
+        let cityName = note.userInfo!["cityName"] as! String
+        let coordinate = note.userInfo!["coordinate"] as! CLLocationCoordinate2D
+        let alertController = UIAlertController(title: "将当前城市切换为", message: "\(cityName)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "确定", style: .default) { (_) in
+            self.nearByVC.coordinate = coordinate
+        }
+        let cancleAction = UIAlertAction(title: "取消", style: .cancel) { (_) in}
+        alertController.addAction(okAction)
+        alertController.addAction(cancleAction)
+        dismiss(animated: true) {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+}
+
 
 extension DiscoverViewController{
     
@@ -161,11 +189,11 @@ extension DiscoverViewController: UISearchBarDelegate{
 //MARK:子控制器的代理
 extension DiscoverViewController: NearByTableViewDelegate, StrategyTableViewDelegate{
     func nearByTableView(offset: CGFloat) {
-        handleNavigationBar(offset: offset)
+//        handleNavigationBar(offset: offset)
     }
     
     func strategyTableView(offset: CGFloat) {
-        handleNavigationBar(offset: offset)
+//        handleNavigationBar(offset: offset)
     }
     
     private func handleNavigationBar(offset: CGFloat){

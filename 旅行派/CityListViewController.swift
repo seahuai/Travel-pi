@@ -11,17 +11,18 @@ import UIKit
 class CityListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    fileprivate var historyDes: [Destination] = [Destination]()
-    fileprivate let sectionsName: [String] = ["猜你喜欢","热门地区", "其它", "历史位置"]
+//    fileprivate var historyDes: [Destination] = [Destination]()
+    fileprivate let sectionsName: [String] = ["猜你喜欢","热门地区", "其它", "当前位置"]
     //MARK:地理编码
 //    fileprivate lazy var geoSearcher: BMKGeoCodeSearch = {
 //        let geo = BMKGeoCodeSearch()
 //        return geo
 //    }()
-//    fileprivate lazy var locationService: BMKLocationService = {
-//        let service = BMKLocationService()
-//        return service
-//    }()
+    fileprivate lazy var locationService: BMKLocationService = {
+        let service = BMKLocationService()
+        return service
+    }()
+    fileprivate var currentDes: Destination?
 //    fileprivate var address: String?{
 //        didSet{
 //            collectionView.reloadSections([0])
@@ -30,6 +31,18 @@ class CityListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        locationService.delegate = self
+        locationService.startUserLocationService()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        locationService.delegate = nil
+        locationService.stopUserLocationService()
     }
     
    
@@ -41,15 +54,22 @@ extension CityListViewController: BMKGeoCodeSearchDelegate, BMKLocationServiceDe
 //        }
 //    }
 //    
-//    func didUpdate(_ userLocation: BMKUserLocation!) {
-//        if userLocation != nil{
+    func didUpdate(_ userLocation: BMKUserLocation!) {
+        if userLocation != nil{
 //            locationService.stopUserLocationService()
 //            let coordinate = userLocation.location.coordinate
 //            let option = BMKReverseGeoCodeOption()
 //            option.reverseGeoPoint = coordinate
 //            geoSearcher.reverseGeoCode(option)
-//        }
-//    }
+            let c = userLocation.location.coordinate
+            currentDes = Destination(dict: [String: AnyObject]())
+            currentDes?.lat = c.latitude
+            currentDes?.lng = c.longitude
+            currentDes?.name = "当前位置"
+            collectionView.reloadSections([3])
+            locationService.stopUserLocationService()
+        }
+    }
 }
 
 extension CityListViewController: UICollectionViewDataSource, UICollectionViewDelegate{
@@ -81,7 +101,7 @@ extension CityListViewController: UICollectionViewDataSource, UICollectionViewDe
         if section == 0{return CityList.sharedInstance.nearDestination.count} else
         if section == 1{return CityList.sharedInstance.hotDestination.count} else
         if section == 2{return CityList.sharedInstance.otherDestination.count}else
-        if section == 3{return historyDes.count}
+        if section == 3{return 1}
         return 0
     }
     
@@ -99,7 +119,7 @@ extension CityListViewController: UICollectionViewDataSource, UICollectionViewDe
             destination = CityList.sharedInstance.otherDestination[indexPath.item]
         }
         if indexPath.section == 3{
-            destination = historyDes[indexPath.item]
+            destination = currentDes
         }
         if destination != nil{coordinate = CLLocationCoordinate2D(latitude: destination!.lat, longitude: destination!.lng)}
         cell.cityName = destination?.name
