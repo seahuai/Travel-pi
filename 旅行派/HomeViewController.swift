@@ -62,10 +62,10 @@ class HomeViewController: UIViewController {
     fileprivate lazy var profileViewController: ProfileViewController = ProfileViewController()
     fileprivate lazy var albumViewController: AlbumDetailViewController = AlbumDetailViewController()
     //MARK:动画
-    fileprivate lazy var animator: FindMoreVCAnimator = FindMoreVCAnimator()
+    fileprivate lazy var animator: DrawerAnimator = DrawerAnimator()
     
     //MARK:右滑界面参数
-    fileprivate let menuWidth: CGFloat = UIScreen.main.bounds.width * 0.4
+    fileprivate let menuWidth: CGFloat = UIScreen.main.bounds.width * 0.8
     fileprivate var isOpening: Bool = false
     
     //MARK:导航栏控件
@@ -77,7 +77,6 @@ class HomeViewController: UIViewController {
         setUpNavigationBar()
         setUpTableView()
         setUpNotification()
-        setUpSlideMenu()
         setUp()
         setUpToolBar()
         
@@ -124,21 +123,17 @@ extension HomeViewController{
         destinationTableView.contentInset = UIEdgeInsets(top: displayViewHeightCon.constant, left: 0, bottom: 0, right: 0)
         
     }
+    
+//    fileprivate func setUpDrawer(){
+//        modalPresentationStyle = .custom
+//        profileViewController.transitioningDelegate = animator
+//    }
 }
 
 //MARK:处理导航栏按钮的点击
 extension HomeViewController{
     @IBAction func leftButtonClick(_ sender: UIBarButtonItem) {
-        let duration: TimeInterval = 0.5
-        if navigationController!.view.frame.origin.x / menuWidth == 0{
-            UIView.animate(withDuration: duration, animations: {
-               self.setToPercent(percent: 1.0)
-            })
-        }else{
-            UIView.animate(withDuration: duration, animations: {
-                self.setToPercent(percent: 0.0)
-            })
-        }
+        present(profileViewController, animated: true) {}
     }
 }
 
@@ -153,12 +148,6 @@ extension HomeViewController{
         let cellId = note.userInfo?["cellId"] as? String
         if let cellId = cellId{
             findMoreViewController.destinations = CellModels[cellId]!
-            
-            //            navigationController?.pushViewController(findMoreViewController, animated: true)
-            //            let navigationVC = UINavigationController(rootViewController: findMoreViewController)
-            //            navigationVC.transitioningDelegate = animator
-            //            present(navigationVC, animated: true, completion: { })
-            
             findMoreViewController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(findMoreViewController, animated: true)
             
@@ -294,7 +283,6 @@ extension HomeViewController: UIScrollViewDelegate{
                 let url = URL(string: urlStr)
                 imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_picture"))
             }
-//            print(displayScrollView.contentSize)
         }
         
     }
@@ -310,14 +298,12 @@ extension HomeViewController: UIScrollViewDelegate{
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        print("stop")
         if scrollView == displayScrollView{
             stopTimer()
         }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        print("start")
         if scrollView == displayScrollView{
             startTimer()
         }
@@ -328,81 +314,78 @@ extension HomeViewController: UIScrollViewDelegate{
 
 //MARK:处理抽屉效果
 extension HomeViewController{
-    fileprivate func setUpSlideMenu(){
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
-        view.addGestureRecognizer(pan)
-        
-        profileViewController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: UIScreen.main.bounds.height)
-        navigationController?.view.addSubview(profileViewController.view)
-    }
     
     
-    @objc private func handleGesture(gesture: UIPanGestureRecognizer){
-        
-        let translation = gesture.translation(in: view)
-        var progress: CGFloat = translation.x / menuWidth * (isOpening ? 1.0:-1.0)
-        progress = min(max(progress, 0), 1)
-        
-        
-        switch gesture.state {
-        case .began:
-            profileViewController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: UIScreen.main.bounds.height)
-            let isOpen = navigationController!.view.frame.origin.x / menuWidth
-            isOpening = isOpen == 1.0 ? false:true
-            
-            profileViewController.view.layer.shouldRasterize = true
-            profileViewController.view.layer.rasterizationScale = UIScreen.main.scale
-            
-        case .changed:
-            setToPercent(percent: isOpening ? progress : (1.0 - progress))
-            
-        case .ended:
-            
-            var targetProgress: CGFloat
-            if (isOpening) {
-                targetProgress = progress < 0.5 ? 0.0 : 1.0
-            }else {
-                targetProgress = progress < 0.5 ? 1.0 : 0.0
-            }
-            
-            UIView.animate(withDuration: 0.3, animations: { () -> Void in
-                self.setToPercent(percent: targetProgress)
-                }, completion: { (_) -> Void in
-                    // 记得关闭layer的缓存渲染
-                    self.profileViewController.view.layer.shouldRasterize = false
-            })
-            
-        default:
-            break
-        }
-    }
+
     
-    fileprivate func setToPercent(percent: CGFloat){
-        navigationController?.view.frame.origin.x = menuWidth * percent
-        
-        profileViewController.view.alpha = max(0.2, percent)
-        profileViewController.view.layer.transform = menuTransformPercent(percent: percent)
-    }
     
-    fileprivate func menuTransformPercent(percent: CGFloat) -> CATransform3D{
-        var identity = CATransform3DIdentity
-        identity.m34 = -1/1000
-        
-        let remainingPercent = 1.0 - percent
-        let angle = CGFloat(-M_PI_2) * remainingPercent
-        
-        let rotation = CATransform3DRotate(identity, angle, 0, 1, 0)
-        let translation = CATransform3DMakeTranslation(0, 0, 0)
-        
-        let transform = CATransform3DConcat(rotation, translation)
-        
-        return transform
-        
-    }
+    //MARK:翻转效果
+//    @objc private func handleGesture(gesture: UIPanGestureRecognizer){
+//        
+//        let translation = gesture.translation(in: view)
+//        var progress: CGFloat = translation.x / menuWidth * (isOpening ? 1.0:-1.0)
+//        progress = min(max(progress, 0), 1)
+//        
+//        
+//        switch gesture.state {
+//        case .began:
+//            profileViewController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: UIScreen.main.bounds.height)
+//            let isOpen = navigationController!.view.frame.origin.x / menuWidth
+//            isOpening = isOpen == 1.0 ? false:true
+//            
+//            profileViewController.view.layer.shouldRasterize = true
+//            profileViewController.view.layer.rasterizationScale = UIScreen.main.scale
+//            
+//        case .changed:
+//            setToPercent(percent: isOpening ? progress : (1.0 - progress))
+//            
+//        case .ended:
+//            
+//            var targetProgress: CGFloat
+//            if (isOpening) {
+//                targetProgress = progress < 0.5 ? 0.0 : 1.0
+//            }else {
+//                targetProgress = progress < 0.5 ? 1.0 : 0.0
+//            }
+//            
+//            UIView.animate(withDuration: 0.3, animations: { () -> Void in
+//                self.setToPercent(percent: targetProgress)
+//                }, completion: { (_) -> Void in
+//                    // 记得关闭layer的缓存渲染
+//                    self.profileViewController.view.layer.shouldRasterize = false
+//            })
+//            
+//        default:
+//            break
+//        }
+//    }
+////
+//    fileprivate func setToPercent(percent: CGFloat){
+//        navigationController?.view.frame.origin.x = menuWidth * percent
+//        
+//        profileViewController.view.alpha = max(0.2, percent)
+//        profileViewController.view.layer.transform = menuTransformPercent(percent: percent)
+//    }
+////
+//    fileprivate func menuTransformPercent(percent: CGFloat) -> CATransform3D{
+//        var identity = CATransform3DIdentity
+//        identity.m34 = -1/1000
+//        
+//        let remainingPercent = 1.0 - percent
+//        let angle = CGFloat(-M_PI_2) * remainingPercent
+//        
+//        let rotation = CATransform3DRotate(identity, angle, 0, 1, 0)
+//        let translation = CATransform3DMakeTranslation(0, 0, 0)
+//        
+//        let transform = CATransform3DConcat(rotation, translation)
+//        
+//        return transform
+//        
+//    }
+//
+
 
 }
-
-
 
 
 //MARK:获取景点

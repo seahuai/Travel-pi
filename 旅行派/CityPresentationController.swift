@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PresentationController: UIPresentationController {
+class CityPresentationController: UIPresentationController {
     fileprivate lazy var coverView = UIView()
     
     override func containerViewWillLayoutSubviews() {

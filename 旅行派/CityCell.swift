@@ -11,7 +11,8 @@ import UIKit
 class CityCell: UICollectionViewCell {
 
     @IBOutlet weak var cityButton: UIButton!
-    var cityName:String?{
+    var id: Int = 0
+    var cityName: String?{
         didSet{
             cityButton.setTitle(cityName, for: .normal)
         }
@@ -24,7 +25,7 @@ class CityCell: UICollectionViewCell {
     }
     
     @objc private func cityButtonClick(){
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ChangeCityNote"), object: nil, userInfo: ["cityName": cityName, "coordinate": coordinate])
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ChangeCityNote"), object: nil, userInfo: ["id": id, "coordinate": coordinate, "cityName" : cityName])
     }
 
 }

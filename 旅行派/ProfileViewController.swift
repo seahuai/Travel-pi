@@ -14,12 +14,19 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var headImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
+    fileprivate lazy var animator = DrawerAnimator()
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.transitioningDelegate = animator
+        self.modalPresentationStyle = .custom
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    @IBAction func dismissButtonClick(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
     

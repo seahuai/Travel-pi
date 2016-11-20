@@ -48,7 +48,7 @@ extension DiscoverViewController{
     }
     
     @objc private func getNotification(note: Notification){
-        
+//        let des = note.userInfo!["destination"] as! Destination
         let cityName = note.userInfo!["cityName"] as! String
         let coordinate = note.userInfo!["coordinate"] as! CLLocationCoordinate2D
         let alertController = UIAlertController(title: "将当前城市切换为", message: "\(cityName)", preferredStyle: .alert)

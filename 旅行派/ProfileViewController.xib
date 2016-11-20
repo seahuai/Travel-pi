@@ -18,7 +18,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPc-1z-ccL">
@@ -48,17 +48,27 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ss7-Hp-83G">
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8D9-ju-ef6">
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="关闭"/>
+                    <connections>
+                        <action selector="dismissButtonClick:" destination="-1" eventType="touchUpInside" id="TMh-o1-Wxa"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="fPc-1z-ccL" secondAttribute="trailing" id="1UH-NB-1qD"/>
                 <constraint firstItem="ss7-Hp-83G" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6wv-Mx-ZND"/>
+                <constraint firstAttribute="bottom" secondItem="8D9-ju-ef6" secondAttribute="bottom" id="8zQ-x3-sda"/>
+                <constraint firstItem="8D9-ju-ef6" firstAttribute="top" secondItem="ss7-Hp-83G" secondAttribute="bottom" id="DF6-yY-Lkz"/>
                 <constraint firstAttribute="trailing" secondItem="ss7-Hp-83G" secondAttribute="trailing" id="GrS-74-ATr"/>
                 <constraint firstItem="fPc-1z-ccL" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.4" id="L54-dV-Nbi"/>
+                <constraint firstAttribute="trailing" secondItem="8D9-ju-ef6" secondAttribute="trailing" constant="5" id="M6Z-sQ-Afx"/>
                 <constraint firstItem="ss7-Hp-83G" firstAttribute="top" secondItem="fPc-1z-ccL" secondAttribute="bottom" id="frE-QX-uE2"/>
                 <constraint firstItem="fPc-1z-ccL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="h7H-xv-xfj"/>
                 <constraint firstItem="fPc-1z-ccL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iDq-c6-2ny"/>
-                <constraint firstAttribute="bottom" secondItem="ss7-Hp-83G" secondAttribute="bottom" id="q4T-ll-bFd"/>
+                <constraint firstAttribute="bottom" secondItem="ss7-Hp-83G" secondAttribute="bottom" constant="30" id="q4T-ll-bFd"/>
             </constraints>
             <point key="canvasLocation" x="32.5" y="62.5"/>
         </view>

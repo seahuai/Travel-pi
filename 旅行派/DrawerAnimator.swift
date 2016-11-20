@@ -1,16 +1,17 @@
 //
-//  CityListAnimator.swift
+//  FindMoreVCAnimator.swift
 //  旅行派
 //
-//  Created by 张思槐 on 16/11/11.
+//  Created by 张思槐 on 16/10/28.
 //  Copyright © 2016年 zhangsihuai. All rights reserved.
 //
 
 import UIKit
 
-class PopAnimator: NSObject, UIViewControllerTransitioningDelegate {
+class DrawerAnimator: NSObject, UIViewControllerTransitioningDelegate {
     
     fileprivate var isPresented: Bool = false
+    
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresented = false
@@ -23,30 +24,33 @@ class PopAnimator: NSObject, UIViewControllerTransitioningDelegate {
     }
 }
 
-extension PopAnimator: UIViewControllerAnimatedTransitioning{
-    
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.3
-    }
+
+extension DrawerAnimator: UIViewControllerAnimatedTransitioning{
     
     @objc(presentationControllerForPresentedViewController:presentingViewController:sourceViewController:) func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return CityPresentationController(presentedViewController: presented, presenting: presenting)
+        return DrawerPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+    
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.5
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        isPresented ? presentedAnimation(transitionContext: transitionContext) : dismissAnimation(transitionContext: transitionContext)
+        isPresented ? presentAnimation(transitionContext: transitionContext) : dismissAnimation(transitionContext: transitionContext)
     }
+}
+
+//MARK:具体动画实现
+extension DrawerAnimator{
+
     
-    fileprivate func presentedAnimation(transitionContext: UIViewControllerContextTransitioning){
+    fileprivate func presentAnimation(transitionContext: UIViewControllerContextTransitioning){
         let toView = transitionContext.view(forKey: .to)
         let containerView = transitionContext.containerView
+        toView?.frame.origin = CGPoint(x: -menuWidth, y: 0)
         containerView.addSubview(toView!)
-        toView?.alpha = 0
-        toView?.transform = CGAffineTransform(scaleX: 1.0, y: 0)
-        toView?.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
         UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-            toView?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            toView?.alpha = 0.9
+            toView?.frame.origin = CGPoint(x: 0, y: 0)
             }) { (_) in
                 transitionContext.completeTransition(true)
         }
@@ -56,18 +60,11 @@ extension PopAnimator: UIViewControllerAnimatedTransitioning{
         let fromView = transitionContext.view(forKey: .from)
         let containerView = transitionContext.containerView
         containerView.addSubview(fromView!)
-        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-            containerView.alpha = 0
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: { 
+            fromView?.frame.origin = CGPoint(x: -menuWidth, y: 0)
             }) { (_) in
                 fromView?.removeFromSuperview()
                 transitionContext.completeTransition(true)
         }
     }
-    
-    
-    
-    
-    
-    
-    
 }

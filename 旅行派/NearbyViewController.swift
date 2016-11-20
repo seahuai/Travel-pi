@@ -71,7 +71,7 @@ class NearbyViewController: UIViewController {
         baiduMapView.delegate = self
         locationService.delegate = self
         poiSearcher.delegate = self
-        if city == nil{ locationService.startUserLocationService() }
+        if coordinate == nil{ locationService.startUserLocationService() }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -108,7 +108,6 @@ extension CityListViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CityCell", for: indexPath) as! CityCell
         var destination: Destination?
-        var coordinate: CLLocationCoordinate2D?
         if indexPath.section == 0{
             destination = CityList.sharedInstance.nearDestination[indexPath.item]
         }
@@ -121,9 +120,9 @@ extension CityListViewController: UICollectionViewDataSource, UICollectionViewDe
         if indexPath.section == 3{
             destination = currentDes
         }
-        if destination != nil{coordinate = CLLocationCoordinate2D(latitude: destination!.lat, longitude: destination!.lng)}
+        cell.id = destination == nil ? 0 : destination!.id
         cell.cityName = destination?.name
-        cell.coordinate = coordinate
+        cell.coordinate = CLLocationCoordinate2D(latitude: destination!.lat, longitude: destination!.lng)
         return cell
     }
     

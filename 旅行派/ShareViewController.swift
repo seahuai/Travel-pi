@@ -11,7 +11,7 @@ import UIKit
 class ShareViewController: UIViewController {
     @IBOutlet weak var shareTableView: UITableView!
     @IBOutlet weak var toolScrollView: UIScrollView!
-    
+    fileprivate lazy var profileVC: ProfileViewController = ProfileViewController()
     fileprivate lazy var PhotoBrowserVC: PhotoBrowserViewController = PhotoBrowserViewController()
     fileprivate lazy var photoBrowserAnimator: PhotoBrowserAnimator = PhotoBrowserAnimator()
     var toolBarModels: [ShareToolModel] = [ShareToolModel]()
@@ -25,6 +25,7 @@ class ShareViewController: UIViewController {
         getTravelNotes()
         setUpNotification()
         setUpAnimator()
+        setUpNavigationBar()
     }
 
     deinit {
@@ -34,6 +35,11 @@ class ShareViewController: UIViewController {
 
 
 extension ShareViewController{
+    
+    fileprivate func setUpNavigationBar(){
+        let leftBarButton = UIBarButtonItem(image:UIImage(named: "tabbar_profile") , style: .plain, target: self, action: #selector(self.leftButtonClick))
+        navigationItem.leftBarButtonItem = leftBarButton
+    }
     
     fileprivate func setUpAnimator(){
         PhotoBrowserVC.transitioningDelegate = photoBrowserAnimator
@@ -51,6 +57,10 @@ extension ShareViewController{
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadCellHeight(note:)), name: NSNotification.Name(rawValue: "unfoldNote"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.setAnimatorDelegate(note:)), name: NSNotification.Name(rawValue: "selectedImageNote"), object: nil)
+    }
+    
+    @objc private func leftButtonClick(){
+        present(profileVC, animated: true, completion: nil)
     }
     
     @objc private func reloadCellHeight(note: Notification){
