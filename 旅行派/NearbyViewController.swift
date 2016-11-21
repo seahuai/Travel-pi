@@ -10,12 +10,16 @@ import UIKit
 
 protocol NearByTableViewDelegate {
     func nearByTableView(offset: CGFloat)
+    func naerByTableView(upOrNot: Bool)
 }
 
 class NearbyViewController: UIViewController {
 
     //代理属性
     var delegate: NearByTableViewDelegate?
+    
+    fileprivate var hisOffsetY: CGFloat = 0
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -136,6 +140,18 @@ extension NearbyViewController: UITableViewDataSource, UITableViewDelegate{
         let offset = scrollView.contentOffset.y
         let distance: CGFloat = 100
         delegate?.nearByTableView(offset: offset - distance)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let dis:CGFloat = 20
+        let targetY: CGFloat = targetContentOffset.pointee.y
+        if hisOffsetY + dis < targetY{
+            delegate?.naerByTableView(upOrNot: true)
+        }
+        if hisOffsetY + dis > targetY{
+            delegate?.naerByTableView(upOrNot: false)
+        }
+        hisOffsetY = targetContentOffset.pointee.y
     }
 }
 //MARK:代理

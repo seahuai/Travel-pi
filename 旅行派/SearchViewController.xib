@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="旅行派" customModuleProvider="target">
+            <connections>
+                <outlet property="hotTableView" destination="Dxe-4A-CxA" id="QJr-si-8zn"/>
+                <outlet property="searchBar" destination="f5Q-6Y-1Aj" id="G6O-op-AAA"/>
+                <outlet property="searchLabel" destination="MZw-4q-Ud7" id="ybK-8O-hSt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dxe-4A-CxA">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门搜索" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZw-4q-Ud7">
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="f5Q-6Y-1Aj">
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="qRo-93-3yz"/>
+                    </connections>
+                </searchBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IF9-mj-3wV">
+                    <state key="normal" image="close"/>
+                    <connections>
+                        <action selector="closeButtonClick:" destination="-1" eventType="touchUpInside" id="88X-dz-JUs"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="IF9-mj-3wV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5eh-eM-d27"/>
+                <constraint firstAttribute="trailing" secondItem="Dxe-4A-CxA" secondAttribute="trailing" id="Ioz-Aq-MAB"/>
+                <constraint firstAttribute="trailing" secondItem="MZw-4q-Ud7" secondAttribute="trailing" id="L5R-Si-jDY"/>
+                <constraint firstItem="Dxe-4A-CxA" firstAttribute="top" secondItem="MZw-4q-Ud7" secondAttribute="bottom" constant="10" id="Pc0-ZH-hu2"/>
+                <constraint firstItem="f5Q-6Y-1Aj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="T7s-1r-T8G"/>
+                <constraint firstAttribute="bottom" secondItem="IF9-mj-3wV" secondAttribute="bottom" constant="10" id="Xue-eu-BKA"/>
+                <constraint firstAttribute="bottom" secondItem="Dxe-4A-CxA" secondAttribute="bottom" constant="40" id="ZIW-8W-YU0"/>
+                <constraint firstAttribute="trailing" secondItem="f5Q-6Y-1Aj" secondAttribute="trailing" id="bcu-qx-Cme"/>
+                <constraint firstItem="MZw-4q-Ud7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eiE-oq-Uhu"/>
+                <constraint firstAttribute="trailing" secondItem="IF9-mj-3wV" secondAttribute="trailing" id="kqk-es-Lfw"/>
+                <constraint firstItem="Dxe-4A-CxA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mjw-Ib-thM"/>
+                <constraint firstItem="f5Q-6Y-1Aj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="scr-nB-lkV"/>
+                <constraint firstItem="MZw-4q-Ud7" firstAttribute="top" secondItem="f5Q-6Y-1Aj" secondAttribute="bottom" constant="40" id="t9o-XS-HBe"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="close" width="24" height="24"/>
+    </resources>
+</document>

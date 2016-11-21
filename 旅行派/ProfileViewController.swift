@@ -14,6 +14,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var headImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
+    static let shared: ProfileViewController = ProfileViewController()
+    
     fileprivate lazy var animator = DrawerAnimator()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -30,9 +32,23 @@ class ProfileViewController: UIViewController {
     }
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setUp()
+        print("viewDidLoad")
     }
 
+}
+
+extension ProfileViewController{
+    fileprivate func setUp(){
+        let swipe = UISwipeGestureRecognizer(target: self, action:#selector(self.swipeView))
+        swipe.direction = .left
+        view.addGestureRecognizer(swipe)
+    }
+    
+    @objc fileprivate func swipeView(){
+        dismiss(animated: true, completion: nil)
+    }
 }

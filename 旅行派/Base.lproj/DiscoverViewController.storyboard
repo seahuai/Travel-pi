@@ -37,12 +37,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="aSh-DK-T1U">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="vfg-ia-Lk5"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
-                            </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JRT-if-w44">
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeE-9V-rgW">
@@ -83,16 +77,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wpC-ad-eOf" firstAttribute="top" secondItem="JRT-if-w44" secondAttribute="bottom" id="4dZ-s6-5Ld"/>
-                            <constraint firstItem="ktj-tJ-Kgh" firstAttribute="top" secondItem="wpC-ad-eOf" secondAttribute="bottom" id="6Zc-JC-AlE"/>
+                            <constraint firstItem="ktj-tJ-Kgh" firstAttribute="top" secondItem="wpC-ad-eOf" secondAttribute="bottom" constant="-49" id="6Zc-JC-AlE"/>
+                            <constraint firstItem="JRT-if-w44" firstAttribute="top" secondItem="Zkq-zM-FYW" secondAttribute="bottom" id="Dic-Ml-SCh"/>
                             <constraint firstAttribute="trailing" secondItem="wpC-ad-eOf" secondAttribute="trailing" id="L1V-9a-df5"/>
-                            <constraint firstItem="JRT-if-w44" firstAttribute="top" secondItem="aSh-DK-T1U" secondAttribute="bottom" id="La1-07-r7T"/>
-                            <constraint firstItem="aSh-DK-T1U" firstAttribute="leading" secondItem="EWv-CN-ADV" secondAttribute="leading" id="NV6-By-A3Y"/>
                             <constraint firstItem="wpC-ad-eOf" firstAttribute="leading" secondItem="EWv-CN-ADV" secondAttribute="leading" id="SnQ-Qj-fUi"/>
-                            <constraint firstItem="aSh-DK-T1U" firstAttribute="top" secondItem="EWv-CN-ADV" secondAttribute="top" priority="600" id="TJ2-eM-rSC"/>
-                            <constraint firstItem="aSh-DK-T1U" firstAttribute="top" secondItem="Zkq-zM-FYW" secondAttribute="bottom" constant="-40" id="Tqm-Yh-EuR"/>
                             <constraint firstItem="JRT-if-w44" firstAttribute="leading" secondItem="EWv-CN-ADV" secondAttribute="leading" id="rA1-DU-A3d"/>
                             <constraint firstAttribute="trailing" secondItem="JRT-if-w44" secondAttribute="trailing" id="wdx-k4-A6S"/>
-                            <constraint firstAttribute="trailing" secondItem="aSh-DK-T1U" secondAttribute="trailing" id="y7l-gl-nDG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="发现" id="t2V-f0-CZr">
@@ -110,8 +100,6 @@
                     <connections>
                         <outlet property="nearByButton" destination="jeE-9V-rgW" id="bS8-M4-BaO"/>
                         <outlet property="scrollView" destination="wpC-ad-eOf" id="A1X-Xu-OOn"/>
-                        <outlet property="searchBar" destination="aSh-DK-T1U" id="Bnb-M4-LQe"/>
-                        <outlet property="searchBarTopCon" destination="Tqm-Yh-EuR" id="NYe-h5-0uf"/>
                         <outlet property="searchDisplayController" destination="Efp-k7-Jrx" id="olH-X2-DhV"/>
                         <outlet property="strategyButton" destination="wDh-TZ-HQj" id="yYs-Rg-tzs"/>
                     </connections>

@@ -14,8 +14,8 @@ class DiscoverViewController: UIViewController {
     fileprivate var isBarHidden: Bool = false
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var searchBarTopCon: NSLayoutConstraint!
-    @IBOutlet weak var searchBar: UISearchBar!
+//    @IBOutlet weak var searchBarTopCon: NSLayoutConstraint!
+//    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var nearByButton: UIButton!
     @IBOutlet weak var strategyButton: UIButton!
     
@@ -29,7 +29,6 @@ class DiscoverViewController: UIViewController {
     fileprivate var currentVC: UIViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpSearchBar()
         setUpChildViewController()
         setUpScrollView()
         setUpButton()
@@ -102,23 +101,7 @@ extension DiscoverViewController{
 //MARK:按钮的监听
 extension DiscoverViewController{
     @IBAction func searchButtonClick(_ sender: UIBarButtonItem) {
-        if searchBarTopCon.constant < 0{
-            searchBar.becomeFirstResponder()
-            UIView.animate(withDuration: 0.3, animations: {
-                self.searchBarTopCon.constant = 0
-                self.view.layoutIfNeeded()
-                self.scrollView.contentOffset.x = self.currentVC == self.strategyVC ? UIScreen.main.bounds.width : 0
-                })
-
-        }else
-        if searchBarTopCon.constant == 0 {
-            searchBar.resignFirstResponder()
-            UIView.animate(withDuration: 0.3, animations: {
-                self.searchBarTopCon.constant = -40
-                self.view.layoutIfNeeded()
-                self.scrollView.contentOffset.x = self.currentVC == self.strategyVC ? UIScreen.main.bounds.width : 0
-                })
-        }
+        present(SearchViewController.shared, animated: true, completion: nil)
     }
     
     @IBAction func toolViewButtonClick(_ sender: UIButton) {
@@ -159,52 +142,37 @@ extension DiscoverViewController{
 }
 
 
-//MARK:搜索栏代理
-extension DiscoverViewController: UISearchBarDelegate{
-    fileprivate func setUpSearchBar(){
-        searchBar.placeholder = "输入你的目的地"
-        searchBar.showsCancelButton = true
-        searchBar.delegate = self
-        searchBar.searchBarStyle = .minimal
-        
-
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        searchDetailVC.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(searchDetailVC, animated: true)
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        UIView.animate(withDuration: 0.3, animations: {
-            self.searchBarTopCon.constant = self.isBarHidden ? 0 : -40
-            self.view.layoutIfNeeded()
-            self.scrollView.contentOffset.x = self.currentVC == self.strategyVC ? UIScreen.main.bounds.width : 0
-        })
-    }
-}
 
 //MARK:子控制器的代理
 extension DiscoverViewController: NearByTableViewDelegate, StrategyTableViewDelegate{
+    
+    fileprivate func hideTabBar(isHidden: Bool){
+        let y: CGFloat = isHidden ? UIScreen.main.bounds.height + 49 : UIScreen.main.bounds.height - 49
+        UIView.animate(withDuration: 0.5) {
+            self.tabBarController?.tabBar.frame.origin.y = y
+        }
+    }
+    
+    
+    func naerByTableView(upOrNot: Bool) {
+        hideTabBar(isHidden: upOrNot)
+    }
+    
     func nearByTableView(offset: CGFloat) {
-//        handleNavigationBar(offset: offset)
+
     }
     
     func strategyTableView(offset: CGFloat) {
-//        handleNavigationBar(offset: offset)
+
     }
     
     private func handleNavigationBar(offset: CGFloat){
         scrollView.contentOffset.x = self.currentVC == self.strategyVC ? UIScreen.main.bounds.width : 0
-        searchBar.resignFirstResponder()
-        searchBarTopCon.constant = -40
+
         var h = offset < 0 ? 44 : 44 - offset
         if h < 0 {
             h = 0
             isBarHidden = true
-            searchBarTopCon.constant = 0
             navigationController?.navigationBar.alpha = 0
         }else{
             isBarHidden = false

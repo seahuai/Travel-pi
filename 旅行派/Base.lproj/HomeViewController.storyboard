@@ -138,7 +138,11 @@
                                 <action selector="leftButtonClick:" destination="shz-Uj-BY2" id="MKE-h2-qqp"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="sHb-l7-kxw"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="sHb-l7-kxw">
+                            <connections>
+                                <action selector="searchButtonClick:" destination="shz-Uj-BY2" id="6ta-DC-N0r"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="destinationTableView" destination="Blj-t8-8SL" id="V7A-Of-ul1"/>

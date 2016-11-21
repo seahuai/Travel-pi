@@ -33,7 +33,6 @@ class ShareCell: UITableViewCell {
     @IBOutlet weak var descripationLabel: UILabel!
     
     @IBOutlet weak var picCollectionViewHeightCon: NSLayoutConstraint!
-    
     @IBOutlet weak var descripationLabelHeightCon: NSLayoutConstraint!
     var contents: [Content] = [Content](){
         didSet{

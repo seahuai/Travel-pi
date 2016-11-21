@@ -11,7 +11,7 @@ import UIKit
 class ShareViewController: UIViewController {
     @IBOutlet weak var shareTableView: UITableView!
     @IBOutlet weak var toolScrollView: UIScrollView!
-    fileprivate lazy var profileVC: ProfileViewController = ProfileViewController()
+//    fileprivate lazy var profileVC: ProfileViewController = ProfileViewController()
     fileprivate lazy var PhotoBrowserVC: PhotoBrowserViewController = PhotoBrowserViewController()
     fileprivate lazy var photoBrowserAnimator: PhotoBrowserAnimator = PhotoBrowserAnimator()
     var toolBarModels: [ShareToolModel] = [ShareToolModel]()
@@ -60,7 +60,7 @@ extension ShareViewController{
     }
     
     @objc private func leftButtonClick(){
-        present(profileVC, animated: true, completion: nil)
+        present(ProfileViewController.shared, animated: true, completion: nil)
     }
     
     @objc private func reloadCellHeight(note: Notification){
@@ -68,7 +68,7 @@ extension ShareViewController{
         notes[row].cellHeight = note.userInfo!["cellHeight"] as! CGFloat
         notes[row].labelHeight = note.userInfo!["LabelHeight"] as! CGFloat
         notes[row].isFold = true
-        shareTableView.reloadData()
+        shareTableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
     }
     
     @objc private func setAnimatorDelegate(note: Notification){
@@ -104,7 +104,7 @@ extension ShareViewController: UITableViewDataSource, UITableViewDelegate{
 //MARK:监听照片的点击
 extension ShareViewController: ShareCellImageDelegate{
     func mainImageClick(row: Int) {
-        print("选中了第\(row)的照片")
+//        print("选中了第\(row)的照片")
         PhotoBrowserVC.contents = notes[row]._contents
         PhotoBrowserVC.selectedIndex = IndexPath(item: 0, section: 0)
         photoBrowserAnimator.isMain = true
@@ -112,7 +112,7 @@ extension ShareViewController: ShareCellImageDelegate{
     }
     
     func picImageClick(row: Int, item: Int) {
-        print("选中了\(row)的第\(item)张照片")
+//        print("选中了\(row)的第\(item)张照片")
         PhotoBrowserVC.contents = notes[row]._contents
         PhotoBrowserVC.selectedIndex = IndexPath(item: item + 1, section: 0)
         photoBrowserAnimator.item = item

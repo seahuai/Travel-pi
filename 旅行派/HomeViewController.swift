@@ -59,7 +59,7 @@ class HomeViewController: UIViewController {
     
     //MARK:控制器
     fileprivate lazy var findMoreViewController: FindMoreViewController = FindMoreViewController()
-    fileprivate lazy var profileViewController: ProfileViewController = ProfileViewController()
+//    fileprivate lazy var profileViewController: ProfileViewController = ProfileViewController()
     fileprivate lazy var albumViewController: AlbumDetailViewController = AlbumDetailViewController()
     //MARK:动画
     fileprivate lazy var animator: DrawerAnimator = DrawerAnimator()
@@ -133,8 +133,14 @@ extension HomeViewController{
 //MARK:处理导航栏按钮的点击
 extension HomeViewController{
     @IBAction func leftButtonClick(_ sender: UIBarButtonItem) {
-        present(profileViewController, animated: true) {}
+        present(ProfileViewController.shared, animated: true) {}
     }
+    
+    @IBAction func searchButtonClick(_ sender: AnyObject) {
+        present(SearchViewController.shared, animated: true, completion: nil)
+    }
+    
+    
 }
 
 //MARK:处理通知事件
