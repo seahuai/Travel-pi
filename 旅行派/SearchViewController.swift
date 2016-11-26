@@ -58,6 +58,7 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource{
     }
     
     fileprivate func setUp(){
+        view.frame = UIScreen.main.bounds
         searchBar.delegate = self
         hotTableView.dataSource = self
         hotTableView.delegate = self

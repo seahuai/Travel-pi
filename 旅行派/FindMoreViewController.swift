@@ -13,11 +13,10 @@ class FindMoreViewController: UIViewController {
     @IBOutlet weak var FindMoreTableView: UITableView!
     var destinations: [Destination] = [Destination]()
     
-//    fileprivate lazy var detailVC: DetailViewController = DetailViewController()
+    fileprivate lazy var detailVC: DetailViewController = DetailViewController()
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,9 +33,14 @@ class FindMoreViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
         FindMoreTableView.reloadData()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
 }
 
 
@@ -86,7 +90,10 @@ extension FindMoreViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        navigationController?.pushViewController(detailVC, animated: true)
+        detailVC.destination = destinations[indexPath.row]
+        detailVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(detailVC, animated: true)
+        
     }
     
     

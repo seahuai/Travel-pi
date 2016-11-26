@@ -12,3 +12,5 @@ enum Area {
     case Asia
     case Europe
 }
+
+let globalColor = UIColor(colorLiteralRed: 27/255, green: 166/255, blue: 197/255, alpha: 1)

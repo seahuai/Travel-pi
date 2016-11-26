@@ -24,7 +24,6 @@ class DiscoverViewController: UIViewController {
     //MARK:控制器
     fileprivate lazy var nearByVC: NearbyViewController = NearbyViewController()
     fileprivate lazy var strategyVC: StrategyViewController = StrategyViewController()
-    fileprivate lazy var searchDetailVC: SearchDetailViewController = SearchDetailViewController()
     fileprivate lazy var cityListVC: CityListViewController = CityListViewController()
     fileprivate var currentVC: UIViewController?
     override func viewDidLoad() {

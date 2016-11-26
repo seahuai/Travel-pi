@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="旅行派" customModuleProvider="target">
+            <connections>
+                <outlet property="backButtonHeightCon" destination="Xge-b5-VIV" id="SS2-a7-ppI"/>
+                <outlet property="contentScrollView" destination="8Ok-21-uMb" id="Pa8-5w-vdt"/>
+                <outlet property="titlesView" destination="Z2t-DZ-1bo" id="4j9-Up-mBh"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ok-21-uMb" userLabel="Child ScrollView"/>
+                <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2t-DZ-1bo" userLabel="Titles View">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vxg-fK-SSU">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="Xge-b5-VIV"/>
+                                <constraint firstAttribute="width" constant="32" id="bFo-i7-4I1"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="back"/>
+                            <connections>
+                                <action selector="backButtonClick:" destination="-1" eventType="touchUpInside" id="HGw-4z-VTL"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Vxg-fK-SSU" secondAttribute="bottom" constant="5" id="CBM-U4-2ro"/>
+                        <constraint firstAttribute="height" constant="64" id="PxZ-eG-Uv4"/>
+                        <constraint firstItem="Vxg-fK-SSU" firstAttribute="leading" secondItem="Z2t-DZ-1bo" secondAttribute="leading" constant="10" id="xmH-Mg-O8k"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="8Ok-21-uMb" secondAttribute="bottom" id="7a4-aG-BWM"/>
+                <constraint firstItem="Z2t-DZ-1bo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MZ2-tX-66n"/>
+                <constraint firstItem="8Ok-21-uMb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WYn-VG-kcq"/>
+                <constraint firstAttribute="trailing" secondItem="8Ok-21-uMb" secondAttribute="trailing" id="gHS-Ja-se2"/>
+                <constraint firstItem="8Ok-21-uMb" firstAttribute="top" secondItem="Z2t-DZ-1bo" secondAttribute="bottom" id="hEq-OI-ThY"/>
+                <constraint firstAttribute="trailing" secondItem="Z2t-DZ-1bo" secondAttribute="trailing" id="lUf-62-9ki"/>
+                <constraint firstItem="Z2t-DZ-1bo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="q7R-G4-VUh"/>
+            </constraints>
+            <point key="canvasLocation" x="32.5" y="95.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back" width="32" height="32"/>
+    </resources>
+</document>

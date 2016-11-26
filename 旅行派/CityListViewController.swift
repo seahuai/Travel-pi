@@ -122,7 +122,9 @@ extension CityListViewController: UICollectionViewDataSource, UICollectionViewDe
         }
         cell.id = destination == nil ? 0 : destination!.id
         cell.cityName = destination?.name
-        cell.coordinate = CLLocationCoordinate2D(latitude: destination!.lat, longitude: destination!.lng)
+        if destination != nil{
+            cell.coordinate = CLLocationCoordinate2D(latitude: destination!.lat, longitude: destination!.lng)
+        }
         return cell
     }
     

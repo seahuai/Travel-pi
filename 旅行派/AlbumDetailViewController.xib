@@ -31,7 +31,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="LBY-R5-9YV"/>
                     </constraints>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -42,7 +42,7 @@
                 <constraint firstItem="FBF-ph-tc4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Fsi-Bu-1zW"/>
                 <constraint firstItem="I1y-tD-f9E" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="ael-ZE-A3v"/>
                 <constraint firstAttribute="trailing" secondItem="I1y-tD-f9E" secondAttribute="trailing" id="iHn-tZ-u0M"/>
-                <constraint firstItem="FBF-ph-tc4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="uYf-Ab-TdC"/>
+                <constraint firstItem="FBF-ph-tc4" firstAttribute="top" secondItem="I1y-tD-f9E" secondAttribute="top" id="l22-uD-AHs"/>
                 <constraint firstItem="I1y-tD-f9E" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vvI-Ut-5jE"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
