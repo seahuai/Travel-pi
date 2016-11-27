@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
     var location = CLLocation(){
         didSet{
             if once{
-                getNearByDestinations(location: location)
+//                getNearByDestinations(location: location)
                 once = false
             }
         }
@@ -42,6 +42,7 @@ class HomeViewController: UIViewController {
     fileprivate var CellModels:[String: [Destination]] = [String: [Destination]](){
         didSet{
             destinationTableView.reloadData()
+            destinationTableView.mj_header.endRefreshing()
         }
     }
     fileprivate var WeekAlbum: TravelAlbum?{
@@ -79,11 +80,17 @@ class HomeViewController: UIViewController {
         setUpNotification()
         setUp()
         setUpToolBar()
+        setUpTableViewRefresh()
         
-        getAsiaDestinations()
-        getEuropeDestinations()
+//        getAsiaDestinations()
+//        getEuropeDestinations()
         getWeekAlbum()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        displayViewHeight(offset: tableViewOrginalY + destinationTableView.contentOffset.y)
     }
 
     deinit {
@@ -115,13 +122,31 @@ extension HomeViewController{
         navigationController?.view.insertSubview(toolBar!, at: 1)
 
     }
-    
+    //MARK: 使用MJRefresh框架
     fileprivate func setUpTableView(){
         destinationTableView.delegate = self
         destinationTableView.dataSource = self
         destinationTableView.separatorStyle = .none
         destinationTableView.contentInset = UIEdgeInsets(top: displayViewHeightCon.constant, left: 0, bottom: 0, right: 0)
         
+           }
+    
+    fileprivate func setUpTableViewRefresh(){
+        let header =  MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(self.refreshTableView))
+        header?.setTitle("下拉刷新", for: .idle)
+        header?.setTitle("释放刷新", for: .pulling)
+        header?.setTitle("加载中", for: .refreshing)
+        header?.lastUpdatedTimeLabel.isHidden = true
+        destinationTableView.mj_header = header
+        
+        destinationTableView.mj_header.beginRefreshing()
+    }
+    
+    //MARK: 刷新方法
+    @objc fileprivate func refreshTableView(){
+        getAsiaDestinations()
+        getEuropeDestinations()
+        getNearByDestinations(location: location)
     }
     
 //    fileprivate func setUpDrawer(){
@@ -152,6 +177,7 @@ extension HomeViewController{
     
     @objc fileprivate func pushFindMoreVC(note: Notification){
         let cellId = note.userInfo?["cellId"] as? String
+        toolBar?.alpha = 0
         if let cellId = cellId{
             findMoreViewController.destinations = CellModels[cellId]!
             findMoreViewController.hidesBottomBarWhenPushed = true
@@ -212,7 +238,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     //展示页面的变化
-    private func displayViewHeight(offset: CGFloat){
+    fileprivate func displayViewHeight(offset: CGFloat){
         var height = displayViewHeight - offset
         //        print(height)
         if height <= 64{
@@ -412,6 +438,7 @@ extension HomeViewController{
                 CityList.sharedInstance.addObject(near: self.NBdestinations)
             }
             //            self.destinationTableView.reloadData()
+            self.destinationTableView.mj_header.endRefreshing()
         }
     }
     //MARK:-热门
@@ -428,6 +455,7 @@ extension HomeViewController{
                 self.CellModels["Hot"] = self.Hotdestinations
                 CityList.sharedInstance.addObject(hot: self.Hotdestinations)
             }
+            self.destinationTableView.mj_header.endRefreshing()
         }
     }
     
@@ -445,6 +473,7 @@ extension HomeViewController{
                 self.CellModels["Others"] = self.Otherdestinations
                 CityList.sharedInstance.addObject(other: self.Otherdestinations)
             }
+            self.destinationTableView.mj_header.endRefreshing()
         }
     }
     

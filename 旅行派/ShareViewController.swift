@@ -22,7 +22,8 @@ class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
-        getTravelNotes()
+        setUpTableViewRefresh()
+//        getTravelNotes()
         setUpNotification()
         setUpAnimator()
         setUpNavigationBar()
@@ -51,6 +52,21 @@ extension ShareViewController{
         shareTableView.dataSource = self
         shareTableView.separatorStyle = .none
         shareTableView.estimatedRowHeight = 500
+    }
+    
+    fileprivate func setUpTableViewRefresh(){
+        let header =  MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(self.refreshTableView))
+        header?.setTitle("下拉刷新", for: .idle)
+        header?.setTitle("释放刷新", for: .pulling)
+        header?.setTitle("加载中...", for: .refreshing)
+        header?.lastUpdatedTimeLabel.isHidden = true
+        shareTableView.mj_header = header
+        
+        shareTableView.mj_header.beginRefreshing()
+    }
+    
+    @objc private func refreshTableView(){
+        getTravelNotes()
     }
     
     fileprivate func setUpNotification(){
@@ -125,6 +141,7 @@ extension ShareViewController{
     fileprivate func getTravelNotes(){
         NetWorkTool.sharedInstance.getTravelNotes() { (error, result) in
             if error != nil{print(error); return}
+            self.notes.removeAll()
             if let result = result{
                 for dict in result{
                     let note = TravelNote(dict: dict["activity"] as! [String: AnyObject])
@@ -132,11 +149,8 @@ extension ShareViewController{
                 }
             }
             self.shareTableView.reloadData()
+            self.shareTableView.mj_header.endRefreshing()
         }
-        
     }
-    
-    
-    
 }
 

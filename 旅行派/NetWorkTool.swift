@@ -49,11 +49,12 @@ extension NetWorkTool{
     }
     
     func getTravelNotes(district_id:Int, finished: @escaping (_ error: Error?, _ result: [[String: AnyObject]]?) -> ()){
-        Alamofire.request("http://q.chanyouji.com/api/v1/user_activities.json?district_id=\(district_id)&filter=&page=1&sort= ", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        Alamofire.request("http://q.chanyouji.com/api/v1/user_activities.json?district_id=\(district_id)&filter=&page=1&sort=", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             switch response.result{
             case .success:
-                let result = response.result.value as? [String: AnyObject]
-                finished(nil, result?["data"] as? [[String: AnyObject]])
+                let result = response.result.value as! [String: AnyObject]
+                let user_activities = result["data"] as! [String: AnyObject]
+                finished(nil, user_activities["user_activities"] as? [[String : AnyObject]])
             case .failure:
                 finished(response.result.error, nil)
             }

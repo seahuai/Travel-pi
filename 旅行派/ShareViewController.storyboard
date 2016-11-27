@@ -178,42 +178,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4Y-tr-u27">
-                                <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZYJ-El-KDg"/>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="各类地区游记：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRp-2K-qtP">
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.23151939655172413" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="Fb8-Nl-F99"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="yRp-2K-qtP" firstAttribute="leading" secondItem="y4Y-tr-u27" secondAttribute="leading" id="7zO-TM-s2u"/>
-                                    <constraint firstAttribute="bottom" secondItem="yRp-2K-qtP" secondAttribute="bottom" id="8hs-u1-zyV"/>
-                                    <constraint firstAttribute="bottom" secondItem="ZYJ-El-KDg" secondAttribute="bottom" id="KLS-ao-WJQ"/>
-                                    <constraint firstItem="yRp-2K-qtP" firstAttribute="top" secondItem="y4Y-tr-u27" secondAttribute="top" id="Vg8-Ov-H6x"/>
-                                    <constraint firstItem="ZYJ-El-KDg" firstAttribute="top" secondItem="y4Y-tr-u27" secondAttribute="top" id="gry-iY-jTQ"/>
-                                    <constraint firstItem="yRp-2K-qtP" firstAttribute="centerY" secondItem="y4Y-tr-u27" secondAttribute="centerY" id="lhi-gP-Ett"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZYJ-El-KDg" secondAttribute="trailing" id="pAo-kF-okX"/>
-                                    <constraint firstAttribute="height" constant="30" id="syL-R0-cu6"/>
-                                    <constraint firstItem="ZYJ-El-KDg" firstAttribute="leading" secondItem="yRp-2K-qtP" secondAttribute="trailing" id="yjS-Ks-DUk"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0em-74-2LN" firstAttribute="top" secondItem="rVa-vS-N21" secondAttribute="bottom" id="3Jk-3W-5Nh"/>
-                            <constraint firstItem="rVa-vS-N21" firstAttribute="top" secondItem="wU7-PU-aFF" secondAttribute="bottom" constant="-34" id="Fv2-Js-nwF"/>
+                            <constraint firstItem="rVa-vS-N21" firstAttribute="top" secondItem="bt0-Rh-2Z4" secondAttribute="top" id="PBG-96-aSJ"/>
                             <constraint firstAttribute="trailing" secondItem="rVa-vS-N21" secondAttribute="trailing" id="WpT-g8-fkh"/>
-                            <constraint firstItem="y4Y-tr-u27" firstAttribute="top" secondItem="wU7-PU-aFF" secondAttribute="bottom" id="WyE-qs-st3"/>
                             <constraint firstItem="rVa-vS-N21" firstAttribute="leading" secondItem="bt0-Rh-2Z4" secondAttribute="leading" id="YuS-6Q-g2g"/>
-                            <constraint firstItem="y4Y-tr-u27" firstAttribute="leading" secondItem="bt0-Rh-2Z4" secondAttribute="leading" id="kdS-cA-Mey"/>
-                            <constraint firstAttribute="trailing" secondItem="y4Y-tr-u27" secondAttribute="trailing" id="uxK-sv-4gM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="分享" id="Igv-p4-tnh">
@@ -221,7 +192,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="shareTableView" destination="rVa-vS-N21" id="65B-Rp-kbW"/>
-                        <outlet property="toolScrollView" destination="ZYJ-El-KDg" id="0q6-Tl-BJ2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uiO-QC-3XS" userLabel="First Responder" sceneMemberID="firstResponder"/>

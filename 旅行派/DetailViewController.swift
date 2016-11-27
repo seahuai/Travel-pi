@@ -14,7 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var contentScrollView: UIScrollView!
     
     var destination: Destination?
-    fileprivate var titles: [String] = ["经典路线","旅行榜单","旅行游记"]
+    fileprivate var titles: [String] = ["经典路线","旅行游记"]
     fileprivate var titlesButton: [UIButton] = [UIButton]()
     fileprivate var preButton: UIButton?
     fileprivate let screenBounds = UIScreen.main.bounds
@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var backButtonHeightCon: NSLayoutConstraint!
     //子控制器
     fileprivate lazy var tripViewController: TripViewController = TripViewController()
-    fileprivate lazy var listViewController: ListViewController = ListViewController()
+//    fileprivate lazy var listViewController: ListViewController = ListViewController()
     fileprivate lazy var noteViewController: NoteViewController = NoteViewController()
     
     override func viewDidLoad() {
@@ -37,7 +37,8 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
-        setCurrentViewController(index: 0)
+//        let index = Int(contentScrollView.contentOffset.x / screenBounds.width)
+        titlesButtonClick(button: titlesButton[0])
     }
     
     @IBAction func backButtonClick(_ sender: UIButton) {
@@ -52,9 +53,10 @@ extension DetailViewController{
         let btnHeight: CGFloat = 35
         let bottom: CGFloat = 5
         let y: CGFloat = 64 - btnHeight - bottom
+        let x: CGFloat = (screenBounds.width - CGFloat(titles.count) * btnWidth) * 0.5
         for i in 0..<titles.count{
             let btn = UIButton()
-            btn.frame = CGRect(x: 20 + backButtonHeightCon.constant + CGFloat(i) * btnWidth, y: y, width: btnWidth, height: btnHeight)
+            btn.frame = CGRect(x: x + CGFloat(i) * btnWidth, y: y, width: btnWidth, height: btnHeight)
             btn.setTitleColor(UIColor.white, for: .normal)
             btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
             btn.titleLabel?.textAlignment = .left
@@ -94,34 +96,36 @@ extension DetailViewController: UIScrollViewDelegate{
         contentScrollView.isPagingEnabled = true
         contentScrollView.showsHorizontalScrollIndicator = false
         addChildViewController(tripViewController)
-        addChildViewController(listViewController)
+//        addChildViewController(listViewController)
         addChildViewController(noteViewController)
         
         setCurrentViewController(index: 0)
     }
     
     fileprivate func setCurrentViewController(index: Int){
+        let vc1 = childViewControllers[0] as! TripViewController
+        vc1.destination = destination
+//        let vc2 = childViewControllers[1] as! ListViewController
+//        vc2.destination = destination
+        let vc3 = childViewControllers[1] as! NoteViewController
+        vc3.destination = destination
         switch index {
         case 0:
-            let vc = childViewControllers[0] as! TripViewController
-            vc.destination = destination
-            vc.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
-            contentScrollView.addSubview(vc.view)
-            if vc.view.superview != nil{
+            vc1.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
+            contentScrollView.addSubview(vc1.view)
+            if vc1.view.superview != nil{
                 return
             }
-        case 1:
-            let vc = childViewControllers[1] as! ListViewController
-            vc.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
-            contentScrollView.addSubview(vc.view)
-            if vc.view.superview != nil{
-                return
-            }
+//        case 1:
+//            vc2.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
+//            contentScrollView.addSubview(vc2.view)
+//            if vc2.view.superview != nil{
+//                return
+//            }
         default:
-            let vc = childViewControllers[2] as! NoteViewController
-            vc.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
-            contentScrollView.addSubview(vc.view)
-            if vc.view.superview != nil{
+            vc3.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
+            contentScrollView.addSubview(vc3.view)
+            if vc3.view.superview != nil{
                 return
             }
         }

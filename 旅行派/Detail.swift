@@ -16,5 +16,11 @@ class Detail: NSObject {
         super.init()
     }
     
+    func removeDetail(){
+        plans.removeAll()
+        targets.removeAll()
+    }
+    
     var plans: [Plan] = [Plan]()
+    var targets: [Target] = [Target]()
 }

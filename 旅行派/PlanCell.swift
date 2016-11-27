@@ -35,7 +35,11 @@ class PlanCell: UITableViewCell {
     var plan: Plan?{
         didSet{
             titleLable.text = plan?.title
+//            print(plan?.photo_url)
             if let urlStr = plan?.photo_url{
+                let url = URL(string: urlStr)
+                titleImageView.sd_setImage(with: url, placeholderImage: nil)
+            }else if let urlStr = plan?._days[0].activities[0].photo_url{
                 let url = URL(string: urlStr)
                 titleImageView.sd_setImage(with: url, placeholderImage: nil)
             }
