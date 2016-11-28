@@ -10,8 +10,10 @@ import UIKit
 
 let color = UIColor(colorLiteralRed: 27/255, green: 166/255, blue: 170/255, alpha: 1)
 
-class TripDetailViewController: UITableViewController {
-
+class TripDetailViewController: UITableViewController, TripDetailDelegate {
+    
+    fileprivate var infoVc: TripInfoViewController = TripInfoViewController()
+    
     var days: [Day] = [Day]()
     
     override func viewDidLoad() {
@@ -19,6 +21,9 @@ class TripDetailViewController: UITableViewController {
         tableView = UITableView(frame: tableView.bounds, style: .grouped)
         tableView.backgroundColor = color
         tableView.register(UINib(nibName: "PlanCell", bundle: nil), forCellReuseIdentifier: "PlanCell")
+        tableView.register(UINib(nibName: "TripDetailCell", bundle: nil), forCellReuseIdentifier: "TripDetailCell")
+        
+        infoVc.modalPresentationStyle = .custom
         title = "详情"
     }
     
@@ -56,22 +61,34 @@ class TripDetailViewController: UITableViewController {
             return cell
         }
         else{
+            //系统的cell
             let activity = day.activities[indexPath.row-1]
-            var cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell")
-            if cell == nil {
-                cell = UITableViewCell(style: .subtitle, reuseIdentifier: "ActivityCell")
-                
-            }
-            cell?.imageView?.image = UIImage(named: "sight")
-            cell?.textLabel?.text = activity.topic
-            cell?.detailTextLabel?.text = activity.visit_tip
-            return cell!
+//            var cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell")
+//            if cell == nil {
+//                cell = UITableViewCell(style: .subtitle, reuseIdentifier: "ActivityCell")
+//            }
+//            cell?.imageView?.image = UIImage(named: "info")
+//            cell?.textLabel?.text = activity.topic
+//            cell?.detailTextLabel?.text = activity.visit_tip
+//            return cell!
+            
+            
+            //自定义cell
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TripDetailCell", for: indexPath) as! TripDetailCell
+            cell.indexPath = indexPath
+            cell.delegate = self
+            cell.activity = activity
+            return cell
         }
-        
     }
     
     
-    
-    
+    func showInfoAt(indexPath: IndexPath?) {
+//        print(indexPath)
+        infoVc.day = days[indexPath!.section]
+        infoVc.indexPath = indexPath
+        present(infoVc, animated: false, completion: nil)
+    }
     
 }

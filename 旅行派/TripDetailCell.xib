@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripDetailCell" rowHeight="72" id="KGk-i7-Jjw" customClass="TripDetailCell" customModule="旅行派" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="320" height="71.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBQ-z8-Wsg">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNS-1k-W41">
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bK6-hw-xq1">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="3cY-Xo-Yo6"/>
+                                    <constraint firstAttribute="height" constant="40" id="sec-91-bqX"/>
+                                </constraints>
+                                <state key="normal" image="info"/>
+                                <connections>
+                                    <action selector="infoButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="q3a-fg-cPi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自由安排" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hr4-PY-cgt">
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yNS-1k-W41" firstAttribute="top" secondItem="dBQ-z8-Wsg" secondAttribute="top" constant="8" id="4Ef-0V-6Z0"/>
+                            <constraint firstItem="bK6-hw-xq1" firstAttribute="leading" secondItem="Hr4-PY-cgt" secondAttribute="trailing" constant="8" id="C2A-7m-euy"/>
+                            <constraint firstItem="bK6-hw-xq1" firstAttribute="leading" secondItem="yNS-1k-W41" secondAttribute="trailing" constant="8" id="CEG-B1-Bib"/>
+                            <constraint firstItem="bK6-hw-xq1" firstAttribute="centerY" secondItem="dBQ-z8-Wsg" secondAttribute="centerY" id="CXI-dY-Muh"/>
+                            <constraint firstItem="Hr4-PY-cgt" firstAttribute="leading" secondItem="dBQ-z8-Wsg" secondAttribute="leading" constant="8" id="HNT-P9-grX"/>
+                            <constraint firstAttribute="trailing" secondItem="bK6-hw-xq1" secondAttribute="trailing" id="Zvg-b5-5hN"/>
+                            <constraint firstItem="Hr4-PY-cgt" firstAttribute="top" secondItem="yNS-1k-W41" secondAttribute="bottom" constant="10" id="mTd-Lm-UOd"/>
+                            <constraint firstItem="yNS-1k-W41" firstAttribute="leading" secondItem="dBQ-z8-Wsg" secondAttribute="leading" constant="8" id="zWa-Kh-7Zt"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="dBQ-z8-Wsg" secondAttribute="bottom" constant="5" id="Fjm-bE-2yU"/>
+                    <constraint firstAttribute="trailing" secondItem="dBQ-z8-Wsg" secondAttribute="trailing" constant="5" id="GGP-gw-ySB"/>
+                    <constraint firstItem="dBQ-z8-Wsg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="XsU-uW-zz1"/>
+                    <constraint firstItem="dBQ-z8-Wsg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="h93-Q3-I4M"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="infoButton" destination="bK6-hw-xq1" id="4Q7-vn-EhM"/>
+                <outlet property="tipLabel" destination="Hr4-PY-cgt" id="pJC-jp-FVp"/>
+                <outlet property="titleLabel" destination="yNS-1k-W41" id="9Y1-8o-o9o"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="46"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="info" width="72" height="72"/>
+    </resources>
+</document>

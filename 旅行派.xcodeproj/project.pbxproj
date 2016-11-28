@@ -49,6 +49,9 @@
 		3547C4091DE94AAE0017F56B /* PlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3547C4071DE94AAE0017F56B /* PlanCell.swift */; };
 		3547C40A1DE94AAE0017F56B /* PlanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3547C4081DE94AAE0017F56B /* PlanCell.xib */; };
 		3547C40E1DE97C380017F56B /* TripDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3547C40D1DE97C380017F56B /* TripDetailViewController.swift */; };
+		354B7E3F1DEC732700622296 /* TripDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354B7E3D1DEC732700622296 /* TripDetailCell.swift */; };
+		354B7E401DEC732700622296 /* TripDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 354B7E3E1DEC732700622296 /* TripDetailCell.xib */; };
+		354B7E431DEC7AD800622296 /* TripInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354B7E421DEC7AD800622296 /* TripInfoViewController.swift */; };
 		354EE2B41DC9D77800CE934F /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE2B31DC9D77800CE934F /* PhotoCell.swift */; };
 		354EE2B61DC9D7F000CE934F /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE2B51DC9D7F000CE934F /* ProgressView.swift */; };
 		35525A101DE7E47900FDEF6C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35525A0E1DE7E47900FDEF6C /* DetailViewController.swift */; };
@@ -222,6 +225,9 @@
 		3547C4071DE94AAE0017F56B /* PlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanCell.swift; sourceTree = "<group>"; };
 		3547C4081DE94AAE0017F56B /* PlanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanCell.xib; sourceTree = "<group>"; };
 		3547C40D1DE97C380017F56B /* TripDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailViewController.swift; sourceTree = "<group>"; };
+		354B7E3D1DEC732700622296 /* TripDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailCell.swift; sourceTree = "<group>"; };
+		354B7E3E1DEC732700622296 /* TripDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripDetailCell.xib; sourceTree = "<group>"; };
+		354B7E421DEC7AD800622296 /* TripInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripInfoViewController.swift; sourceTree = "<group>"; };
 		354EE2B31DC9D77800CE934F /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		354EE2B51DC9D7F000CE934F /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		35525A0E1DE7E47900FDEF6C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -507,9 +513,20 @@
 		3547C40F1DE981380017F56B /* TripDetail */ = {
 			isa = PBXGroup;
 			children = (
+				354B7E411DEC7A6700622296 /* ShowDetail */,
 				3547C40D1DE97C380017F56B /* TripDetailViewController.swift */,
+				354B7E3D1DEC732700622296 /* TripDetailCell.swift */,
+				354B7E3E1DEC732700622296 /* TripDetailCell.xib */,
 			);
 			name = TripDetail;
+			sourceTree = "<group>";
+		};
+		354B7E411DEC7A6700622296 /* ShowDetail */ = {
+			isa = PBXGroup;
+			children = (
+				354B7E421DEC7AD800622296 /* TripInfoViewController.swift */,
+			);
+			name = ShowDetail;
 			sourceTree = "<group>";
 		};
 		35525A0D1DE7E44000FDEF6C /* Detail */ = {
@@ -1096,6 +1113,7 @@
 				3588743E1DCEDA2B00FAB8E7 /* NearbyViewController.xib in Resources */,
 				35220C491DE3237F0092924F /* SearchViewController.xib in Resources */,
 				358874421DCEDA4100FAB8E7 /* StrategyViewController.xib in Resources */,
+				354B7E401DEC732700622296 /* TripDetailCell.xib in Resources */,
 				3572505D1DC7768100F3213B /* ProfileViewController.xib in Resources */,
 				358AFCB31DCF763A00C4DC28 /* AlbumPicCell.xib in Resources */,
 				35AE42BC1DD5A3A7004E5ED1 /* SectionTwoCell.xib in Resources */,
@@ -1176,6 +1194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35AD21521DC2FB89006B0564 /* DrawerAnimator.swift in Sources */,
+				354B7E431DEC7AD800622296 /* TripInfoViewController.swift in Sources */,
 				352722461DEB271F0090DCBD /* MJRefreshStateHeader.m in Sources */,
 				3527223E1DEB271F0090DCBD /* MJRefreshAutoGifFooter.m in Sources */,
 				3527223C1DEB271F0090DCBD /* MJRefreshFooter.m in Sources */,
@@ -1192,6 +1211,7 @@
 				351835851DD8A39500BCC6DA /* StrategyHeaderView.swift in Sources */,
 				358BEB031DE8892E000CF759 /* Activity.swift in Sources */,
 				3597DEEB1DBCEC6C00A65747 /* AppDelegate.swift in Sources */,
+				354B7E3F1DEC732700622296 /* TripDetailCell.swift in Sources */,
 				357B63F61DBF80E600859186 /* SHImageView.swift in Sources */,
 				35220C481DE3237F0092924F /* SearchViewController.swift in Sources */,
 				352722421DEB271F0090DCBD /* MJRefreshBackNormalFooter.m in Sources */,
