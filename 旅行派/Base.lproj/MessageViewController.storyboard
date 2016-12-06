@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GHF-PV-J7U">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!-- 消息-->
+        <scene sceneID="bZN-Ln-Qo8">
+            <objects>
+                <tableViewController id="NrL-IH-ECJ" customClass="MessageViewController" customModule="旅行派" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" id="pJG-aU-lU0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConversationCell" rowHeight="71" id="cDp-cT-ttO" customClass="ConversationCell" customModule="旅行派" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="71"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cDp-cT-ttO" id="trg-yr-VWE">
+                                    <frame key="frameInset" width="375" height="70.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_g" translatesAutoresizingMaskIntoConstraints="NO" id="hgr-yM-ruS">
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="hgr-yM-ruS" secondAttribute="height" multiplier="1:1" id="aCU-pb-2Tc"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugv-eb-nvQ">
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Duy-7Z-cC8">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="70" id="CYh-XW-U4T"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIX-c5-QVb">
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Duy-7Z-cC8" firstAttribute="trailing" secondItem="ugv-eb-nvQ" secondAttribute="trailing" id="3Io-j6-FlL"/>
+                                        <constraint firstItem="Duy-7Z-cC8" firstAttribute="leading" secondItem="xIX-c5-QVb" secondAttribute="trailing" constant="10" id="76s-P0-VjM"/>
+                                        <constraint firstAttribute="bottom" secondItem="hgr-yM-ruS" secondAttribute="bottom" constant="5" id="BeO-X5-IRT"/>
+                                        <constraint firstItem="xIX-c5-QVb" firstAttribute="leading" secondItem="ugv-eb-nvQ" secondAttribute="leading" id="H2S-1r-LJb"/>
+                                        <constraint firstAttribute="trailing" secondItem="ugv-eb-nvQ" secondAttribute="trailing" constant="10" id="LM1-l4-VAW"/>
+                                        <constraint firstItem="Duy-7Z-cC8" firstAttribute="bottom" secondItem="xIX-c5-QVb" secondAttribute="bottom" id="RXq-SA-DLM"/>
+                                        <constraint firstItem="hgr-yM-ruS" firstAttribute="leading" secondItem="trg-yr-VWE" secondAttribute="leading" constant="5" id="Wcl-uZ-U5b"/>
+                                        <constraint firstItem="hgr-yM-ruS" firstAttribute="top" secondItem="trg-yr-VWE" secondAttribute="top" constant="5" id="Zqg-td-Y5m"/>
+                                        <constraint firstItem="ugv-eb-nvQ" firstAttribute="leading" secondItem="hgr-yM-ruS" secondAttribute="trailing" constant="10" id="ofF-Pg-9Uo"/>
+                                        <constraint firstItem="xIX-c5-QVb" firstAttribute="bottom" secondItem="hgr-yM-ruS" secondAttribute="bottom" constant="-5" id="uFF-Kh-J31"/>
+                                        <constraint firstItem="ugv-eb-nvQ" firstAttribute="top" secondItem="hgr-yM-ruS" secondAttribute="top" constant="5" id="wBN-Xx-dO4"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lastMessageLabel" destination="xIX-c5-QVb" id="Bog-tV-iha"/>
+                                    <outlet property="timeLabel" destination="Duy-7Z-cC8" id="A9h-d3-jQw"/>
+                                    <outlet property="usernameLabel" destination="ugv-eb-nvQ" id="9cB-0E-Qvu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="NrL-IH-ECJ" id="bkt-nf-pbm"/>
+                            <outlet property="delegate" destination="NrL-IH-ECJ" id="gIH-nu-xWp"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title=" 消息" id="KSg-g5-O1e">
+                        <barButtonItem key="leftBarButtonItem" image="tabbar_profile" id="hvn-8I-95S">
+                            <connections>
+                                <action selector="leftBarButtonClick:" destination="NrL-IH-ECJ" id="iSC-s0-tvt"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="发起会话" id="LV5-3M-bdU">
+                            <connections>
+                                <action selector="startNewConversation:" destination="NrL-IH-ECJ" id="hAE-Xw-USx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RCN-kF-ULF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="341.60000000000002" y="214.54272863568218"/>
+        </scene>
+        <!--消息-->
+        <scene sceneID="kYo-L2-mOK">
+            <objects>
+                <navigationController id="GHF-PV-J7U" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="消息" id="aQv-qg-LPG"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cr3-x1-2Yg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="NrL-IH-ECJ" kind="relationship" relationship="rootViewController" id="DkE-LO-TlS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2nW-3c-Xhf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-386" y="216"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="profile_g" width="128" height="128"/>
+        <image name="tabbar_profile" width="30" height="30"/>
+    </resources>
+</document>

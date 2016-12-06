@@ -9,6 +9,6 @@ pod 'Alamofire'
 pod 'SDWebImage'
 #pod 'MJRefresh'
 pod 'SnapKit'
-
+pod 'JSQMessagesViewController'
 
 end

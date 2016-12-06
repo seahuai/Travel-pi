@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendRequestCell" rowHeight="86" id="KGk-i7-Jjw" customClass="FriendRequestCell" customModule="旅行派" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="320" height="85"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_g" translatesAutoresizingMaskIntoConstraints="NO" id="SOO-kR-Ysb">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="F1d-XF-1Me"/>
+                            <constraint firstAttribute="width" constant="40" id="zvi-Qg-vmU"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soi-GG-fG4">
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申请理由" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLZ-x3-sJ5">
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3k1-Df-J7k">
+                        <color key="backgroundColor" red="0.86274509803921573" green="0.32549019607843138" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="MSz-17-B42"/>
+                        </constraints>
+                        <state key="normal" title="拒绝">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="rejectButtonClcik:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PYV-Ki-5DA"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43F-t6-GnC">
+                        <color key="backgroundColor" red="0.49537175893783569" green="0.83459848165512085" blue="0.23672837018966675" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="sD8-yb-jHL"/>
+                        </constraints>
+                        <state key="normal" title="同意">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="agreeButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="b6L-7f-yeJ"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="iLZ-x3-sJ5" firstAttribute="leading" secondItem="soi-GG-fG4" secondAttribute="leading" id="2x1-yN-nQU"/>
+                    <constraint firstItem="iLZ-x3-sJ5" firstAttribute="bottom" secondItem="SOO-kR-Ysb" secondAttribute="bottom" id="H3X-7d-8zW"/>
+                    <constraint firstItem="3k1-Df-J7k" firstAttribute="leading" secondItem="43F-t6-GnC" secondAttribute="trailing" constant="20" id="LVe-bi-Fux"/>
+                    <constraint firstItem="43F-t6-GnC" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-50" id="PxI-wF-MQn"/>
+                    <constraint firstItem="soi-GG-fG4" firstAttribute="leading" secondItem="SOO-kR-Ysb" secondAttribute="trailing" constant="10" id="SA9-OA-yHD"/>
+                    <constraint firstItem="soi-GG-fG4" firstAttribute="top" secondItem="SOO-kR-Ysb" secondAttribute="top" id="X2D-3k-IaW"/>
+                    <constraint firstItem="iLZ-x3-sJ5" firstAttribute="trailing" secondItem="soi-GG-fG4" secondAttribute="trailing" id="aIn-Vg-6Q7"/>
+                    <constraint firstItem="43F-t6-GnC" firstAttribute="top" secondItem="iLZ-x3-sJ5" secondAttribute="bottom" constant="5" id="cdm-2N-B1E"/>
+                    <constraint firstItem="SOO-kR-Ysb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="l6T-4x-S4E"/>
+                    <constraint firstItem="SOO-kR-Ysb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="p9U-pK-PR7"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="soi-GG-fG4" secondAttribute="trailing" constant="10" id="ubT-II-9zV"/>
+                    <constraint firstItem="3k1-Df-J7k" firstAttribute="top" secondItem="iLZ-x3-sJ5" secondAttribute="bottom" constant="5" id="vJi-9c-UZK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="agreeButton" destination="43F-t6-GnC" id="Y4V-c0-2TO"/>
+                <outlet property="reasonLabel" destination="iLZ-x3-sJ5" id="43Q-mn-JLX"/>
+                <outlet property="rejectButton" destination="3k1-Df-J7k" id="QB3-Jt-ikW"/>
+                <outlet property="usernameLabel" destination="soi-GG-fG4" id="COv-Ph-5DK"/>
+            </connections>
+            <point key="canvasLocation" x="5" y="19"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="profile_g" width="128" height="128"/>
+    </resources>
+</document>

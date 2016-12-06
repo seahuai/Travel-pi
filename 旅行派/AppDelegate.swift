@@ -8,8 +8,11 @@
 
 import UIKit
 
+
+var EMisLogin: Bool = false
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, EMChatManagerDelegate, EMClientDelegate, EMContactManagerDelegate {
 
     var window: UIWindow?
     private lazy var mapManager: BMKMapManager = {
@@ -22,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let globalColor = UIColor(colorLiteralRed: 27/255, green: 166/255, blue: 197/255, alpha: 1)
         UITabBar.appearance().tintColor = globalColor
-        
+        UINavigationBar.appearance().tintColor = globalColor
+        //MARK:百度地图SDK初始化
         let ret = mapManager.start("Fc4Ej7HrDAzFzGH9x2STZrQPBmfVitgy", generalDelegate: nil)
         if ret {
             print("授权成功")
@@ -30,7 +34,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("授权失败")
         }
         
+        //MARK:环信SDK初始化
+        let options = EMOptions(appkey: "1146161129115990#travelpi")
+        options?.apnsCertName = nil
+        let error = EMClient.shared().initializeSDK(with: options)
+        if error == nil{
+            print("环信初始化成功")
+        }else{
+            print(error!.errorDescription)
+        }
+        
+        EMClient.shared().add(self)
+        EMClient.shared().chatManager.add(self)
+        EMClient.shared().contactManager.add(self)
         return true
+    }
+    
+    //MARK:消息监听
+    func messagesDidReceive(_ aMessages: [Any]!) {
+        //处理badgeValue等
+        ProfileViewController.shared.newMessage = true
+    }
+    
+    //MARK:好友申请监听
+    func friendRequestDidReceive(fromUser aUsername: String!, message aMessage: String!) {
+        let request = friendRequest(userId: aUsername, reason: aMessage)
+        ProfileViewController.shared.newRequest = true
+        Account.shared.friendRequests.append(request)
+    }
+    
+    
+    
+    //MARK:自动登录相关
+    func autoLoginDidCompleteWithError(_ aError: EMError!) {
+        if aError == nil{
+            EMisLogin = true
+        }else{
+            EMisLogin = false
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -39,12 +80,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        EMClient.shared().applicationDidEnterBackground(application)
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        EMClient.shared().applicationWillEnterForeground(application)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -54,7 +94,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 

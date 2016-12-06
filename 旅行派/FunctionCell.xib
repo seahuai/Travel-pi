@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FunctionCell" rowHeight="62" id="KGk-i7-Jjw" customClass="FunctionCell" customModule="旅行派" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="320" height="61"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="功能" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dyw-4L-NmQ">
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="badge" translatesAutoresizingMaskIntoConstraints="NO" id="0TM-7y-vES">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="UuY-iq-mHH"/>
+                            <constraint firstAttribute="width" constant="15" id="tzw-LD-tTA"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0TM-7y-vES" firstAttribute="leading" secondItem="Dyw-4L-NmQ" secondAttribute="trailing" constant="10" id="UPZ-hK-85V"/>
+                    <constraint firstItem="0TM-7y-vES" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aHO-za-hYm"/>
+                    <constraint firstAttribute="trailing" secondItem="0TM-7y-vES" secondAttribute="trailing" constant="5" id="k11-gf-W9A"/>
+                    <constraint firstItem="Dyw-4L-NmQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="woc-0q-3yq"/>
+                    <constraint firstItem="Dyw-4L-NmQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ysO-W4-FD4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="badge" destination="0TM-7y-vES" id="vkS-Nc-Oz2"/>
+                <outlet property="functionLabel" destination="Dyw-4L-NmQ" id="pke-Q8-tTc"/>
+            </connections>
+            <point key="canvasLocation" x="-33" y="54"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="badge" width="72" height="72"/>
+    </resources>
+</document>
