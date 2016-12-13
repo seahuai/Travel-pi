@@ -23,18 +23,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var displayViewHeightCon: NSLayoutConstraint!
     @IBOutlet weak var tableViewHeightCon: NSLayoutConstraint!
     //MARK:定位工具
-    fileprivate var once = true
-    var location = CLLocation(){
-        didSet{
-            if once{
-//                getNearByDestinations(location: location)
-                once = false
-            }
-        }
-    }
-    fileprivate lazy var locationTool: LocationTool = LocationTool { [weak self] (location) in
-        self?.location = location
-    }
+//    fileprivate var once = true
+    var location = CLLocation()
+    fileprivate lazy var locationTool = LocationTool()
+    
     //MARK:模型属性
     fileprivate var NBdestinations: [Destination] = [Destination]()
     fileprivate var Hotdestinations: [Destination] = [Destination]()
@@ -98,11 +90,17 @@ class HomeViewController: UIViewController {
     }
 }
 
-
-extension HomeViewController{
+extension HomeViewController: LocationDelegate{
+    
+    func getLocation(location: CLLocation) {
+        self.location = location
+        getNearByDestinations(location: location)
+    }
     
     fileprivate func setUp(){
-        locationTool.isUpdate = true
+//        locationTool.isUpdate = true
+        locationTool.delegate = self
+        
         displayViewHeight = displayViewHeightCon.constant
         tableViewOrginalY = destinationTableView.contentInset.top
         automaticallyAdjustsScrollViewInsets = false
@@ -146,7 +144,8 @@ extension HomeViewController{
     @objc fileprivate func refreshTableView(){
         getAsiaDestinations()
         getEuropeDestinations()
-        getNearByDestinations(location: location)
+        locationTool.start()
+//        getNearByDestinations(location: location)
     }
     
 //    fileprivate func setUpDrawer(){
@@ -432,7 +431,7 @@ extension HomeViewController{
                 let des = Destination(dict: dict)
                 self.NBdestinations.append(des)
             }
-            self.locationTool.isUpdate = false
+//            self.locationTool.isUpdate = false
             if  self.CellModels["NearBy"] == nil{
                 self.CellModels["NearBy"] = self.NBdestinations
                 CityList.sharedInstance.addObject(near: self.NBdestinations)

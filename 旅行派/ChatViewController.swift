@@ -8,9 +8,12 @@
 
 import UIKit
 import JSQMessagesViewController
+import SVProgressHUD
 
 class ChatViewController: JSQMessagesViewController {
 
+    fileprivate var locationTool = LocationTool()
+    fileprivate var location: CLLocation?
     fileprivate var conversation: EMConversation?
     var conversationId: String?{
         didSet{
@@ -33,15 +36,23 @@ class ChatViewController: JSQMessagesViewController {
         setUp()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        refresh()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if JSQMessages.count == 0{
+            refresh()
+        }
     }
 }
 
-extension ChatViewController: EMChatManagerDelegate{
+extension ChatViewController: EMChatManagerDelegate, LocationDelegate{
+    
+    func getLocation(location: CLLocation) {
+        self.location = location
+    }
     
     fileprivate func setUp(){
+        locationTool.delegate = self
+        locationTool.start()
         EMClient.shared().chatManager.add(self)
         senderId = Account.shared.currentUserID
         senderDisplayName = Account.shared.currentUserID
@@ -56,27 +67,41 @@ extension ChatViewController: EMChatManagerDelegate{
     fileprivate func refresh(){
         guard let lastMes = conversation?.latestMessage
             else{return}
-        conversation?.loadMessages(from: 0, to: lastMes.timestamp + 100, count: 20, completion: { (messages, error) in
+        let UnreadConut = conversation!.unreadMessagesCount
+        conversation?.loadMessages(from: 0, to: lastMes.timestamp + 100, count: 20 + UnreadConut, completion: { (messages, error) in
             if error == nil && messages != nil{
                 self.EMMesToJSQMes(messages: messages!)
             }else{
                 print(error!.errorDescription)
             }
+            
+            self.finishReceivingMessage()
         })
+        var error: EMError? = nil
+        conversation?.markAllMessages(asRead: &error)
     }
     
     fileprivate func EMMesToJSQMes(messages: [Any]){
         for mes in messages{
             let message = mes as! EMMessage
-            let text = (message.body as! EMTextMessageBody).text
-            let date = Date(timeIntervalSince1970: TimeInterval(message.timestamp/1000))
-            let JSQMes = JSQMessage(senderId: message.from, senderDisplayName: message.from, date: date, text: text)
-            self.JSQMessages.append(JSQMes!)
+            switch message.body {
+            case is EMTextMessageBody:
+                let text = (message.body as! EMTextMessageBody).text
+                let date = Date(timeIntervalSince1970: TimeInterval(message.timestamp/1000))
+                let JSQMes = JSQMessage(senderId: message.from, senderDisplayName: message.from, date: date, text: text)
+                self.JSQMessages.append(JSQMes!)
+            case is EMLocationMessageBody:
+                let coor = message.body as! EMLocationMessageBody
+                let location = CLLocation(latitude: coor.latitude, longitude: coor.longitude)
+                let JSQItem = buildLocationItem(location: location)
+                self.addMediaItem(item: JSQItem, fromId: message.from)
+//            case is EMImageMessageBody:
+                
+            default:
+                break
+            }
+            
         }
-//        collectionView.reloadData()
-        self.finishReceivingMessage(animated: true)
-//        let indexPath = IndexPath(item: JSQMessages.count-1,section: 0)
-//        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
     
 }
@@ -131,7 +156,26 @@ extension ChatViewController{
 
 extension ChatViewController{
     override func didPressAccessoryButton(_ sender: UIButton!) {
+        let alertSheet = UIAlertController(title: "发送", message: nil, preferredStyle: .actionSheet)
+        let sendPositionAc = UIAlertAction(title: "当前位置", style: .default) { (_) in
+            self.locationTool.start()
+            self.sendPostionMessage()
+            alertSheet.dismiss(animated: true, completion: nil)
+        }
         
+        let sendImageAc = UIAlertAction(title: "照片", style: .default) { (_) in
+            _ = self.zz_presentPhotoVC(1, completeHandler: { (assets) in
+                
+            })
+        }
+        
+        let cancelAc = UIAlertAction(title: "取消", style: .cancel) { (_) in
+            alertSheet.dismiss(animated: true, completion: nil)
+        }
+        alertSheet.addAction(sendImageAc)
+        alertSheet.addAction(sendPositionAc)
+        alertSheet.addAction(cancelAc)
+        present(alertSheet, animated: true, completion: nil)
     }
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
@@ -147,9 +191,50 @@ extension ChatViewController{
         EMClient.shared().chatManager.send(EMMes, progress: nil) { (_, error) in
             if error == nil{
                 self.finishSendingMessage(animated: true)
-            }else{ print(error?.errorDescription) }
+            }else{
+                SVProgressHUD.showError(withStatus: error!.errorDescription)
+                SVProgressHUD.dismiss(withDelay: 0.8)
+            }
         }
     }
+    
+    fileprivate func sendPostionMessage(){
+        
+        if location == nil{SVProgressHUD.showError(withStatus: "无法获取位置");SVProgressHUD.dismiss(withDelay: 0.5);return}
+        let latitude = Double(location!.coordinate.latitude)
+        let lontitude = Double(location!.coordinate.longitude)
+        let body = EMLocationMessageBody(latitude: latitude, longitude: lontitude, address: nil)
+        let EMMes = EMMessage(conversationID: conversationId, from: senderId, to: conversationId, body: body, ext: nil)
+        EMClient.shared().chatManager.send(EMMes, progress: { (_) in
+            SVProgressHUD.show()
+            }) { (_, error) in
+            SVProgressHUD.dismiss()
+                if error == nil{
+                    self.finishSendingMessage(animated: true)
+                    let item = self.buildLocationItem(location: self.location)
+                    self.addMediaItem(item: item, fromId: self.senderId)
+                }else{
+                    SVProgressHUD.showError(withStatus: error!.errorDescription)
+                    SVProgressHUD.dismiss(withDelay: 0.8)
+                }
+        }
+    }
+    
+    fileprivate func buildLocationItem(location: CLLocation!) -> JSQLocationMediaItem{
+        let item = JSQLocationMediaItem()
+        item.setLocation(location) { 
+            self.collectionView.reloadData()
+        }
+        return item
+    }
+    
+    
+    fileprivate func addMediaItem(item: JSQMediaItem!, fromId: String){
+        let JSQMes = JSQMessage(senderId: fromId, senderDisplayName: fromId, date: Date(), media: item)
+        JSQMessages.append(JSQMes!)
+        self.finishSendingMessage(animated: true)
+    }
+    
 }
 
 

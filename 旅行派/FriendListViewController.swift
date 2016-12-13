@@ -22,6 +22,13 @@ class FriendListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         tableView.mj_header.beginRefreshing()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if Account.shared.friendRequests.count == 0{
+            Account.shared.newRequest = false
+        }
+    }
 }
 
 extension FriendListViewController{
@@ -81,7 +88,7 @@ extension FriendListViewController{
         tableView.register(UINib(nibName: "FriendRequestCell", bundle: nil), forCellReuseIdentifier: "FriendRequestCell")
 //        hidesBottomBarWhenPushed = true
         title = "好友列表"
-        modalPresentationStyle = .custom
+//        modalPresentationStyle = .custom
     }
     
     @objc private func refreshFriendList(){

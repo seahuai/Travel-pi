@@ -16,21 +16,41 @@ class ConversationCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    
-    
+    @IBOutlet weak var unreadMessageCountLabel: UILabel!
 
     var conversation: EMConversation?{
         didSet{
             usernameLabel.text = conversation?.conversationId
+            let count = conversation!.unreadMessagesCount
+            if count != 0{
+                unreadMessageCountLabel.text = String(count)
+                unreadMessageCountLabel.isHidden = false
+            }else{
+                unreadMessageCountLabel.isHidden = true
+            }
             if let lastMes = conversation?.latestMessage{
-                lastMessageLabel.text = (lastMes.body as! EMTextMessageBody).text
+                switch lastMes.body {
+                case is EMTextMessageBody:
+                    lastMessageLabel.text = (lastMes.body as! EMTextMessageBody).text
+                case is EMLocationMessageBody:
+                    lastMessageLabel.text = "[位置]"
+                case is EMImageMessageBody:
+                    lastMessageLabel.text = "[图片]"
+                default:
+                    break;
+                }
                 timeLabel.attributedText = JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: Date(timeIntervalSince1970: TimeInterval(lastMes.timestamp/1000)))
+            }else{
+                lastMessageLabel.text = "暂无消息"
+                timeLabel.attributedText = nil
             }
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        unreadMessageCountLabel.layer.cornerRadius = 10
+        unreadMessageCountLabel.layer.masksToBounds = true
         // Initialization code
     }
 

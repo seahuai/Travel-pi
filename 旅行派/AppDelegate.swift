@@ -53,13 +53,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMChatManagerDelegate, EM
     //MARK:消息监听
     func messagesDidReceive(_ aMessages: [Any]!) {
         //处理badgeValue等
-        ProfileViewController.shared.newMessage = true
+//        ProfileViewController.shared.newMessage = true
+        Account.shared.newMessage = true
     }
     
     //MARK:好友申请监听
     func friendRequestDidReceive(fromUser aUsername: String!, message aMessage: String!) {
         let request = friendRequest(userId: aUsername, reason: aMessage)
-        ProfileViewController.shared.newRequest = true
+//        ProfileViewController.shared.newRequest = true
+        Account.shared.newRequest = true
         Account.shared.friendRequests.append(request)
     }
     

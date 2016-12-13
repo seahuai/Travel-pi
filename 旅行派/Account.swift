@@ -18,4 +18,6 @@ class Account: NSObject {
     static let shared: Account = Account()
     var friendRequests: [friendRequest] = [friendRequest]()
     var currentUserID: String? = EMClient.shared().currentUsername
+    var newMessage:Bool = false
+    var newRequest: Bool = false
 }

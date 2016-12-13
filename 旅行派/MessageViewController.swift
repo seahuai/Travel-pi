@@ -10,7 +10,8 @@ import UIKit
 
 class MessageViewController: UITableViewController {
 
-    
+    fileprivate lazy var locationTool = LocationTool()
+    fileprivate var location: CLLocation?
     @IBOutlet weak var leftBarButtonClick: UIBarButtonItem!
     
     fileprivate var conversations: [EMConversation] = [EMConversation]()
@@ -42,13 +43,17 @@ class MessageViewController: UITableViewController {
 
 extension MessageViewController{
     
+    
     fileprivate func setUp(){
+//        locationTool.delegate = self
         let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(self.refreshConversation))
         header?.lastUpdatedTimeLabel.isHidden = true
         header?.setTitle("下拉刷新", for: .idle)
         header?.setTitle("获取回话...", for: .refreshing)
         header?.setTitle("松开刷新", for: .pulling)
         tableView.mj_header = header
+        
+        EMClient.shared().chatManager.add(self)
     }
     
     @objc fileprivate func refreshConversation(){
@@ -83,6 +88,14 @@ extension MessageViewController{
         chatVc.hidesBottomBarWhenPushed = true
         chatVc.conversationId = conversations[indexPath.row].conversationId
         navigationController?.pushViewController(chatVc, animated: true)
+    }
+}
+
+extension MessageViewController: EMChatManagerDelegate{
+    func messagesDidReceive(_ aMessages: [Any]!) {
+        if aMessages != nil{
+            tableView.reloadData()
+        }
     }
 }
 

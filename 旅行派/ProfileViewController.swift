@@ -16,8 +16,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     
     //WARN:不能通过监听变量的方式刷新tableView，因为tableView还有可能未创建！！
-    var newMessage: Bool = false
-    var newRequest: Bool = false
+//    var newMessage: Bool = false
+//    var newRequest: Bool = false
     
     fileprivate lazy var logoutView = LogoutView.creat()
     fileprivate var isLogin: Bool = EMisLogin{
@@ -58,10 +58,10 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if newMessage{
+        if Account.shared.newMessage{
             tableView.reloadSections([0], with: .none)
         }
-        if newRequest{
+        if Account.shared.newRequest{
             tableView.reloadSections([1], with: .none)
         }
     }
@@ -153,13 +153,13 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate{
         switch indexPath.section {
         case 0:
             cell.functionLabel.text = function1[indexPath.row]
-            cell.badge.isHidden = !newMessage
+            cell.badge.isHidden = !Account.shared.newMessage
             cell.isExit = false
         case 1:
             cell.functionLabel.text = function2[indexPath.row]
             cell.isExit = false
             if indexPath.row == 1{
-                cell.badge.isHidden = !newRequest
+                cell.badge.isHidden = !Account.shared.newRequest
             }
         default:
             cell.functionLabel.text = function3[indexPath.row]
@@ -181,10 +181,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate{
         
         if indexPath.section == 1{
             let nav = UINavigationController(rootViewController: FriendListViewController.list)
+            nav.modalPresentationStyle = .custom
             present(nav, animated: true, completion: nil)
-            if indexPath.row == 1 {
-                newRequest = false
-            }
         }
         
         if indexPath.section == 2{
