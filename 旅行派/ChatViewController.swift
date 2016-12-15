@@ -9,6 +9,8 @@
 import UIKit
 import JSQMessagesViewController
 import SVProgressHUD
+import Photos
+import SDWebImage
 
 class ChatViewController: JSQMessagesViewController {
 
@@ -42,6 +44,12 @@ class ChatViewController: JSQMessagesViewController {
             refresh()
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        var error: EMError? = nil
+        conversation?.markAllMessages(asRead: &error)
+    }
 }
 
 extension ChatViewController: EMChatManagerDelegate, LocationDelegate{
@@ -61,6 +69,7 @@ extension ChatViewController: EMChatManagerDelegate, LocationDelegate{
     func messagesDidReceive(_ aMessages: [Any]!) {
         if aMessages != nil{
             EMMesToJSQMes(messages: aMessages!)
+            finishReceivingMessage(animated: true)
         }
     }
     
@@ -77,8 +86,6 @@ extension ChatViewController: EMChatManagerDelegate, LocationDelegate{
             
             self.finishReceivingMessage()
         })
-        var error: EMError? = nil
-        conversation?.markAllMessages(asRead: &error)
     }
     
     fileprivate func EMMesToJSQMes(messages: [Any]){
@@ -93,10 +100,21 @@ extension ChatViewController: EMChatManagerDelegate, LocationDelegate{
             case is EMLocationMessageBody:
                 let coor = message.body as! EMLocationMessageBody
                 let location = CLLocation(latitude: coor.latitude, longitude: coor.longitude)
-                let JSQItem = buildLocationItem(location: location)
-                self.addMediaItem(item: JSQItem, fromId: message.from)
-//            case is EMImageMessageBody:
-                
+                buildLocationItemMessage(location: location, fromId: message.from)
+            case is EMImageMessageBody:
+                let body = message.body as! EMImageMessageBody
+                let image = UIImage(contentsOfFile: body.thumbnailLocalPath)
+                let localImage = UIImage(contentsOfFile: body.localPath)
+                if let image = image{
+                    buildImageItemMessage(image: image, fromId: message.from)
+                }else if let localImage = localImage{
+                    buildImageItemMessage(image: localImage, fromId: message.from)
+                }else{
+                    print(body.remotePath)
+                    if let image = imageFrom(urlStr: body.remotePath){
+                        buildImageItemMessage(image: image, fromId: message.from)
+                    }
+                }
             default:
                 break
             }
@@ -104,6 +122,15 @@ extension ChatViewController: EMChatManagerDelegate, LocationDelegate{
         }
     }
     
+    fileprivate func imageFrom(urlStr: String?) -> UIImage?{
+        if let urlStr = urlStr{
+            let url = URL(string: urlStr)
+            let data = try? Data(contentsOf: url!)
+            let image = UIImage(data: data!)
+            return image
+        }
+        return nil
+    }
 }
 
 extension ChatViewController{
@@ -163,9 +190,9 @@ extension ChatViewController{
             alertSheet.dismiss(animated: true, completion: nil)
         }
         
-        let sendImageAc = UIAlertAction(title: "照片", style: .default) { (_) in
-            _ = self.zz_presentPhotoVC(1, completeHandler: { (assets) in
-                
+        let sendImageAc = UIAlertAction(title: "图片", style: .default) { (_) in
+           _ = self.zz_presentPhotoVC(1, completeHandler: { (assets) in
+                self.sendImageMessage(assets: assets)
             })
         }
         
@@ -177,7 +204,9 @@ extension ChatViewController{
         alertSheet.addAction(cancelAc)
         present(alertSheet, animated: true, completion: nil)
     }
-    
+
+
+
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         let JSQMes = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
         JSQMessages.append(JSQMes!)
@@ -198,6 +227,30 @@ extension ChatViewController{
         }
     }
     
+    fileprivate func sendImageMessage(assets: [PHAsset]){
+        for asset in assets{
+            PHImageManager.default().requestImageData(for: asset, options: nil, resultHandler: { (data, _, _, _) in
+                guard data != nil else{return}
+                let body = EMImageMessageBody(data: data, displayName: nil)
+                let EMMes = EMMessage(conversationID: self.conversationId, from: self.senderId, to: self.conversationId, body: body, ext: nil)
+                EMClient.shared().chatManager.send(EMMes, progress: { (progress) in
+//                    SVProgressHUD.showProgress(Float(progress/100))
+//                    if progress == 100{
+//                        SVProgressHUD.dismiss()
+//                    }
+                    }, completion: { (_, error) in
+                        if error == nil{
+                            self.buildImageItemMessage(data: data!, fromId: self.senderId)
+                            self.finishSendingMessage(animated: true)
+                        }else{
+                            SVProgressHUD.showError(withStatus: "发送失败")
+                            SVProgressHUD.dismiss(withDelay: 0.5)
+                        }
+                })
+            })
+        }
+    }
+    
     fileprivate func sendPostionMessage(){
         
         if location == nil{SVProgressHUD.showError(withStatus: "无法获取位置");SVProgressHUD.dismiss(withDelay: 0.5);return}
@@ -211,8 +264,7 @@ extension ChatViewController{
             SVProgressHUD.dismiss()
                 if error == nil{
                     self.finishSendingMessage(animated: true)
-                    let item = self.buildLocationItem(location: self.location)
-                    self.addMediaItem(item: item, fromId: self.senderId)
+                    self.buildLocationItemMessage(location: self.location, fromId: self.senderId)
                 }else{
                     SVProgressHUD.showError(withStatus: error!.errorDescription)
                     SVProgressHUD.dismiss(withDelay: 0.8)
@@ -220,12 +272,27 @@ extension ChatViewController{
         }
     }
     
-    fileprivate func buildLocationItem(location: CLLocation!) -> JSQLocationMediaItem{
+    fileprivate func buildLocationItemMessage(location: CLLocation!,fromId: String){
         let item = JSQLocationMediaItem()
         item.setLocation(location) { 
             self.collectionView.reloadData()
         }
-        return item
+        
+        addMediaItem(item: item, fromId: fromId)
+    }
+    
+    fileprivate func buildImageItemMessage(image: UIImage, fromId: String){
+        let item = JSQPhotoMediaItem(image: image)
+        
+        addMediaItem(item: item, fromId: fromId)
+    
+    }
+    
+    fileprivate func buildImageItemMessage(data: Data, fromId: String){
+        let image = UIImage(data: data)
+        let item = JSQPhotoMediaItem(image: image)
+
+        addMediaItem(item: item, fromId: fromId)
     }
     
     

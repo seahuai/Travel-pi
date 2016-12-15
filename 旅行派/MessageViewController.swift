@@ -89,6 +89,20 @@ extension MessageViewController{
         chatVc.conversationId = conversations[indexPath.row].conversationId
         navigationController?.pushViewController(chatVc, animated: true)
     }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let conversation = conversations[indexPath.row]
+        let deleteAc = UITableViewRowAction(style: .destructive, title: "删除") { (_, indexPath) in
+            EMClient.shared().chatManager.deleteConversation(conversation.conversationId, isDeleteMessages: true, completion: { (_, error) in
+                if error != nil{
+                    print("删除回话失败")
+                }
+            })
+            self.conversations.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .left)
+        }
+        return [deleteAc]
+    }
 }
 
 extension MessageViewController: EMChatManagerDelegate{

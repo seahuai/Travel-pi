@@ -175,6 +175,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate{
             dismiss(animated: true, completion: { 
                 let tabVc = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
                 tabVc.selectedIndex = 3
+                Account.shared.newMessage = false
             })
             
         }

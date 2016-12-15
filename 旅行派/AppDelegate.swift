@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 
 var EMisLogin: Bool = false
 
@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMChatManagerDelegate, EM
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        SVProgressHUD.setDefaultStyle(.dark)
         let globalColor = UIColor(colorLiteralRed: 27/255, green: 166/255, blue: 197/255, alpha: 1)
         UITabBar.appearance().tintColor = globalColor
         UINavigationBar.appearance().tintColor = globalColor
