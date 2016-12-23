@@ -106,7 +106,7 @@
         <scene sceneID="kYo-L2-mOK">
             <objects>
                 <navigationController id="GHF-PV-J7U" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="消息" id="aQv-qg-LPG"/>
+                    <tabBarItem key="tabBarItem" title="消息" image="tab_message" id="aQv-qg-LPG"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cr3-x1-2Yg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -123,6 +123,7 @@
     </scenes>
     <resources>
         <image name="profile_g" width="128" height="128"/>
+        <image name="tab_message" width="32" height="32"/>
         <image name="tabbar_profile" width="30" height="30"/>
     </resources>
 </document>

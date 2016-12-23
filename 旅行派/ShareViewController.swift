@@ -117,9 +117,10 @@ extension ShareViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         ShareDetailVC.note = notes[indexPath.row]
-        ShareDetailVC.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(ShareDetailVC, animated: true)
+        let nav = UINavigationController(rootViewController: ShareDetailVC)
+        present(nav, animated: true, completion: nil)
     }
     
 }

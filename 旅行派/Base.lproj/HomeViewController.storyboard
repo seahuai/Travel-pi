@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pxs-jz-9C4">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,7 +9,7 @@
         <scene sceneID="X7l-rc-S2w">
             <objects>
                 <navigationController id="pxs-jz-9C4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" image="tabbar_home" id="eYO-Yl-nP2"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="tab_home" id="eYO-Yl-nP2"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mQ6-ZE-hzz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -138,7 +137,7 @@
                                 <action selector="leftButtonClick:" destination="shz-Uj-BY2" id="MKE-h2-qqp"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="sHb-l7-kxw">
+                        <barButtonItem key="rightBarButtonItem" image="tabbar_discover" id="sHb-l7-kxw">
                             <connections>
                                 <action selector="searchButtonClick:" destination="shz-Uj-BY2" id="6ta-DC-N0r"/>
                             </connections>
@@ -159,7 +158,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tabbar_home" width="30" height="30"/>
+        <image name="tab_home" width="32" height="32"/>
+        <image name="tabbar_discover" width="30" height="30"/>
         <image name="tabbar_profile" width="30" height="30"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>

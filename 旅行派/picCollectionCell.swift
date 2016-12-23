@@ -12,7 +12,7 @@ import SDWebImage
 class picCollectionCell: UICollectionViewCell {
     
     //遮罩
-    @IBOutlet weak var toolBar: UIToolbar!
+//    @IBOutlet weak var toolBar: UIToolbar!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -35,8 +35,8 @@ class picCollectionCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 0.2 * imageView.bounds.width
         imageView.layer.masksToBounds = true
         
-        toolBar.layer.cornerRadius = 0.2 * imageView.bounds.width
-        toolBar.layer.masksToBounds = true
+//        toolBar.layer.cornerRadius = 0.2 * imageView.bounds.width
+//        toolBar.layer.masksToBounds = true
     }
     
     

@@ -22,7 +22,7 @@ class FindMoreCell: UITableViewCell {
             let url = URL(string: urlStr)
                 backImageView.sd_setImage(with: url, placeholderImage: nil)
             }
-            notesCountLabel.text = "- 有999条旅游灵感 -"
+            notesCountLabel.text = ""
         }
     }
     

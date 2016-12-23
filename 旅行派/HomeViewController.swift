@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
     fileprivate var NBdestinations: [Destination] = [Destination]()
     fileprivate var Hotdestinations: [Destination] = [Destination]()
     fileprivate var Otherdestinations: [Destination] = [Destination]()
+    fileprivate var ChinaHotdestinations: [Destination] = [Destination]()
     fileprivate var CellModels:[String: [Destination]] = [String: [Destination]](){
         didSet{
             destinationTableView.reloadData()
@@ -48,7 +49,7 @@ class HomeViewController: UIViewController {
     fileprivate var timer: Timer?
     
     //MARK:Cell标题
-    fileprivate var cellTitle: [String] = ["附近的城市","亚洲热门城市","其它热门城市"]
+    fileprivate var cellTitle: [String] = ["附近的城市","国内热门省份","亚洲热门城市","其它热门城市"]
     
     //MARK:控制器
     fileprivate lazy var findMoreViewController: FindMoreViewController = FindMoreViewController()
@@ -142,9 +143,11 @@ extension HomeViewController: LocationDelegate{
     
     //MARK: 刷新方法
     @objc fileprivate func refreshTableView(){
+        getChinaHotDestination()
         getAsiaDestinations()
         getEuropeDestinations()
         locationTool.start()
+        //----->定位工具开启后会自动获取附近的位置
 //        getNearByDestinations(location: location)
     }
     
@@ -202,8 +205,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         var cellId: String = ""
         
         if indexPath.row == 0{cellId = "NearBy"}
-        if indexPath.row == 1{cellId = "Hot"}
-        if indexPath.row == 2{cellId = "Others"}
+        if indexPath.row == 1{cellId = "China"}
+        if indexPath.row == 2{cellId = "Hot"}
+        if indexPath.row == 3{cellId = "Others"}
         
         
         guard let destinations = CellModels[cellId] else {
@@ -423,7 +427,7 @@ extension HomeViewController{
 extension HomeViewController{
     //MARK:-附近
     fileprivate func getNearByDestinations(location: CLLocation){
-        print("getNearByDestinations----\(location)")
+//        print("getNearByDestinations----\(location)")
         
         NetWorkTool.sharedInstance.getNearbyDestination(location: location) { (error, result) in
             if error != nil{print(error); return}
@@ -440,6 +444,24 @@ extension HomeViewController{
             self.destinationTableView.mj_header.endRefreshing()
         }
     }
+    //MARK:中国热门旅游城市
+    fileprivate func getChinaHotDestination(){
+        NetWorkTool.sharedInstance.getHotDestination(area: .China) { (error, result) in
+            if error != nil{print(error); return}
+            if let result = result{
+                for dict in result{
+                    let des = Destination(dict: dict)
+                    self.ChinaHotdestinations.append(des)
+                }
+            }
+            if  self.CellModels["China"] == nil{
+                self.CellModels["China"] = self.ChinaHotdestinations
+                CityList.sharedInstance.addObject(china: self.ChinaHotdestinations)
+            }
+            self.destinationTableView.mj_header.endRefreshing()
+        }
+    }
+    
     //MARK:-热门
     fileprivate func getAsiaDestinations(){
         NetWorkTool.sharedInstance.getHotDestination(area: .Asia) { (error, result) in

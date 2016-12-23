@@ -11,7 +11,7 @@
         <scene sceneID="GYW-ph-UJx">
             <objects>
                 <navigationController id="bCO-qv-Rca" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="游记" image="share" id="ejZ-4G-nR9"/>
+                    <tabBarItem key="tabBarItem" title="游记" image="tab_share" id="ejZ-4G-nR9"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vWJ-1u-XVD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -189,6 +189,6 @@
     <resources>
         <image name="down16" width="44" height="24"/>
         <image name="empty_picture" width="100" height="100"/>
-        <image name="share" width="20" height="24"/>
+        <image name="tab_share" width="32" height="32"/>
     </resources>
 </document>

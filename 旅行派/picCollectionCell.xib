@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,9 +15,6 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OeN-mV-bdV"/>
-                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.25" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="Bc0-ij-WKn">
-                        <items/>
-                    </toolbar>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRO-bN-vaL">
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -35,18 +31,14 @@
                 <constraint firstItem="oRO-bN-vaL" firstAttribute="centerX" secondItem="OeN-mV-bdV" secondAttribute="centerX" id="1GD-aT-eis"/>
                 <constraint firstItem="OeN-mV-bdV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2AE-hB-B4N"/>
                 <constraint firstAttribute="trailing" secondItem="ZU0-XI-bEk" secondAttribute="trailing" id="3xm-GF-Rtc"/>
-                <constraint firstItem="Bc0-ij-WKn" firstAttribute="centerX" secondItem="OeN-mV-bdV" secondAttribute="centerX" id="6CJ-Sc-DBe"/>
                 <constraint firstItem="ZU0-XI-bEk" firstAttribute="top" secondItem="OeN-mV-bdV" secondAttribute="bottom" constant="5" id="MUF-U1-AlR"/>
-                <constraint firstItem="Bc0-ij-WKn" firstAttribute="height" secondItem="OeN-mV-bdV" secondAttribute="height" id="QI6-XZ-Wdd"/>
                 <constraint firstAttribute="bottom" secondItem="OeN-mV-bdV" secondAttribute="bottom" constant="20" id="Sdc-jB-8gT"/>
                 <constraint firstItem="OeN-mV-bdV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="T2F-ZF-lt6"/>
                 <constraint firstAttribute="trailing" secondItem="oRO-bN-vaL" secondAttribute="trailing" id="fIa-hN-W0P"/>
                 <constraint firstItem="ZU0-XI-bEk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="oLE-Av-o2J"/>
                 <constraint firstItem="oRO-bN-vaL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pUI-M1-wnf"/>
                 <constraint firstItem="oRO-bN-vaL" firstAttribute="centerY" secondItem="OeN-mV-bdV" secondAttribute="centerY" id="qOJ-jO-8gj"/>
-                <constraint firstItem="Bc0-ij-WKn" firstAttribute="width" secondItem="OeN-mV-bdV" secondAttribute="width" id="u3w-ug-hOK"/>
                 <constraint firstAttribute="trailing" secondItem="OeN-mV-bdV" secondAttribute="trailing" id="usI-fG-chq"/>
-                <constraint firstItem="Bc0-ij-WKn" firstAttribute="centerY" secondItem="OeN-mV-bdV" secondAttribute="centerY" id="vj4-gg-fhz"/>
                 <constraint firstAttribute="bottom" secondItem="ZU0-XI-bEk" secondAttribute="bottom" id="wrl-al-PZP"/>
             </constraints>
             <size key="customSize" width="70" height="88"/>
@@ -54,7 +46,6 @@
                 <outlet property="imageView" destination="OeN-mV-bdV" id="gPV-eL-2dq"/>
                 <outlet property="nameLabel" destination="ZU0-XI-bEk" id="D53-ud-Om0"/>
                 <outlet property="titleLabel" destination="oRO-bN-vaL" id="nEH-eZ-5nb"/>
-                <outlet property="toolBar" destination="Bc0-ij-WKn" id="O6P-bV-X7I"/>
             </connections>
             <point key="canvasLocation" x="42" y="90"/>
         </collectionViewCell>

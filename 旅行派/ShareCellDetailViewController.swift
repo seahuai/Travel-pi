@@ -34,8 +34,14 @@ class ShareCellDetailViewController: UIViewController {
 
 extension ShareCellDetailViewController{
     fileprivate func setUpNavigationBar(){
+        let closeButton = UIBarButtonItem(title: "关闭", style: .plain, target: self, action: #selector(self.closeButtonClick))
         let shareButton = UIBarButtonItem(title: "分享", style: .plain, target: self, action: #selector(self.shareButtonClick))
+        navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = shareButton
+    }
+    
+    @objc private func closeButtonClick(){
+        dismiss(animated: true, completion: nil)
     }
     
     @objc private func shareButtonClick(){

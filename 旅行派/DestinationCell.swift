@@ -38,7 +38,6 @@ extension DestinationCell{
     fileprivate func setUpCollcetionView(){
         picCollectionView.dataSource = self
         picCollectionView.delegate = self
-        
         picCollectionView.register(UINib(nibName: "picCollectionCell", bundle: nil), forCellWithReuseIdentifier: "picCollectionCell")
         
     }

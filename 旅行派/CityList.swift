@@ -11,8 +11,14 @@ import UIKit
 class CityList: NSObject {
     static let sharedInstance = CityList()
     var nearDestination: [Destination] = [Destination]()
+    var chinaDestination: [Destination] = [Destination]()
     var hotDestination: [Destination] = [Destination]()
     var otherDestination: [Destination] = [Destination]()
+    
+    func addObject(china: [Destination]){
+        chinaDestination = china
+        print("china:\(chinaDestination.count)")
+    }
     
     func addObject(hot: [Destination]){
         hotDestination = hot
