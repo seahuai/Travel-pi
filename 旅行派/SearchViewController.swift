@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class SearchViewController: UIViewController {
 
     static let shared: SearchViewController = SearchViewController()
@@ -27,7 +27,8 @@ class SearchViewController: UIViewController {
         }
     }
     fileprivate var showArr: [String] = ["游记","攻略"]
-    fileprivate var citys:[String] = ["北京","上海","厦门","赤道几内亚","吉尔吉吉斯坦","美利坚合众国"]
+    fileprivate var citys:[String] = ["北京","上海","厦门","旧金山","浙江","台湾"]
+    fileprivate lazy var detailVc: DetailViewController = DetailViewController()
     fileprivate lazy var animator: SearchAnimator = SearchAnimator()
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchLabel: UILabel!
@@ -89,6 +90,10 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource{
         self.searchText = searchText
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        search(text: searchBar.text)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return isSearching ? showArr.count : citys.count
@@ -120,22 +125,42 @@ extension SearchViewController: UITableViewDelegate{
 }
 
 extension SearchViewController{
-//    fileprivate func searchCell(tableView: UITableView, row: Int) -> UITableViewCell?{
-//        var cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as? ShowSearchCityCell
-//        if cell == nil{
-//            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "searchCell")
-//            print(searchText)
-//            cell?.textLabel?.text = "查找" + showArr[row]
-//        }
-//        return cell
-//    }
-//    
-//    fileprivate func showCityCell(tableView: UITableView, indexPath: IndexPath) -> ShowSearchCityCell?{
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "ShowSearchCityCell", for: indexPath) as?ShowSearchCityCell
-//        cell?.city = citys[indexPath.row]
-//        cell?.selectionStyle = .none
-//        return cell
-//    }
+    fileprivate func search(text: String?){
+        guard let text = text else {
+            SVProgressHUD.showError(withStatus: "搜索的内容不能为空")
+            SVProgressHUD.dismiss(withDelay: 0.5)
+            return
+        }
+//        NSCharacterSet whitespaceAndNewlineCharacterSet
+        if (text.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines).lengthOfBytes(using: .utf8) == 0){
+            SVProgressHUD.showError(withStatus: "搜索的内容不能为空")
+            SVProgressHUD.dismiss(withDelay: 0.5)
+            return
+        }
+        SVProgressHUD.show()
+        NetWorkTool.sharedInstance.searchDestination(text: text) { (error, destination) in
+            if error == nil {
+                guard destination != nil else{
+                    SVProgressHUD.showInfo(withStatus: "未找到\"\(text)\"的相关内容")
+//                    SVProgressHUD.dismiss(withDelay: 0.7)
+                    return
+                }
+                print(destination?.name)
+                self.detailVc.destination = destination
+                self.detailVc.isPresented = true
+                let nav = UINavigationController(rootViewController: self.detailVc)
+                self.present(nav, animated: true, completion: { SVProgressHUD.dismiss()})
+            }else{
+                SVProgressHUD.showInfo(withStatus: "未找到\(text)的相关内容")
+//                SVProgressHUD.dismiss(withDelay: 0.7)
+            }
+        }
+    }
+    
+    
+    
+    
+    
 }
 
 

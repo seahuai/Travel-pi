@@ -91,6 +91,7 @@ extension FindMoreViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         detailVC.destination = destinations[indexPath.row]
+        detailVC.isPresented = false
         detailVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(detailVC, animated: true)
         

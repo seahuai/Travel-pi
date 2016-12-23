@@ -18,11 +18,10 @@ class DetailViewController: UIViewController {
     fileprivate var titlesButton: [UIButton] = [UIButton]()
     fileprivate var preButton: UIButton?
     fileprivate let screenBounds = UIScreen.main.bounds
-    
+    var isPresented: Bool = false
     @IBOutlet weak var backButtonHeightCon: NSLayoutConstraint!
     //子控制器
     fileprivate lazy var tripViewController: TripViewController = TripViewController()
-//    fileprivate lazy var listViewController: ListViewController = ListViewController()
     fileprivate lazy var noteViewController: NoteViewController = NoteViewController()
     
     override func viewDidLoad() {
@@ -42,7 +41,11 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func backButtonClick(_ sender: UIButton) {
-       _ = navigationController?.popViewController(animated: true)
+        if isPresented{
+            dismiss(animated: true, completion: nil)
+        }else{
+            _ = navigationController?.popViewController(animated: true)
+        }
     }
 
 }
@@ -96,7 +99,6 @@ extension DetailViewController: UIScrollViewDelegate{
         contentScrollView.isPagingEnabled = true
         contentScrollView.showsHorizontalScrollIndicator = false
         addChildViewController(tripViewController)
-//        addChildViewController(listViewController)
         addChildViewController(noteViewController)
         
         setCurrentViewController(index: 0)
@@ -105,8 +107,8 @@ extension DetailViewController: UIScrollViewDelegate{
     fileprivate func setCurrentViewController(index: Int){
         let vc1 = childViewControllers[0] as! TripViewController
         vc1.destination = destination
-//        let vc2 = childViewControllers[1] as! ListViewController
-//        vc2.destination = destination
+
+        
         let vc3 = childViewControllers[1] as! NoteViewController
         vc3.destination = destination
         switch index {
@@ -116,12 +118,7 @@ extension DetailViewController: UIScrollViewDelegate{
             if vc1.view.superview != nil{
                 return
             }
-//        case 1:
-//            vc2.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
-//            contentScrollView.addSubview(vc2.view)
-//            if vc2.view.superview != nil{
-//                return
-//            }
+            
         default:
             vc3.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
             contentScrollView.addSubview(vc3.view)

@@ -13,16 +13,16 @@ class FindMoreCell: UITableViewCell {
     
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var notesCountLabel: UILabel!
+    @IBOutlet weak var nameEnLabel: UILabel!
 
     var destination: Destination?{
         didSet{
             nameLabel.text = destination?.name
+            nameEnLabel.text = destination?.name_en
             if let urlStr = destination?.photo_url{
             let url = URL(string: urlStr)
                 backImageView.sd_setImage(with: url, placeholderImage: nil)
             }
-            notesCountLabel.text = ""
         }
     }
     

@@ -129,4 +129,32 @@ extension NetWorkTool{
     
 }
 
+//MARK:搜索接口
+extension NetWorkTool{
+    
+    func searchDestination(text: String, finished: @escaping (_ error: Error?, _ destination: Destination?) -> ()){
+        let url = "http://q.chanyouji.com/api/v2/search.json"
+        let textItem = URLQueryItem(name: "q", value: text)
+        var urlComponents = URLComponents(string: url)
+        urlComponents?.queryItems = [textItem]
+        guard let urlRequest = urlComponents?.url else { finished(NSError(), nil);return }
+        Alamofire.request(urlRequest, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+            switch response.result{
+            case .success:
+                let result = response.result.value as? [String: AnyObject]
+                let data = result?["data"] as? [String: AnyObject]
+                let hitted = data?["hitted"] as? [String: AnyObject]
+                if let dict = hitted?["destination"] as? [String: AnyObject]{
+                    let destination = Destination(dict: dict)
+                    finished(nil, destination)
+                }else{
+                    finished(nil, nil)
+                }
+            case .failure:
+                finished(response.result.error, nil)
+            }
+        }
+    }
+}
+
 

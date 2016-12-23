@@ -74,8 +74,12 @@ extension ShareCellDetailViewController: UIWebViewDelegate{
     }
     
     fileprivate func loadWebView(note: TravelNote){
+        
         let cssUrl = Bundle.main.url(forResource: "index", withExtension: "css")
         let headHtml = "<head><link href=\"\(cssUrl!)\" rel=\"stylesheet\"></head>"
+        let jsUrl = Bundle.main.url(forResource: "index", withExtension: "js")
+        let script = "<script src=\"\(jsUrl!)\"></script>"
+        
         let topic = "<div id=\"topic\"><h3>\(note.topic!)</h3></div>"
         let user = "<span class=\"user\">\(note._user!.name!)</span>"
         let t = note.made_time == nil ? "时间：未知" : note.made_time!
@@ -83,7 +87,8 @@ extension ShareCellDetailViewController: UIWebViewDelegate{
         let subtitle = "<div id=\"subtitle\">\(user)\(time)<div>"
         let des = note._description == nil ? "" : note._description!
         let descripation = "<div id=\"descripation\">\(des)</div>"
-        var bodyHtml = "<body>\(topic)\(subtitle)<!--img--><!--img--><!--img--><!--img--><!--img--><!--img--><!--img--><!--img--><!--img-->\(descripation)</body>"
+        
+        var bodyHtml = "<body>\(topic)\(subtitle)<!--img--><!--img--><!--img--><!--img--><!--img--><!--img--><!--img--><!--img--><!--img-->\(descripation)\(script)</body>"
         for content in note._contents{
             if let url = content.photo_url{
                 var caption = ""
@@ -110,6 +115,8 @@ extension ShareCellDetailViewController: UIWebViewDelegate{
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+//        let requestString = request.url?.absoluteString
+//        print(requestString)
         return true
     }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import SVProgressHUD
 
 class PhotoBrowserViewController: UIViewController {
     
@@ -62,15 +63,6 @@ extension PhotoBrowserViewController{
         saveButton.layer.borderWidth = 1
         saveButton.layer.borderColor = UIColor.darkGray.cgColor
         
-//        closeButton.titleLabel?.textAlignment = .center
-//        closeButton.titleLabel?.textColor = UIColor.darkGray
-//        closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-//        closeButton.backgroundColor = UIColor.clear
-//        closeButton.layer.borderWidth = 1
-//        closeButton.layer.borderColor = UIColor.darkGray.cgColor
-        
-        
-//        closeButton.setTitle("关闭", for: .normal)
         closeButton.setImage(UIImage(named: "close_white"), for: .normal)
         closeButton.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(25)
@@ -82,7 +74,7 @@ extension PhotoBrowserViewController{
         saveButton.setTitle("保存", for: .normal)
         saveButton.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(25)
-            make.right.equalTo(view.snp.right).offset(-20)
+            make.right.equalTo(view.snp.right).offset(-40)
             make.height.equalTo(25)
             make.width.equalTo(40)
         }
@@ -98,7 +90,6 @@ extension PhotoBrowserViewController: PhotoCellImageDelegate{
     
     
     @objc private func saveButtonClick(){
-        print("saveButtonClick")
         let cell = collectionView.visibleCells.first as! PhotoCell
         if let image = cell.imageView.image{
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(image:didFinishSavingWithError:contextInfo:)), nil)
@@ -106,8 +97,12 @@ extension PhotoBrowserViewController: PhotoCellImageDelegate{
     }
     
 //    - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
-    @objc private func image(image: UIImage, didFinishSavingWithError: NSError, contextInfo: AnyObject){
-        
+    func image(image: UIImage?, didFinishSavingWithError error: NSError?, contextInfo: AnyObject){
+        if error == nil{
+            SVProgressHUD.showSuccess(withStatus: "已保存到相册")
+        }else{
+            SVProgressHUD.showError(withStatus: "保存失败")
+        }
     }
     
     @objc private func closeButtonClick(){

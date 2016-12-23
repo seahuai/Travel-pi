@@ -16,7 +16,6 @@ class TripViewController: UIViewController {
     fileprivate var oldDestination: Destination?
     fileprivate var initial: Bool = true
     fileprivate lazy var tripDetailVc: TripDetailViewController = TripDetailViewController()
-    
     var destination: Destination?{
         didSet{
             oldDestination = oldValue
