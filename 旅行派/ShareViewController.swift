@@ -10,10 +10,11 @@ import UIKit
 
 class ShareViewController: UIViewController {
     @IBOutlet weak var shareTableView: UITableView!
-    @IBOutlet weak var toolScrollView: UIScrollView!
+//    @IBOutlet weak var toolScrollView: UIScrollView!
 //    fileprivate lazy var profileVC: ProfileViewController = ProfileViewController()
     fileprivate lazy var PhotoBrowserVC: PhotoBrowserViewController = PhotoBrowserViewController()
     fileprivate lazy var photoBrowserAnimator: PhotoBrowserAnimator = PhotoBrowserAnimator()
+    fileprivate lazy var ShareDetailVC: ShareCellDetailViewController = ShareCellDetailViewController()
     var toolBarModels: [ShareToolModel] = [ShareToolModel]()
     var notes: [TravelNote] = [TravelNote]()
     
@@ -94,7 +95,7 @@ extension ShareViewController{
     }
 }
 
-
+//MARK: dataSource-Delegate
 extension ShareViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -113,6 +114,12 @@ extension ShareViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return notes[indexPath.row].cellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        ShareDetailVC.note = notes[indexPath.row]
+        ShareDetailVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(ShareDetailVC, animated: true)
     }
     
 }

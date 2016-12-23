@@ -21,7 +21,6 @@ class ShareCell: UITableViewCell {
     
     
     @IBOutlet weak var unfoldeAllButton: UIButton!
-    @IBOutlet weak var readAllButton: UIButton!
     
     @IBOutlet weak var headImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -97,15 +96,15 @@ extension ShareCell{
     fileprivate func setUp(){
         self.layoutIfNeeded()
         
-        readAllButton.layer.cornerRadius = 5
-        readAllButton.layer.masksToBounds = true
-        readAllButton.layer.borderWidth = 1
-        readAllButton.layer.borderColor = UIColor.lightGray.cgColor
+//        readAllButton.layer.cornerRadius = 5
+//        readAllButton.layer.masksToBounds = true
+//        readAllButton.layer.borderWidth = 1
+//        readAllButton.layer.borderColor = UIColor.lightGray.cgColor
         
         headImageView.layer.cornerRadius = headImageView.frame.height * 0.5
         headImageView.layer.masksToBounds = true
-        readAllButton.layer.borderWidth = 1
-        readAllButton.layer.borderColor = UIColor.white.cgColor
+//        readAllButton.layer.borderWidth = 1
+//        readAllButton.layer.borderColor = UIColor.white.cgColor
     }
     
     fileprivate func setUpPicCollectionView(){

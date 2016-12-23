@@ -39,7 +39,9 @@ class TravelNote: NSObject {
     init(dict: [String: AnyObject]) {
         super.init()
         setValuesForKeys(dict)
-        
+        if topic == nil{
+            topic = "详情"
+        }
         _description = dict["description"] as? String
 
         if let districts = dict["districts"] as? [[String: AnyObject]]{

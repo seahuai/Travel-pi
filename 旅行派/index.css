@@ -1,0 +1,50 @@
+body{
+    background-color: #F5FCFF;
+}
+
+
+#topic{
+    margin-top: 5px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#subtitle{
+    font-size: 14px;
+    text-align: center;
+    color: lightgray;
+    margin-bottom: 3px;
+    border-bottom: 1px solid darkgray;
+}
+
+img{
+    width: 100%;
+}
+
+.image{
+    margin: 20px 5px 20px 5px;
+}
+
+
+.image div{
+    text-align: center;
+    font-size: 14px;
+    color: gray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#descripation{
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 15px;
+    color: darkgray;
+}
+
+#subtitle .time{
+    padding: 0px 5px;
+}
+
+#subtitle .user{
+    padding: 0px 5px;
+}
