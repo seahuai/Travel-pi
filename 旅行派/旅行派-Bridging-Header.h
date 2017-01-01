@@ -17,5 +17,6 @@
 //#import "PromptInfo.h"
 
 #import "MJRefresh.h"
-#import "EMSDKFull.h"
+#import "EMSDK.h"
+//#import "EMSDKFull.h"
 #endif /* BMKSwiftDemo_Bridging_Header_h */
