@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
     fileprivate var timer: Timer?
     
     //MARK:Cell标题
-    fileprivate var cellTitle: [String] = ["附近的城市","国内热门省份","亚洲热门城市","其它热门城市"]
+    fileprivate var cellTitle: [String] = ["周边","国内","亚洲","其它"]
     
     //MARK:控制器
     fileprivate lazy var findMoreViewController: FindMoreViewController = FindMoreViewController()
@@ -67,22 +67,25 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layoutIfNeeded()
+//        self.view.layoutIfNeeded()
         setUpNavigationBar()
         setUpTableView()
         setUpNotification()
         setUp()
         setUpToolBar()
         setUpTableViewRefresh()
-        
-//        getAsiaDestinations()
-//        getEuropeDestinations()
+
         getWeekAlbum()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.isHidden = false
         displayViewHeight(offset: tableViewOrginalY + destinationTableView.contentOffset.y)
     }
 
@@ -90,6 +93,33 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
 }
+
+//MARK:通知
+extension HomeViewController{
+    fileprivate func setUpNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.pushFindMore(note:)), name: NSNotification.Name(rawValue: PushFindMoreVCNote), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.pushDetail(note:)), name: NSNotification.Name(rawValue: SelectePicCellNote), object: nil)
+    }
+    
+    @objc private func pushDetail(note: Notification){
+        let des = note.userInfo?["destination"] as! Destination
+        let detailVc = DetailViewController()
+        detailVc.hidesBottomBarWhenPushed = true
+        detailVc.destination = des
+        toolBar?.alpha = 0
+        self.navigationController?.pushViewController(detailVc, animated: true)
+    }
+    
+    @objc private func pushFindMore(note: Notification){
+        let id = note.userInfo?["cellId"] as! String
+        findMoreViewController.destinations = CellModels[id]!
+        findMoreViewController.hidesBottomBarWhenPushed = true
+        toolBar?.alpha = 0
+        self.navigationController?.pushViewController(findMoreViewController, animated: true)
+    }
+}
+
 
 extension HomeViewController: LocationDelegate{
     
@@ -121,15 +151,15 @@ extension HomeViewController: LocationDelegate{
         navigationController?.view.insertSubview(toolBar!, at: 1)
 
     }
-    //MARK: 使用MJRefresh框架
+   
     fileprivate func setUpTableView(){
         destinationTableView.delegate = self
         destinationTableView.dataSource = self
         destinationTableView.separatorStyle = .none
         destinationTableView.contentInset = UIEdgeInsets(top: displayViewHeightCon.constant, left: 0, bottom: 0, right: 0)
-        
            }
     
+     //MARK: 使用MJRefresh框架
     fileprivate func setUpTableViewRefresh(){
         let header =  MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(self.refreshTableView))
         header?.setTitle("下拉刷新", for: .idle)
@@ -150,11 +180,7 @@ extension HomeViewController: LocationDelegate{
         //----->定位工具开启后会自动获取附近的位置
 //        getNearByDestinations(location: location)
     }
-    
-//    fileprivate func setUpDrawer(){
-//        modalPresentationStyle = .custom
-//        profileViewController.transitioningDelegate = animator
-//    }
+
 }
 
 //MARK:处理导航栏按钮的点击
@@ -170,38 +196,18 @@ extension HomeViewController{
     
 }
 
-//MARK:处理通知事件
-extension HomeViewController{
-    
-    fileprivate func setUpNotification(){
-        NotificationCenter.default.addObserver(self, selector: #selector(self.pushFindMoreVC(note:)), name: NSNotification.Name(rawValue: PicCollectionViewScrollNote), object: nil)
-    }
-    
-    @objc fileprivate func pushFindMoreVC(note: Notification){
-        let cellId = note.userInfo?["cellId"] as? String
-        toolBar?.alpha = 0
-        if let cellId = cellId{
-            findMoreViewController.destinations = CellModels[cellId]!
-            findMoreViewController.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(findMoreViewController, animated: true)
-            
-        }
-    }
-    
-    
-    
-}
 
 //MARK:tableView-DataSource-Delegate
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        print("tableView----\(NBdestinations.count)")
-        return CellModels.count
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DestinationCell", for: indexPath) as! DestinationCell
+        
         var cellId: String = ""
         
         if indexPath.row == 0{cellId = "NearBy"}
@@ -209,6 +215,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         if indexPath.row == 2{cellId = "Hot"}
         if indexPath.row == 3{cellId = "Others"}
         
+        if CLLocationManager.authorizationStatus().rawValue == 2 && cellId == "NearBy"{
+            cell.cellTitleLabel.text = "无法加载"
+            cell.warnLabel.isHidden = false
+            cell.setGpsOrNot = true
+        }
         
         guard let destinations = CellModels[cellId] else {
             return cell
@@ -223,10 +234,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         }else{
             cell.destinations = destinations
         }
-        
+        cell.warnLabel.isHidden = true
         cell.cellTitleLabel.text = cellTitle[indexPath.row]
         cell.cellId = cellId
-        
+        cell.setGpsOrNot = false
         cell.selectionStyle = .none
         return cell
         
@@ -247,14 +258,14 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         if height <= 64{
             height = 64
             navigationItem.title = "热门城市"
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(colorLiteralRed: 27/255, green: 166/255, blue: 197/255, alpha: 1)]
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGray]
 
         }else{
             navigationItem.title = "每周精选"
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(white: 0.9, alpha: 0.9)]
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
         
-        var alpha = 64 / height - 0.4
+        var alpha = 64 / height - 0.2
         if alpha <= 0{
             alpha = 0
         }
@@ -347,80 +358,8 @@ extension HomeViewController: UIScrollViewDelegate{
 }
 
 
-//MARK:处理抽屉效果
-extension HomeViewController{
-    
-    
-
-    
-    
-    //MARK:翻转效果
-//    @objc private func handleGesture(gesture: UIPanGestureRecognizer){
-//        
-//        let translation = gesture.translation(in: view)
-//        var progress: CGFloat = translation.x / menuWidth * (isOpening ? 1.0:-1.0)
-//        progress = min(max(progress, 0), 1)
-//        
-//        
-//        switch gesture.state {
-//        case .began:
-//            profileViewController.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: UIScreen.main.bounds.height)
-//            let isOpen = navigationController!.view.frame.origin.x / menuWidth
-//            isOpening = isOpen == 1.0 ? false:true
-//            
-//            profileViewController.view.layer.shouldRasterize = true
-//            profileViewController.view.layer.rasterizationScale = UIScreen.main.scale
-//            
-//        case .changed:
-//            setToPercent(percent: isOpening ? progress : (1.0 - progress))
-//            
-//        case .ended:
-//            
-//            var targetProgress: CGFloat
-//            if (isOpening) {
-//                targetProgress = progress < 0.5 ? 0.0 : 1.0
-//            }else {
-//                targetProgress = progress < 0.5 ? 1.0 : 0.0
-//            }
-//            
-//            UIView.animate(withDuration: 0.3, animations: { () -> Void in
-//                self.setToPercent(percent: targetProgress)
-//                }, completion: { (_) -> Void in
-//                    // 记得关闭layer的缓存渲染
-//                    self.profileViewController.view.layer.shouldRasterize = false
-//            })
-//            
-//        default:
-//            break
-//        }
-//    }
-////
-//    fileprivate func setToPercent(percent: CGFloat){
-//        navigationController?.view.frame.origin.x = menuWidth * percent
-//        
-//        profileViewController.view.alpha = max(0.2, percent)
-//        profileViewController.view.layer.transform = menuTransformPercent(percent: percent)
-//    }
-////
-//    fileprivate func menuTransformPercent(percent: CGFloat) -> CATransform3D{
-//        var identity = CATransform3DIdentity
-//        identity.m34 = -1/1000
-//        
-//        let remainingPercent = 1.0 - percent
-//        let angle = CGFloat(-M_PI_2) * remainingPercent
-//        
-//        let rotation = CATransform3DRotate(identity, angle, 0, 1, 0)
-//        let translation = CATransform3DMakeTranslation(0, 0, 0)
-//        
-//        let transform = CATransform3DConcat(rotation, translation)
-//        
-//        return transform
-//        
-//    }
-//
 
 
-}
 
 
 //MARK:获取景点
@@ -430,7 +369,7 @@ extension HomeViewController{
 //        print("getNearByDestinations----\(location)")
         
         NetWorkTool.sharedInstance.getNearbyDestination(location: location) { (error, result) in
-            if error != nil{print(error); return}
+            if error != nil{print(error);self.destinationTableView.mj_header.endRefreshing();return}
             for dict in result!{
                 let des = Destination(dict: dict)
                 self.NBdestinations.append(des)
@@ -447,7 +386,7 @@ extension HomeViewController{
     //MARK:中国热门旅游城市
     fileprivate func getChinaHotDestination(){
         NetWorkTool.sharedInstance.getHotDestination(area: .China) { (error, result) in
-            if error != nil{print(error); return}
+            if error != nil{print(error);self.destinationTableView.mj_header.endRefreshing();return}
             if let result = result{
                 for dict in result{
                     let des = Destination(dict: dict)
@@ -465,7 +404,7 @@ extension HomeViewController{
     //MARK:-热门
     fileprivate func getAsiaDestinations(){
         NetWorkTool.sharedInstance.getHotDestination(area: .Asia) { (error, result) in
-            if error != nil{print(error); return}
+            if error != nil{print(error);self.destinationTableView.mj_header.endRefreshing();return}
             if let result = result{
                 for dict in result{
                     let des = Destination(dict: dict)
@@ -482,7 +421,7 @@ extension HomeViewController{
     
     fileprivate func getEuropeDestinations(){
         NetWorkTool.sharedInstance.getHotDestination(area: .Europe) { (error, result) in
-            if error != nil{print(error); return}
+            if error != nil{print(error);self.destinationTableView.mj_header.endRefreshing();return}
             if let result = result{
                 for dict in result{
                     let des = Destination(dict: dict)

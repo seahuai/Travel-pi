@@ -85,14 +85,21 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开 启 定 位 来 获 取 周 边 信 息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pm-kN-lpV">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="oYj-tC-leM" firstAttribute="top" secondItem="NS3-mh-3Ro" secondAttribute="top" constant="3" id="5gI-JL-aIi"/>
+                                                <constraint firstItem="0pm-kN-lpV" firstAttribute="centerY" secondItem="NS3-mh-3Ro" secondAttribute="centerY" id="EnP-hz-X3L"/>
                                                 <constraint firstAttribute="bottom" secondItem="F29-cb-yy9" secondAttribute="bottom" constant="1" id="MyR-hl-COC"/>
                                                 <constraint firstItem="oYj-tC-leM" firstAttribute="leading" secondItem="NS3-mh-3Ro" secondAttribute="leading" constant="8" id="Ple-Lh-u3B"/>
                                                 <constraint firstItem="tq0-Ue-40N" firstAttribute="leading" secondItem="NS3-mh-3Ro" secondAttribute="leading" id="QYE-Ly-IUJ"/>
                                                 <constraint firstItem="tq0-Ue-40N" firstAttribute="top" secondItem="oYj-tC-leM" secondAttribute="bottom" constant="3" id="WIb-tr-Fv5"/>
+                                                <constraint firstItem="0pm-kN-lpV" firstAttribute="centerX" secondItem="NS3-mh-3Ro" secondAttribute="centerX" id="bc6-6X-RaX"/>
                                                 <constraint firstItem="F29-cb-yy9" firstAttribute="leading" secondItem="NS3-mh-3Ro" secondAttribute="leading" id="bz3-3b-DxP"/>
                                                 <constraint firstAttribute="trailing" secondItem="F29-cb-yy9" secondAttribute="trailing" id="fNE-Ap-hPW"/>
                                                 <constraint firstAttribute="trailing" secondItem="tq0-Ue-40N" secondAttribute="trailing" id="opI-cy-0Vp"/>
@@ -103,6 +110,7 @@
                                             <outlet property="cellTitleLabel" destination="oYj-tC-leM" id="iyZ-ff-alc"/>
                                             <outlet property="findMoreButton" destination="F29-cb-yy9" id="9Ff-9x-ZRi"/>
                                             <outlet property="picCollectionView" destination="tq0-Ue-40N" id="N2t-5k-Wiz"/>
+                                            <outlet property="warnLabel" destination="0pm-kN-lpV" id="v0y-Yb-uKs"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -74,7 +74,7 @@ extension MessageViewController{
 
 extension MessageViewController{
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if conversations.count == 0 { title = "暂无消息" }
+//        if conversations.count == 0 { title = "暂无消息" }
         return conversations.count
     }
     

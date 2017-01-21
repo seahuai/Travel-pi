@@ -16,7 +16,16 @@ class DestinationCell: UITableViewCell {
         didSet{picCollectionView.reloadData()} 
     }
     var cellId: String = ""
-    
+    var setGpsOrNot: Bool = false{
+        didSet{
+            if setGpsOrNot{
+                findMoreButton.setTitle("在\"设置\"->\"隐私\"->\"定位服务\"中开启", for: .normal)
+            }else{
+                findMoreButton.setTitle("发现更多", for: .normal)
+            }
+        }
+    }
+    @IBOutlet weak var warnLabel: UILabel!
     @IBOutlet weak var findMoreButton: UIButton!
     @IBOutlet weak var picCollectionView: UICollectionView!
     @IBOutlet weak var cellTitleLabel: UILabel!
@@ -78,21 +87,28 @@ extension DestinationCell: UICollectionViewDataSource{
 extension DestinationCell: UICollectionViewDelegate{
     
     @IBAction func findMoreButtonClick() {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: PicCollectionViewScrollNote), object: nil, userInfo: ["cellId": cellId])
+        if setGpsOrNot {
+            let url = URL(string: "prefs:root=LOCATION_SERVICES")
+//            UIApplication.shared.open(url!, options: , completionHandler: nil)
+            UIApplication.shared.openURL(url!)
+        }else{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: PushFindMoreVCNote), object: nil, userInfo: ["cellId": cellId])
+        }
     }
     
    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let contensizeX = picCollectionView.contentSize.width
-        if picCollectionView.contentOffset.x > (contensizeX + 50) / 2{
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: PicCollectionViewScrollNote), object: nil, userInfo: ["cellId": cellId])
+//        let contensizeX = picCollectionView.contentSize.width
+//        if picCollectionView.contentOffset.x > (contensizeX + 50) / 2{
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: PicCollectionViewScrollNote), object: nil, userInfo: ["cellId": cellId])
             //通知HomeVC
-        }
+//        }
+    
     }
 //    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: SelectePicCellNote), object: nil, userInfo: ["destination":destinations[indexPath.item]])
+    }
     
     
     

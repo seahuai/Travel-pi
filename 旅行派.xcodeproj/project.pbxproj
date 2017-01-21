@@ -69,6 +69,7 @@
 		3539EC511E0C13EC00AEF9DE /* ShareCellDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3539EC4F1E0C13EC00AEF9DE /* ShareCellDetailViewController.swift */; };
 		3539EC521E0C13EC00AEF9DE /* ShareCellDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3539EC501E0C13EC00AEF9DE /* ShareCellDetailViewController.xib */; };
 		3539EC541E0C18CE00AEF9DE /* index.css in Resources */ = {isa = PBXBuildFile; fileRef = 3539EC531E0C18CE00AEF9DE /* index.css */; };
+		353FC62C1E3365F100FA8D87 /* NearByViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FC62B1E3365F100FA8D87 /* NearByViewCell.swift */; };
 		3547305C1DCA28A900CC53EF /* PhotoBrowserAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3547305B1DCA28A900CC53EF /* PhotoBrowserAnimator.swift */; };
 		3547C4091DE94AAE0017F56B /* PlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3547C4071DE94AAE0017F56B /* PlanCell.swift */; };
 		3547C40A1DE94AAE0017F56B /* PlanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3547C4081DE94AAE0017F56B /* PlanCell.xib */; };
@@ -311,6 +312,7 @@
 		3539EC4F1E0C13EC00AEF9DE /* ShareCellDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareCellDetailViewController.swift; sourceTree = "<group>"; };
 		3539EC501E0C13EC00AEF9DE /* ShareCellDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCellDetailViewController.xib; sourceTree = "<group>"; };
 		3539EC531E0C18CE00AEF9DE /* index.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = index.css; sourceTree = "<group>"; };
+		353FC62B1E3365F100FA8D87 /* NearByViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearByViewCell.swift; sourceTree = "<group>"; };
 		3547305B1DCA28A900CC53EF /* PhotoBrowserAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserAnimator.swift; sourceTree = "<group>"; };
 		3547C4071DE94AAE0017F56B /* PlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanCell.swift; sourceTree = "<group>"; };
 		3547C4081DE94AAE0017F56B /* PlanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanCell.xib; sourceTree = "<group>"; };
@@ -824,6 +826,7 @@
 				357B63F21DBF809200859186 /* DestinationCell.swift */,
 				355604581DC227CD007C5D3C /* picCollectionCell.swift */,
 				355604591DC227CD007C5D3C /* picCollectionCell.xib */,
+				353FC62B1E3365F100FA8D87 /* NearByViewCell.swift */,
 			);
 			name = HomeCell;
 			sourceTree = "<group>";
@@ -1491,6 +1494,7 @@
 				3597DEED1DBCEC6C00A65747 /* MainViewController.swift in Sources */,
 				35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */,
 				352722431DEB271F0090DCBD /* MJRefreshBackStateFooter.m in Sources */,
+				353FC62C1E3365F100FA8D87 /* NearByViewCell.swift in Sources */,
 				351835851DD8A39500BCC6DA /* StrategyHeaderView.swift in Sources */,
 				358BEB031DE8892E000CF759 /* Activity.swift in Sources */,
 				3597DEEB1DBCEC6C00A65747 /* AppDelegate.swift in Sources */,

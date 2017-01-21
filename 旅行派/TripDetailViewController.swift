@@ -29,6 +29,7 @@ class TripDetailViewController: UITableViewController, TripDetailDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.contentOffset.y = 0
         tableView.reloadData()
     }
     

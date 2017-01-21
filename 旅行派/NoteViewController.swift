@@ -30,7 +30,7 @@ class NoteViewController: UIViewController {
         
         if oldDestination == nil || initial || (destination!.name != oldDestination!.name){
             getNote(id: destination!.district_id)
-            print("reloadNotes")
+            shareVc?.shareTableView.contentOffset.y = 0
         }
     }
 }

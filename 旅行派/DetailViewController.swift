@@ -40,6 +40,8 @@ class DetailViewController: UIViewController {
         titlesButtonClick(button: titlesButton[0])
     }
     
+    
+    
     @IBAction func backButtonClick(_ sender: UIButton) {
         if isPresented{
             dismiss(animated: true, completion: nil)

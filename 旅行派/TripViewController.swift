@@ -43,6 +43,7 @@ class TripViewController: UIViewController {
             }
             nameLabel.text = destination?.name
             name_enLabel.text = destination?.name_en
+            tableView.contentOffset.y = 0
         }
     }
 }

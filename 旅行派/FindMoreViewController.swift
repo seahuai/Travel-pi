@@ -26,7 +26,6 @@ class FindMoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUp()
         setUpNavigationBar()
         setUpTableView()
     }
@@ -46,16 +45,12 @@ class FindMoreViewController: UIViewController {
 
 extension FindMoreViewController{
     
-    fileprivate func setUp(){
-        self.modalPresentationStyle = .custom
-        let swipeGes = UISwipeGestureRecognizer(target: self, action: #selector(self.back))
-        swipeGes.direction = .right
-        view.addGestureRecognizer(swipeGes)
-    }
+   
     
     fileprivate func setUpNavigationBar(){
-        let leftBarButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(self.back))
-        navigationItem.leftBarButtonItem = leftBarButton
+//        let leftBarButton = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(self.back))
+//        navigationItem.leftBarButtonItem = leftBarButton
+        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: nil, action: nil)
     }
     
     fileprivate func setUpTableView(){
@@ -65,10 +60,7 @@ extension FindMoreViewController{
         FindMoreTableView.separatorStyle = .none
     }
     
-    @objc private func back(){
-//        dismiss(animated: true) {}
-        _ = navigationController?.popViewController(animated: true)
-    }
+
 }
 
 extension FindMoreViewController: UITableViewDataSource, UITableViewDelegate{

@@ -8,5 +8,5 @@
 
 let SelectePicCellNote = "SelectePicCellNote"
 
-let PicCollectionViewScrollNote = "PicCollectionViewScrollNote"
+let PushFindMoreVCNote = "PushFindMoreVCNote"
 
