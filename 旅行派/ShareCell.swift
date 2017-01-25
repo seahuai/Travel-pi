@@ -149,7 +149,7 @@ extension ShareCell{
 //        let withinSize = CGSize(width: UIScreen.main.bounds.width - 30, height: CGFloat(MAXFLOAT))
 //        let size = str.boundingRect(with: withinSize, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: attributes, context: nil)
         
-        let labelHeight = getLabelSize(FontSize: 14, text: text)
+        let labelHeight = getLabelSize(FontSize: 15, text: text)
         let cellHeight = 500 + labelHeight - 75
         descripationLabelHeightCon.constant = labelHeight + 10
         

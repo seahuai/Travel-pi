@@ -7,11 +7,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--游记-->
+        <!--分享-->
         <scene sceneID="GYW-ph-UJx">
             <objects>
                 <navigationController id="bCO-qv-Rca" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="游记" image="tab_share" id="ejZ-4G-nR9"/>
+                    <tabBarItem key="tabBarItem" title="分享" image="tab_share" id="ejZ-4G-nR9"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vWJ-1u-XVD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

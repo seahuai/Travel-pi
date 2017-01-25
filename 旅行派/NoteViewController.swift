@@ -29,7 +29,9 @@ class NoteViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if oldDestination == nil || initial || (destination!.name != oldDestination!.name){
-            getNote(id: destination!.district_id)
+//            getNote(id: destination!.district_id)
+            print(destination!.district_id)
+            shareVc?.id = destination!.district_id
             shareVc?.shareTableView.contentOffset.y = 0
         }
     }
@@ -44,23 +46,23 @@ extension NoteViewController{
         view.addSubview(shareVc!.view)
     }
     
-    fileprivate func getNote(id: Int){
-        NetWorkTool.sharedInstance.getTravelNotes(district_id: id) { (error, result) in
-            if error != nil{print(error); return}
-            var notes: [TravelNote] = [TravelNote]()
-            if let result = result{
-                for dict in result{
-                    let note = TravelNote(dict: dict)
-                    notes.append(note)
-                }
-                self.shareVc?.notes.removeAll()
-                self.shareVc?.notes = notes
-            }
-//            print(notes.count)
-            self.shareVc?.shareTableView.reloadData()
-            self.initial = false
-        }
-    }
+//    fileprivate func getNote(id: Int){
+//        NetWorkTool.sharedInstance.getTravelNotes(district_id: id) { (error, result) in
+//            if error != nil{print(error); return}
+//            var notes: [TravelNote] = [TravelNote]()
+//            if let result = result{
+//                for dict in result{
+//                    let note = TravelNote(dict: dict)
+//                    notes.append(note)
+//                }
+//                self.shareVc?.notes.removeAll()
+//                self.shareVc?.notes = notes
+//            }
+////            print(notes.count)
+//            self.shareVc?.shareTableView.reloadData()
+//            self.initial = false
+//        }
+//    }
     
     
 }

@@ -12,7 +12,7 @@ class CityListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 //    fileprivate var historyDes: [Destination] = [Destination]()
-    fileprivate let sectionsName: [String] = ["猜你喜欢","热门地区", "其它", "当前位置"]
+    fileprivate let sectionsName: [String] = ["猜你喜欢", "热门地区", "其它", "当前位置"]
     //MARK:地理编码
 //    fileprivate lazy var geoSearcher: BMKGeoCodeSearch = {
 //        let geo = BMKGeoCodeSearch()
@@ -22,7 +22,7 @@ class CityListViewController: UIViewController {
         let service = BMKLocationService()
         return service
     }()
-    fileprivate var currentDes: Destination?
+    fileprivate var currentDes: Destination = Destination(dict: [String: AnyObject]())
 //    fileprivate var address: String?{
 //        didSet{
 //            collectionView.reloadSections([0])
@@ -62,10 +62,9 @@ extension CityListViewController: BMKGeoCodeSearchDelegate, BMKLocationServiceDe
 //            option.reverseGeoPoint = coordinate
 //            geoSearcher.reverseGeoCode(option)
             let c = userLocation.location.coordinate
-            currentDes = Destination(dict: [String: AnyObject]())
-            currentDes?.lat = c.latitude
-            currentDes?.lng = c.longitude
-            currentDes?.name = "当前位置"
+            currentDes.lat = c.latitude
+            currentDes.lng = c.longitude
+            currentDes.name = "当前位置"
             collectionView.reloadSections([3])
             locationService.stopUserLocationService()
         }
@@ -83,11 +82,16 @@ extension CityListViewController: UICollectionViewDataSource, UICollectionViewDe
     
     fileprivate func setUpLayout() -> UICollectionViewFlowLayout{
         let layout = UICollectionViewFlowLayout()
-        let viewW = view.bounds.size.width
-        let space: CGFloat = 10
-        let width = (viewW - 5 * space) / 4
+//        let viewW = view.bounds.size.width
+        let viewW = UIScreen.main.bounds.width
+        let space: CGFloat = 5
+        let width = (viewW - 2 * space) / 3
+//        print("wifth:\(width) viewW:\(viewW)")
         layout.itemSize = CGSize(width: width, height: 25)
+        print(layout.itemSize)
         layout.headerReferenceSize = CGSize(width: viewW, height: 40)
+        layout.minimumInteritemSpacing = space
+        layout.minimumLineSpacing = space
         return layout
     }
     
@@ -118,6 +122,9 @@ extension CityListViewController: UICollectionViewDataSource, UICollectionViewDe
             destination = CityList.sharedInstance.otherDestination[indexPath.item]
         }
         if indexPath.section == 3{
+            if CLLocationManager.authorizationStatus() == .denied {
+               currentDes.name = "无法获取"
+            }
             destination = currentDes
         }
         cell.id = destination == nil ? 0 : destination!.id
@@ -137,7 +144,10 @@ extension CityListViewController: UICollectionViewDataSource, UICollectionViewDe
             }
             let label = UILabel()
             label.text = sectionsName[indexPath.section]
-            label.frame = CGRect(x: 10, y: 10, width: 100, height: 20)
+            if CityList.sharedInstance.nearDestination.isEmpty && indexPath.section == 0{
+                label.text = "猜你喜欢(无法获取,开启定位后重试)"
+            }
+            label.frame = CGRect(x: 10, y: 10, width: collectionView.bounds.width, height: 20)
             label.textColor = UIColor.lightGray
             label.font = UIFont.systemFont(ofSize: 14)
             reuseView.addSubview(label)

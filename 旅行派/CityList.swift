@@ -17,21 +17,21 @@ class CityList: NSObject {
     
     func addObject(china: [Destination]){
         chinaDestination = china
-        print("china:\(chinaDestination.count)")
+//        print("china:\(chinaDestination.count)")
     }
     
     func addObject(hot: [Destination]){
         hotDestination = hot
-        print("hot:\(hotDestination.count)")
+//        print("hot:\(hotDestination.count)")
     }
     
     func addObject(near: [Destination]){
         nearDestination = near
-        print("near:\(nearDestination.count)")
+//        print("near:\(nearDestination.count)")
     }
     
     func addObject(other: [Destination]){
         otherDestination = other
-        print("other:\(otherDestination.count)")
+//        print("other:\(otherDestination.count)")
     }
 }

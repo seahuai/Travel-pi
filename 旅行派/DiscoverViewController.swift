@@ -23,7 +23,7 @@ class DiscoverViewController: UIViewController {
     
     //MARK:控制器
     fileprivate lazy var nearByVC: NearbyViewController = NearbyViewController()
-    fileprivate lazy var strategyVC: StrategyViewController = StrategyViewController()
+//    fileprivate lazy var strategyVC: StrategyViewController = StrategyViewController()
     fileprivate lazy var cityListVC: CityListViewController = CityListViewController()
     fileprivate var currentVC: UIViewController?
     override func viewDidLoad() {
@@ -49,7 +49,19 @@ extension DiscoverViewController{
 //        let des = note.userInfo!["destination"] as! Destination
         let cityName = note.userInfo!["cityName"] as! String
         let coordinate = note.userInfo!["coordinate"] as! CLLocationCoordinate2D
-        let alertController = UIAlertController(title: "将当前城市切换为", message: "\(cityName)", preferredStyle: .alert)
+        if cityName == "无法获取"
+        {
+            let alertController = UIAlertController(title: "无法定位到当前位置", message: "请打开定位服务后重试", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "确定", style: .default) { (_) in
+                alertController.dismiss(animated: true, completion: nil)
+            }
+            alertController.addAction(okAction)
+            dismiss(animated: true) {
+                self.present(alertController, animated: true, completion: nil)
+            }
+            return
+        }
+        let alertController = UIAlertController(title: "切换至", message: "\"\(cityName)\"", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "确定", style: .default) { (_) in
             self.nearByVC.coordinate = coordinate
         }
@@ -67,18 +79,16 @@ extension DiscoverViewController{
     
     fileprivate func setUpChildViewController(){
         addChildViewController(nearByVC)
-        addChildViewController(strategyVC)
-        strategyVC.view.frame = scrollView.bounds
-        strategyVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.width, y: 0)
+//        addChildViewController(strategyVC)
+//        strategyVC.view.frame = scrollView.bounds
+//        strategyVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.width, y: 0)
         
         currentVC = nearByVC
         nearByVC.view.frame = scrollView.bounds
         nearByVC.view.frame.origin = CGPoint(x: 0, y: 0)
         scrollView.addSubview(nearByVC.view)
-        scrollView.addSubview(strategyVC.view)
+//        scrollView.addSubview(strategyVC.view)
         
-        nearByVC.delegate = self
-        strategyVC.delegate = self
     }
     
     fileprivate func setUpScrollView(){
@@ -105,7 +115,7 @@ extension DiscoverViewController{
     
     @IBAction func toolViewButtonClick(_ sender: UIButton) {
         
-        if (sender.tag == 1 && currentVC == nearByVC) || (sender.tag == 2 && currentVC == strategyVC){
+        if (sender.tag == 1 && currentVC == nearByVC){
             return
         }
         
@@ -120,16 +130,16 @@ extension DiscoverViewController{
             })
         }
         
-        if sender.tag == 2{
-            sender.isSelected = true
-            nearByButton.isSelected = false
-            transition(from: currentVC!, to: strategyVC, duration: 0.5, options: .curveEaseInOut, animations: {
+//        if sender.tag == 2{
+//            sender.isSelected = true
+//            nearByButton.isSelected = false
+//            transition(from: currentVC!, to: strategyVC, duration: 0.5, options: .curveEaseInOut, animations: {
+////                    self.scrollView.contentOffset.x = UIScreen.main.bounds.width
+//                }, completion: { (_) in
+//                self.currentVC = self.strategyVC
 //                    self.scrollView.contentOffset.x = UIScreen.main.bounds.width
-                }, completion: { (_) in
-                self.currentVC = self.strategyVC
-                    self.scrollView.contentOffset.x = UIScreen.main.bounds.width
-            })
-        }
+//            })
+//        }
         strategyButton.backgroundColor = !strategyButton.isSelected ? UIColor.groupTableViewBackground : UIColor.clear
         nearByButton.backgroundColor = !nearByButton.isSelected ? UIColor.groupTableViewBackground : UIColor.clear
     }
@@ -139,46 +149,4 @@ extension DiscoverViewController{
     }
     
 }
-
-
-
-//MARK:子控制器的代理
-extension DiscoverViewController: NearByTableViewDelegate, StrategyTableViewDelegate{
-    
-    fileprivate func hideTabBar(isHidden: Bool){
-        let y: CGFloat = isHidden ? UIScreen.main.bounds.height + 49 : UIScreen.main.bounds.height - 49
-        UIView.animate(withDuration: 0.5) {
-            self.tabBarController?.tabBar.frame.origin.y = y
-        }
-    }
-    
-    
-    func naerByTableView(upOrNot: Bool) {
-        hideTabBar(isHidden: upOrNot)
-    }
-    
-    func nearByTableView(offset: CGFloat) {
-
-    }
-    
-    func strategyTableView(offset: CGFloat) {
-
-    }
-    
-    private func handleNavigationBar(offset: CGFloat){
-        scrollView.contentOffset.x = self.currentVC == self.strategyVC ? UIScreen.main.bounds.width : 0
-
-        var h = offset < 0 ? 44 : 44 - offset
-        if h < 0 {
-            h = 0
-            isBarHidden = true
-            navigationController?.navigationBar.alpha = 0
-        }else{
-            isBarHidden = false
-            navigationController?.navigationBar.alpha = 1
-        }
-        navigationController?.navigationBar.bounds.size.height = h
-    }
-}
-
 

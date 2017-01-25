@@ -7,17 +7,19 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class ShareViewController: UIViewController {
     @IBOutlet weak var shareTableView: UITableView!
-//    @IBOutlet weak var toolScrollView: UIScrollView!
-//    fileprivate lazy var profileVC: ProfileViewController = ProfileViewController()
     fileprivate lazy var PhotoBrowserVC: PhotoBrowserViewController = PhotoBrowserViewController()
     fileprivate lazy var photoBrowserAnimator: PhotoBrowserAnimator = PhotoBrowserAnimator()
     fileprivate lazy var ShareDetailVC: ShareCellDetailViewController = ShareCellDetailViewController()
-    var toolBarModels: [ShareToolModel] = [ShareToolModel]()
     var notes: [TravelNote] = [TravelNote]()
-    
+    var id: Int = 0{
+        didSet{
+            print("share:\(id)")
+            shareTableView.mj_header.beginRefreshing()
+        }
+    }
     //记录展开全文的行号
     fileprivate var row: Int = 0
     override func viewDidLoad() {
@@ -67,7 +69,7 @@ extension ShareViewController{
     }
     
     @objc private func refreshTableView(){
-        getTravelNotes()
+        getNote(id: id)
     }
     
     fileprivate func setUpNotification(){
@@ -146,18 +148,40 @@ extension ShareViewController: ShareCellImageDelegate{
 }
 extension ShareViewController{
     
-    fileprivate func getTravelNotes(){
-        NetWorkTool.sharedInstance.getTravelNotes() { (error, result) in
-            if error != nil{print(error); return}
+//    fileprivate func getTravelNotes(){
+//        NetWorkTool.sharedInstance.getTravelNotes() { (error, result) in
+//            if error != nil{print(error); return}
+//            self.notes.removeAll()
+//            if let result = result{
+//                for dict in result{
+//                    let note = TravelNote(dict: dict["activity"] as! [String: AnyObject])
+//                    self.notes.append(note)
+//                }
+//            }
+//            self.shareTableView.reloadData()
+//            self.shareTableView.mj_header.endRefreshing()
+//        }
+//    }
+    
+    fileprivate func getNote(id: Int){
+        NetWorkTool.sharedInstance.getTravelNotes(district_id: id) { (error, result) in
+            if error != nil{
+                print(error)
+                SVProgressHUD.showError(withStatus: "网络错误")
+                SVProgressHUD.dismiss(withDelay: 0.5)
+                self.shareTableView.mj_header.endRefreshing()
+                return
+            }
             self.notes.removeAll()
             if let result = result{
                 for dict in result{
-                    let note = TravelNote(dict: dict["activity"] as! [String: AnyObject])
+                    let note = TravelNote(dict: dict)
                     self.notes.append(note)
                 }
             }
-            self.shareTableView.reloadData()
+            //            print(notes.count)
             self.shareTableView.mj_header.endRefreshing()
+            self.shareTableView.reloadData()
         }
     }
 }

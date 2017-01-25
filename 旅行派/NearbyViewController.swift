@@ -8,15 +8,11 @@
 
 import UIKit
 
-protocol NearByTableViewDelegate {
-    func nearByTableView(offset: CGFloat)
-    func naerByTableView(upOrNot: Bool)
-}
 
 class NearbyViewController: UIViewController {
 
     //代理属性
-    var delegate: NearByTableViewDelegate?
+//    var delegate: NearByTableViewDelegate?
     
     fileprivate var hisOffsetY: CGFloat = 0
     
@@ -66,6 +62,7 @@ class NearbyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
+        automaticallyAdjustsScrollViewInsets = false
         setUpTableView()
         setUpMapView()
 
@@ -92,7 +89,7 @@ extension NearbyViewController{
     fileprivate func setUpTableView(){
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.contentInset = UIEdgeInsets(top: baiduMapView.frame.maxY - 44, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: baiduMapView.frame.maxY, left: 0, bottom: 0, right: 0)
         tableView.register(SectionOneCell.self, forCellReuseIdentifier: "SectionOneCell")
         tableView.register(UINib(nibName: "SectionTwoCell", bundle: nil), forCellReuseIdentifier: "SectionTwoCell")
     }
@@ -104,7 +101,7 @@ extension NearbyViewController{
 //MARK:通知相关
 extension NearbyViewController{
 }
-
+//MARK:代理
 extension NearbyViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? 200: 60
@@ -135,26 +132,36 @@ extension NearbyViewController: UITableViewDataSource, UITableViewDelegate{
         }
     }
     
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset.y
-        let distance: CGFloat = 100
-        delegate?.nearByTableView(offset: offset - distance)
+        if scrollView.contentOffset.y == 0 {
+            tabBarAnimation(hiding: false)
+        }else if Int(scrollView.contentOffset.y) == 23{
+            tabBarAnimation(hiding: true)
+        }
+       
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let dis:CGFloat = 20
+        let dis:CGFloat = 10
         let targetY: CGFloat = targetContentOffset.pointee.y
+        //隐藏
         if hisOffsetY + dis < targetY{
-            delegate?.naerByTableView(upOrNot: true)
+            tabBarAnimation(hiding: true)
         }
+        //显示
         if hisOffsetY + dis > targetY{
-            delegate?.naerByTableView(upOrNot: false)
+            tabBarAnimation(hiding: false)
         }
         hisOffsetY = targetContentOffset.pointee.y
     }
+    
+    fileprivate func tabBarAnimation(hiding: Bool){
+        UIView.animate(withDuration: 0.3, animations: {
+            self.tabBarController?.tabBar.frame.origin.y = hiding ? UIScreen.main.bounds.height : UIScreen.main.bounds.height - 49
+        })
+    }
 }
-//MARK:代理
+//MARK:点击tip代理
 extension NearbyViewController: TipCollectionViewDelegate{
     func didSelect(tip: String) {
         if nearLoaction == nil{print("获取当前位置中")}
@@ -177,7 +184,7 @@ extension NearbyViewController: BMKMapViewDelegate, BMKLocationServiceDelegate, 
     }
     
     func mapView(_ mapView: BMKMapView!, didSelect view: BMKAnnotationView!) {
-        print(view.annotation.title!())
+//        print(view.annotation.title!())
     }
     //MARK:个人定位代理
     func didUpdate(_ userLocation: BMKUserLocation!) {
@@ -205,10 +212,13 @@ extension NearbyViewController: BMKMapViewDelegate, BMKLocationServiceDelegate, 
         }else{
             poiInfos.removeAll()
             isFound = false
-            print("检索失败")
+            
         }
+        //MARK:搜索成功后刷新tableView
         tableView.reloadSections([1], with: .none)
-        if isFound{ tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true) }
+        if isFound{
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
+        }
     }
        
     func mapView(_ mapView: BMKMapView!, viewFor annotation: BMKAnnotation!) -> BMKAnnotationView! {
@@ -233,7 +243,7 @@ extension NearbyViewController: BMKMapViewDelegate, BMKLocationServiceDelegate, 
         let option = BMKNearbySearchOption()
         option.location = coordinate
         option.keyword = keyword
-        option.pageCapacity = 10
+        option.pageCapacity = 20
         poiSearcher.poiSearchNear(by: option)
     }
     
