@@ -16,6 +16,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="HYR-zr-vRL" kind="relationship" relationship="viewControllers" id="5Sc-5R-F5g"/>
+                        <segue destination="0bI-dz-whi" kind="relationship" relationship="viewControllers" id="rxE-GY-MgJ"/>
                         <segue destination="nDv-Ug-BkG" kind="relationship" relationship="viewControllers" id="3Dc-3K-ErJ"/>
                         <segue destination="t7s-mb-eKD" kind="relationship" relationship="viewControllers" id="fKI-r2-zMp"/>
                     </connections>
@@ -63,6 +64,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOT-jc-2Dp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-386" y="216"/>
+        </scene>
+        <!--FriendsCircleViewController-->
+        <scene sceneID="SaX-yi-OeZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FriendsCircleViewController" id="0bI-dz-whi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="rKV-Fs-7UN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nNp-yq-80g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1623" y="484"/>
         </scene>
     </scenes>
 </document>
