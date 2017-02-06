@@ -48,13 +48,13 @@ extension FriendCommentCell{
             let fromRange = NSRange(location: 0, length: fromLength)
             let toRange = NSRange(location: fromLength + spaceLength, length: toLength)
             
-            attStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.blue, range: fromRange)
-            attStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: toRange)
+            attStr.addAttribute(NSForegroundColorAttributeName, value: globalColor, range: fromRange)
+            attStr.addAttribute(NSForegroundColorAttributeName, value: globalColor, range: toRange)
         }else{
             let index = text.range(of: ":")!.lowerBound
             let length = stringLength(text: text.substring(to: index))
             let range = NSRange(location: 0, length: length)
-            attStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.blue, range: range)
+            attStr.addAttribute(NSForegroundColorAttributeName, value: globalColor, range: range)
         }
         
         commentLabel.attributedText = attStr

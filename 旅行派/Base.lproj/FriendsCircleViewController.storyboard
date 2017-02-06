@@ -85,7 +85,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DEv-r7-yaB"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DEv-r7-yaB"/>
                                                                 </subviews>
                                                             </view>
                                                             <constraints>
@@ -100,7 +100,7 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26I-Ro-oJc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26I-Ro-oJc">
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -134,8 +134,8 @@
                                             <outlet property="commentsHeightCon" destination="u3m-8i-WgR" id="eo9-oz-h7J"/>
                                             <outlet property="commentsTableView" destination="FGg-cP-BFc" id="RiX-iM-eMZ"/>
                                             <outlet property="contentLabel" destination="26I-Ro-oJc" id="Dpo-6a-TSl"/>
-                                            <outlet property="imgsViewHeightCon" destination="DlO-in-Acm" id="4Bq-ZK-0bk"/>
-                                            <outlet property="imgsViewWidthCon" destination="uDU-A3-D83" id="ZkU-cU-WCD"/>
+                                            <outlet property="imgsViewHeightCon" destination="uDU-A3-D83" id="HQd-7z-rR0"/>
+                                            <outlet property="imgsViewWidthCon" destination="DlO-in-Acm" id="y4t-8q-Se9"/>
                                             <outlet property="nameLabel" destination="eUr-yB-kQn" id="14e-n7-A34"/>
                                             <outlet property="picCollectionView" destination="ejL-M7-q1A" id="VPC-au-LW7"/>
                                         </connections>

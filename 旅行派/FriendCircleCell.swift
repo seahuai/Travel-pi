@@ -19,8 +19,8 @@ class FriendCircleCell: UITableViewCell {
     @IBOutlet weak var picCollectionView: ImagesCollectionView!
     @IBOutlet weak var commentsTableView: CommentsTableView!
     
-    @IBOutlet weak var imgsViewWidthCon: NSLayoutConstraint!
     @IBOutlet weak var imgsViewHeightCon: NSLayoutConstraint!
+    @IBOutlet weak var imgsViewWidthCon: NSLayoutConstraint!
     
     @IBOutlet weak var commentsHeightCon: NSLayoutConstraint!
     
@@ -75,11 +75,12 @@ extension FriendCircleCell{
         let imageViewWH = (nameLabel.frame.width - 2 * itemDistance - 2 * edgeDistance) / 3
         let itemLayout = picCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         if count == 1 {//当只有1张图片时，从缓存中取出图片，将size设置为图片的尺寸
-            
-            
-            
-            return CGSize.zero
-            
+            let urlStr = friendCircleModel?.imgUrls.first?.absoluteString
+            if let image = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: urlStr){
+                let ratio: CGFloat = 0.5
+                itemLayout.itemSize = CGSize(width: image.size.width * ratio, height: image.size.height * ratio)
+            }
+            return itemLayout.itemSize
         }
         itemLayout.itemSize = CGSize(width: imageViewWH, height: imageViewWH)
         if count == 4 {//当有4张图片时，将size设置为四宫格

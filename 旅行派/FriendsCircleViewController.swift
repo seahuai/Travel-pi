@@ -20,11 +20,7 @@ class FriendsCircleViewController: UIViewController {
     fileprivate var originalPoint: CGPoint = CGPoint()
     fileprivate lazy var titleLabel = UILabel()
     
-    fileprivate var models: [FriendCircle] = [FriendCircle](){
-        didSet{
-            tableView.reloadData()
-        }
-    }
+    fileprivate var models: [FriendCircle] = [FriendCircle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,11 +65,10 @@ extension FriendsCircleViewController: UITableViewDataSource, UITableViewDelegat
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsets(top: backgroundViewHeightCon.constant - 64, left: 0, bottom: 0, right: 0)
         tableView.showsVerticalScrollIndicator = false
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLineEtched
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print(models[indexPath.row].cellHeight)
         return models[indexPath.row].cellHeight
     }
     
@@ -84,6 +79,7 @@ extension FriendsCircleViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCircleCell", for: indexPath) as! FriendCircleCell
         cell.friendCircleModel = models[indexPath.row]
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -111,34 +107,33 @@ extension FriendsCircleViewController{
     fileprivate func getFriendCircle(){
         let path = Bundle.main.path(forResource: "CircleModel", ofType: "plist")
         let arr = NSArray(contentsOfFile: path!)
-        var models: [FriendCircle] = [FriendCircle]()
         for a in arr!{
             let dict = a as! [String: AnyObject]
             let model = FriendCircle(dict: dict)
-//            models.append(model)
             self.models.append(model)
         }
         
-//        downloadImage(models: models)
+        downloadImage(models: models)
     }
     
-//    private func downloadImage(models: [FriendCircle]){
-//        
-//        let group = DispatchGroup()
-//        
-//        for model in models{
-//            for url in model.imgUrls{
-//                group.enter()
-//                SDWebImageManager.shared().downloadImage(with: url, options: [], progress: nil, completed: { (_, _, _, _, _) in
-//                    print("downloadCompleted")
-//                    group.leave()
-//                })
-//            }
-//        }
-//        group.notify(queue: DispatchQueue.main) { 
-//            self.tableView.reloadData()
-//        }
-//    }
+    private func downloadImage(models: [FriendCircle]){
+        
+        let group = DispatchGroup()
+        
+        for model in models{
+            for url in model.imgUrls{
+                group.enter()
+                SDWebImageManager.shared().downloadImage(with: url, options: [], progress: nil, completed: { (_, error, _, _, _) in
+                    if error != nil {print("网络情况不佳")}
+                    group.leave()
+                })
+               
+            }
+        }
+        group.notify(queue: DispatchQueue.main) { 
+            self.tableView.reloadData()
+        }
+    }
 
 }
 
