@@ -133,11 +133,12 @@ extension FriendsCircleViewController: commentDelegate{
         let text = commentTextField.text
         if text == nil { SVProgressHUD.showInfo(withStatus: "评论不能为空"); SVProgressHUD.dismiss(withDelay: 0.5) ;return}
         let comment = Comment(from: user!, to: nil, content: text!)
+        print("commenth: \(comment.cellHeight)")
         models[currentCommentRow].comments.append(comment)
-        models[currentCommentRow].cellHeight += commentH
+        models[currentCommentRow].cellHeight += comment.cellHeight
         commentTextField.resignFirstResponder()
         commentTextField.text = nil
-        tableView.reloadRows(at: [IndexPath(row: currentCommentRow, section: 0)], with: .bottom)
+        tableView.reloadRows(at: [IndexPath(row: currentCommentRow, section: 0)], with: .none)
     }
 }
 

@@ -13,7 +13,7 @@ protocol commentDelegate {
     func comment(to: String, maxY: CGFloat, row: Int)
 }
 
-var commentH: CGFloat = 15
+//var commentH: CGFloat = 15
 
 class FriendCircleCell: UITableViewCell {
 
@@ -55,7 +55,11 @@ class FriendCircleCell: UITableViewCell {
             if commentsCount == 0{
                 commentsHeightCon.constant = 0
             }else{
-                commentsHeightCon.constant = CGFloat(commentsCount) * commentH
+                var h: CGFloat = 0
+                for com in friendCircleModel!.comments{
+                    h += com.cellHeight
+                }
+                commentsHeightCon.constant = h
             }
             favoriteButton.isSelected = friendCircleModel!.isFavorite
             

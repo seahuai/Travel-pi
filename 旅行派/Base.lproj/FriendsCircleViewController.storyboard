@@ -223,7 +223,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h09-O4-XN4">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="Q7q-sF-PMA"/>
+                                            <constraint firstAttribute="width" constant="60" id="Q7q-sF-PMA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="发送"/>
@@ -233,14 +233,14 @@
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zPP-E3-3ZB">
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="05K-6o-rVr"/>
-                                    <constraint firstItem="h09-O4-XN4" firstAttribute="leading" secondItem="zPP-E3-3ZB" secondAttribute="trailing" constant="8" id="AGG-uF-3hk"/>
+                                    <constraint firstItem="h09-O4-XN4" firstAttribute="leading" secondItem="zPP-E3-3ZB" secondAttribute="trailing" id="AGG-uF-3hk"/>
                                     <constraint firstItem="zPP-E3-3ZB" firstAttribute="leading" secondItem="gxJ-Uj-m6j" secondAttribute="leading" constant="5" id="IsZ-la-FTW"/>
                                     <constraint firstItem="h09-O4-XN4" firstAttribute="top" secondItem="gxJ-Uj-m6j" secondAttribute="top" id="KKr-Qz-re4"/>
                                     <constraint firstItem="zPP-E3-3ZB" firstAttribute="top" secondItem="gxJ-Uj-m6j" secondAttribute="top" constant="5" id="Mf5-LN-9Yz"/>
