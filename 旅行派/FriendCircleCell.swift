@@ -9,6 +9,10 @@
 import UIKit
 import SDWebImage
 
+protocol commentDelegate {
+    func comment(to: String, maxY: CGFloat, row: Int)
+}
+
 var commentH: CGFloat = 15
 
 class FriendCircleCell: UITableViewCell {
@@ -24,9 +28,14 @@ class FriendCircleCell: UITableViewCell {
     
     @IBOutlet weak var commentsHeightCon: NSLayoutConstraint!
     
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
     
+    var commentDelegate: commentDelegate?
+    var row: Int = 0
     override func awakeFromNib() {
         super.awakeFromNib()
+        setUpButtonTarget()
     }
     
     var friendCircleModel: FriendCircle?{
@@ -48,6 +57,7 @@ class FriendCircleCell: UITableViewCell {
             }else{
                 commentsHeightCon.constant = CGFloat(commentsCount) * commentH
             }
+            favoriteButton.isSelected = friendCircleModel!.isFavorite
             
             var cellHeight: CGFloat = -1
 //            print("cellHeight = \(cellHeight)")
@@ -90,6 +100,23 @@ extension FriendCircleCell{
         let rows = (count - 1) / 3 + 1
         return CGSize(width: imageViewWH * 3 + 2 * itemDistance, height: imageViewWH * CGFloat(rows) + CGFloat(rows - 1) * itemDistance )
         
+    }
+}
+
+//MARK:按钮
+extension FriendCircleCell{
+    fileprivate func setUpButtonTarget(){
+        commentButton.addTarget(self, action: #selector(self.comment), for: .touchUpInside)
+        favoriteButton.addTarget(self, action: #selector(self.favorite), for: .touchUpInside)
+    }
+    
+    @objc private func comment(){
+        commentDelegate?.comment(to: friendCircleModel!.user!, maxY: self.frame.maxY, row: row)
+    }
+    
+    @objc private func favorite(){
+        favoriteButton.isSelected = !favoriteButton.isSelected
+        friendCircleModel?.isFavorite = favoriteButton.isSelected
     }
 }
 

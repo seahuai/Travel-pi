@@ -17,24 +17,7 @@
 			<string>http://wx3.sinaimg.cn/mw690/bde8475dly1fc0nfk0z36j21f01f0h4e.jpg</string>
 		</array>
 		<key>comments</key>
-		<array>
-			<dict>
-				<key>from</key>
-				<string>zhangsihuai</string>
-				<key>to</key>
-				<string></string>
-				<key>content</key>
-				<string>这是一条评论</string>
-			</dict>
-			<dict>
-				<key>from</key>
-				<string>kobe</string>
-				<key>to</key>
-				<string>zhangsihuai</string>
-				<key>content</key>
-				<string>这是一条回复</string>
-			</dict>
-		</array>
+		<array/>
 	</dict>
 	<dict>
 		<key>user</key>

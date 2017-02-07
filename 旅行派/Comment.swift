@@ -13,6 +13,12 @@ class Comment: NSObject {
     var to: String?
     var content: String = ""
     
+    init(from: String, to: String?, content: String){
+        self.from = from
+        self.to = to
+        self.content = content
+    }
+    
     init(dict: [String: AnyObject]) {
         super.init()
         setValuesForKeys(dict)

@@ -10,6 +10,7 @@ import UIKit
 
 class FriendCircle: NSObject {
     
+    var isFavorite: Bool = false
     var cellHeight: CGFloat = 0
     var user: String?
     var avator: URL?
