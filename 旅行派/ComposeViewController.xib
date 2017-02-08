@@ -2,11 +2,16 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComposeViewController" customModule="旅行派" customModuleProvider="target">
             <connections>
+                <outlet property="composeToolViewBottomCon" destination="04g-Or-YSG" id="i36-q6-REi"/>
+                <outlet property="pickPictureViewHeight" destination="DZ2-hN-lrt" id="pBL-2n-NhM"/>
+                <outlet property="placeholderLable" destination="lNo-Xc-Nqw" id="3hK-VN-Wer"/>
+                <outlet property="textView" destination="xiA-W0-LNl" id="0cU-re-8H1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,20 +20,79 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xiA-W0-LNl">
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xiA-W0-LNl">
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZHX-Xe-anh" customClass="PickPictureView" customModule="旅行派" customModuleProvider="target">
+                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="DZ2-hN-lrt"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qva-U0-5kn">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请在此输入..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNo-Xc-Nqw">
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mUt-Ln-72a">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hon-tS-8l9">
+                            <inset key="imageEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                            <state key="normal" image="picture"/>
+                            <connections>
+                                <action selector="chooseImageButtonClick:" destination="-1" eventType="touchUpInside" id="y1V-72-zRZ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6uC-Xv-30j">
+                            <state key="normal" image="keyboardbutton"/>
+                            <connections>
+                                <action selector="changeKeyboradButtonClick:" destination="-1" eventType="touchUpInside" id="b6p-2g-EUA"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="6uC-Xv-30j" firstAttribute="top" secondItem="mUt-Ln-72a" secondAttribute="top" id="2cB-xt-G9V"/>
+                        <constraint firstAttribute="height" constant="44" id="41N-6A-BWt"/>
+                        <constraint firstItem="6uC-Xv-30j" firstAttribute="width" secondItem="hon-tS-8l9" secondAttribute="width" id="Fdh-vW-vV9"/>
+                        <constraint firstAttribute="bottom" secondItem="hon-tS-8l9" secondAttribute="bottom" id="PAu-H2-Hdb"/>
+                        <constraint firstItem="hon-tS-8l9" firstAttribute="width" secondItem="mUt-Ln-72a" secondAttribute="width" multiplier="0.15" id="Xec-uM-BAJ"/>
+                        <constraint firstItem="hon-tS-8l9" firstAttribute="top" secondItem="mUt-Ln-72a" secondAttribute="top" id="d8T-ii-PkX"/>
+                        <constraint firstItem="hon-tS-8l9" firstAttribute="leading" secondItem="mUt-Ln-72a" secondAttribute="leading" id="fya-S4-Onp"/>
+                        <constraint firstItem="6uC-Xv-30j" firstAttribute="leading" secondItem="hon-tS-8l9" secondAttribute="trailing" id="gbE-Bg-xRC"/>
+                        <constraint firstAttribute="bottom" secondItem="6uC-Xv-30j" secondAttribute="bottom" id="itz-ka-vmV"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="mUt-Ln-72a" secondAttribute="bottom" id="04g-Or-YSG"/>
                 <constraint firstItem="xiA-W0-LNl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0Pg-hs-r4U"/>
+                <constraint firstItem="lNo-Xc-Nqw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="72" id="9Ea-GS-kAN"/>
                 <constraint firstItem="xiA-W0-LNl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BSi-fQ-nb4"/>
+                <constraint firstAttribute="bottom" secondItem="ZHX-Xe-anh" secondAttribute="bottom" id="O7I-WT-D21"/>
+                <constraint firstItem="lNo-Xc-Nqw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="W9I-h1-B6l"/>
+                <constraint firstAttribute="trailing" secondItem="ZHX-Xe-anh" secondAttribute="trailing" id="WKE-V3-jEY"/>
+                <constraint firstItem="mUt-Ln-72a" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iQF-gv-rrB"/>
+                <constraint firstAttribute="trailing" secondItem="mUt-Ln-72a" secondAttribute="trailing" id="mjZ-Ix-utV"/>
+                <constraint firstItem="ZHX-Xe-anh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qF3-d4-8Yh"/>
                 <constraint firstAttribute="trailing" secondItem="xiA-W0-LNl" secondAttribute="trailing" id="rWp-kU-Jf6"/>
+                <constraint firstAttribute="trailing" secondItem="lNo-Xc-Nqw" secondAttribute="trailing" constant="5" id="tCC-Q5-Twb"/>
                 <constraint firstAttribute="bottom" secondItem="xiA-W0-LNl" secondAttribute="bottom" id="zRd-lE-Zvh"/>
             </constraints>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <point key="canvasLocation" x="32.5" y="100.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="keyboardbutton" width="24" height="24"/>
+        <image name="picture" width="24" height="24"/>
+    </resources>
 </document>
