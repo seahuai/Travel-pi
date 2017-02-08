@@ -44,7 +44,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="363"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XLH-ZA-4f0" id="8A3-iw-37O">
-                                            <frame key="frameInset" width="375" height="362"/>
+                                            <frame key="frameInset" width="375" height="362.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cfO-Tq-8j5">
@@ -236,15 +236,28 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XB8-X7-hZd">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="JAG-SK-tJ3"/>
+                                            <constraint firstAttribute="height" constant="40" id="Wda-Kx-exR"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="5" minY="10" maxX="5" maxY="10"/>
+                                        <state key="normal" title="Button" image="down"/>
+                                        <connections>
+                                            <action selector="resignButtonClick:" destination="4GG-tr-DWa" eventType="touchUpInside" id="lsf-Py-a3F"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="05K-6o-rVr"/>
+                                    <constraint firstItem="XB8-X7-hZd" firstAttribute="centerY" secondItem="gxJ-Uj-m6j" secondAttribute="centerY" id="1e8-6R-hPg"/>
                                     <constraint firstItem="h09-O4-XN4" firstAttribute="leading" secondItem="zPP-E3-3ZB" secondAttribute="trailing" id="AGG-uF-3hk"/>
-                                    <constraint firstItem="zPP-E3-3ZB" firstAttribute="leading" secondItem="gxJ-Uj-m6j" secondAttribute="leading" constant="5" id="IsZ-la-FTW"/>
                                     <constraint firstItem="h09-O4-XN4" firstAttribute="top" secondItem="gxJ-Uj-m6j" secondAttribute="top" id="KKr-Qz-re4"/>
                                     <constraint firstItem="zPP-E3-3ZB" firstAttribute="top" secondItem="gxJ-Uj-m6j" secondAttribute="top" constant="5" id="Mf5-LN-9Yz"/>
+                                    <constraint firstItem="zPP-E3-3ZB" firstAttribute="leading" secondItem="XB8-X7-hZd" secondAttribute="trailing" id="ZKg-bV-c81"/>
                                     <constraint firstAttribute="bottom" secondItem="h09-O4-XN4" secondAttribute="bottom" id="dIQ-5o-eI1"/>
+                                    <constraint firstItem="XB8-X7-hZd" firstAttribute="leading" secondItem="gxJ-Uj-m6j" secondAttribute="leading" id="dbZ-4o-A3W"/>
                                     <constraint firstAttribute="trailing" secondItem="h09-O4-XN4" secondAttribute="trailing" id="kwL-Q5-kzS"/>
                                     <constraint firstAttribute="bottom" secondItem="zPP-E3-3ZB" secondAttribute="bottom" constant="5" id="mmX-i1-3Bm"/>
                                 </constraints>
@@ -283,6 +296,7 @@
     </scenes>
     <resources>
         <image name="comment" width="24" height="24"/>
+        <image name="down" width="89" height="48"/>
         <image name="heart_highlight" width="24" height="24"/>
         <image name="heart_normal" width="24" height="24"/>
         <image name="tab_share" width="32" height="32"/>

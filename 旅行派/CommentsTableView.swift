@@ -10,6 +10,7 @@ import UIKit
 
 class CommentsTableView: UITableView {
 
+    var row: Int = 0
     var comments: [Comment] = [Comment](){
         didSet{
             reloadData()
@@ -42,5 +43,11 @@ extension CommentsTableView: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCommentCell", for: indexPath) as! FriendCommentCell
         cell.comment = comments[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //发送通知，弹出评论框
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReplyCommentNote"), object: nil, userInfo: ["comment": comments[indexPath.row], "row": row])
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

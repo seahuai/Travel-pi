@@ -24,9 +24,8 @@ class FriendsCircleViewController: UIViewController {
     fileprivate var backgroundOriginalHeight: CGFloat = 0
     fileprivate var originalPoint: CGPoint = CGPoint()
     fileprivate lazy var titleLabel = UILabel()
-//    fileprivate var cellMaxY: CGFloat = 0
-    var isResign: Bool = true
     var currentCommentRow: Int = 0
+    var to: String?
     fileprivate var models: [FriendCircle] = [FriendCircle]()
     
     override func viewDidLoad() {
@@ -39,6 +38,7 @@ class FriendsCircleViewController: UIViewController {
         setUpNavigationBar()
         setUpTableView()
         setUpKeyBoardNotefication()
+        setUpCommentNotification()
     }
     
     deinit {
@@ -60,7 +60,7 @@ extension FriendsCircleViewController{
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(self.compose))
         navigationController?.navigationBar.barStyle = .black
         
         titleLabel.textColor = UIColor.white
@@ -70,6 +70,13 @@ extension FriendsCircleViewController{
         navigationItem.titleView = titleLabel
         titleLabel.sizeToFit()
     }
+    
+    @objc private func compose(){
+        let composeVc = ComposeViewController()
+        let nav = UINavigationController(rootViewController: composeVc)
+        present(nav, animated: true, completion: nil)
+    }
+    
 }
 
 extension FriendsCircleViewController: UITableViewDataSource, UITableViewDelegate{
@@ -99,8 +106,11 @@ extension FriendsCircleViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if isResign {commentTextField.resignFirstResponder()}
         foldBackgroundImageView()
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        commentTextField.resignFirstResponder()
     }
 
     fileprivate func foldBackgroundImageView(){
@@ -125,25 +135,60 @@ extension FriendsCircleViewController: commentDelegate{
         currentCommentRow = row
         commentTextField.becomeFirstResponder()
         commentTextField.placeholder = "回复:\(to)"
+        tableView.scrollToRow(at: IndexPath(row: row, section: 0), at: .none, animated: false)
+        tableView.contentOffset.y += commentTextFieldBottomCon.constant
+        
+    }
+    
+    //MARK: 回复评论方法
+    fileprivate func setUpCommentNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.replyComment(note:)), name: NSNotification.Name(rawValue: "ReplyCommentNote"), object: nil)
+    }
+    
+    @objc private func replyComment(note: NSNotification){
+        let com = note.userInfo?["comment"] as! Comment
+        let row = note.userInfo?["row"] as! Int
+        self.to = com.from
+        comment(to: self.to!, maxY: 0, row: row)
     }
     
     //MARK:发送评论
     @IBAction func sendCommentButtonClick(_ sender: AnyObject) {
         let user = Account.shared.currentUserID
         let text = commentTextField.text
-        if text == nil { SVProgressHUD.showInfo(withStatus: "评论不能为空"); SVProgressHUD.dismiss(withDelay: 0.5) ;return}
-        let comment = Comment(from: user!, to: nil, content: text!)
+        if user == nil {
+            SVProgressHUD.showError(error: "您尚未登录", interval: 0.5)
+            return
+        }
+        if (text!.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines).lengthOfBytes(using: .utf8) == 0){
+            SVProgressHUD.showError(error: "评论不能为空", interval: 0.5)
+            return
+        }
+        
+        sendComment(from: user!, to: to, text: text!)
+        self.to = nil
+        
+        tableView.reloadRows(at: [IndexPath(row: currentCommentRow, section: 0)], with: .none)
+    }
+    
+    fileprivate func sendComment(from: String, to: String?, text: String){
+        let comment = Comment(from: from, to: to, content: text)
         print("commenth: \(comment.cellHeight)")
         models[currentCommentRow].comments.append(comment)
         models[currentCommentRow].cellHeight += comment.cellHeight
         commentTextField.resignFirstResponder()
         commentTextField.text = nil
-        tableView.reloadRows(at: [IndexPath(row: currentCommentRow, section: 0)], with: .none)
     }
+    
+    
 }
 
 //MARK: 键盘的弹出
 extension FriendsCircleViewController{
+    @IBAction func resignButtonClick(_ sender: AnyObject) {
+        commentTextField.resignFirstResponder()
+    }
+    
     fileprivate func setUpKeyBoardNotefication(){
         NotificationCenter.default.addObserver(self, selector: #selector(changeTextFieldPositon(note:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         

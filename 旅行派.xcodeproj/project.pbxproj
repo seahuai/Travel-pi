@@ -109,6 +109,10 @@
 		3588743E1DCEDA2B00FAB8E7 /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3588743C1DCEDA2B00FAB8E7 /* NearbyViewController.xib */; };
 		358874411DCEDA4100FAB8E7 /* StrategyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588743F1DCEDA4100FAB8E7 /* StrategyViewController.swift */; };
 		358874421DCEDA4100FAB8E7 /* StrategyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358874401DCEDA4100FAB8E7 /* StrategyViewController.xib */; };
+		3589FCD81E4ABEEA00A25649 /* SVProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3589FCD71E4ABEEA00A25649 /* SVProgressHUD+Extension.swift */; };
+		3589FCDC1E4AC0B200A25649 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3589FCDA1E4AC0B200A25649 /* ComposeViewController.swift */; };
+		3589FCDD1E4AC0B200A25649 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3589FCDB1E4AC0B200A25649 /* ComposeViewController.xib */; };
+		358AC99F1E4B4C6800448406 /* ComposeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AC99E1E4B4C6800448406 /* ComposeTitleView.swift */; };
 		358AFCA81DCF5E3B00C4DC28 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AFCA61DCF5E3B00C4DC28 /* AlbumDetailViewController.swift */; };
 		358AFCA91DCF5E3B00C4DC28 /* AlbumDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358AFCA71DCF5E3B00C4DC28 /* AlbumDetailViewController.xib */; };
 		358AFCAC1DCF603D00C4DC28 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AFCAA1DCF603D00C4DC28 /* AlbumCell.swift */; };
@@ -362,6 +366,10 @@
 		3588743C1DCEDA2B00FAB8E7 /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyViewController.xib; sourceTree = "<group>"; };
 		3588743F1DCEDA4100FAB8E7 /* StrategyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrategyViewController.swift; sourceTree = "<group>"; };
 		358874401DCEDA4100FAB8E7 /* StrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrategyViewController.xib; sourceTree = "<group>"; };
+		3589FCD71E4ABEEA00A25649 /* SVProgressHUD+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Extension.swift"; sourceTree = "<group>"; };
+		3589FCDA1E4AC0B200A25649 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		3589FCDB1E4AC0B200A25649 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
+		358AC99E1E4B4C6800448406 /* ComposeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTitleView.swift; sourceTree = "<group>"; };
 		358AFCA61DCF5E3B00C4DC28 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		358AFCA71DCF5E3B00C4DC28 /* AlbumDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumDetailViewController.xib; sourceTree = "<group>"; };
 		358AFCAA1DCF603D00C4DC28 /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
@@ -909,6 +917,24 @@
 			name = Strategy;
 			sourceTree = "<group>";
 		};
+		3589FCD61E4ABEAC00A25649 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3589FCD71E4ABEEA00A25649 /* SVProgressHUD+Extension.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		3589FCD91E4AC09900A25649 /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				3589FCDA1E4AC0B200A25649 /* ComposeViewController.swift */,
+				3589FCDB1E4AC0B200A25649 /* ComposeViewController.xib */,
+				358AC99E1E4B4C6800448406 /* ComposeTitleView.swift */,
+			);
+			name = Compose;
+			sourceTree = "<group>";
+		};
 		358AFCAE1DCF641100C4DC28 /* AlbumVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1200,6 +1226,7 @@
 		35E4B5501E39D97500795563 /* 朋友圈 */ = {
 			isa = PBXGroup;
 			children = (
+				3589FCD91E4AC09900A25649 /* Compose */,
 				35AEEE3B1E3E38F300B9877E /* View */,
 				35D9171C1E39F6BD008B6616 /* Model */,
 				3569EC801E39E7C30040BF6B /* Cell */,
@@ -1212,6 +1239,7 @@
 		35EA4C231DBF75F0004A63A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3589FCD61E4ABEAC00A25649 /* Extension */,
 				35EA4C311DBF7880004A63A4 /* Main */,
 				35EA4C301DBF786E004A63A4 /* Home */,
 				358874331DCEC7EE00FAB8E7 /* Discover */,
@@ -1448,6 +1476,7 @@
 				3539EC541E0C18CE00AEF9DE /* index.css in Resources */,
 				356C93FB1DD5B6A100B34D5F /* CityListViewController.xib in Resources */,
 				35525A111DE7E47900FDEF6C /* DetailViewController.xib in Resources */,
+				3589FCDD1E4AC0B200A25649 /* ComposeViewController.xib in Resources */,
 				35BE8F751DC4A05800F952EB /* PicCell.xib in Resources */,
 				3539EC521E0C13EC00AEF9DE /* ShareCellDetailViewController.xib in Resources */,
 				35AE42B81DD5690E004E5ED1 /* IconCell.xib in Resources */,
@@ -1575,6 +1604,7 @@
 				354EE2B41DC9D77800CE934F /* PhotoCell.swift in Sources */,
 				3569EC821E39E7E80040BF6B /* FriendCircleCell.swift in Sources */,
 				35FD3B6C1DEAFD2500F8362D /* TargetCell.swift in Sources */,
+				358AC99F1E4B4C6800448406 /* ComposeTitleView.swift in Sources */,
 				3572505B1DC775D200F3213B /* ProfileViewController.swift in Sources */,
 				35BE8F741DC4A05800F952EB /* PicCell.swift in Sources */,
 				358874411DCEDA4100FAB8E7 /* StrategyViewController.swift in Sources */,
@@ -1615,6 +1645,7 @@
 				3588743D1DCEDA2B00FAB8E7 /* NearbyViewController.swift in Sources */,
 				358AFCB21DCF763A00C4DC28 /* AlbumPicCell.swift in Sources */,
 				35383D441DF1A4C600ADDE4A /* FriendListViewController.swift in Sources */,
+				3589FCD81E4ABEEA00A25649 /* SVProgressHUD+Extension.swift in Sources */,
 				354EE2B61DC9D7F000CE934F /* ProgressView.swift in Sources */,
 				352722391DEB271F0090DCBD /* MJRefreshAutoFooter.m in Sources */,
 				357FDA921DC378A5002966FE /* FindMoreCell.swift in Sources */,
@@ -1635,6 +1666,7 @@
 				35EE69061DC49945009147CB /* ShareCell.swift in Sources */,
 				3556045D1DC236AB007C5D3C /* HomeNotificationCommon.swift in Sources */,
 				35AE42B71DD5690E004E5ED1 /* IconCell.swift in Sources */,
+				3589FCDC1E4AC0B200A25649 /* ComposeViewController.swift in Sources */,
 				358B4AE91E002EFE00805FDB /* ZZImageSelectedLayer.swift in Sources */,
 				358B4AEB1E002EFE00805FDB /* ZZPhotoPreviewCell.swift in Sources */,
 				357A2EBF1DE1914F00759529 /* DrawerPresentationController.swift in Sources */,

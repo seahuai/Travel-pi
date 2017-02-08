@@ -127,22 +127,19 @@ extension SearchViewController: UITableViewDelegate{
 extension SearchViewController{
     fileprivate func search(text: String?){
         guard let text = text else {
-            SVProgressHUD.showError(withStatus: "搜索的内容不能为空")
-            SVProgressHUD.dismiss(withDelay: 0.5)
+            SVProgressHUD.showError(error: "搜索的内容不能为空", interval: 0.5)
             return
         }
 //        NSCharacterSet whitespaceAndNewlineCharacterSet
         if (text.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines).lengthOfBytes(using: .utf8) == 0){
-            SVProgressHUD.showError(withStatus: "搜索的内容不能为空")
-            SVProgressHUD.dismiss(withDelay: 0.5)
+            SVProgressHUD.showError(error: "搜索的内容不能为空", interval: 0.5)
             return
         }
         SVProgressHUD.show()
         NetWorkTool.sharedInstance.searchDestination(text: text) { (error, destination) in
             if error == nil {
                 guard destination != nil else{
-                    SVProgressHUD.showInfo(withStatus: "未找到\"\(text)\"的相关内容")
-//                    SVProgressHUD.dismiss(withDelay: 0.7)
+                    SVProgressHUD.showInfo(info: "未找到\"\(text)\"的相关内容", interval: 1)
                     return
                 }
                 print(destination?.name)
@@ -151,8 +148,7 @@ extension SearchViewController{
                 let nav = UINavigationController(rootViewController: self.detailVc)
                 self.present(nav, animated: true, completion: { SVProgressHUD.dismiss()})
             }else{
-                SVProgressHUD.showInfo(withStatus: "未找到\(text)的相关内容")
-//                SVProgressHUD.dismiss(withDelay: 0.7)
+                SVProgressHUD.showInfo(info: "未找到\"\(text)\"的相关内容", interval: 1)
             }
         }
     }

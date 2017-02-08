@@ -22,7 +22,8 @@ class Comment: NSObject {
         self.from = from
         self.to = to
         self.content = content
-        self.cellHeight = getCellHeight(text: content)
+        let text = to == nil ? content + "\(from)回复:" : content + "\(from)回复\(to):"
+        self.cellHeight = getCellHeight(text: text)
     }
     
     init(dict: [String: AnyObject]) {

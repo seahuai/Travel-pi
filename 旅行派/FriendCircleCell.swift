@@ -46,6 +46,7 @@ class FriendCircleCell: UITableViewCell {
             
             picCollectionView.imgUrls = friendCircleModel?.imgUrls ?? [URL]()
             commentsTableView.comments = friendCircleModel?.comments ?? [Comment]()
+            commentsTableView.row = row
             
             let size = picsViewSize(count: friendCircleModel!.imgUrls.count)
             imgsViewWidthCon.constant = size.width
