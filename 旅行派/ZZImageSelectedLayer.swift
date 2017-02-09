@@ -22,7 +22,7 @@ class ZZImageSelectedLabel: UILabel {
         }
     }
     init(toolBar:UIToolbar) {
-        super.init(frame:CGRect(x: zz_sw - 67 , y: 12 , width: 20, height: 20))
+        super.init(frame:CGRect(x: zz_sw - 80 , y: 12 , width: 20, height: 20))
         self.backgroundColor = UIColor(red: 0x09/255, green: 0x8b/255, blue: 0x54/255, alpha: 1)
         self.layer.cornerRadius = 10
         self.layer.masksToBounds = true

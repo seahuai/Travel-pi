@@ -9,7 +9,7 @@
 
 import UIKit
 
-class PickViewCell: UICollectionViewCell {
+class PickImageCell: UICollectionViewCell {
 
     var image: UIImage?{
         didSet{
@@ -28,12 +28,14 @@ class PickViewCell: UICollectionViewCell {
     @IBOutlet weak var chooseButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
-//    //在pickViewCell中
-//    @IBAction func ChooseImageButtonClick(sender: AnyObject) {
-//        NotificationCenter.default.postNotificationName(ChooseImageNote, object: nil)
-//    }
-//    @IBAction func DeleteImageButtonClick(sender: AnyObject) {
-//        NSNotificationCenter.defaultCenter().postNotificationName(DeleteImageNote, object: image)
-//    }
+    
+    @IBAction func deleteButtonClick(_ sender: AnyObject) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DeleteImageNote"), object: nil, userInfo: ["image": image])
+    }
+    
+    @IBAction func chooseButtonClick(_ sender: AnyObject) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ChooseImageNote"), object: nil, userInfo: nil)
+    }
+    
 
 }

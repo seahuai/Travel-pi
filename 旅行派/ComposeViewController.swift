@@ -7,13 +7,20 @@
 //
 
 import UIKit
-
+import Photos
+import SVProgressHUD
+protocol ComposeDelegate {
+    func compose(imageUrls: [URL], content: String?)
+}
 class ComposeViewController: UIViewController {
 
+    var delegate: ComposeDelegate?
+    
+    fileprivate var chosenImages: [UIImage] = [UIImage]()
     @IBOutlet weak var composeToolViewBottomCon: NSLayoutConstraint!
     fileprivate lazy var titleView = ComposeTitleView(frame: CGRect(x: 0, y: 0, width: 120, height: 44))
     @IBOutlet weak var textView: UITextView!
-    
+    @IBOutlet weak var pickImageCollectionView: PickImageCollectionView!
     @IBOutlet weak var pickPictureViewHeight: NSLayoutConstraint!
     @IBOutlet weak var placeholderLable: UILabel!
     override func viewDidLoad() {
@@ -22,6 +29,7 @@ class ComposeViewController: UIViewController {
         setUp()
         setUpNavigationBar()
         setUpKeyboardNote()
+        setUpPickImageNote()
     }
     
     deinit {
@@ -30,7 +38,9 @@ class ComposeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        textView.becomeFirstResponder()
+        if pickPictureViewHeight.constant == 0{
+            textView.becomeFirstResponder()
+        }
     }
     
   
@@ -53,7 +63,36 @@ extension ComposeViewController{
     }
     
     @objc private func compose(){
+        //模拟发布
+        let imgUrls = saveImages(images: chosenImages)
+        delegate?.compose(imageUrls: imgUrls, content: textView.text)
+        close()
+    }
+    
+    fileprivate func saveImages(images: [UIImage]) -> [URL]{
         
+        var imageUrls: [URL] = [URL]()
+        let mainPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let createPath = mainPath + "/Images"
+        if !FileManager.default.fileExists(atPath: createPath){
+            if ((try? FileManager.default.createDirectory(atPath: createPath, withIntermediateDirectories: true, attributes: nil)) == nil){
+                return imageUrls
+            }
+        }
+        for i in 0 ..< images.count{
+            let image = images[i]
+            let savePath = mainPath + "/Images" + "/pic_\(i)_\(Date())"
+            let url = URL(fileURLWithPath: savePath)
+            print(url)
+            do{
+                try UIImagePNGRepresentation(image)?.write(to: url)
+                imageUrls.append(url)
+            }
+            catch{
+                print("存取图片失败")
+            }
+        }
+        return imageUrls
     }
 }
 
@@ -115,4 +154,41 @@ extension ComposeViewController{
         textView.inputView = nil
         textView.becomeFirstResponder()
     }
+}
+//MARK:选取图片
+extension ComposeViewController{
+    fileprivate func setUpPickImageNote(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.deleteImage(note:)), name: NSNotification.Name(rawValue: "DeleteImageNote"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.chooseImage), name: NSNotification.Name(rawValue: "ChooseImageNote"), object: nil)
+    }
+    
+    @objc private func chooseImage(){
+        _ = zz_presentPhotoVC(9) { (assets) in
+            for asset in assets{
+                self.handleImage(asset: asset)
+            }
+        }
+    }
+    
+    fileprivate func handleImage(asset: PHAsset){
+        PHImageManager.default().requestImageData(for: asset, options: nil, resultHandler: { (data, _, _, _) in
+            guard data != nil
+                else {return}
+            if let image = UIImage(data: data!){
+                self.chosenImages.append(image)
+            }
+            self.pickImageCollectionView.images = self.chosenImages
+        })
+    }
+    
+    
+    @objc private func deleteImage(note: NSNotification){
+        let image = note.userInfo?["image"] as! UIImage
+        if let i = chosenImages.index(of: image) {
+            chosenImages.remove(at: i)
+        }
+        pickImageCollectionView.images = chosenImages
+    }
+    
 }

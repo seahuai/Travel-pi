@@ -113,9 +113,9 @@
 		3589FCDC1E4AC0B200A25649 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3589FCDA1E4AC0B200A25649 /* ComposeViewController.swift */; };
 		3589FCDD1E4AC0B200A25649 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3589FCDB1E4AC0B200A25649 /* ComposeViewController.xib */; };
 		358AC99F1E4B4C6800448406 /* ComposeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AC99E1E4B4C6800448406 /* ComposeTitleView.swift */; };
-		358AC9A41E4B587800448406 /* PickPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AC9A11E4B587800448406 /* PickPictureView.swift */; };
-		358AC9A51E4B587800448406 /* PickViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AC9A21E4B587800448406 /* PickViewCell.swift */; };
-		358AC9A61E4B587800448406 /* PickViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358AC9A31E4B587800448406 /* PickViewCell.xib */; };
+		358AC9A41E4B587800448406 /* PickImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AC9A11E4B587800448406 /* PickImageCollectionView.swift */; };
+		358AC9A51E4B587800448406 /* PickImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AC9A21E4B587800448406 /* PickImageCell.swift */; };
+		358AC9A61E4B587800448406 /* PickImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358AC9A31E4B587800448406 /* PickImageCell.xib */; };
 		358AFCA81DCF5E3B00C4DC28 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AFCA61DCF5E3B00C4DC28 /* AlbumDetailViewController.swift */; };
 		358AFCA91DCF5E3B00C4DC28 /* AlbumDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358AFCA71DCF5E3B00C4DC28 /* AlbumDetailViewController.xib */; };
 		358AFCAC1DCF603D00C4DC28 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AFCAA1DCF603D00C4DC28 /* AlbumCell.swift */; };
@@ -371,9 +371,9 @@
 		3589FCDA1E4AC0B200A25649 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		3589FCDB1E4AC0B200A25649 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
 		358AC99E1E4B4C6800448406 /* ComposeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTitleView.swift; sourceTree = "<group>"; };
-		358AC9A11E4B587800448406 /* PickPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickPictureView.swift; sourceTree = "<group>"; };
-		358AC9A21E4B587800448406 /* PickViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickViewCell.swift; sourceTree = "<group>"; };
-		358AC9A31E4B587800448406 /* PickViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickViewCell.xib; sourceTree = "<group>"; };
+		358AC9A11E4B587800448406 /* PickImageCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickImageCollectionView.swift; sourceTree = "<group>"; };
+		358AC9A21E4B587800448406 /* PickImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickImageCell.swift; sourceTree = "<group>"; };
+		358AC9A31E4B587800448406 /* PickImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickImageCell.xib; sourceTree = "<group>"; };
 		358AFCA61DCF5E3B00C4DC28 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		358AFCA71DCF5E3B00C4DC28 /* AlbumDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumDetailViewController.xib; sourceTree = "<group>"; };
 		358AFCAA1DCF603D00C4DC28 /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
@@ -939,9 +939,9 @@
 		358AC9A01E4B585F00448406 /* PictureCompose */ = {
 			isa = PBXGroup;
 			children = (
-				358AC9A11E4B587800448406 /* PickPictureView.swift */,
-				358AC9A21E4B587800448406 /* PickViewCell.swift */,
-				358AC9A31E4B587800448406 /* PickViewCell.xib */,
+				358AC9A11E4B587800448406 /* PickImageCollectionView.swift */,
+				358AC9A21E4B587800448406 /* PickImageCell.swift */,
+				358AC9A31E4B587800448406 /* PickImageCell.xib */,
 			);
 			name = PictureCompose;
 			sourceTree = "<group>";
@@ -1454,7 +1454,7 @@
 				3503E8CF1DF16938009ABB89 /* LoginViewController.xib in Resources */,
 				3547C40A1DE94AAE0017F56B /* PlanCell.xib in Resources */,
 				3503E8D81DF1748F009ABB89 /* MessageViewController.storyboard in Resources */,
-				358AC9A61E4B587800448406 /* PickViewCell.xib in Resources */,
+				358AC9A61E4B587800448406 /* PickImageCell.xib in Resources */,
 				351494841DCCACE200528E2D /* mapapi.bundle in Resources */,
 				3556045B1DC227CD007C5D3C /* picCollectionCell.xib in Resources */,
 				35EA4C2F1DBF7860004A63A4 /* HomeViewController.storyboard in Resources */,
@@ -1612,7 +1612,7 @@
 				35B222881DD5EF590014D85F /* CityCell.swift in Sources */,
 				35FC624F1DBE259F005D1F20 /* NetWorkTool.swift in Sources */,
 				3503E8D21DF173CD009ABB89 /* MessageViewController.swift in Sources */,
-				358AC9A41E4B587800448406 /* PickPictureView.swift in Sources */,
+				358AC9A41E4B587800448406 /* PickImageCollectionView.swift in Sources */,
 				356C93F71DD5B2F300B34D5F /* CityList.swift in Sources */,
 				357671CE1E3DD6A400C286C0 /* FriendCircle.swift in Sources */,
 				35220C4C1DE330450092924F /* ShowSearchCityCell.swift in Sources */,
@@ -1666,7 +1666,7 @@
 				356C93FA1DD5B6A100B34D5F /* CityListViewController.swift in Sources */,
 				3527223D1DEB271F0090DCBD /* MJRefreshHeader.m in Sources */,
 				358B4AE31E002EFE00805FDB /* UICollectionView+Add.swift in Sources */,
-				358AC9A51E4B587800448406 /* PickViewCell.swift in Sources */,
+				358AC9A51E4B587800448406 /* PickImageCell.swift in Sources */,
 				35DA4FFD1DBF638F00806A73 /* Common.swift in Sources */,
 				35BCD90A1DC591C2005F9D4B /* ShareToolModel.swift in Sources */,
 				358B4AE41E002EFE00805FDB /* ZZAssetGridViewController.swift in Sources */,

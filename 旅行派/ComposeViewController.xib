@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComposeViewController" customModule="旅行派" customModuleProvider="target">
             <connections>
                 <outlet property="composeToolViewBottomCon" destination="04g-Or-YSG" id="i36-q6-REi"/>
+                <outlet property="pickImageCollectionView" destination="ZHX-Xe-anh" id="YNt-3V-DCe"/>
                 <outlet property="pickPictureViewHeight" destination="DZ2-hN-lrt" id="pBL-2n-NhM"/>
                 <outlet property="placeholderLable" destination="lNo-Xc-Nqw" id="3hK-VN-Wer"/>
                 <outlet property="textView" destination="xiA-W0-LNl" id="0cU-re-8H1"/>
@@ -24,7 +25,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZHX-Xe-anh" customClass="PickPictureView" customModule="旅行派" customModuleProvider="target">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZHX-Xe-anh" customClass="PickImageCollectionView" customModule="旅行派" customModuleProvider="target">
                     <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" id="DZ2-hN-lrt"/>

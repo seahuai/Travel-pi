@@ -17,7 +17,7 @@ class FriendCircle: NSObject {
     var content: String?
     var imgUrls: [URL] = [URL]()
     var comments: [Comment] = [Comment]()
-
+    //从网络获取创建方法
     init(dict: [String: AnyObject]) {
         super.init()
         user = dict["user"] as? String
@@ -37,6 +37,20 @@ class FriendCircle: NSObject {
         for comDict in coms{
             self.comments.append(Comment(dict: comDict))
         }
-        
     }
+    
+    init(user: String, avaterUrl: String, urls: [URL], text: String?) {
+        super.init()
+        self.user = user
+        self.avator = URL(string: avaterUrl)
+        self.imgUrls = urls
+        if let content = text{
+            self.content = content
+        }else{
+            self.content = "分享图片"
+        }
+        //估算高度
+        cellHeight = CGFloat(100 * imgUrls.count) / 3 + 80
+    }
+    
 }

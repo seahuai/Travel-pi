@@ -60,7 +60,7 @@ extension FriendsCircleViewController{
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(self.compose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(self.presentComVC))
         navigationController?.navigationBar.barStyle = .black
         
         titleLabel.textColor = UIColor.white
@@ -71,12 +71,25 @@ extension FriendsCircleViewController{
         titleLabel.sizeToFit()
     }
     
-    @objc private func compose(){
+    @objc private func presentComVC(){
         let composeVc = ComposeViewController()
+        //MARK:实现发送界面的代理
+        composeVc.delegate = self
         let nav = UINavigationController(rootViewController: composeVc)
         present(nav, animated: true, completion: nil)
     }
     
+}
+//MARK:发送界面代理回调
+extension FriendsCircleViewController: ComposeDelegate{
+    func compose(imageUrls: [URL], content: String?) {
+        let user = Account.shared.currentUserID
+        let avotor = "http://img.jiqie.com/10/8/1370nz.jpg"
+        let model = FriendCircle(user: user!, avaterUrl: avotor, urls: imageUrls, text: content)
+        models = [model] + models
+        tableView.reloadData()
+        SVProgressHUD.showInfo(info: "发送成功", interval: 0.5)
+    }
 }
 
 extension FriendsCircleViewController: UITableViewDataSource, UITableViewDelegate{
@@ -221,7 +234,7 @@ extension FriendsCircleViewController{
         downloadImage(models: models)
     }
     
-    private func downloadImage(models: [FriendCircle]){
+    fileprivate func downloadImage(models: [FriendCircle]){
         
         let group = DispatchGroup()
         

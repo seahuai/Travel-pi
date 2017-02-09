@@ -8,9 +8,8 @@
 
 import UIKit
 
-class PickPictureView: UICollectionView {
+class PickImageCollectionView: UICollectionView {
 
-    private let cellIdentifier = "pickViewCell"
     var images: [UIImage] = [UIImage](){
         didSet{
             reloadData()
@@ -25,10 +24,10 @@ class PickPictureView: UICollectionView {
 
 }
 
-extension PickPictureView{
+extension PickImageCollectionView{
     
     fileprivate func setUp(){
-        register(UINib(nibName: "PickViewCell",bundle: nil), forCellWithReuseIdentifier: "PickViewCell")
+        register(UINib(nibName: "PickImageCell",bundle: nil), forCellWithReuseIdentifier: "PickImageCell")
         
         let edge: CGFloat = 15
         let itemLayout = collectionViewLayout as! UICollectionViewFlowLayout
@@ -40,13 +39,13 @@ extension PickPictureView{
 
 
 //MARK:UICollectionViewDataSource
-extension PickPictureView: UICollectionViewDataSource{
+extension PickImageCollectionView: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count + 1
+        return images.count + 1 < 9 ? images.count + 1 : 9
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PickViewCell", for: indexPath) as! PickViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PickImageCell", for: indexPath) as! PickImageCell
         cell.backgroundColor = UIColor.clear
         cell.image = indexPath.item < images.count ? images[indexPath.item] : nil
         
