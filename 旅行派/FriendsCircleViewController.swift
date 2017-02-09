@@ -118,6 +118,12 @@ extension FriendsCircleViewController: UITableViewDataSource, UITableViewDelegat
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let shVc = SHPhotoBrowserViewController(imgUrls: models[indexPath.row].imgUrls)
+        shVc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(shVc, animated: true)
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         foldBackgroundImageView()
     }

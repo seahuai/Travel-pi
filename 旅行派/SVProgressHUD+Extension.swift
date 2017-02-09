@@ -20,4 +20,10 @@ extension SVProgressHUD{
         SVProgressHUD.showInfo(withStatus: info)
         SVProgressHUD.dismiss(withDelay: interval)
     }
+    
+    class func showSuccess(info: String, interval: TimeInterval){
+        SVProgressHUD.setFadeInAnimationDuration(0)
+        SVProgressHUD.showSuccess(withStatus: info)
+        SVProgressHUD.dismiss(withDelay: interval)
+    }
 }
