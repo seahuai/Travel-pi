@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yLh-Uc-7RP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="-385" y="152"/>
         </scene>
-        <!--发现-->
+        <!--Discover View Controller-->
         <scene sceneID="b74-We-nat">
             <objects>
                 <viewController id="meI-vP-n9s" customClass="DiscoverViewController" customModule="旅行派" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,71 +35,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JRT-if-w44">
-                                <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeE-9V-rgW">
-                                        <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="周边" image="map_middle">
-                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="toolViewButtonClick:" destination="meI-vP-n9s" eventType="touchUpInside" id="fRE-9z-MQJ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDh-TZ-HQj">
-                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="行程" image="eat">
-                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="toolViewButtonClick:" destination="meI-vP-n9s" eventType="touchUpInside" id="g7n-hZ-Rxa"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="wDh-TZ-HQj" secondAttribute="trailing" id="D4s-DF-0se"/>
-                                    <constraint firstAttribute="height" constant="40" id="JMD-Ws-KoP"/>
-                                    <constraint firstItem="jeE-9V-rgW" firstAttribute="leading" secondItem="JRT-if-w44" secondAttribute="leading" id="N2t-N6-yhW"/>
-                                    <constraint firstItem="jeE-9V-rgW" firstAttribute="height" secondItem="JRT-if-w44" secondAttribute="height" id="YQR-1c-rxB"/>
-                                    <constraint firstItem="jeE-9V-rgW" firstAttribute="top" secondItem="JRT-if-w44" secondAttribute="top" id="fkT-OX-Gmz"/>
-                                    <constraint firstItem="wDh-TZ-HQj" firstAttribute="height" secondItem="JRT-if-w44" secondAttribute="height" id="gcU-8D-m2B"/>
-                                    <constraint firstItem="jeE-9V-rgW" firstAttribute="width" secondItem="JRT-if-w44" secondAttribute="width" multiplier="0.5" id="hJU-Yl-NZM"/>
-                                    <constraint firstItem="wDh-TZ-HQj" firstAttribute="top" secondItem="JRT-if-w44" secondAttribute="top" id="mbk-4u-UPh"/>
-                                    <constraint firstItem="wDh-TZ-HQj" firstAttribute="width" secondItem="JRT-if-w44" secondAttribute="width" multiplier="0.5" id="uD6-pi-XmS"/>
-                                </constraints>
-                            </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpC-ad-eOf"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ia8-ca-Mnw"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wpC-ad-eOf" firstAttribute="top" secondItem="JRT-if-w44" secondAttribute="bottom" id="4dZ-s6-5Ld"/>
-                            <constraint firstItem="ktj-tJ-Kgh" firstAttribute="top" secondItem="wpC-ad-eOf" secondAttribute="bottom" constant="-49" id="6Zc-JC-AlE"/>
-                            <constraint firstItem="JRT-if-w44" firstAttribute="top" secondItem="Zkq-zM-FYW" secondAttribute="bottom" id="Dic-Ml-SCh"/>
-                            <constraint firstAttribute="trailing" secondItem="wpC-ad-eOf" secondAttribute="trailing" id="L1V-9a-df5"/>
-                            <constraint firstItem="wpC-ad-eOf" firstAttribute="leading" secondItem="EWv-CN-ADV" secondAttribute="leading" id="SnQ-Qj-fUi"/>
-                            <constraint firstItem="JRT-if-w44" firstAttribute="leading" secondItem="EWv-CN-ADV" secondAttribute="leading" id="rA1-DU-A3d"/>
-                            <constraint firstAttribute="trailing" secondItem="JRT-if-w44" secondAttribute="trailing" id="wdx-k4-A6S"/>
+                            <constraint firstItem="Ia8-ca-Mnw" firstAttribute="top" secondItem="Zkq-zM-FYW" secondAttribute="bottom" id="RZB-3r-0al"/>
+                            <constraint firstItem="ktj-tJ-Kgh" firstAttribute="top" secondItem="Ia8-ca-Mnw" secondAttribute="bottom" id="RnL-aO-Lpu"/>
+                            <constraint firstItem="Ia8-ca-Mnw" firstAttribute="leading" secondItem="EWv-CN-ADV" secondAttribute="leading" id="fBn-ZV-eay"/>
+                            <constraint firstAttribute="trailing" secondItem="Ia8-ca-Mnw" secondAttribute="trailing" id="jf6-Av-cEP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="发现" id="t2V-f0-CZr">
-                        <barButtonItem key="leftBarButtonItem" title="切换城市" id="FC4-dL-MG5">
-                            <connections>
-                                <action selector="switchCityButtonClick:" destination="meI-vP-n9s" id="OIn-WY-qte"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="tabbar_discover" id="PYl-19-ph7">
-                            <connections>
-                                <action selector="searchButtonClick:" destination="meI-vP-n9s" id="eIF-QH-Tc0"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" id="t2V-f0-CZr">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="f1N-2b-TsP">
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                        </segmentedControl>
                     </navigationItem>
                     <connections>
-                        <outlet property="nearByButton" destination="jeE-9V-rgW" id="bS8-M4-BaO"/>
-                        <outlet property="scrollView" destination="wpC-ad-eOf" id="A1X-Xu-OOn"/>
+                        <outlet property="scrollView" destination="Ia8-ca-Mnw" id="EqE-Zn-IAN"/>
                         <outlet property="searchDisplayController" destination="Efp-k7-Jrx" id="olH-X2-DhV"/>
-                        <outlet property="strategyButton" destination="wDh-TZ-HQj" id="yYs-Rg-tzs"/>
+                        <outlet property="segementControl" destination="f1N-2b-TsP" id="CZX-Go-6DN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZP-O5-Z5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -113,13 +72,10 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="340" y="151.57421289355324"/>
+            <point key="canvasLocation" x="335" y="144"/>
         </scene>
     </scenes>
     <resources>
-        <image name="eat" width="28" height="32"/>
-        <image name="map_middle" width="30" height="32"/>
         <image name="tab_location" width="32" height="32"/>
-        <image name="tabbar_discover" width="30" height="30"/>
     </resources>
 </document>

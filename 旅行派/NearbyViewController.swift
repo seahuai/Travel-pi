@@ -11,13 +11,7 @@ import UIKit
 
 class NearbyViewController: UIViewController {
 
-    //代理属性
-//    var delegate: NearByTableViewDelegate?
-    
     fileprivate var hisOffsetY: CGFloat = 0
-    
-    @IBOutlet weak var tableView: UITableView!
-    
     
     //MARK:百度地图相关
     @IBOutlet weak var baiduMapView: BMKMapView!
@@ -34,38 +28,22 @@ class NearbyViewController: UIViewController {
             coordinate = nearLoaction?.coordinate
         }
     }
-    fileprivate var city: String?{
-        didSet{
-//            poiInfos.removeAll()
-//            tableView.reloadSections([1], with: .none)
-        }
-    }//城市为空的时候才开启定位
-    
     var coordinate: CLLocationCoordinate2D?{
         didSet{
             if coordinate != nil{
                 poiInfos.removeAll()
                 baiduMapView.centerCoordinate = coordinate!
-                tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                isFound = false
-                tableView.reloadSections([1], with: .none)
             }
-            
         }
     }
     
     
     fileprivate var annotations: [BMKAnnotation] = [BMKAnnotation]()
     fileprivate var poiInfos: [BMKPoiInfo] = [BMKPoiInfo]()
-    fileprivate var isFound: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layoutIfNeeded()
         automaticallyAdjustsScrollViewInsets = false
-        setUpTableView()
-        setUpMapView()
-
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -85,82 +63,28 @@ class NearbyViewController: UIViewController {
 
 }
 
-extension NearbyViewController{
-    fileprivate func setUpTableView(){
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.contentInset = UIEdgeInsets(top: baiduMapView.frame.maxY, left: 0, bottom: 0, right: 0)
-        tableView.register(SectionOneCell.self, forCellReuseIdentifier: "SectionOneCell")
-        tableView.register(UINib(nibName: "SectionTwoCell", bundle: nil), forCellReuseIdentifier: "SectionTwoCell")
-    }
-    
-    fileprivate func setUpMapView(){
-//        baiduMapView.region.span = BMKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.6)
-    }
-}
-//MARK:通知相关
-extension NearbyViewController{
-}
 //MARK:代理
-extension NearbyViewController: UITableViewDataSource, UITableViewDelegate{
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 200: 60
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let head: String? = isFound ? "为你找到" : "未找到相关内容"
-        return section == 0 ? "寻找" : head
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : poiInfos.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SectionOneCell", for: indexPath) as! SectionOneCell
-            cell.delegate = self
-            return cell
-        }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SectionTwoCell", for: indexPath) as! SectionTwoCell
-            cell.item = poiInfos[indexPath.row]
-            return cell
-        }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y == 0 {
-            tabBarAnimation(hiding: false)
-        }else if Int(scrollView.contentOffset.y) == 23{
-            tabBarAnimation(hiding: true)
-        }
-       
-    }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let dis:CGFloat = 10
-        let targetY: CGFloat = targetContentOffset.pointee.y
-        //隐藏
-        if hisOffsetY + dis < targetY{
-            tabBarAnimation(hiding: true)
-        }
-        //显示
-        if hisOffsetY + dis > targetY{
-            tabBarAnimation(hiding: false)
-        }
-        hisOffsetY = targetContentOffset.pointee.y
-    }
-    
-    fileprivate func tabBarAnimation(hiding: Bool){
-        UIView.animate(withDuration: 0.3, animations: {
-            self.tabBarController?.tabBar.frame.origin.y = hiding ? UIScreen.main.bounds.height : UIScreen.main.bounds.height - 49
-        })
-    }
-}
+
+//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+//        let dis:CGFloat = 10
+//        let targetY: CGFloat = targetContentOffset.pointee.y
+//        //隐藏
+//        if hisOffsetY + dis < targetY{
+//            tabBarAnimation(hiding: true)
+//        }
+//        //显示
+//        if hisOffsetY + dis > targetY{
+//            tabBarAnimation(hiding: false)
+//        }
+//        hisOffsetY = targetContentOffset.pointee.y
+//    }
+//    
+//    fileprivate func tabBarAnimation(hiding: Bool){
+//        UIView.animate(withDuration: 0.3, animations: {
+//            self.tabBarController?.tabBar.frame.origin.y = hiding ? UIScreen.main.bounds.height : UIScreen.main.bounds.height - 49
+//        })
+//    }
+
 //MARK:点击tip代理
 extension NearbyViewController: TipCollectionViewDelegate{
     func didSelect(tip: String) {
@@ -208,16 +132,8 @@ extension NearbyViewController: BMKMapViewDelegate, BMKLocationServiceDelegate, 
             }
             baiduMapView.addAnnotations(annotations)
             baiduMapView.showAnnotations(annotations, animated: true)
-            isFound = true
         }else{
             poiInfos.removeAll()
-            isFound = false
-            
-        }
-        //MARK:搜索成功后刷新tableView
-        tableView.reloadSections([1], with: .none)
-        if isFound{
-            tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
         }
     }
        

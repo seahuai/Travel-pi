@@ -110,23 +110,24 @@ extension DetailViewController: UIScrollViewDelegate{
         let vc1 = childViewControllers[0] as! TripViewController
         vc1.destination = destination
 
-        
         let vc3 = childViewControllers[1] as! NoteViewController
         vc3.destination = destination
         switch index {
         case 0:
-            vc1.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
-            contentScrollView.addSubview(vc1.view)
             if vc1.view.superview != nil{
                 return
             }
+            vc1.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
+            contentScrollView.addSubview(vc1.view)
+            
             
         default:
-            vc3.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
-            contentScrollView.addSubview(vc3.view)
             if vc3.view.superview != nil{
                 return
             }
+            vc3.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
+            contentScrollView.addSubview(vc3.view)
+            
         }
         
         

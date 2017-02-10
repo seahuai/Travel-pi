@@ -36,7 +36,6 @@
 		351494801DCCAC8E00528E2D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3514947F1DCCAC8E00528E2D /* CoreTelephony.framework */; };
 		351494821DCCAC9900528E2D /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 351494811DCCAC9900528E2D /* libstdc++.6.0.9.tbd */; };
 		351494841DCCACE200528E2D /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 351494831DCCACE200528E2D /* mapapi.bundle */; };
-		351835851DD8A39500BCC6DA /* StrategyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351835841DD8A39500BCC6DA /* StrategyHeaderView.swift */; };
 		35214B121DF265390012354F /* FriendRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35214B101DF265390012354F /* FriendRequestCell.swift */; };
 		35214B131DF265390012354F /* FriendRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35214B111DF265390012354F /* FriendRequestCell.xib */; };
 		35214B151DF2B31E0012354F /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35214B141DF2B31E0012354F /* ConversationCell.swift */; };
@@ -107,8 +106,6 @@
 		358874381DCEC89B00FAB8E7 /* DiscoverViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358874361DCEC89B00FAB8E7 /* DiscoverViewController.storyboard */; };
 		3588743D1DCEDA2B00FAB8E7 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588743B1DCEDA2B00FAB8E7 /* NearbyViewController.swift */; };
 		3588743E1DCEDA2B00FAB8E7 /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3588743C1DCEDA2B00FAB8E7 /* NearbyViewController.xib */; };
-		358874411DCEDA4100FAB8E7 /* StrategyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3588743F1DCEDA4100FAB8E7 /* StrategyViewController.swift */; };
-		358874421DCEDA4100FAB8E7 /* StrategyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358874401DCEDA4100FAB8E7 /* StrategyViewController.xib */; };
 		3589FCD81E4ABEEA00A25649 /* SVProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3589FCD71E4ABEEA00A25649 /* SVProgressHUD+Extension.swift */; };
 		3589FCDC1E4AC0B200A25649 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3589FCDA1E4AC0B200A25649 /* ComposeViewController.swift */; };
 		3589FCDD1E4AC0B200A25649 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3589FCDB1E4AC0B200A25649 /* ComposeViewController.xib */; };
@@ -138,6 +135,8 @@
 		358BEB031DE8892E000CF759 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BEB021DE8892E000CF759 /* Activity.swift */; };
 		358E694F1DCB61E100647386 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358E694D1DCB61E100647386 /* SDWebImage.framework */; };
 		358E69501DCB61E100647386 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358E694E1DCB61E100647386 /* SVProgressHUD.framework */; };
+		358F68601E4D84D300F0E020 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F685E1E4D84D300F0E020 /* RouteViewController.swift */; };
+		358F68611E4D84D300F0E020 /* RouteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358F685F1E4D84D300F0E020 /* RouteViewController.xib */; };
 		359286E71DCA15E9000B6923 /* DescripationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359286E61DCA15E9000B6923 /* DescripationView.swift */; };
 		3597DEEB1DBCEC6C00A65747 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DEEA1DBCEC6C00A65747 /* AppDelegate.swift */; };
 		3597DEED1DBCEC6C00A65747 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597DEEC1DBCEC6C00A65747 /* MainViewController.swift */; };
@@ -243,7 +242,6 @@
 		351494811DCCAC9900528E2D /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		351494831DCCACE200528E2D /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		351494851DCCAD9900528E2D /* 旅行派-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "旅行派-Bridging-Header.h"; path = "旅行派/旅行派-Bridging-Header.h"; sourceTree = "<group>"; };
-		351835841DD8A39500BCC6DA /* StrategyHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrategyHeaderView.swift; sourceTree = "<group>"; };
 		35214B101DF265390012354F /* FriendRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestCell.swift; sourceTree = "<group>"; };
 		35214B111DF265390012354F /* FriendRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendRequestCell.xib; sourceTree = "<group>"; };
 		35214B141DF2B31E0012354F /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
@@ -366,8 +364,6 @@
 		358874371DCEC89B00FAB8E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DiscoverViewController.storyboard; sourceTree = "<group>"; };
 		3588743B1DCEDA2B00FAB8E7 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
 		3588743C1DCEDA2B00FAB8E7 /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyViewController.xib; sourceTree = "<group>"; };
-		3588743F1DCEDA4100FAB8E7 /* StrategyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrategyViewController.swift; sourceTree = "<group>"; };
-		358874401DCEDA4100FAB8E7 /* StrategyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StrategyViewController.xib; sourceTree = "<group>"; };
 		3589FCD71E4ABEEA00A25649 /* SVProgressHUD+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Extension.swift"; sourceTree = "<group>"; };
 		3589FCDA1E4AC0B200A25649 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		3589FCDB1E4AC0B200A25649 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
@@ -397,6 +393,8 @@
 		358BEB021DE8892E000CF759 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		358E694D1DCB61E100647386 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		358E694E1DCB61E100647386 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/SVProgressHUD/SVProgressHUD.framework"; sourceTree = "<group>"; };
+		358F685E1E4D84D300F0E020 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		358F685F1E4D84D300F0E020 /* RouteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RouteViewController.xib; sourceTree = "<group>"; };
 		359286E61DCA15E9000B6923 /* DescripationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescripationView.swift; sourceTree = "<group>"; };
 		3597DEE71DBCEC6C00A65747 /* 旅行派.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "旅行派.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3597DEEA1DBCEC6C00A65747 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -825,7 +823,7 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
-		356C93F51DD5B16A00B34D5F /* CityListVC */ = {
+		356C93F51DD5B16A00B34D5F /* CityListVC（之后删除） */ = {
 			isa = PBXGroup;
 			children = (
 				356C93FE1DD5B8DD00B34D5F /* Animator/Tool/Cell */,
@@ -833,7 +831,7 @@
 				356C93F91DD5B6A100B34D5F /* CityListViewController.xib */,
 				356C93FC1DD5B6EC00B34D5F /* CityPresentationController.swift */,
 			);
-			name = CityListVC;
+			name = "CityListVC（之后删除）";
 			sourceTree = "<group>";
 		};
 		356C93FE1DD5B8DD00B34D5F /* Animator/Tool/Cell */ = {
@@ -890,8 +888,8 @@
 		358874331DCEC7EE00FAB8E7 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				356C93F51DD5B16A00B34D5F /* CityListVC */,
-				3588743A1DCECA1C00FAB8E7 /* Strategy */,
+				358F685D1E4D84A400F0E020 /* New Group */,
+				356C93F51DD5B16A00B34D5F /* CityListVC（之后删除） */,
 				358874391DCECA1300FAB8E7 /* Nearby */,
 				358874361DCEC89B00FAB8E7 /* DiscoverViewController.storyboard */,
 				358874341DCEC87E00FAB8E7 /* DiscoverViewController.swift */,
@@ -907,16 +905,6 @@
 				3588743C1DCEDA2B00FAB8E7 /* NearbyViewController.xib */,
 			);
 			name = Nearby;
-			sourceTree = "<group>";
-		};
-		3588743A1DCECA1C00FAB8E7 /* Strategy */ = {
-			isa = PBXGroup;
-			children = (
-				3588743F1DCEDA4100FAB8E7 /* StrategyViewController.swift */,
-				358874401DCEDA4100FAB8E7 /* StrategyViewController.xib */,
-				351835841DD8A39500BCC6DA /* StrategyHeaderView.swift */,
-			);
-			name = Strategy;
 			sourceTree = "<group>";
 		};
 		3589FCD61E4ABEAC00A25649 /* Extension */ = {
@@ -1017,6 +1005,15 @@
 				35BB4DF01DE9C37100C0D245 /* Target.swift */,
 			);
 			name = DetailModel;
+			sourceTree = "<group>";
+		};
+		358F685D1E4D84A400F0E020 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				358F685E1E4D84D300F0E020 /* RouteViewController.swift */,
+				358F685F1E4D84D300F0E020 /* RouteViewController.xib */,
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		3597DEDE1DBCEC6C00A65747 = {
@@ -1460,6 +1457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				358B4AE71E002EFE00805FDB /* ZZImage.storyboard in Resources */,
+				358F68611E4D84D300F0E020 /* RouteViewController.xib in Resources */,
 				35AD21501DC2F22C006B0564 /* FindMoreViewController.xib in Resources */,
 				358AFCA91DCF5E3B00C4DC28 /* AlbumDetailViewController.xib in Resources */,
 				3503E8CF1DF16938009ABB89 /* LoginViewController.xib in Resources */,
@@ -1490,7 +1488,6 @@
 				3503E8CB1DF16526009ABB89 /* LogoutView.xib in Resources */,
 				3588743E1DCEDA2B00FAB8E7 /* NearbyViewController.xib in Resources */,
 				35220C491DE3237F0092924F /* SearchViewController.xib in Resources */,
-				358874421DCEDA4100FAB8E7 /* StrategyViewController.xib in Resources */,
 				354B7E401DEC732700622296 /* TripDetailCell.xib in Resources */,
 				3572505D1DC7768100F3213B /* ProfileViewController.xib in Resources */,
 				358AFCB31DCF763A00C4DC28 /* AlbumPicCell.xib in Resources */,
@@ -1593,7 +1590,6 @@
 				35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */,
 				352722431DEB271F0090DCBD /* MJRefreshBackStateFooter.m in Sources */,
 				353FC62C1E3365F100FA8D87 /* NearByViewCell.swift in Sources */,
-				351835851DD8A39500BCC6DA /* StrategyHeaderView.swift in Sources */,
 				357671D01E3DD85500C286C0 /* ImagesCollectionView.swift in Sources */,
 				358BEB031DE8892E000CF759 /* Activity.swift in Sources */,
 				3597DEEB1DBCEC6C00A65747 /* AppDelegate.swift in Sources */,
@@ -1610,7 +1606,6 @@
 				358AC99F1E4B4C6800448406 /* ComposeTitleView.swift in Sources */,
 				3572505B1DC775D200F3213B /* ProfileViewController.swift in Sources */,
 				35BE8F741DC4A05800F952EB /* PicCell.swift in Sources */,
-				358874411DCEDA4100FAB8E7 /* StrategyViewController.swift in Sources */,
 				358874351DCEC87E00FAB8E7 /* DiscoverViewController.swift in Sources */,
 				3547C40E1DE97C380017F56B /* TripDetailViewController.swift in Sources */,
 				35B741341DBCF28B00EB8A8A /* User.swift in Sources */,
@@ -1646,6 +1641,7 @@
 				35525A101DE7E47900FDEF6C /* DetailViewController.swift in Sources */,
 				35A23BA51DD41C1600E5CEF0 /* SectionOneCell.swift in Sources */,
 				3556045A1DC227CD007C5D3C /* picCollectionCell.swift in Sources */,
+				358F68601E4D84D300F0E020 /* RouteViewController.swift in Sources */,
 				356C93FD1DD5B6EC00B34D5F /* CityPresentationController.swift in Sources */,
 				3588743D1DCEDA2B00FAB8E7 /* NearbyViewController.swift in Sources */,
 				358AFCB21DCF763A00C4DC28 /* AlbumPicCell.swift in Sources */,
