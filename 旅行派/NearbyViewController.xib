@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NearbyViewController" customModule="旅行派" customModuleProvider="target">
             <connections>
                 <outlet property="baiduMapView" destination="JF0-1w-Ncx" id="fft-7K-g3D"/>
+                <outlet property="collectionView" destination="s1N-zo-EfY" id="qZO-Cp-T4U"/>
+                <outlet property="collectionViewBottomCon" destination="Kps-PO-xSm" id="TJM-gJ-bdq"/>
+                <outlet property="searchField" destination="4FW-a5-ky4" id="lCO-6H-Pid"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,13 +23,35 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JF0-1w-Ncx" customClass="BMKMapView">
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="s1N-zo-EfY">
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Pzw-Xs-DJW">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜索..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4FW-a5-ky4">
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="JF0-1w-Ncx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Qad-KO-iSB"/>
-                <constraint firstAttribute="bottom" secondItem="JF0-1w-Ncx" secondAttribute="bottom" id="Wgm-U5-gIG"/>
-                <constraint firstAttribute="trailing" secondItem="JF0-1w-Ncx" secondAttribute="trailing" id="l7w-qF-Hg7"/>
-                <constraint firstItem="JF0-1w-Ncx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vQV-GI-Zd1"/>
+                <constraint firstAttribute="trailing" secondItem="JF0-1w-Ncx" secondAttribute="trailing" id="2MZ-fV-pTw"/>
+                <constraint firstItem="s1N-zo-EfY" firstAttribute="height" secondItem="JF0-1w-Ncx" secondAttribute="height" multiplier="0.2" id="5Hv-a3-6uq"/>
+                <constraint firstAttribute="bottom" secondItem="JF0-1w-Ncx" secondAttribute="bottom" id="JQP-wI-8n6"/>
+                <constraint firstAttribute="bottom" secondItem="s1N-zo-EfY" secondAttribute="bottom" constant="10" id="Kps-PO-xSm"/>
+                <constraint firstAttribute="trailing" secondItem="s1N-zo-EfY" secondAttribute="trailing" constant="10" id="MzP-17-M0m"/>
+                <constraint firstItem="4FW-a5-ky4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="Old-Zq-T6B"/>
+                <constraint firstAttribute="trailing" secondItem="4FW-a5-ky4" secondAttribute="trailing" constant="10" id="OnM-nI-VgT"/>
+                <constraint firstItem="4FW-a5-ky4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="aGM-bq-cCq"/>
+                <constraint firstItem="s1N-zo-EfY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="cFw-VM-yfD"/>
+                <constraint firstItem="JF0-1w-Ncx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ded-op-3ae"/>
+                <constraint firstItem="JF0-1w-Ncx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wRj-sx-2SN"/>
             </constraints>
+            <point key="canvasLocation" x="70.5" y="59.5"/>
         </view>
     </objects>
 </document>

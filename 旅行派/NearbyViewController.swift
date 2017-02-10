@@ -7,11 +7,13 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 
 class NearbyViewController: UIViewController {
-
-    fileprivate var hisOffsetY: CGFloat = 0
+    
+    @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var collectionViewBottomCon: NSLayoutConstraint!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     //MARK:百度地图相关
     @IBOutlet weak var baiduMapView: BMKMapView!
@@ -43,8 +45,11 @@ class NearbyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        automaticallyAdjustsScrollViewInsets = false
+        self.view.layoutIfNeeded()
+        setUp()
+        setUpCollectionView()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         baiduMapView.delegate = self
@@ -59,56 +64,89 @@ class NearbyViewController: UIViewController {
         locationService.delegate = nil
         poiSearcher.delegate = nil
         locationService.stopUserLocationService()
+        baiduMapView.showsUserLocation = false
     }
 
 }
 
-//MARK:代理
-
-//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//        let dis:CGFloat = 10
-//        let targetY: CGFloat = targetContentOffset.pointee.y
-//        //隐藏
-//        if hisOffsetY + dis < targetY{
-//            tabBarAnimation(hiding: true)
-//        }
-//        //显示
-//        if hisOffsetY + dis > targetY{
-//            tabBarAnimation(hiding: false)
-//        }
-//        hisOffsetY = targetContentOffset.pointee.y
-//    }
-//    
-//    fileprivate func tabBarAnimation(hiding: Bool){
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.tabBarController?.tabBar.frame.origin.y = hiding ? UIScreen.main.bounds.height : UIScreen.main.bounds.height - 49
-//        })
-//    }
-
-//MARK:点击tip代理
-extension NearbyViewController: TipCollectionViewDelegate{
-    func didSelect(tip: String) {
-        if nearLoaction == nil{print("获取当前位置中")}
-        else{
-            if coordinate != nil{
-                sendSearchRequest(coordinate: coordinate!, keyword: tip)
+//MARK: 处理搜索结果框和搜索框
+extension NearbyViewController: UITextFieldDelegate{
+    fileprivate func setUp(){
+        collectionViewBottomCon.constant = -baiduMapView.frame.height * 0.2
+        searchField.delegate = self
+        searchField.returnKeyType = .search
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        var finish = false
+        if !textField.text!.isEmpty{
+            if coordinate == nil {SVProgressHUD.showError(error: "无法获取当前位置", interval: 1) }
+            else{
+                sendSearchRequest(coordinate: coordinate!, keyword: textField.text!)
             }
+            finish = true
+        }else{
+            print("内容不能为空")
         }
+        return finish
     }
 }
+
+//MARK: 搜索结果的处理
+extension NearbyViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    fileprivate func setUpCollectionView(){
+        collectionView.layer.cornerRadius = 5
+        collectionView.clipsToBounds = true
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.collectionViewLayout = flowLayout()
+        collectionView.register(UINib(nibName: "PoiResultCell", bundle: nil), forCellWithReuseIdentifier: "PoiResultCell")
+    }
+    
+    fileprivate func flowLayout() -> UICollectionViewFlowLayout{
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: 0.2 * baiduMapView.frame.height)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        return layout
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return poiInfos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PoiResultCell", for: indexPath) as! PoiResultCell
+        cell.order = indexPath.row + 1
+        cell.info = poiInfos[indexPath.row]
+        return cell
+    }
+}
+
+
 //MARK:地图相关方法
 extension NearbyViewController: BMKMapViewDelegate, BMKLocationServiceDelegate, BMKPoiSearchDelegate {
     //MARK:-地图代理
-    func mapview(_ mapView: BMKMapView!, onDoubleClick coordinate: CLLocationCoordinate2D) {
-//        print(coordinate)
+    func mapView(_ mapView: BMKMapView!, regionWillChangeAnimated animated: Bool) {
+        searchField.resignFirstResponder()
     }
     
     func mapView(_ mapView: BMKMapView!, regionDidChangeAnimated animated: Bool) {
-//        print(mapView.region.span)
+        
     }
     
     func mapView(_ mapView: BMKMapView!, didSelect view: BMKAnnotationView!) {
-//        print(view.annotation.title!())
+        let annotation = view.annotation
+        for i in 0..<annotations.count{
+            if annotation!.title!() == annotations[i].title!(){
+                collectionView.scrollToItem(at: IndexPath(item: i, section: 0), at: [], animated: true)
+                return
+            }
+        }
+        
     }
     //MARK:个人定位代理
     func didUpdate(_ userLocation: BMKUserLocation!) {
@@ -132,6 +170,8 @@ extension NearbyViewController: BMKMapViewDelegate, BMKLocationServiceDelegate, 
             }
             baiduMapView.addAnnotations(annotations)
             baiduMapView.showAnnotations(annotations, animated: true)
+            collectionView.reloadData()
+            collectionViewBottomCon.constant = 10
         }else{
             poiInfos.removeAll()
         }
