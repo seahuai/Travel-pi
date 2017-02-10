@@ -39,6 +39,7 @@ class FriendsCircleViewController: UIViewController {
         setUpTableView()
         setUpKeyBoardNotefication()
         setUpCommentNotification()
+        setUpSelectImageNotification()
     }
     
     deinit {
@@ -119,7 +120,7 @@ extension FriendsCircleViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let shVc = SHPhotoBrowserViewController(imgUrls: models[indexPath.row].imgUrls)
+        let shVc = SHPhotoBrowserViewController(imgUrls: models[indexPath.row].imgUrls, indexPath: IndexPath(item: 0, section: 0))
         shVc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(shVc, animated: true)
     }
@@ -145,6 +146,20 @@ extension FriendsCircleViewController: UITableViewDataSource, UITableViewDelegat
         headImageView.alpha = alpha
         nameLabel.alpha = alpha
         titleLabel.alpha = 1 - alpha
+    }
+}
+
+extension FriendsCircleViewController{
+    fileprivate func setUpSelectImageNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.pushSHVc(note:)), name:  NSNotification.Name(rawValue: "SelectImageNote"), object: nil)
+    }
+    
+    @objc private func pushSHVc(note: NSNotification){
+        let indexPath = note.userInfo?["indexPath"] as! IndexPath
+        let urls = note.userInfo?["imgUrls"] as! [URL]
+        let shVc = SHPhotoBrowserViewController(imgUrls: urls, indexPath: indexPath)
+        shVc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(shVc, animated: true)
     }
 }
 

@@ -92,7 +92,7 @@ extension FriendCircleCell{
         if count == 1 {//当只有1张图片时，从缓存中取出图片，将size设置为图片的尺寸
             let urlStr = friendCircleModel?.imgUrls.first?.absoluteString
             if let image = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: urlStr){
-                let ratio: CGFloat = 0.5
+                let ratio: CGFloat = 0.2
                 itemLayout.itemSize = CGSize(width: image.size.width * ratio, height: image.size.height * ratio)
             }
             return itemLayout.itemSize

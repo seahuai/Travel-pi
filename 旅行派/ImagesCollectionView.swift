@@ -35,6 +35,11 @@ extension ImagesCollectionView: UICollectionViewDelegate, UICollectionViewDataSo
         cell.url = imgUrls[indexPath.item]
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SelectImageNote"), object: nil, userInfo: ["indexPath" : indexPath, "imgUrls" : imgUrls])
+    }
+    
 }
 
 class ImageCell: UICollectionViewCell{

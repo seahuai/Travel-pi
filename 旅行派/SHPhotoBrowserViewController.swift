@@ -16,12 +16,14 @@ class SHPhotoBrowserViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    init(imgUrls: [URL]){
+    init(imgUrls: [URL], indexPath: IndexPath){
         super.init(nibName: nil, bundle: nil)
         self.imgUrls = imgUrls
         
         setUpCollectionView()
         setUpNavigationBar()
+        
+        collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
     }
     
     required init?(coder aDecoder: NSCoder) {
