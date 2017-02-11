@@ -58,6 +58,7 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        nameLabel.text = Account.shared.currentUserID
         if Account.shared.newMessage{
             tableView.reloadSections([0], with: .none)
         }

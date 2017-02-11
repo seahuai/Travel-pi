@@ -124,6 +124,7 @@
 		358B4AEA1E002EFE00805FDB /* ZZPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358B4AE01E002EFE00805FDB /* ZZPhotoCell.swift */; };
 		358B4AEB1E002EFE00805FDB /* ZZPhotoPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358B4AE11E002EFE00805FDB /* ZZPhotoPreviewCell.swift */; };
 		358B4AEC1E002EFE00805FDB /* ZZPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358B4AE21E002EFE00805FDB /* ZZPhotoViewController.swift */; };
+		358B57CA1E4F44720057075C /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358B57C91E4F44720057075C /* PlaceholderView.swift */; };
 		358BEAFD1DE886FA000CF759 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BEAFC1DE886FA000CF759 /* Detail.swift */; };
 		358BEAFF1DE8870A000CF759 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BEAFE1DE8870A000CF759 /* Plan.swift */; };
 		358BEB011DE887EB000CF759 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BEB001DE887EB000CF759 /* Day.swift */; };
@@ -372,6 +373,7 @@
 		358B4AE01E002EFE00805FDB /* ZZPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZPhotoCell.swift; sourceTree = "<group>"; };
 		358B4AE11E002EFE00805FDB /* ZZPhotoPreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZPhotoPreviewCell.swift; sourceTree = "<group>"; };
 		358B4AE21E002EFE00805FDB /* ZZPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZZPhotoViewController.swift; sourceTree = "<group>"; };
+		358B57C91E4F44720057075C /* PlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		358BEAFC1DE886FA000CF759 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		358BEAFE1DE8870A000CF759 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		358BEB001DE887EB000CF759 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 		3503E8D01DF17324009ABB89 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				358B57C81E4F44580057075C /* 占位视图 */,
 				3503E8D61DF1748F009ABB89 /* MessageViewController.storyboard */,
 				3503E8D11DF173CD009ABB89 /* MessageViewController.swift */,
 				35214B141DF2B31E0012354F /* ConversationCell.swift */,
@@ -948,6 +951,14 @@
 				358F685F1E4D84D300F0E020 /* RouteViewController.xib */,
 			);
 			name = Route;
+			sourceTree = "<group>";
+		};
+		358B57C81E4F44580057075C /* 占位视图 */ = {
+			isa = PBXGroup;
+			children = (
+				358B57C91E4F44720057075C /* PlaceholderView.swift */,
+			);
+			name = "占位视图";
 			sourceTree = "<group>";
 		};
 		358BEAFA1DE88546000CF759 /* Cell/Header */ = {
@@ -1602,6 +1613,7 @@
 				358BEB011DE887EB000CF759 /* Day.swift in Sources */,
 				352722451DEB271F0090DCBD /* MJRefreshNormalHeader.m in Sources */,
 				357B63F31DBF809200859186 /* DestinationCell.swift in Sources */,
+				358B57CA1E4F44720057075C /* PlaceholderView.swift in Sources */,
 				358B4AEA1E002EFE00805FDB /* ZZPhotoCell.swift in Sources */,
 				359286E71DCA15E9000B6923 /* DescripationView.swift in Sources */,
 				358B4AE51E002EFE00805FDB /* ZZAssetPreviewVC.swift in Sources */,

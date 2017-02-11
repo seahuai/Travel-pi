@@ -13,10 +13,14 @@ class MessageViewController: UITableViewController {
     fileprivate lazy var locationTool = LocationTool()
     fileprivate var location: CLLocation?
     @IBOutlet weak var leftBarButtonClick: UIBarButtonItem!
+    @IBOutlet weak var rightBarButton: UIBarButtonItem!
+    
+    fileprivate lazy var placeholderView = PlaceholderView(frame: CGRect.zero)
     
     fileprivate var conversations: [EMConversation] = [EMConversation]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpPlaceholder()
         setUp()
         refresh()
     }
@@ -25,9 +29,9 @@ class MessageViewController: UITableViewController {
         super.viewWillAppear(animated)
         conversations = EMClient.shared().chatManager.getAllConversations() as! [EMConversation]
         tableView.reloadData()
-//        refresh()
+        rightBarButton.isEnabled = EMClient.shared().isLoggedIn
+        placeholderView.isHidden = EMClient.shared().isLoggedIn
     }
-    
 
     @IBAction func leftBarButtonClick(_ sender: AnyObject) {
         present(ProfileViewController.shared, animated: true, completion: nil)
@@ -45,7 +49,8 @@ extension MessageViewController{
     
     
     fileprivate func setUp(){
-//        locationTool.delegate = self
+        tableView.separatorStyle = .none
+        
         let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(self.refreshConversation))
         header?.lastUpdatedTimeLabel.isHidden = true
         header?.setTitle("下拉刷新", for: .idle)
@@ -113,6 +118,21 @@ extension MessageViewController: EMChatManagerDelegate{
         }
     }
 }
+
+extension MessageViewController: PlaceholderLoginDelegate{
+    fileprivate func setUpPlaceholder(){
+        self.view.addSubview(placeholderView)
+        placeholderView.frame = UIScreen.main.bounds
+        placeholderView.delegate = self
+    }
+    
+    func login() {
+        let nav = UINavigationController(rootViewController: LoginViewController())
+        present(nav, animated: true, completion: nil)
+    }
+}
+
+
 
 
 
