@@ -10,6 +10,8 @@ import UIKit
 
 class RouteViewController: UIViewController {
 
+    var routeInfos: [BMKPoiInfo] = [BMKPoiInfo]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.darkGray

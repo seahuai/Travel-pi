@@ -10,6 +10,7 @@ import UIKit
 
 protocol PoiResultCellDelegate {
     func down()
+    func add(order: Int)
 }
 
 class PoiResultCell: UICollectionViewCell {
@@ -59,6 +60,7 @@ class PoiResultCell: UICollectionViewCell {
     fileprivate func setUpButton(){
         downButton.addTarget(self, action: #selector(self.down), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(self.add), for: .touchUpInside)
+        addButton.setTitle(" 已加入行程 ", for: .disabled)
     }
     
     @objc private func down(){
@@ -66,7 +68,9 @@ class PoiResultCell: UICollectionViewCell {
     }
     
     @objc private func add(){
-        
+        addButton.isEnabled = false
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddRouteNote"), object: nil, userInfo: ["info": info!])
+        delegate?.add(order: order!)
     }
 
 }

@@ -85,11 +85,6 @@
 		3556045B1DC227CD007C5D3C /* picCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 355604591DC227CD007C5D3C /* picCollectionCell.xib */; };
 		3556045D1DC236AB007C5D3C /* HomeNotificationCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3556045C1DC236AB007C5D3C /* HomeNotificationCommon.swift */; };
 		3569EC821E39E7E80040BF6B /* FriendCircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569EC811E39E7E80040BF6B /* FriendCircleCell.swift */; };
-		356C93F71DD5B2F300B34D5F /* CityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C93F61DD5B2F300B34D5F /* CityList.swift */; };
-		356C93FA1DD5B6A100B34D5F /* CityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C93F81DD5B6A100B34D5F /* CityListViewController.swift */; };
-		356C93FB1DD5B6A100B34D5F /* CityListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 356C93F91DD5B6A100B34D5F /* CityListViewController.xib */; };
-		356C93FD1DD5B6EC00B34D5F /* CityPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C93FC1DD5B6EC00B34D5F /* CityPresentationController.swift */; };
-		356C94001DD5B8FB00B34D5F /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C93FF1DD5B8FB00B34D5F /* PopAnimator.swift */; };
 		3571482B1DE34DD5000CE292 /* SearchAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3571482A1DE34DD5000CE292 /* SearchAnimator.swift */; };
 		3572505B1DC775D200F3213B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3572505A1DC775D200F3213B /* ProfileViewController.swift */; };
 		3572505D1DC7768100F3213B /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3572505C1DC7768000F3213B /* ProfileViewController.xib */; };
@@ -153,8 +148,6 @@
 		35AD21521DC2FB89006B0564 /* DrawerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AD21511DC2FB89006B0564 /* DrawerAnimator.swift */; };
 		35AEEE3A1E3DE8BF00B9877E /* CircleModel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35AEEE391E3DE8BF00B9877E /* CircleModel.plist */; };
 		35AEEE3D1E3E391A00B9877E /* CommentsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AEEE3C1E3E391A00B9877E /* CommentsTableView.swift */; };
-		35B222881DD5EF590014D85F /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B222861DD5EF590014D85F /* CityCell.swift */; };
-		35B222891DD5EF590014D85F /* CityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B222871DD5EF590014D85F /* CityCell.xib */; };
 		35B391741E0D0AC000CDE431 /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 35B391731E0D0AC000CDE431 /* index.js */; };
 		35B7412A1DBCEED000EB8A8A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B741261DBCEED000EB8A8A /* Alamofire.framework */; };
 		35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B7412F1DBCF25D00EB8A8A /* TravelNote.swift */; };
@@ -340,11 +333,6 @@
 		355604591DC227CD007C5D3C /* picCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = picCollectionCell.xib; sourceTree = "<group>"; };
 		3556045C1DC236AB007C5D3C /* HomeNotificationCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNotificationCommon.swift; sourceTree = "<group>"; };
 		3569EC811E39E7E80040BF6B /* FriendCircleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCircleCell.swift; sourceTree = "<group>"; };
-		356C93F61DD5B2F300B34D5F /* CityList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityList.swift; sourceTree = "<group>"; };
-		356C93F81DD5B6A100B34D5F /* CityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityListViewController.swift; sourceTree = "<group>"; };
-		356C93F91DD5B6A100B34D5F /* CityListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityListViewController.xib; sourceTree = "<group>"; };
-		356C93FC1DD5B6EC00B34D5F /* CityPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityPresentationController.swift; sourceTree = "<group>"; };
-		356C93FF1DD5B8FB00B34D5F /* PopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		3571482A1DE34DD5000CE292 /* SearchAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAnimator.swift; sourceTree = "<group>"; };
 		3572505A1DC775D200F3213B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3572505C1DC7768000F3213B /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
@@ -412,8 +400,6 @@
 		35AD21511DC2FB89006B0564 /* DrawerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerAnimator.swift; sourceTree = "<group>"; };
 		35AEEE391E3DE8BF00B9877E /* CircleModel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CircleModel.plist; sourceTree = "<group>"; };
 		35AEEE3C1E3E391A00B9877E /* CommentsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableView.swift; sourceTree = "<group>"; };
-		35B222861DD5EF590014D85F /* CityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
-		35B222871DD5EF590014D85F /* CityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityCell.xib; sourceTree = "<group>"; };
 		35B391731E0D0AC000CDE431 /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
 		35B741261DBCEED000EB8A8A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../Library/Developer/Xcode/DerivedData/旅行派-bigwsdqrqodypncfngqtipyjxmix/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		35B741271DBCEED000EB8A8A /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
@@ -817,28 +803,6 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
-		356C93F51DD5B16A00B34D5F /* CityListVC（之后删除） */ = {
-			isa = PBXGroup;
-			children = (
-				356C93FE1DD5B8DD00B34D5F /* Animator/Tool/Cell */,
-				356C93F81DD5B6A100B34D5F /* CityListViewController.swift */,
-				356C93F91DD5B6A100B34D5F /* CityListViewController.xib */,
-				356C93FC1DD5B6EC00B34D5F /* CityPresentationController.swift */,
-			);
-			name = "CityListVC（之后删除）";
-			sourceTree = "<group>";
-		};
-		356C93FE1DD5B8DD00B34D5F /* Animator/Tool/Cell */ = {
-			isa = PBXGroup;
-			children = (
-				356C93F61DD5B2F300B34D5F /* CityList.swift */,
-				356C93FF1DD5B8FB00B34D5F /* PopAnimator.swift */,
-				35B222861DD5EF590014D85F /* CityCell.swift */,
-				35B222871DD5EF590014D85F /* CityCell.xib */,
-			);
-			name = Animator/Tool/Cell;
-			sourceTree = "<group>";
-		};
 		357250591DC775B900F3213B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -882,8 +846,7 @@
 		358874331DCEC7EE00FAB8E7 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				358F685D1E4D84A400F0E020 /* New Group */,
-				356C93F51DD5B16A00B34D5F /* CityListVC（之后删除） */,
+				358B57C71E4EE6140057075C /* Route */,
 				358874391DCECA1300FAB8E7 /* Nearby */,
 				358874361DCEC89B00FAB8E7 /* DiscoverViewController.storyboard */,
 				358874341DCEC87E00FAB8E7 /* DiscoverViewController.swift */,
@@ -978,6 +941,15 @@
 			name = "第三方框架";
 			sourceTree = "<group>";
 		};
+		358B57C71E4EE6140057075C /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				358F685E1E4D84D300F0E020 /* RouteViewController.swift */,
+				358F685F1E4D84D300F0E020 /* RouteViewController.xib */,
+			);
+			name = Route;
+			sourceTree = "<group>";
+		};
 		358BEAFA1DE88546000CF759 /* Cell/Header */ = {
 			isa = PBXGroup;
 			children = (
@@ -999,15 +971,6 @@
 				35BB4DF01DE9C37100C0D245 /* Target.swift */,
 			);
 			name = DetailModel;
-			sourceTree = "<group>";
-		};
-		358F685D1E4D84A400F0E020 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				358F685E1E4D84D300F0E020 /* RouteViewController.swift */,
-				358F685F1E4D84D300F0E020 /* RouteViewController.xib */,
-			);
-			name = "New Group";
 			sourceTree = "<group>";
 		};
 		3597DEDE1DBCEC6C00A65747 = {
@@ -1466,12 +1429,10 @@
 				358874381DCEC89B00FAB8E7 /* DiscoverViewController.storyboard in Resources */,
 				357FDA931DC378A5002966FE /* FindMoreCell.xib in Resources */,
 				3539EC541E0C18CE00AEF9DE /* index.css in Resources */,
-				356C93FB1DD5B6A100B34D5F /* CityListViewController.xib in Resources */,
 				35525A111DE7E47900FDEF6C /* DetailViewController.xib in Resources */,
 				3589FCDD1E4AC0B200A25649 /* ComposeViewController.xib in Resources */,
 				35BE8F751DC4A05800F952EB /* PicCell.xib in Resources */,
 				3539EC521E0C13EC00AEF9DE /* ShareCellDetailViewController.xib in Resources */,
-				35B222891DD5EF590014D85F /* CityCell.xib in Resources */,
 				35214B131DF265390012354F /* FriendRequestCell.xib in Resources */,
 				3597DEF01DBCEC6C00A65747 /* Main.storyboard in Resources */,
 				35D26BB31DE8286E00D3318C /* TripViewController.xib in Resources */,
@@ -1600,16 +1561,13 @@
 				3547C40E1DE97C380017F56B /* TripDetailViewController.swift in Sources */,
 				35B741341DBCF28B00EB8A8A /* User.swift in Sources */,
 				35D26BB61DE8287F00D3318C /* NoteViewController.swift in Sources */,
-				356C94001DD5B8FB00B34D5F /* PopAnimator.swift in Sources */,
 				3503E8CE1DF16938009ABB89 /* LoginViewController.swift in Sources */,
 				35214B151DF2B31E0012354F /* ConversationCell.swift in Sources */,
 				3527224A1DEB271F0090DCBD /* UIScrollView+MJExtension.m in Sources */,
 				3503E8C31DF16066009ABB89 /* Account.swift in Sources */,
-				35B222881DD5EF590014D85F /* CityCell.swift in Sources */,
 				35FC624F1DBE259F005D1F20 /* NetWorkTool.swift in Sources */,
 				3503E8D21DF173CD009ABB89 /* MessageViewController.swift in Sources */,
 				358AC9A41E4B587800448406 /* PickImageCollectionView.swift in Sources */,
-				356C93F71DD5B2F300B34D5F /* CityList.swift in Sources */,
 				355577181E4CA9BB003DC575 /* SHPhotoCell.swift in Sources */,
 				357671CE1E3DD6A400C286C0 /* FriendCircle.swift in Sources */,
 				35220C4C1DE330450092924F /* ShowSearchCityCell.swift in Sources */,
@@ -1631,7 +1589,6 @@
 				35525A101DE7E47900FDEF6C /* DetailViewController.swift in Sources */,
 				3556045A1DC227CD007C5D3C /* picCollectionCell.swift in Sources */,
 				358F68601E4D84D300F0E020 /* RouteViewController.swift in Sources */,
-				356C93FD1DD5B6EC00B34D5F /* CityPresentationController.swift in Sources */,
 				358F68641E4D98C300F0E020 /* PoiResultCell.swift in Sources */,
 				3588743D1DCEDA2B00FAB8E7 /* NearbyViewController.swift in Sources */,
 				358AFCB21DCF763A00C4DC28 /* AlbumPicCell.swift in Sources */,
@@ -1660,7 +1617,6 @@
 				358B4AE91E002EFE00805FDB /* ZZImageSelectedLayer.swift in Sources */,
 				358B4AEB1E002EFE00805FDB /* ZZPhotoPreviewCell.swift in Sources */,
 				357A2EBF1DE1914F00759529 /* DrawerPresentationController.swift in Sources */,
-				356C93FA1DD5B6A100B34D5F /* CityListViewController.swift in Sources */,
 				3527223D1DEB271F0090DCBD /* MJRefreshHeader.m in Sources */,
 				358B4AE31E002EFE00805FDB /* UICollectionView+Add.swift in Sources */,
 				358AC9A51E4B587800448406 /* PickImageCell.swift in Sources */,

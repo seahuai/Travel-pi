@@ -42,7 +42,7 @@ class NearbyViewController: UIViewController {
     
     fileprivate var annotations: [BMKAnnotation] = [BMKAnnotation]()
     fileprivate var poiInfos: [BMKPoiInfo] = [BMKPoiInfo]()
-    
+    fileprivate var routes: [Int] = [Int]()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
@@ -72,9 +72,17 @@ class NearbyViewController: UIViewController {
 //MARK: 处理搜索结果框和搜索框
 extension NearbyViewController: UITextFieldDelegate{
     fileprivate func setUp(){
-        collectionViewBottomCon.constant = -baiduMapView.frame.height * 0.2
+        collectionViewBottomCon.constant = -UIScreen.main.bounds.height * 0.2
         searchField.delegate = self
         searchField.returnKeyType = .search
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        poiInfos.removeAll()
+        baiduMapView.removeAnnotations(annotations)
+        collectionView.reloadData()
+        collectionViewBottomCon.constant = -UIScreen.main.bounds.height * 0.2
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -93,7 +101,7 @@ extension NearbyViewController: UITextFieldDelegate{
 }
 
 //MARK: 搜索结果的处理
-extension NearbyViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension NearbyViewController: UICollectionViewDelegate, UICollectionViewDataSource, PoiResultCellDelegate{
     fileprivate func setUpCollectionView(){
         collectionView.layer.cornerRadius = 5
         collectionView.clipsToBounds = true
@@ -120,9 +128,32 @@ extension NearbyViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PoiResultCell", for: indexPath) as! PoiResultCell
-        cell.order = indexPath.row + 1
+        let order = indexPath.row + 1
+        cell.order = order
+        cell.addButton.isEnabled = routes.contains(order) ? false : true
         cell.info = poiInfos[indexPath.row]
+        cell.delegate = self
         return cell
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let index = collectionView.contentOffset.x / collectionView.bounds.width
+        let info = poiInfos[Int(index)]
+        let span = BMKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+        let region = BMKCoordinateRegion(center: info.pt, span: span)
+        baiduMapView.setRegion(region, animated: true)
+        
+    }
+    //MARK:收起搜索栏的方法
+    func down() {
+        collectionViewBottomCon.constant = -UIScreen.main.bounds.height * 0.2
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func add(order: Int) {
+        routes.append(order)
     }
 }
 
@@ -132,6 +163,7 @@ extension NearbyViewController: BMKMapViewDelegate, BMKLocationServiceDelegate, 
     //MARK:-地图代理
     func mapView(_ mapView: BMKMapView!, regionWillChangeAnimated animated: Bool) {
         searchField.resignFirstResponder()
+//        print("la:\(mapView.region.span.latitudeDelta)-lo\(mapView.region.span.longitudeDelta)")
     }
     
     func mapView(_ mapView: BMKMapView!, regionDidChangeAnimated animated: Bool) {
@@ -140,13 +172,18 @@ extension NearbyViewController: BMKMapViewDelegate, BMKLocationServiceDelegate, 
     
     func mapView(_ mapView: BMKMapView!, didSelect view: BMKAnnotationView!) {
         let annotation = view.annotation
+        if collectionViewBottomCon.constant < 0 {
+            collectionViewBottomCon.constant = 10
+            UIView.animate(withDuration: 0.3, animations: { 
+                self.view.layoutIfNeeded()
+            })
+        }
         for i in 0..<annotations.count{
             if annotation!.title!() == annotations[i].title!(){
                 collectionView.scrollToItem(at: IndexPath(item: i, section: 0), at: [], animated: true)
                 return
             }
         }
-        
     }
     //MARK:个人定位代理
     func didUpdate(_ userLocation: BMKUserLocation!) {

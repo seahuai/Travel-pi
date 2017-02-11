@@ -14,6 +14,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="282" height="133"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3sx-co-eCa">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- 1 -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dV-fe-lvT">
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,33 +53,51 @@
                         <state key="normal" image="arrows_down_double"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zBX-rl-fCS">
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <state key="normal" title="加入行程"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.60738146551724137" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title=" 加入行程 ">
+                            <color key="titleShadowColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </button>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="X65-Yn-vb4" secondAttribute="trailing" constant="5" id="0s5-pG-l3m"/>
                 <constraint firstItem="3dV-fe-lvT" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="1sW-NX-bLn"/>
                 <constraint firstItem="h1P-C0-hl5" firstAttribute="top" secondItem="3dV-fe-lvT" secondAttribute="bottom" constant="10" id="5LJ-rl-nOE"/>
+                <constraint firstAttribute="bottom" secondItem="3sx-co-eCa" secondAttribute="bottom" id="DZ6-YG-Qxg"/>
                 <constraint firstAttribute="bottom" secondItem="guX-Vx-HnD" secondAttribute="bottom" id="Dvu-pv-j3X"/>
                 <constraint firstItem="h1P-C0-hl5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Gy4-ZJ-lx3"/>
                 <constraint firstItem="3dV-fe-lvT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="HdY-kz-1RV"/>
+                <constraint firstAttribute="trailing" secondItem="3sx-co-eCa" secondAttribute="trailing" id="NDb-sK-Ubf"/>
                 <constraint firstAttribute="trailing" secondItem="zBX-rl-fCS" secondAttribute="trailing" constant="5" id="Nqb-gf-ZKR"/>
                 <constraint firstItem="guX-Vx-HnD" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="TnP-hQ-hpW"/>
                 <constraint firstItem="hGW-Nf-99b" firstAttribute="centerY" secondItem="h1P-C0-hl5" secondAttribute="centerY" id="Xln-mQ-c2E"/>
                 <constraint firstItem="PkS-BK-dCs" firstAttribute="trailing" secondItem="X65-Yn-vb4" secondAttribute="trailing" id="cOI-5e-zR9"/>
                 <constraint firstItem="PkS-BK-dCs" firstAttribute="leading" secondItem="X65-Yn-vb4" secondAttribute="leading" id="clc-Kw-fAb"/>
                 <constraint firstItem="PkS-BK-dCs" firstAttribute="top" secondItem="X65-Yn-vb4" secondAttribute="bottom" constant="10" id="duX-d7-Nvn"/>
+                <constraint firstItem="3sx-co-eCa" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eTr-V6-TSF"/>
                 <constraint firstItem="X65-Yn-vb4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="hgG-oq-yJS"/>
                 <constraint firstItem="hGW-Nf-99b" firstAttribute="leading" secondItem="h1P-C0-hl5" secondAttribute="trailing" constant="5" id="nFI-Ix-Kzb"/>
                 <constraint firstAttribute="trailing" secondItem="hGW-Nf-99b" secondAttribute="trailing" constant="5" id="nap-dZ-lLf"/>
+                <constraint firstItem="3sx-co-eCa" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="uZs-TI-aOQ"/>
                 <constraint firstAttribute="bottom" secondItem="zBX-rl-fCS" secondAttribute="bottom" constant="5" id="vT7-Uz-Oyb"/>
                 <constraint firstItem="X65-Yn-vb4" firstAttribute="top" secondItem="hGW-Nf-99b" secondAttribute="bottom" constant="10" id="wL1-fm-oH2"/>
                 <constraint firstItem="3dV-fe-lvT" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="ywe-i4-bzD"/>
             </constraints>
             <size key="customSize" width="282" height="133"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="5"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="addButton" destination="zBX-rl-fCS" id="sGS-nb-srl"/>
                 <outlet property="addressLabel" destination="X65-Yn-vb4" id="SXH-DA-QZ0"/>
@@ -86,7 +107,7 @@
                 <outlet property="phoneLabel" destination="PkS-BK-dCs" id="aR2-7z-1PP"/>
                 <outlet property="typeLabel" destination="h1P-C0-hl5" id="fZp-9r-cHG"/>
             </connections>
-            <point key="canvasLocation" x="60" y="190"/>
+            <point key="canvasLocation" x="60" y="189.5"/>
         </collectionViewCell>
     </objects>
     <resources>

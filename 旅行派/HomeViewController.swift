@@ -377,7 +377,6 @@ extension HomeViewController{
 //            self.locationTool.isUpdate = false
             if  self.CellModels["NearBy"] == nil{
                 self.CellModels["NearBy"] = self.NBdestinations
-                CityList.sharedInstance.addObject(near: self.NBdestinations)
             }
             //            self.destinationTableView.reloadData()
             self.destinationTableView.mj_header.endRefreshing()
@@ -395,7 +394,6 @@ extension HomeViewController{
             }
             if  self.CellModels["China"] == nil{
                 self.CellModels["China"] = self.ChinaHotdestinations
-                CityList.sharedInstance.addObject(china: self.ChinaHotdestinations)
             }
             self.destinationTableView.mj_header.endRefreshing()
         }
@@ -413,7 +411,6 @@ extension HomeViewController{
             }
             if  self.CellModels["Hot"] == nil{
                 self.CellModels["Hot"] = self.Hotdestinations
-                CityList.sharedInstance.addObject(hot: self.Hotdestinations)
             }
             self.destinationTableView.mj_header.endRefreshing()
         }
@@ -431,7 +428,6 @@ extension HomeViewController{
             
             if self.CellModels["Others"] == nil{
                 self.CellModels["Others"] = self.Otherdestinations
-                CityList.sharedInstance.addObject(other: self.Otherdestinations)
             }
             self.destinationTableView.mj_header.endRefreshing()
         }

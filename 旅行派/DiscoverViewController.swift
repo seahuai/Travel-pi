@@ -16,10 +16,14 @@ class DiscoverViewController: UIViewController {
     fileprivate lazy var nearByViewController: NearbyViewController = NearbyViewController()
     fileprivate lazy var routeViewController: RouteViewController = RouteViewController()
     
+    //地图界面加入行程之后传给父控制器，再由父控制器将值传递给子控制器
+    fileprivate var routeInfos: [BMKPoiInfo] = [BMKPoiInfo]()
+    fileprivate var newRoutes: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
         setUpChildViewController()
+        setUpNote()
     }
 }
 
@@ -68,9 +72,26 @@ extension DiscoverViewController{
             scrollView.addSubview(nearBy.view)
         default:
             let routeVc = childViewControllers[1] as! RouteViewController
+            newRoutes = 0
+            segementControl.setTitle("行程", forSegmentAt: 1)
+            routeVc.routeInfos = routeInfos
             if routeVc.view.superview != nil {return}
             routeVc.view.frame = CGRect(x: x, y: 0, width: w, height: h)
             scrollView.addSubview(routeVc.view)
         }
+    }
+}
+
+extension DiscoverViewController{
+    fileprivate func setUpNote(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.addRoute(note:)), name: NSNotification.Name(rawValue: "AddRouteNote"), object: nil)
+    }
+    
+    @objc private func addRoute(note: Notification){
+        let info = note.userInfo?["info"] as! BMKPoiInfo
+        routeInfos.append(info)
+        newRoutes += 1
+        segementControl.setTitle("行程(\(newRoutes))", forSegmentAt: 1)
+        
     }
 }
