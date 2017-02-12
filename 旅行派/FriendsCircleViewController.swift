@@ -42,6 +42,18 @@ class FriendsCircleViewController: UIViewController {
         setUpSelectImageNotification()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if EMClient.shared().isLoggedIn{
+            headImageView.isHidden = false
+            headImageView.image = UIImage(named: "avator")
+            nameLabel.text = EMClient.shared().currentUsername
+        }else{
+            headImageView.isHidden = true
+            nameLabel.text = "尚未登录"
+        }
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -53,7 +65,7 @@ extension FriendsCircleViewController{
     fileprivate func setUp(){
         automaticallyAdjustsScrollViewInsets = false
         backgroundOriginalHeight = backgroundViewHeightCon.constant
-//        originalPoint = CGPoint(x: 0, y: -backgroundOriginalHeight + 64)
+        headImageView.image = UIImage(named: "avator")
     }
     
     fileprivate func setUpNavigationBar(){
@@ -73,6 +85,21 @@ extension FriendsCircleViewController{
     }
     
     @objc private func presentComVC(){
+        if !EMClient.shared().isLoggedIn {
+            let loginAlert = UIAlertController(title: "登录后才可发布动态", message: "前往登录？", preferredStyle: .alert)
+            let cancelAc = UIAlertAction(title: "取消", style: .cancel, handler: { (_) in
+                loginAlert.dismiss(animated: true, completion: nil)
+            })
+            let loginAc = UIAlertAction(title: "登录", style: .default, handler: { (_) in
+                let nav = UINavigationController(rootViewController: LoginViewController())
+                loginAlert.dismiss(animated: true, completion: nil)
+                self.present(nav, animated: true, completion: nil)
+            })
+            loginAlert.addAction(loginAc)
+            loginAlert.addAction(cancelAc)
+            present(loginAlert, animated: true, completion: nil)
+            return
+        }
         let composeVc = ComposeViewController()
         //MARK:实现发送界面的代理
         composeVc.delegate = self
@@ -88,7 +115,9 @@ extension FriendsCircleViewController: ComposeDelegate{
         let avotor = "http://img.jiqie.com/10/8/1370nz.jpg"
         let model = FriendCircle(user: user!, avaterUrl: avotor, urls: imageUrls, text: content)
         models = [model] + models
-        tableView.reloadData()
+        
+        downloadImage(models: models)
+        
         SVProgressHUD.showInfo(info: "发送成功", interval: 0.5)
     }
 }
@@ -263,7 +292,7 @@ extension FriendsCircleViewController{
             for url in model.imgUrls{
                 group.enter()
                 SDWebImageManager.shared().downloadImage(with: url, options: [], progress: nil, completed: { (_, error, _, _, _) in
-                    if error != nil {print("网络情况不佳")}
+                    if error != nil {SVProgressHUD.showError(error: "网络情况不佳", interval: 1)}
                     group.leave()
                 })
                

@@ -58,7 +58,10 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        nameLabel.text = Account.shared.currentUserID
+        if isLogin {
+            nameLabel.text = EMClient.shared().currentUsername
+            headImageView.image = UIImage(named: "avator")
+        }
         if Account.shared.newMessage{
             tableView.reloadSections([0], with: .none)
         }
