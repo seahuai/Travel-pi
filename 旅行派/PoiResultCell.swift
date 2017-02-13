@@ -10,7 +10,6 @@ import UIKit
 
 protocol PoiResultCellDelegate {
     func down()
-    func add(order: Int)
 }
 
 class PoiResultCell: UICollectionViewCell {
@@ -26,7 +25,7 @@ class PoiResultCell: UICollectionViewCell {
     var delegate: PoiResultCellDelegate?
     var order: Int?{
         didSet{
-            orderLabel.text = "- \(order!) -"
+            orderLabel.text = "- \(order! + 1) -"
         }
     }
     var info: BMKPoiInfo?{
@@ -69,8 +68,10 @@ class PoiResultCell: UICollectionViewCell {
     
     @objc private func add(){
         addButton.isEnabled = false
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddRouteNote"), object: nil, userInfo: ["info": info!])
-        delegate?.add(order: order!)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddRouteNote"), object: nil, userInfo: nil)
+        Route.shared.routesIndex.append(order!)
+        let route = RouteModel(info: info!, index: order!)
+        Route.shared.addRoute(route: route)
     }
 
 }

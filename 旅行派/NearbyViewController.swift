@@ -39,10 +39,8 @@ class NearbyViewController: UIViewController {
         }
     }
     
-    
     fileprivate var annotations: [BMKAnnotation] = [BMKAnnotation]()
     fileprivate var poiInfos: [BMKPoiInfo] = [BMKPoiInfo]()
-    fileprivate var routes: [Int] = [Int]()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
@@ -128,9 +126,9 @@ extension NearbyViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PoiResultCell", for: indexPath) as! PoiResultCell
-        let order = indexPath.row + 1
+        let order = indexPath.row
         cell.order = order
-        cell.addButton.isEnabled = routes.contains(order) ? false : true
+        cell.addButton.isEnabled = Route.shared.routesIndex.contains(order) ? false : true
         cell.info = poiInfos[indexPath.row]
         cell.delegate = self
         return cell
@@ -150,10 +148,6 @@ extension NearbyViewController: UICollectionViewDelegate, UICollectionViewDataSo
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
-    }
-    
-    func add(order: Int) {
-        routes.append(order)
     }
 }
 

@@ -163,6 +163,10 @@
 		35D26BB31DE8286E00D3318C /* TripViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35D26BB11DE8286E00D3318C /* TripViewController.xib */; };
 		35D26BB61DE8287F00D3318C /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D26BB41DE8287F00D3318C /* NoteViewController.swift */; };
 		35D26BB71DE8287F00D3318C /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35D26BB51DE8287F00D3318C /* NoteViewController.xib */; };
+		35D37B571E50111500CD8C47 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D37B551E50111500CD8C47 /* RouteCell.swift */; };
+		35D37B581E50111500CD8C47 /* RouteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35D37B561E50111500CD8C47 /* RouteCell.xib */; };
+		35D37B5A1E515C5100CD8C47 /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D37B591E515C5100CD8C47 /* RouteModel.swift */; };
+		35D37B5C1E515EC800CD8C47 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D37B5B1E515EC800CD8C47 /* Route.swift */; };
 		35D9171A1E39F1E7008B6616 /* FriendCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D917181E39F1E7008B6616 /* FriendCommentCell.swift */; };
 		35D9171B1E39F1E7008B6616 /* FriendCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35D917191E39F1E7008B6616 /* FriendCommentCell.xib */; };
 		35D9171E1E39F6DB008B6616 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D9171D1E39F6DB008B6616 /* Comment.swift */; };
@@ -419,6 +423,10 @@
 		35D26BB11DE8286E00D3318C /* TripViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripViewController.xib; sourceTree = "<group>"; };
 		35D26BB41DE8287F00D3318C /* NoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		35D26BB51DE8287F00D3318C /* NoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteViewController.xib; sourceTree = "<group>"; };
+		35D37B551E50111500CD8C47 /* RouteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCell.swift; sourceTree = "<group>"; };
+		35D37B561E50111500CD8C47 /* RouteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RouteCell.xib; sourceTree = "<group>"; };
+		35D37B591E515C5100CD8C47 /* RouteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteModel.swift; sourceTree = "<group>"; };
+		35D37B5B1E515EC800CD8C47 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		35D917181E39F1E7008B6616 /* FriendCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCommentCell.swift; sourceTree = "<group>"; };
 		35D917191E39F1E7008B6616 /* FriendCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCommentCell.xib; sourceTree = "<group>"; };
 		35D9171D1E39F6DB008B6616 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -947,6 +955,7 @@
 		358B57C71E4EE6140057075C /* Route */ = {
 			isa = PBXGroup;
 			children = (
+				35D37B541E5010FF00CD8C47 /* cell */,
 				358F685E1E4D84D300F0E020 /* RouteViewController.swift */,
 				358F685F1E4D84D300F0E020 /* RouteViewController.xib */,
 			);
@@ -1153,6 +1162,17 @@
 				35D26BB11DE8286E00D3318C /* TripViewController.xib */,
 			);
 			name = TripViewController;
+			sourceTree = "<group>";
+		};
+		35D37B541E5010FF00CD8C47 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				35D37B551E50111500CD8C47 /* RouteCell.swift */,
+				35D37B561E50111500CD8C47 /* RouteCell.xib */,
+				35D37B591E515C5100CD8C47 /* RouteModel.swift */,
+				35D37B5B1E515EC800CD8C47 /* Route.swift */,
+			);
+			name = cell;
 			sourceTree = "<group>";
 		};
 		35D9171C1E39F6BD008B6616 /* Model */ = {
@@ -1456,6 +1476,7 @@
 				358AFCB31DCF763A00C4DC28 /* AlbumPicCell.xib in Resources */,
 				35B391741E0D0AC000CDE431 /* index.js in Resources */,
 				35EA4C331DBF7894004A63A4 /* ShareViewController.storyboard in Resources */,
+				35D37B581E50111500CD8C47 /* RouteCell.xib in Resources */,
 				358B4AE81E002EFE00805FDB /* ZZImage.xcassets in Resources */,
 				35E4B5551E39DA7900795563 /* FriendsCircleViewController.storyboard in Resources */,
 				35D26BB71DE8287F00D3318C /* NoteViewController.xib in Resources */,
@@ -1552,6 +1573,7 @@
 				35B741301DBCF25D00EB8A8A /* TravelNote.swift in Sources */,
 				352722431DEB271F0090DCBD /* MJRefreshBackStateFooter.m in Sources */,
 				353FC62C1E3365F100FA8D87 /* NearByViewCell.swift in Sources */,
+				35D37B5C1E515EC800CD8C47 /* Route.swift in Sources */,
 				357671D01E3DD85500C286C0 /* ImagesCollectionView.swift in Sources */,
 				358BEB031DE8892E000CF759 /* Activity.swift in Sources */,
 				3597DEEB1DBCEC6C00A65747 /* AppDelegate.swift in Sources */,
@@ -1606,6 +1628,7 @@
 				35383D441DF1A4C600ADDE4A /* FriendListViewController.swift in Sources */,
 				3589FCD81E4ABEEA00A25649 /* SVProgressHUD+Extension.swift in Sources */,
 				352722391DEB271F0090DCBD /* MJRefreshAutoFooter.m in Sources */,
+				35D37B5A1E515C5100CD8C47 /* RouteModel.swift in Sources */,
 				357FDA921DC378A5002966FE /* FindMoreCell.swift in Sources */,
 				35EA4C261DBF7726004A63A4 /* HomeViewController.swift in Sources */,
 				35D9171E1E39F6DB008B6616 /* Comment.swift in Sources */,
@@ -1639,6 +1662,7 @@
 				35B741361DBCF52F00EB8A8A /* Content.swift in Sources */,
 				352722481DEB271F0090DCBD /* MJRefreshConst.m in Sources */,
 				358B4AEC1E002EFE00805FDB /* ZZPhotoViewController.swift in Sources */,
+				35D37B571E50111500CD8C47 /* RouteCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
