@@ -24,20 +24,30 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DzR-90-imp">
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DzR-90-imp">
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.60738146550000005" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="7" maxX="0.0" maxY="7"/>
                         <state key="normal" title="步行" image="directions_walk"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="walkButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PGp-Ha-31g"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCh-9p-vId">
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCh-9p-vId">
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.60738146550000005" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="6" maxX="0.0" maxY="6"/>
                         <state key="normal" title="公交" image="directions_bus"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="busButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YGe-5n-hQc"/>
                         </connections>
@@ -77,11 +87,16 @@
                             <constraint firstAttribute="height" constant="1" id="bPC-Qq-C2d"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRe-wc-ukx">
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRe-wc-ukx">
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.60738146550000005" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="6" maxX="0.0" maxY="6"/>
                         <state key="normal" title="驾车" image="directions_car"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="driveButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Yp4-YB-5v9"/>
                         </connections>
@@ -119,8 +134,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="addressLabel" destination="v2S-CM-DGI" id="Z3n-El-TOn"/>
+                <outlet property="busButton" destination="XCh-9p-vId" id="tmR-qf-3ti"/>
+                <outlet property="carButton" destination="WRe-wc-ukx" id="CKS-hH-z5l"/>
                 <outlet property="nameLabel" destination="POd-dX-pRC" id="JJf-L9-i1d"/>
                 <outlet property="phoneLabel" destination="3et-PQ-EnO" id="nOc-mx-Bbf"/>
+                <outlet property="walkButton" destination="DzR-90-imp" id="fdg-Ou-4j7"/>
             </connections>
             <point key="canvasLocation" x="5" y="30"/>
         </tableViewCell>

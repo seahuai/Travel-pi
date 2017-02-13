@@ -13,12 +13,14 @@ class RouteModel: NSObject {
     var name: String?
     var address: String?
     var phone: String?
+    var location: CLLocationCoordinate2D?
     var isNew:Bool = true
     var index: Int = -1
     init(info: BMKPoiInfo, index: Int) {
         name = info.name
         address = info.address
         phone = info.phone
+        location = info.pt
         self.index = index
     }
 }

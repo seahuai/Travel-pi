@@ -42,7 +42,7 @@ class LocationTool: NSObject {
     }
     fileprivate lazy var locationManager: CLLocationManager = {
         let locationManger = CLLocationManager()
-        locationManger.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManger.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManger.delegate = self
         locationManger.requestWhenInUseAuthorization()
         return locationManger
@@ -58,7 +58,6 @@ extension LocationTool: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last{
-//            callBack(location)
             self.location = location
             manager.stopUpdatingLocation()
 //            print(location)

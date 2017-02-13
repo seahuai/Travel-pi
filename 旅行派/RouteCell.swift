@@ -9,9 +9,9 @@
 import UIKit
 
 protocol RouteCellDelegate {
-    func goWalk()
-    func byBus()
-    func byCar()
+    func goWalk(name: String, location: CLLocationCoordinate2D)
+    func byBus(name: String, location: CLLocationCoordinate2D)
+    func byCar(name: String, location: CLLocationCoordinate2D)
 }
 
 class RouteCell: UITableViewCell {
@@ -19,8 +19,18 @@ class RouteCell: UITableViewCell {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     
-    var delegate: RouteCellDelegate?
+    @IBOutlet weak var walkButton: UIButton!
+    @IBOutlet weak var busButton: UIButton!
+    @IBOutlet weak var carButton: UIButton!
     
+    var delegate: RouteCellDelegate?
+    var hiddenButton: Bool = false{
+        didSet{
+            walkButton.isHidden = hiddenButton
+            busButton.isHidden = hiddenButton
+            carButton.isHidden = hiddenButton
+        }
+    }
     var info: RouteModel?{
         didSet{
             nameLabel.text = info?.name ?? "暂无名称"
@@ -38,14 +48,14 @@ class RouteCell: UITableViewCell {
 
 extension RouteCell{
     @IBAction func walkButtonClick(_ sender: AnyObject) {
-        delegate?.goWalk()
+        delegate?.goWalk(name: info?.name ?? "未知", location: info!.location!)
     }
     
     @IBAction func busButtonClick(_ sender: AnyObject) {
-        delegate?.byBus()
+        delegate?.byBus(name: info?.name ?? "未知", location: info!.location!)
     }
     
     @IBAction func driveButtonClick(_ sender: AnyObject) {
-        delegate?.byCar()
+        delegate?.byCar(name: info?.name ?? "未知", location: info!.location!)
     }
 }

@@ -167,6 +167,8 @@
 		35D37B581E50111500CD8C47 /* RouteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35D37B561E50111500CD8C47 /* RouteCell.xib */; };
 		35D37B5A1E515C5100CD8C47 /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D37B591E515C5100CD8C47 /* RouteModel.swift */; };
 		35D37B5C1E515EC800CD8C47 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D37B5B1E515EC800CD8C47 /* Route.swift */; };
+		35D37B601E51863700CD8C47 /* NaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D37B5E1E51863700CD8C47 /* NaviViewController.swift */; };
+		35D37B611E51863700CD8C47 /* NaviViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35D37B5F1E51863700CD8C47 /* NaviViewController.xib */; };
 		35D9171A1E39F1E7008B6616 /* FriendCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D917181E39F1E7008B6616 /* FriendCommentCell.swift */; };
 		35D9171B1E39F1E7008B6616 /* FriendCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35D917191E39F1E7008B6616 /* FriendCommentCell.xib */; };
 		35D9171E1E39F6DB008B6616 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D9171D1E39F6DB008B6616 /* Comment.swift */; };
@@ -427,6 +429,8 @@
 		35D37B561E50111500CD8C47 /* RouteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RouteCell.xib; sourceTree = "<group>"; };
 		35D37B591E515C5100CD8C47 /* RouteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteModel.swift; sourceTree = "<group>"; };
 		35D37B5B1E515EC800CD8C47 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		35D37B5E1E51863700CD8C47 /* NaviViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaviViewController.swift; sourceTree = "<group>"; };
+		35D37B5F1E51863700CD8C47 /* NaviViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NaviViewController.xib; sourceTree = "<group>"; };
 		35D917181E39F1E7008B6616 /* FriendCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCommentCell.swift; sourceTree = "<group>"; };
 		35D917191E39F1E7008B6616 /* FriendCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCommentCell.xib; sourceTree = "<group>"; };
 		35D9171D1E39F6DB008B6616 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -857,6 +861,7 @@
 		358874331DCEC7EE00FAB8E7 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				35D37B5D1E5185D000CD8C47 /* 导航 */,
 				358B57C71E4EE6140057075C /* Route */,
 				358874391DCECA1300FAB8E7 /* Nearby */,
 				358874361DCEC89B00FAB8E7 /* DiscoverViewController.storyboard */,
@@ -1175,6 +1180,15 @@
 			name = cell;
 			sourceTree = "<group>";
 		};
+		35D37B5D1E5185D000CD8C47 /* 导航 */ = {
+			isa = PBXGroup;
+			children = (
+				35D37B5E1E51863700CD8C47 /* NaviViewController.swift */,
+				35D37B5F1E51863700CD8C47 /* NaviViewController.xib */,
+			);
+			name = "导航";
+			sourceTree = "<group>";
+		};
 		35D9171C1E39F6BD008B6616 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1481,6 +1495,7 @@
 				35E4B5551E39DA7900795563 /* FriendsCircleViewController.storyboard in Resources */,
 				35D26BB71DE8287F00D3318C /* NoteViewController.xib in Resources */,
 				35220C4D1DE330450092924F /* ShowSearchCityCell.xib in Resources */,
+				35D37B611E51863700CD8C47 /* NaviViewController.xib in Resources */,
 				35FD3B6D1DEAFD2500F8362D /* TargetCell.xib in Resources */,
 				359E0A621DF3B240001268D0 /* FunctionCell.xib in Resources */,
 				35D9171B1E39F1E7008B6616 /* FriendCommentCell.xib in Resources */,
@@ -1560,6 +1575,7 @@
 				354B7E431DEC7AD800622296 /* TripInfoViewController.swift in Sources */,
 				352722461DEB271F0090DCBD /* MJRefreshStateHeader.m in Sources */,
 				3527223E1DEB271F0090DCBD /* MJRefreshAutoGifFooter.m in Sources */,
+				35D37B601E51863700CD8C47 /* NaviViewController.swift in Sources */,
 				3527223C1DEB271F0090DCBD /* MJRefreshFooter.m in Sources */,
 				358BEAFD1DE886FA000CF759 /* Detail.swift in Sources */,
 				3527223A1DEB271F0090DCBD /* MJRefreshBackFooter.m in Sources */,
