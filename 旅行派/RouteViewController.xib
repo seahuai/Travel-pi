@@ -2,11 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RouteViewController" customModule="旅行派" customModuleProvider="target">
             <connections>
+                <outlet property="placeholderView" destination="OlK-ov-T2e" id="4e7-9Y-Mm1"/>
                 <outlet property="tableView" destination="im7-wT-vu3" id="7rw-rC-Qel"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,14 +21,34 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="im7-wT-vu3">
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OlK-ov-T2e">
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无行程" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fK7-1A-bEf">
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="fK7-1A-bEf" secondAttribute="trailing" id="XYn-CU-QpH"/>
+                        <constraint firstItem="fK7-1A-bEf" firstAttribute="centerY" secondItem="OlK-ov-T2e" secondAttribute="centerY" multiplier="0.8" id="gNP-i4-gg2"/>
+                        <constraint firstItem="fK7-1A-bEf" firstAttribute="leading" secondItem="OlK-ov-T2e" secondAttribute="leading" id="mrK-tP-KJx"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="im7-wT-vu3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1s4-vM-YBB"/>
                 <constraint firstAttribute="trailing" secondItem="im7-wT-vu3" secondAttribute="trailing" id="EOB-If-Twv"/>
+                <constraint firstAttribute="trailing" secondItem="OlK-ov-T2e" secondAttribute="trailing" id="VVh-YK-Kod"/>
+                <constraint firstItem="OlK-ov-T2e" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eOs-pU-du7"/>
+                <constraint firstItem="OlK-ov-T2e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hgW-2d-Ujz"/>
+                <constraint firstAttribute="bottom" secondItem="OlK-ov-T2e" secondAttribute="bottom" id="qfM-go-EvI"/>
                 <constraint firstAttribute="bottom" secondItem="im7-wT-vu3" secondAttribute="bottom" id="qoP-Pz-4R1"/>
                 <constraint firstItem="im7-wT-vu3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wPU-Rw-KJH"/>
             </constraints>
+            <point key="canvasLocation" x="-7" y="65"/>
         </view>
     </objects>
 </document>

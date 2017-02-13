@@ -12,6 +12,8 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     
+    fileprivate lazy var detailVC: DetailViewController = DetailViewController()
+    
     @IBOutlet weak var destinationTableView: UITableView!
     @IBOutlet weak var displayScrollView: UIScrollView!
     
@@ -104,11 +106,10 @@ extension HomeViewController{
     
     @objc private func pushDetail(note: Notification){
         let des = note.userInfo?["destination"] as! Destination
-        let detailVc = DetailViewController()
-        detailVc.hidesBottomBarWhenPushed = true
-        detailVc.destination = des
+        detailVC.hidesBottomBarWhenPushed = true
+        detailVC.destination = des
         toolBar?.alpha = 0
-        self.navigationController?.pushViewController(detailVc, animated: true)
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
     @objc private func pushFindMore(note: Notification){

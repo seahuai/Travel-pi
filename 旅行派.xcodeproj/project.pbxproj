@@ -161,8 +161,6 @@
 		35BE8F751DC4A05800F952EB /* PicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35BE8F731DC4A05800F952EB /* PicCell.xib */; };
 		35D26BB21DE8286E00D3318C /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D26BB01DE8286E00D3318C /* TripViewController.swift */; };
 		35D26BB31DE8286E00D3318C /* TripViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35D26BB11DE8286E00D3318C /* TripViewController.xib */; };
-		35D26BB61DE8287F00D3318C /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D26BB41DE8287F00D3318C /* NoteViewController.swift */; };
-		35D26BB71DE8287F00D3318C /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35D26BB51DE8287F00D3318C /* NoteViewController.xib */; };
 		35D37B571E50111500CD8C47 /* RouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D37B551E50111500CD8C47 /* RouteCell.swift */; };
 		35D37B581E50111500CD8C47 /* RouteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35D37B561E50111500CD8C47 /* RouteCell.xib */; };
 		35D37B5A1E515C5100CD8C47 /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D37B591E515C5100CD8C47 /* RouteModel.swift */; };
@@ -423,8 +421,6 @@
 		35BE8F731DC4A05800F952EB /* PicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PicCell.xib; sourceTree = "<group>"; };
 		35D26BB01DE8286E00D3318C /* TripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
 		35D26BB11DE8286E00D3318C /* TripViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripViewController.xib; sourceTree = "<group>"; };
-		35D26BB41DE8287F00D3318C /* NoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
-		35D26BB51DE8287F00D3318C /* NoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteViewController.xib; sourceTree = "<group>"; };
 		35D37B551E50111500CD8C47 /* RouteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCell.swift; sourceTree = "<group>"; };
 		35D37B561E50111500CD8C47 /* RouteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RouteCell.xib; sourceTree = "<group>"; };
 		35D37B591E515C5100CD8C47 /* RouteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteModel.swift; sourceTree = "<group>"; };
@@ -1152,8 +1148,6 @@
 			isa = PBXGroup;
 			children = (
 				35EA4C341DBF789A004A63A4 /* Share */,
-				35D26BB41DE8287F00D3318C /* NoteViewController.swift */,
-				35D26BB51DE8287F00D3318C /* NoteViewController.xib */,
 			);
 			name = NoteViewController;
 			sourceTree = "<group>";
@@ -1493,7 +1487,6 @@
 				35D37B581E50111500CD8C47 /* RouteCell.xib in Resources */,
 				358B4AE81E002EFE00805FDB /* ZZImage.xcassets in Resources */,
 				35E4B5551E39DA7900795563 /* FriendsCircleViewController.storyboard in Resources */,
-				35D26BB71DE8287F00D3318C /* NoteViewController.xib in Resources */,
 				35220C4D1DE330450092924F /* ShowSearchCityCell.xib in Resources */,
 				35D37B611E51863700CD8C47 /* NaviViewController.xib in Resources */,
 				35FD3B6D1DEAFD2500F8362D /* TargetCell.xib in Resources */,
@@ -1609,7 +1602,6 @@
 				358874351DCEC87E00FAB8E7 /* DiscoverViewController.swift in Sources */,
 				3547C40E1DE97C380017F56B /* TripDetailViewController.swift in Sources */,
 				35B741341DBCF28B00EB8A8A /* User.swift in Sources */,
-				35D26BB61DE8287F00D3318C /* NoteViewController.swift in Sources */,
 				3503E8CE1DF16938009ABB89 /* LoginViewController.swift in Sources */,
 				35214B151DF2B31E0012354F /* ConversationCell.swift in Sources */,
 				3527224A1DEB271F0090DCBD /* UIScrollView+MJExtension.m in Sources */,

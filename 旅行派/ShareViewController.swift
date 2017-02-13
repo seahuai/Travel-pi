@@ -13,23 +13,28 @@ class ShareViewController: UIViewController {
     fileprivate lazy var PhotoBrowserVC: PhotoBrowserViewController = PhotoBrowserViewController()
     fileprivate lazy var photoBrowserAnimator: PhotoBrowserAnimator = PhotoBrowserAnimator()
     fileprivate lazy var ShareDetailVC: ShareCellDetailViewController = ShareCellDetailViewController()
-    var notes: [TravelNote] = [TravelNote]()
+    fileprivate var notes: [TravelNote] = [TravelNote]()
     var id: Int = 0{
         didSet{
-            print("share:\(id)")
-            shareTableView.mj_header.beginRefreshing()
+            initial = !(id == oldValue)
         }
     }
+    fileprivate var initial: Bool = true
     //记录展开全文的行号
     fileprivate var row: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
         setUpTableViewRefresh()
-//        getTravelNotes()
         setUpNotification()
         setUpAnimator()
         setUpNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if initial{
+            shareTableView.mj_header.beginRefreshing()
+        }
     }
 
     deinit {
@@ -122,7 +127,7 @@ extension ShareViewController: UITableViewDataSource, UITableViewDelegate{
         
         ShareDetailVC.note = notes[indexPath.row]
         let nav = UINavigationController(rootViewController: ShareDetailVC)
-        present(nav, animated: true, completion: nil)
+        present(nav, animated: true, completion: {self.initial = false})
     }
     
 }

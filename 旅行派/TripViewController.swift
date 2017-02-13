@@ -13,14 +13,8 @@ class TripViewController: UIViewController {
     @IBOutlet weak var name_enLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    fileprivate var oldDestination: Destination?
-    fileprivate var initial: Bool = true
     fileprivate lazy var tripDetailVc: TripDetailViewController = TripDetailViewController()
-    var destination: Destination?{
-        didSet{
-            oldDestination = oldValue
-        }
-    }
+    var destination: Destination?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,19 +26,16 @@ class TripViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if initial || (oldDestination!.name! != destination!.name!) {
-            tableView.contentOffset.y = 0
-//            print("reloadTrip")
-//            getDetailPlan(id: destination!.id)
-            tableView.mj_header.beginRefreshing()
-            if let urlStr = destination?.photo_url{
-               let url = URL(string: urlStr)
-                topImageView.sd_setImage(with: url)
-            }
-            nameLabel.text = destination?.name
-            name_enLabel.text = destination?.name_en
-            tableView.contentOffset.y = 0
+        tableView.contentOffset.y = 0
+        tableView.mj_header.beginRefreshing()
+        if let urlStr = destination?.photo_url{
+            let url = URL(string: urlStr)
+            topImageView.sd_setImage(with: url)
         }
+        nameLabel.text = destination?.name
+        name_enLabel.text = destination?.name_en
+        tableView.contentOffset.y = 0
+        
     }
 }
 
@@ -131,7 +122,7 @@ extension TripViewController{
     
     fileprivate func getDetailPlan(id: Int){
         NetWorkTool.sharedInstance.getDestinationInformation(id: id) { (error, result) in
-            if error != nil {print("获取数据失败");return}
+            if error != nil {print("获取数据失败");self.tableView.mj_header.endRefreshing();return}
             let sections = result!["sections"] as! [[String: AnyObject]]
 //            Detail.shared.plans.removeAll()
 //            Detail.shared.plans.removeAll()
@@ -152,7 +143,6 @@ extension TripViewController{
                     }
                 }
                 self.tableView.reloadData()
-                self.initial = false
                 self.tableView.mj_header.endRefreshing()
             }
         }

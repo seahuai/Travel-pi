@@ -64,6 +64,7 @@ extension DiscoverViewController{
         let x = CGFloat(index) * UIScreen.main.bounds.width
         let w = scrollView.bounds.width
         let h = scrollView.bounds.height
+        self.view.endEditing(true)
         switch index {
         case 0:
             let nearBy = childViewControllers[0] as! NearbyViewController

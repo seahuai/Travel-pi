@@ -22,8 +22,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var backButtonHeightCon: NSLayoutConstraint!
     //子控制器
     fileprivate lazy var tripViewController: TripViewController = TripViewController()
-    fileprivate lazy var noteViewController: NoteViewController = NoteViewController()
-    
+    fileprivate lazy var shareNavigationViewController = UIStoryboard(name: "ShareViewController", bundle: nil).instantiateInitialViewController() as! UINavigationController
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutIfNeeded()
@@ -36,8 +35,8 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
-//        let index = Int(contentScrollView.contentOffset.x / screenBounds.width)
-        titlesButtonClick(button: titlesButton[0])
+        setCurrentViewController(index: 0)
+        setCurrentViewController(index: 1)
     }
     
     
@@ -101,33 +100,29 @@ extension DetailViewController: UIScrollViewDelegate{
         contentScrollView.isPagingEnabled = true
         contentScrollView.showsHorizontalScrollIndicator = false
         addChildViewController(tripViewController)
-        addChildViewController(noteViewController)
+        addChildViewController(shareNavigationViewController.childViewControllers[0])
         
         setCurrentViewController(index: 0)
     }
     
     fileprivate func setCurrentViewController(index: Int){
-        let vc1 = childViewControllers[0] as! TripViewController
-        vc1.destination = destination
-
-        let vc3 = childViewControllers[1] as! NoteViewController
-        vc3.destination = destination
         switch index {
         case 0:
+            let vc1 = childViewControllers[0] as! TripViewController
+            vc1.destination = destination
             if vc1.view.superview != nil{
                 return
             }
             vc1.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
             contentScrollView.addSubview(vc1.view)
-            
-            
         default:
-            if vc3.view.superview != nil{
+            let vc2 = childViewControllers[1] as! ShareViewController
+            vc2.id = destination!.district_id
+            if vc2.view.superview != nil{
                 return
             }
-            vc3.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
-            contentScrollView.addSubview(vc3.view)
-            
+            vc2.view.frame = CGRect(x: screenBounds.width * CGFloat(index), y: 0, width: contentScrollView.bounds.width, height: contentScrollView.bounds.height)
+            contentScrollView.addSubview(vc2.view)
         }
         
         
@@ -136,9 +131,5 @@ extension DetailViewController: UIScrollViewDelegate{
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = Int(scrollView.contentOffset.x / screenBounds.width)
         titlesButtonClick(button: titlesButton[index])
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let index = Int(scrollView.contentOffset.x / scrollView.bounds.width)
     }
 }

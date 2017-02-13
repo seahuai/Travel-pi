@@ -11,6 +11,7 @@ import CoreLocation
 import SVProgressHUD
 class RouteViewController: UIViewController {
     
+    @IBOutlet weak var placeholderView: UIView!
     @IBOutlet weak var tableView: UITableView!
     fileprivate let locTool = LocationTool()
     fileprivate var original: CLLocationCoordinate2D?
@@ -56,6 +57,7 @@ extension RouteViewController: UITableViewDelegate, UITableViewDataSource, Route
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        placeholderView.isHidden = !Route.shared.routes.isEmpty
         return Route.shared.routes.count
     }
     
