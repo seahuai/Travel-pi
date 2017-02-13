@@ -115,11 +115,10 @@ extension RouteViewController: UITableViewDelegate, UITableViewDataSource, Route
 //        
 //
         
-        
         let baseUrl = "http://api.map.baidu.com/direction"
         let src = URLQueryItem(name: "src", value: "travelpi|travelpi")
         let mode = URLQueryItem(name: "mode", value: mode)
-        let destination = URLQueryItem(name: "destination", value: "latlng:\(original!.latitude),\(original!.longitude)|name:\(name)")
+        let destination = URLQueryItem(name: "destination", value: "latlng:\(destination.latitude),\(destination.longitude)|name:\(name)")
         let origin = URLQueryItem(name: "origin", value: "latlng:\(original!.latitude),\(original!.longitude)|name:当前位置")
         let output = URLQueryItem(name: "output", value: "html")
         let region = URLQueryItem(name: "region", value: "中国")
