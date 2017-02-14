@@ -72,6 +72,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMChatManagerDelegate, EM
         }else{
             print("微信分享注册失败")
         }
+        
+        if UMSocialManager.default().setPlaform(.wechatTimeLine, appKey: "wxdc1e388c3822c80b", appSecret: "3baf1193c85774b3fd9d18447d76cab0", redirectURL: "http://mobile.umeng.com/social"){
+            print("微信分享注册成功")
+        }else{
+            print("微信分享注册失败")
+        }
         //QQ
         if UMSocialManager.default().setPlaform(.QQ, appKey: "100424468", appSecret: nil, redirectURL: "http://mobile.umeng.com/social"){
             print("QQ分享注册成功")
@@ -84,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMChatManagerDelegate, EM
         }else{
             print("微博分享注册失败")
         }
+        
+        
         
         return true
     }

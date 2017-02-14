@@ -21,7 +21,7 @@ class PhotoBrowserViewController: UIViewController {
         }
     }
     
-    fileprivate lazy var saveButton = UIButton()
+    fileprivate lazy var shareButton = UIButton()
     fileprivate lazy var closeButton = UIButton()
     lazy var collectionView: UICollectionView = UICollectionView(frame: CGRect(), collectionViewLayout: layout())
 
@@ -45,7 +45,7 @@ extension PhotoBrowserViewController{
     fileprivate func setUp(){
 //        self.view.layoutIfNeeded()
         view.addSubview(collectionView)
-        view.addSubview(saveButton)
+        view.addSubview(shareButton)
         view.addSubview(closeButton)
         view.frame.size.width += 20
         
@@ -56,12 +56,10 @@ extension PhotoBrowserViewController{
     
     fileprivate func setUpButton(){
         
-        saveButton.titleLabel?.textAlignment = .center
-        saveButton.titleLabel?.textColor = UIColor.darkGray
-        saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        saveButton.backgroundColor = UIColor.clear
-        saveButton.layer.borderWidth = 1
-        saveButton.layer.borderColor = UIColor.darkGray.cgColor
+        shareButton.titleLabel?.textAlignment = .center
+        shareButton.titleLabel?.textColor = UIColor.darkGray
+        shareButton.titleLabel?.font = UIFont.systemFont(ofSize: 30)
+        shareButton.backgroundColor = UIColor.clear
         
         closeButton.setImage(UIImage(named: "close_white"), for: .normal)
         closeButton.snp.makeConstraints { (make) in
@@ -71,11 +69,11 @@ extension PhotoBrowserViewController{
             make.width.equalTo(25)
         }
         
-        saveButton.setTitle("保存", for: .normal)
-        saveButton.snp.makeConstraints { (make) in
+        shareButton.setTitle("...", for: .normal)
+        shareButton.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(25)
             make.right.equalTo(view.snp.right).offset(-40)
-            make.height.equalTo(25)
+            make.height.equalTo(30)
             make.width.equalTo(40)
         }
     }
@@ -84,24 +82,35 @@ extension PhotoBrowserViewController{
 
 extension PhotoBrowserViewController: PhotoCellImageDelegate{
     fileprivate func setUpButtonTarget(){
-        saveButton.addTarget(self, action: #selector(self.saveButtonClick), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(self.shareButtonClick), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(self.closeButtonClick), for: .touchUpInside)
     }
     
     
-    @objc private func saveButtonClick(){
+    @objc private func shareButtonClick(){
         let cell = collectionView.visibleCells.first as! PhotoCell
+        let caption = cell.content?.caption ?? "分享图片"
+        UMSocialUIManager.setPreDefinePlatforms([0,1,2,4])
         if let image = cell.imageView.image{
-            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(image:didFinishSavingWithError:contextInfo:)), nil)
+            UMSocialUIManager.showShareMenuViewInWindow { (type, _) in
+                let imgObj = UMShareImageObject()
+                imgObj.shareImage = image
+                let mesObj = UMSocialMessageObject()
+                mesObj.text = caption
+                mesObj.shareObject = imgObj
+                UMSocialManager.default().share(to: type, messageObject: mesObj, currentViewController: nil, completion: { (_, error) in
+                    if error != nil{ print("分享失败",error) }
+                })
+            }
         }
     }
     
 //    - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
     func image(image: UIImage?, didFinishSavingWithError error: NSError?, contextInfo: AnyObject){
         if error == nil{
-            SVProgressHUD.showSuccess(withStatus: "已保存到相册")
+            SVProgressHUD.showSuccess(info: "已保存到相册", interval: 1.0)
         }else{
-            SVProgressHUD.showError(withStatus: "保存失败")
+            SVProgressHUD.showError(error: "保存失败", interval: 1.0)
         }
     }
     
@@ -111,7 +120,20 @@ extension PhotoBrowserViewController: PhotoCellImageDelegate{
     //MARK:PhotoCell的代理方法
     func photoCellImageClick() {
         dismiss(animated: true) {}
+    }
+    
+    func longPress(image: UIImage, caption: String) {
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let save = UIAlertAction(title: "保存图片", style: .default) { (_) in
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(image:didFinishSavingWithError:contextInfo:)), nil)
+        }
+        let cancel = UIAlertAction(title: "取消", style: .default) { (_) in
+            ac.dismiss(animated: true, completion: nil)
+        }
         
+        ac.addAction(save)
+        ac.addAction(cancel)
+        present(ac, animated: true, completion: nil)
     }
 }
 

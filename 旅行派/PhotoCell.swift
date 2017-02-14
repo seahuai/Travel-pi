@@ -10,6 +10,7 @@ import UIKit
 import SDWebImage
 protocol PhotoCellImageDelegate {
     func photoCellImageClick()
+    func longPress(image: UIImage, caption: String)
 }
 
 class PhotoCell: UICollectionViewCell {
@@ -65,6 +66,15 @@ extension PhotoCell{
         imageView.isUserInteractionEnabled = true
         let tapGes = UITapGestureRecognizer(target: self, action: #selector(self.imageViewTap))
         imageView.addGestureRecognizer(tapGes)
+        
+        let longPrseeGes = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
+        scrollView.addGestureRecognizer(longPrseeGes)
+    }
+    
+    @objc private func longPress(){
+        if let image = imageView.image{
+            delegate?.longPress(image: image, caption: content?.caption ?? "")
+        }
     }
     
     @objc private func imageViewTap(){

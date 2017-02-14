@@ -22,3 +22,4 @@
 #endif /* BMKSwiftDemo_Bridging_Header_h */
 
 #import <UMSocialCore/UMSocialCore.h>
+#import <UShareUI/UShareUI.h> 

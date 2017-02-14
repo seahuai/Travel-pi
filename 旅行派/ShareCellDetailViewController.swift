@@ -55,7 +55,6 @@ extension ShareCellDetailViewController{
         let wechatTLAction = UIAlertAction(title: "微信朋友圈", style: .default) { (_) in
             self.shareImageTo(platform: .wechatTimeLine)
         }
-        
         let wechatFAction = UIAlertAction(title: "微信好友", style: .default) { (_) in
             self.shareImageTo(platform: .wechatSession)
         }
