@@ -47,6 +47,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMChatManagerDelegate, EM
         EMClient.shared().add(self)
         EMClient.shared().chatManager.add(self)
         EMClient.shared().contactManager.add(self)
+        
+        
+        //MARK:友盟分享
+        
+        //微信 wxdc1e388c3822c80b
+        //QQ:
+        /*
+         如appID：100424468 
+         1、tencent100424468
+         2、QQ05fc5b14
+         */
+        
+        /*微博
+         App Key：2613235658
+         App Secret：eabfe16da6079e5a15ce37349f7f3416
+         */
+        
+        UMSocialManager.default().umSocialAppkey = "58a29f082ae85b1f8d000b35"
+        UMSocialGlobal.shareInstance().isUsingHttpsWhenShareContent = false
+        //微信
+        if UMSocialManager.default().setPlaform(.wechatSession, appKey: "wxdc1e388c3822c80b", appSecret: "3baf1193c85774b3fd9d18447d76cab0", redirectURL: "http://mobile.umeng.com/social"){
+            print("微信分享注册成功")
+        }else{
+            print("微信分享注册失败")
+        }
+        //QQ
+        if UMSocialManager.default().setPlaform(.QQ, appKey: "100424468", appSecret: nil, redirectURL: "http://mobile.umeng.com/social"){
+            print("QQ分享注册成功")
+        }else{
+            print("QQ分享注册失败")
+        }
+        //微博
+        if UMSocialManager.default().setPlaform(.sina, appKey: "2613235658", appSecret: "eabfe16da6079e5a15ce37349f7f3416", redirectURL: "http://mobile.umeng.com/social"){
+            print("微博分享注册成功")
+        }else{
+            print("微博分享注册失败")
+        }
+        
+        return true
+    }
+    
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        let result = UMSocialManager.default().handleOpen(url)
+        if !result{
+            print("回调失败\(url)")
+        }
         return true
     }
     
@@ -64,8 +110,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EMChatManagerDelegate, EM
         Account.shared.newRequest = true
         Account.shared.friendRequests.append(request)
     }
-    
-    
     
     //MARK:自动登录相关
     func autoLoginDidCompleteWithError(_ aError: EMError!) {

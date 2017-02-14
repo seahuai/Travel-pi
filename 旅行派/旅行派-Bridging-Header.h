@@ -20,3 +20,5 @@
 #import "EMSDK.h"
 //#import "EMSDKFull.h"
 #endif /* BMKSwiftDemo_Bridging_Header_h */
+
+#import <UMSocialCore/UMSocialCore.h>

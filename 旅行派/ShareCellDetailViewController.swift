@@ -47,23 +47,46 @@ extension ShareCellDetailViewController{
     @objc private func shareButtonClick(){
         let alert = UIAlertController(title: "分享到", message: nil, preferredStyle: .actionSheet)
         let weiboAction = UIAlertAction(title: "微博", style: .default) { (_) in
-            print("分享到微博")
+            self.shareImageTo(platform: .sina)
         }
         let qqAction = UIAlertAction(title: "QQ", style: .default) { (_) in
-            print("分享到QQ")
+            self.shareImageTo(platform: .QQ)
         }
-        let wechatAction = UIAlertAction(title: "微信", style: .default) { (_) in
-            print("分享到微信")
+        let wechatTLAction = UIAlertAction(title: "微信朋友圈", style: .default) { (_) in
+            self.shareImageTo(platform: .wechatTimeLine)
         }
+        
+        let wechatFAction = UIAlertAction(title: "微信好友", style: .default) { (_) in
+            self.shareImageTo(platform: .wechatSession)
+        }
+        
         let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (_) in
             alert.dismiss(animated: true, completion: nil)
         }
         alert.addAction(weiboAction)
         alert.addAction(qqAction)
-        alert.addAction(wechatAction)
+        alert.addAction(wechatTLAction)
+        alert.addAction(wechatFAction)
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    fileprivate func shareImageTo(platform: UMSocialPlatformType){
+        let object = UMShareImageObject()
+        object.shareImage = self.note?._contents[0].photo_url
+        object.thumbImage = self.note?._contents[0].photo_url
+        let mesObject = UMSocialMessageObject()
+        mesObject.shareObject = object
+        mesObject.text = self.note?.description
+        mesObject.title = self.note?.topic
+        UMSocialManager.default().share(to: platform, messageObject: mesObject, currentViewController: nil, completion: { (_, error) in
+            if error != nil{
+                SVProgressHUD.showError(error: "分享失败", interval: 1.0)
+            }else{
+                SVProgressHUD.showSuccess(info: "分享成功", interval: 1.0)
+            }
+        })
     }
 }
 
