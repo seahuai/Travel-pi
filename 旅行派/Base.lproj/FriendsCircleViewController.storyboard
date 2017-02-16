@@ -68,7 +68,6 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ejL-M7-q1A" customClass="ImagesCollectionView" customModule="旅行派" customModuleProvider="target">
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="300" id="DlO-in-Acm"/>
                                                         <constraint firstAttribute="height" constant="150" id="uDU-A3-D83"/>
                                                     </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cyw-ui-TId">
@@ -183,7 +182,6 @@
                                             <outlet property="contentLabel" destination="26I-Ro-oJc" id="Dpo-6a-TSl"/>
                                             <outlet property="favoriteButton" destination="9wo-u8-mzI" id="SEA-QC-0gy"/>
                                             <outlet property="imgsViewHeightCon" destination="uDU-A3-D83" id="HQd-7z-rR0"/>
-                                            <outlet property="imgsViewWidthCon" destination="DlO-in-Acm" id="y4t-8q-Se9"/>
                                             <outlet property="nameLabel" destination="eUr-yB-kQn" id="14e-n7-A34"/>
                                             <outlet property="picCollectionView" destination="ejL-M7-q1A" id="VPC-au-LW7"/>
                                         </connections>

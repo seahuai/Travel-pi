@@ -49,7 +49,7 @@ class FriendCircleCell: UITableViewCell {
             commentsTableView.row = row
             
             let size = picsViewSize(count: friendCircleModel!.imgUrls.count)
-            imgsViewWidthCon.constant = size.width
+//            imgsViewWidthCon.constant = size.width
             imgsViewHeightCon.constant = size.height
             
             let commentsCount = friendCircleModel!.comments.count
@@ -111,6 +111,8 @@ extension FriendCircleCell{
 //MARK:按钮
 extension FriendCircleCell{
     fileprivate func setUpButtonTarget(){
+        commentButton.isEnabled = EMClient.shared().isLoggedIn
+        favoriteButton.isEnabled = EMClient.shared().isLoggedIn
         commentButton.addTarget(self, action: #selector(self.comment), for: .touchUpInside)
         favoriteButton.addTarget(self, action: #selector(self.favorite), for: .touchUpInside)
     }

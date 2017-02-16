@@ -39,18 +39,29 @@ class FriendCircle: NSObject {
         }
     }
     
-    init(user: String, avaterUrl: String, urls: [URL], text: String?) {
+    init(user: String, avaterUrl: String, urls: [URL], text: String) {
         super.init()
         self.user = user
         self.avator = URL(string: avaterUrl)
         self.imgUrls = urls
-        if let content = text{
-            self.content = content
-        }else{
-            self.content = "分享图片"
-        }
+
         //估算高度
-        cellHeight = CGFloat(100 * imgUrls.count) / 3 + 80
+        let h = (UIScreen.main.bounds.width - 75) / 3
+        let textH = getCellHeight(text: text)
+        let constH: CGFloat = 65
+        if urls.count == 1{
+            cellHeight = textH + h + constH
+        }else{
+            let row = CGFloat((urls.count - 1) / 3 + 1)
+            cellHeight = row * h + textH + constH + (row - 1) * 10
+        }
+    }
+    
+    fileprivate func getCellHeight(text: String) -> CGFloat{
+        let str = text as NSString
+        let attr = [NSFontAttributeName : UIFont.systemFont(ofSize: 13)]
+        let rect = str.boundingRect(with: CGSize(width: UIScreen.main.bounds.width - 65, height: CGFloat(MAXFLOAT)), options: [.usesFontLeading, .usesLineFragmentOrigin], attributes: attr, context: nil)
+        return rect.height
     }
     
 }

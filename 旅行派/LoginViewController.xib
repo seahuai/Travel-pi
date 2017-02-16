@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,6 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginPaper" translatesAutoresizingMaskIntoConstraints="NO" id="8Do-dF-dhY"/>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TGv-cR-GYR">
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -27,7 +27,7 @@
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ina-dd-RJW">
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnC-qH-4Sj">
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -58,19 +58,38 @@
                         <action selector="autoLoginButtonClick:" destination="-1" eventType="touchUpInside" id="GjA-jE-s5h"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rK-Ra-RFM">
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rK-Ra-RFM">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="dcA-19-3Ex"/>
-                        <constraint firstAttribute="width" constant="100" id="gpu-t4-0mC"/>
+                        <constraint firstAttribute="height" constant="35" id="dcA-19-3Ex"/>
                     </constraints>
-                    <state key="normal" title="登录"/>
+                    <state key="normal" title="登  录"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="loginButtonClick:" destination="-1" eventType="touchUpInside" id="gBs-wa-VVm"/>
+                    </connections>
+                </button>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1k-YI-irY">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="注  册"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="registerButtonClick:" destination="-1" eventType="touchUpInside" id="NvY-z2-j2B"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="d1k-YI-irY" firstAttribute="leading" secondItem="8rK-Ra-RFM" secondAttribute="leading" id="20s-H2-1iQ"/>
+                <constraint firstItem="d1k-YI-irY" firstAttribute="top" secondItem="8rK-Ra-RFM" secondAttribute="bottom" constant="15" id="2fa-GH-eTK"/>
                 <constraint firstItem="6lz-yX-VRz" firstAttribute="top" secondItem="ina-dd-RJW" secondAttribute="bottom" constant="20" id="49T-WX-rww"/>
                 <constraint firstItem="96e-DT-O7P" firstAttribute="leading" secondItem="dnC-qH-4Sj" secondAttribute="leading" id="4zC-9o-i7S"/>
                 <constraint firstItem="TGv-cR-GYR" firstAttribute="leading" secondItem="dnC-qH-4Sj" secondAttribute="trailing" constant="10" id="Aft-js-fAu"/>
@@ -78,13 +97,21 @@
                 <constraint firstItem="0Cb-IN-qC5" firstAttribute="leading" secondItem="6lz-yX-VRz" secondAttribute="trailing" constant="10" id="Bum-Ci-nSL"/>
                 <constraint firstItem="TGv-cR-GYR" firstAttribute="centerY" secondItem="dnC-qH-4Sj" secondAttribute="centerY" id="GBU-Ap-ni3"/>
                 <constraint firstItem="96e-DT-O7P" firstAttribute="top" secondItem="dnC-qH-4Sj" secondAttribute="bottom" constant="30" id="Hi4-dB-vmK"/>
+                <constraint firstAttribute="trailing" secondItem="8rK-Ra-RFM" secondAttribute="trailing" constant="10" id="JSQ-IO-vTx"/>
                 <constraint firstItem="8rK-Ra-RFM" firstAttribute="top" secondItem="ina-dd-RJW" secondAttribute="bottom" constant="60" id="KLb-Yv-fUt"/>
-                <constraint firstItem="6lz-yX-VRz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="MaI-T4-ZLS"/>
+                <constraint firstItem="8Do-dF-dhY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZhO-2l-a2n"/>
+                <constraint firstItem="6lz-yX-VRz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-40" id="cyq-Js-mVf"/>
+                <constraint firstItem="d1k-YI-irY" firstAttribute="trailing" secondItem="8rK-Ra-RFM" secondAttribute="trailing" id="fHQ-Ik-Bxy"/>
                 <constraint firstAttribute="trailing" secondItem="TGv-cR-GYR" secondAttribute="trailing" constant="50" id="h2k-VZ-YQA"/>
+                <constraint firstItem="8Do-dF-dhY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jLs-VW-Ggg"/>
                 <constraint firstItem="0Cb-IN-qC5" firstAttribute="centerY" secondItem="6lz-yX-VRz" secondAttribute="centerY" id="jtP-uV-Pg9"/>
                 <constraint firstItem="ina-dd-RJW" firstAttribute="centerY" secondItem="96e-DT-O7P" secondAttribute="centerY" id="pQm-EZ-DJk"/>
+                <constraint firstItem="8rK-Ra-RFM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="qTo-vK-dIr"/>
+                <constraint firstAttribute="trailing" secondItem="8Do-dF-dhY" secondAttribute="trailing" id="rcn-gf-sFB"/>
                 <constraint firstItem="ina-dd-RJW" firstAttribute="leading" secondItem="TGv-cR-GYR" secondAttribute="leading" id="tXU-PQ-TeQ"/>
                 <constraint firstItem="dnC-qH-4Sj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="140" id="uaG-v8-4Ba"/>
+                <constraint firstItem="d1k-YI-irY" firstAttribute="height" secondItem="8rK-Ra-RFM" secondAttribute="height" id="uut-aT-flt"/>
+                <constraint firstAttribute="bottom" secondItem="8Do-dF-dhY" secondAttribute="bottom" id="w97-c6-FOV"/>
                 <constraint firstItem="8rK-Ra-RFM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xiW-ZG-1aE"/>
                 <constraint firstItem="dnC-qH-4Sj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="zNq-6A-YHV"/>
             </constraints>
@@ -94,5 +121,6 @@
     <resources>
         <image name="check_no" width="128" height="128"/>
         <image name="check_yes" width="128" height="128"/>
+        <image name="loginPaper" width="690" height="1226"/>
     </resources>
 </document>

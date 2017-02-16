@@ -69,12 +69,11 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.view.layoutIfNeeded()
         setUpNavigationBar()
         setUpTableView()
         setUpNotification()
         setUp()
-        setUpToolBar()
+//        setUpToolBar()
         setUpTableViewRefresh()
 
         getWeekAlbum()
@@ -116,7 +115,6 @@ extension HomeViewController{
         let id = note.userInfo?["cellId"] as! String
         findMoreViewController.destinations = CellModels[id]!
         findMoreViewController.hidesBottomBarWhenPushed = true
-        toolBar?.alpha = 0
         self.navigationController?.pushViewController(findMoreViewController, animated: true)
     }
 }
@@ -158,7 +156,9 @@ extension HomeViewController: LocationDelegate{
         destinationTableView.dataSource = self
         destinationTableView.separatorStyle = .none
         destinationTableView.contentInset = UIEdgeInsets(top: displayViewHeightCon.constant, left: 0, bottom: 0, right: 0)
-           }
+        destinationTableView.showsVerticalScrollIndicator = false
+        }
+    
     
      //MARK: 使用MJRefresh框架
     fileprivate func setUpTableViewRefresh(){
@@ -259,18 +259,18 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         if height <= 64{
             height = 64
             navigationItem.title = "热门城市"
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGray]
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 
         }else{
             navigationItem.title = "每周精选"
             navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         }
         
-        var alpha = 64 / height - 0.2
-        if alpha <= 0{
-            alpha = 0
-        }
-        toolBar?.alpha = alpha
+//        var alpha = 64 / height - 0.2
+//        if alpha <= 0{
+//            alpha = 0
+//        }
+//        toolBar?.alpha = alpha
         
         displayViewHeightCon.constant = height
         self.displayScrollView.layoutIfNeeded()

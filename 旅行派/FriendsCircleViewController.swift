@@ -113,7 +113,7 @@ extension FriendsCircleViewController: ComposeDelegate{
     func compose(imageUrls: [URL], content: String?) {
         let user = Account.shared.currentUserID
         let avotor = "http://img.jiqie.com/10/8/1370nz.jpg"
-        let model = FriendCircle(user: user!, avaterUrl: avotor, urls: imageUrls, text: content)
+        let model = FriendCircle(user: user!, avaterUrl: avotor, urls: imageUrls, text: content ?? "")
         models = [model] + models
         
         downloadImage(models: models)

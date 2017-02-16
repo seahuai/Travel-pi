@@ -18,6 +18,35 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setUp()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        usernameTextField.becomeFirstResponder()
+    }
+    
+    @IBAction func registerButtonClick(_ sender: AnyObject) {
+        let username = usernameTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        if username == "" && password != ""{
+            SVProgressHUD.showError(error: "请输入用户名", interval: 1.0)
+            return
+        }else if username != "" && password == ""{
+            SVProgressHUD.showError(error: "请输入密码", interval: 1.0)
+            return
+        }else if username == "" && password == ""{
+            SVProgressHUD.showError(error: "请输入用户名和密码", interval: 1.0)
+            return
+        }
+        
+        EMClient.shared().register(withUsername: username, password: password) { (_, error) in
+            if error != nil{
+                SVProgressHUD.showError(error: error!.errorDescription, interval: 1.5)
+            }else{
+                SVProgressHUD.showSuccess(info: "注册成功", interval: 1.0)
+            }
+        }
+    }
+    
     @IBAction func loginButtonClick(_ sender: AnyObject) {
         
         SVProgressHUD.show(withStatus: "登录中")

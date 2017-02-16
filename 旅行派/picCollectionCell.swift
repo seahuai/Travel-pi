@@ -22,7 +22,7 @@ class picCollectionCell: UICollectionViewCell {
         didSet{
             if let photo_url = destination?.photo_url{
                 let url = URL(string: photo_url)
-                imageView.sd_setImage(with: url, placeholderImage: nil)
+                imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_picture"))
             }
             titleLabel.text = destination?.name_en
             nameLabel.text = destination?.name
