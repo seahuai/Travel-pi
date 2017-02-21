@@ -111,8 +111,6 @@ extension FriendCircleCell{
 //MARK:按钮
 extension FriendCircleCell{
     fileprivate func setUpButtonTarget(){
-        commentButton.isEnabled = EMClient.shared().isLoggedIn
-        favoriteButton.isEnabled = EMClient.shared().isLoggedIn
         commentButton.addTarget(self, action: #selector(self.comment), for: .touchUpInside)
         favoriteButton.addTarget(self, action: #selector(self.favorite), for: .touchUpInside)
     }

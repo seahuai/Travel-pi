@@ -219,7 +219,7 @@ extension FriendsCircleViewController: commentDelegate{
     @IBAction func sendCommentButtonClick(_ sender: AnyObject) {
         let user = Account.shared.currentUserID
         let text = commentTextField.text
-        if user == nil {
+        if !EMClient.shared().isLoggedIn || user == nil{
             SVProgressHUD.showError(error: "您尚未登录", interval: 0.5)
             return
         }

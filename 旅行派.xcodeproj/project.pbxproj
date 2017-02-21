@@ -188,6 +188,7 @@
 		35E363C51DC991D600BBB33E /* PhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E363C41DC991D600BBB33E /* PhotoBrowserViewController.swift */; };
 		35E4B5521E39DA0C00795563 /* FriendsCircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E4B5511E39DA0C00795563 /* FriendsCircleViewController.swift */; };
 		35E4B5551E39DA7900795563 /* FriendsCircleViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E4B5531E39DA7900795563 /* FriendsCircleViewController.storyboard */; };
+		35EA3AC91E5C63A70023F486 /* ChatPhotoBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA3AC81E5C63A70023F486 /* ChatPhotoBrowserViewController.swift */; };
 		35EA4C261DBF7726004A63A4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4C251DBF7726004A63A4 /* HomeViewController.swift */; };
 		35EA4C281DBF7775004A63A4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA4C271DBF7775004A63A4 /* ShareViewController.swift */; };
 		35EA4C2F1DBF7860004A63A4 /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35EA4C2D1DBF7860004A63A4 /* HomeViewController.storyboard */; };
@@ -480,6 +481,7 @@
 		35E363C41DC991D600BBB33E /* PhotoBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewController.swift; sourceTree = "<group>"; };
 		35E4B5511E39DA0C00795563 /* FriendsCircleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCircleViewController.swift; sourceTree = "<group>"; };
 		35E4B5541E39DA7900795563 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FriendsCircleViewController.storyboard; sourceTree = "<group>"; };
+		35EA3AC81E5C63A70023F486 /* ChatPhotoBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPhotoBrowserViewController.swift; sourceTree = "<group>"; };
 		35EA4C251DBF7726004A63A4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		35EA4C271DBF7775004A63A4 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		35EA4C2E1DBF7860004A63A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/HomeViewController.storyboard; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 		3503E8BF1DF15FFE009ABB89 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				35EA3AC71E5C63810023F486 /* Browser */,
 				3503E8C51DF163A3009ABB89 /* Login */,
 				35214B0F1DF2646E0012354F /* Cell */,
 				3503E8C01DF16011009ABB89 /* ChatViewController.swift */,
@@ -1369,6 +1372,14 @@
 			name = "朋友圈";
 			sourceTree = "<group>";
 		};
+		35EA3AC71E5C63810023F486 /* Browser */ = {
+			isa = PBXGroup;
+			children = (
+				35EA3AC81E5C63A70023F486 /* ChatPhotoBrowserViewController.swift */,
+			);
+			name = Browser;
+			sourceTree = "<group>";
+		};
 		35EA4C231DBF75F0004A63A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1766,6 +1777,7 @@
 				3503E8C91DF16519009ABB89 /* LogoutView.swift in Sources */,
 				3527223F1DEB271F0090DCBD /* MJRefreshAutoNormalFooter.m in Sources */,
 				35AD214F1DC2F22C006B0564 /* FindMoreViewController.swift in Sources */,
+				35EA3AC91E5C63A70023F486 /* ChatPhotoBrowserViewController.swift in Sources */,
 				358B4AE61E002EFE00805FDB /* ZZGridViewCell.swift in Sources */,
 				35214B121DF265390012354F /* FriendRequestCell.swift in Sources */,
 				35EA4C281DBF7775004A63A4 /* ShareViewController.swift in Sources */,

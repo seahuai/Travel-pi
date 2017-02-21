@@ -12,6 +12,7 @@ class SHPhotoBrowserViewController: UIViewController {
 
     var imgUrls: [URL] = [URL]()
     fileprivate lazy var collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: SHCollectionViewLayout())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

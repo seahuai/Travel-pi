@@ -13,7 +13,7 @@ import Photos
 import SDWebImage
 
 class ChatViewController: JSQMessagesViewController {
-
+    
     fileprivate var locationTool = LocationTool()
     fileprivate var location: CLLocation?
     fileprivate var conversation: EMConversation?
@@ -158,7 +158,17 @@ extension ChatViewController{
         let data = JSQMessages[indexPath.row]
         return data
     }
-
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
+        if let media = JSQMessages[indexPath.row].media{
+            if let locaMedia = media as? JSQLocationMediaItem{
+                goDestination(location: locaMedia.location.coordinate)
+            }else if let imageMedia = media as? JSQPhotoMediaItem{
+                goPhotoBrowser(image: imageMedia.image)
+            }
+        }
+    }
+    
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let data = JSQMessages[indexPath.row]
         switch data.senderId {
@@ -191,7 +201,7 @@ extension ChatViewController{
         }
         
         let sendImageAc = UIAlertAction(title: "图片", style: .default) { (_) in
-           _ = self.zz_presentPhotoVC(1, completeHandler: { (assets) in
+            _ = self.zz_presentPhotoVC(1, completeHandler: { (assets) in
                 self.sendImageMessage(assets: assets)
             })
         }
@@ -204,9 +214,9 @@ extension ChatViewController{
         alertSheet.addAction(cancelAc)
         present(alertSheet, animated: true, completion: nil)
     }
-
-
-
+    
+    
+    
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         let JSQMes = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
         JSQMessages.append(JSQMes!)
@@ -234,10 +244,10 @@ extension ChatViewController{
                 let body = EMImageMessageBody(data: data, displayName: nil)
                 let EMMes = EMMessage(conversationID: self.conversationId, from: self.senderId, to: self.conversationId, body: body, ext: nil)
                 EMClient.shared().chatManager.send(EMMes, progress: { (progress) in
-//                    SVProgressHUD.showProgress(Float(progress/100))
-//                    if progress == 100{
-//                        SVProgressHUD.dismiss()
-//                    }
+                    //                    SVProgressHUD.showProgress(Float(progress/100))
+                    //                    if progress == 100{
+                    //                        SVProgressHUD.dismiss()
+                    //                    }
                     }, completion: { (_, error) in
                         if error == nil{
                             self.buildImageItemMessage(data: data!, fromId: self.senderId)
@@ -260,38 +270,38 @@ extension ChatViewController{
         let EMMes = EMMessage(conversationID: conversationId, from: senderId, to: conversationId, body: body, ext: nil)
         EMClient.shared().chatManager.send(EMMes, progress: { (_) in
             SVProgressHUD.show()
-            }) { (_, error) in
+        }) { (_, error) in
             SVProgressHUD.dismiss()
-                if error == nil{
-                    self.finishSendingMessage(animated: true)
-                    self.buildLocationItemMessage(location: self.location, fromId: self.senderId)
-                }else{
-                    SVProgressHUD.showError(withStatus: error!.errorDescription)
-                    SVProgressHUD.dismiss(withDelay: 0.8)
-                }
+            if error == nil{
+                self.finishSendingMessage(animated: true)
+                self.buildLocationItemMessage(location: self.location, fromId: self.senderId)
+            }else{
+                SVProgressHUD.showError(withStatus: error!.errorDescription)
+                SVProgressHUD.dismiss(withDelay: 0.8)
+            }
         }
     }
     
     fileprivate func buildLocationItemMessage(location: CLLocation!,fromId: String){
         let item = JSQLocationMediaItem()
-        item.setLocation(location) { 
+        item.setLocation(location) {
+            item.appliesMediaViewMaskAsOutgoing = fromId == self.senderId
             self.collectionView.reloadData()
         }
-        
         addMediaItem(item: item, fromId: fromId)
     }
     
     fileprivate func buildImageItemMessage(image: UIImage, fromId: String){
         let item = JSQPhotoMediaItem(image: image)
-        
+        item?.appliesMediaViewMaskAsOutgoing = fromId == senderId
         addMediaItem(item: item, fromId: fromId)
-    
+        
     }
     
     fileprivate func buildImageItemMessage(data: Data, fromId: String){
         let image = UIImage(data: data)
         let item = JSQPhotoMediaItem(image: image)
-
+        item?.appliesMediaViewMaskAsOutgoing = fromId == senderId
         addMediaItem(item: item, fromId: fromId)
     }
     
@@ -300,6 +310,30 @@ extension ChatViewController{
         let JSQMes = JSQMessage(senderId: fromId, senderDisplayName: fromId, date: Date(), media: item)
         JSQMessages.append(JSQMes!)
         self.finishSendingMessage(animated: true)
+    }
+    
+    fileprivate func goDestination(location: CLLocationCoordinate2D){
+        //http://api.map.baidu.com/marker?location=40.047669,116.313082&title=我的位置&content=百度奎科大厦&output=html&src=yourComponyName|yourAppName
+        
+        let baseUrl = "http://api.map.baidu.com/marker"
+        let loct = URLQueryItem(name: "location", value: "\(location.latitude),\(location.longitude)")
+        let title = URLQueryItem(name: "title", value: "对方位置")
+        let content = URLQueryItem(name: "content", value: "")
+        let output = URLQueryItem(name: "output", value: "html")
+        let src = URLQueryItem(name: "src", value: "travelpi|travelpi")
+        
+        var urlCom = URLComponents(string: baseUrl)
+        urlCom?.queryItems = [loct, title, content, output, src]
+        
+        if let url = urlCom?.url{
+            let navi = NaviViewController(url: url)
+            navigationController?.pushViewController(navi, animated: true)
+        }
+    }
+    
+    fileprivate func goPhotoBrowser(image: UIImage){
+        let photoVc = ChatPhotoBrowserViewController(image: image)
+        present(photoVc, animated: true, completion: nil)
     }
     
 }
